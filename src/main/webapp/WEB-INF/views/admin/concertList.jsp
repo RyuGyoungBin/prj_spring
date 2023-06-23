@@ -229,16 +229,6 @@
             </li>
             <li>
               <a class="dropdown-item d-flex align-items-center" href="admin/users-profile.html">
-                <i class="bi bi-person"></i>
-                <span>My Profile</span>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="admin/users-profile.html">
                 <i class="bi bi-gear"></i>
                 <span>Account Settings</span>
               </a>
@@ -246,17 +236,6 @@
             <li>
               <hr class="dropdown-divider">
             </li>
-
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="admin/pages-faq.html">
-                <i class="bi bi-question-circle"></i>
-                <span>Need Help?</span>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
             <li>
               <a class="dropdown-item d-flex align-items-center" href="/adminLogin">
                 <i class="bi bi-box-arrow-right"></i>
@@ -357,7 +336,7 @@
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Datatables</h5>
-			  <form autocomplete="off">
+			  <form autocomplete="off" action="/concertList">
 					<div class="d-flex">
 						<div class="col-2 text-end ms-3 me-3">
 							<select class="form-select form-select-sm d-flex p-2" id="use_YN">
@@ -413,6 +392,9 @@
               <table class="table table-striped">
                 <thead>
                   <tr>
+                  	<th scope="col">
+						<input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="0" aria-label="..." name="tabel_check">
+					</th>
                     <th scope="col">#</th>
                     <th scope="col">Name</th>
                     <th scope="col">Position</th>
@@ -422,6 +404,9 @@
                 </thead>
                 <tbody>
                   <tr>
+                  	<th scope="col">
+						<input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="0" aria-label="..." name="tabel_check">
+					</th>
                     <th scope="row">1</th>
                     <td>Brandon Jacob</td>
                     <td>Designer</td>
@@ -429,6 +414,9 @@
                     <td>2016-05-25</td>
                   </tr>
                   <tr>
+                  	<th scope="col">
+						<input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="0" aria-label="..." name="tabel_check">
+					</th>
                     <th scope="row">2</th>
                     <td>Bridie Kessler</td>
                     <td>Developer</td>
@@ -436,6 +424,9 @@
                     <td>2014-12-05</td>
                   </tr>
                   <tr>
+                  	<th scope="col">
+						<input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="0" aria-label="..." name="tabel_check">
+					</th>
                     <th scope="row">3</th>
                     <td>Ashleigh Langosh</td>
                     <td>Finance</td>
@@ -443,6 +434,9 @@
                     <td>2011-08-12</td>
                   </tr>
                   <tr>
+                  	<th scope="col">
+						<input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="0" aria-label="..." name="tabel_check">
+					</th>
                     <th scope="row">4</th>
                     <td>Angus Grady</td>
                     <td>HR</td>
@@ -450,6 +444,9 @@
                     <td>2012-06-11</td>
                   </tr>
                   <tr>
+                  	<th scope="col">
+						<input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="0" aria-label="..." name="tabel_check">
+					</th>
                     <th scope="row">5</th>
                     <td>Raheem Lehner</td>
                     <td>Dynamic Division Officer</td>
@@ -588,7 +585,12 @@
 		 	myModal.show();
 	 	})
 	 	
-  	 		
+	 	//tabel
+  	 	$("input:checkbox[name=tabel_check]").eq(0).on("click", function(){
+	  	 	if($("input:checkbox[name=tabel_check]").eq(0).is(":checked") == true) {
+	  	 		$("input:checkbox[name=tabel_check]").prop("checked", true);
+	  	 	}
+		});
 
 
   	</script>

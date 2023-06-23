@@ -43,7 +43,7 @@
                 	<div id="login">
                     		<div class="text-center"><img src="/resources/concert/" alt="Image" width="160" height="34"></div>
                             <hr>
-                            <form>
+                            <form action="/concertList">
                                 <div class="form-group">
                                     <label>ID</label>
                                     <input type="text" class=" form-control " placeholder="Id" value="sts41811" id="id">
@@ -52,7 +52,7 @@
                                     <label>Password</label>
                                     <input type="password" class=" form-control" placeholder="Password" value="q1w2e3r4" id="pw">
                                 </div>
-                                <a href="/concertList?" class="btn_full">Sign in</a>
+                                <a href="/concertList" class="btn_full">Sign in</a>
                             </form>
                         </div>
                 </div>
