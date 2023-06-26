@@ -18,8 +18,19 @@
     		name
     	FROM
     		codeGroup
+    	WHERE
+			name LIKE CONCAT ('%',#{shkey},'%')
     </select>
     
+    <select id="selectOne" resultMap="resultMapObj">
+    	SELECT
+    		seq,
+    		name
+    	FROM
+    		codeGroup
+    	WHERE
+			seq = #{seq}
+    </select>
     
 
 </mapper>    

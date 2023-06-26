@@ -1,15 +1,11 @@
-package com.company.app.codegroup;
+package com.company.app.code;
 
-public class CodeGroup {
+public class Code {
 
-	
-//	디비 컬럼명 첫글자는 소문자
-//	seq는 편의상 디비에는 int지만 자바에서는 String으로 사용된다
-//	주로 테이블의 칼럼명과 일치
-	
 	private String seq;
 	private String name;
-//	-----
+	private String codeGroup_seq;
+	
 	public String getSeq() {
 		return seq;
 	}
@@ -22,5 +18,12 @@ public class CodeGroup {
 	public void setName(String name) {
 		this.name = name;
 	}
+	public String getCodeGroup_seq() {
+		return codeGroup_seq;
+	}
+	public void setCodeGroup_seq(String codeGroup_seq) {
+		this.codeGroup_seq = codeGroup_seq;
+	}
+	
 	
 }

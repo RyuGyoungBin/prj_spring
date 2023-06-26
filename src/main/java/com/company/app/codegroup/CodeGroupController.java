@@ -14,12 +14,21 @@ public class CodeGroupController {
 	CodeGroupServiceImpl service;
 	
 	@RequestMapping(value = "/codeGroupList")
-	public String codeGroupList(Model model) {
+	public String codeGroupList(CodeGroupVo vo, Model model) {
 		
-		List<CodeGroup> list = service.selectList();
+		List<CodeGroup> list = service.selectList(vo);
 //							jsp에서 사용할 변수명
 		model.addAttribute("listgroup", list);
 		
 		return "codeGroupList";
+	}
+	
+	@RequestMapping(value = "/codeGroupForm")
+	public String codeGroupForm(CodeGroupVo vo, Model model) {
+		
+		CodeGroup codegroup = service.selectOne(vo);
+		model.addAttribute("codeOne", codegroup);
+		
+		return "codeGroupForm";  
 	}
 }

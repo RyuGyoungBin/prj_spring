@@ -1,4 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="rb" uri="http://www.springframework.org/tags" %>
+
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -292,25 +298,11 @@
       </li><!-- End Register Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="admin/pages-login.html">
+        <a class="nav-link collapsed" href="/adminLogin">
           <i class="bi bi-box-arrow-in-right"></i>
-          <span>Login</span>
+          <span>Logout</span>
         </a>
       </li><!-- End Login Page Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="admin/pages-error-404.html">
-          <i class="bi bi-dash-circle"></i>
-          <span>Error 404</span>
-        </a>
-      </li><!-- End Error 404 Page Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="admin/pages-blank.html">
-          <i class="bi bi-file-earmark"></i>
-          <span>Blank</span>
-        </a>
-      </li><!-- End Blank Page Nav -->
 
     </ul>
 
@@ -336,18 +328,23 @@
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Datatables</h5>
-			  <form autocomplete="off" action="/concertList">
+			  <form autocomplete="off" action="/concertList" method="post">
 					<div class="d-flex">
 						<div class="col-2 text-end ms-3 me-3">
 							<select class="form-select form-select-sm d-flex p-2" id="use_YN">
-								<option value="1" selected></option>
-								<option value="2"></option>
+								<option value="" selected>---장르---</option>
+								<option value="1">발라드</option>
+								<option value="2">락</option>
+								<option value="3">랩</option>
+								<option value="4">버스킹</option>
 							</select>
 						</div>
 						<div class="col-2 text-end ms-3 me-3">
 							<select class="form-select form-select-sm d-flex p-2" id="date_">
-								<option value="1" selected></option>
-								<option value="2"></option>
+								<option value="" selected>---장소---</option>
+								<option value="1">서울</option>
+								<option value="2">인천</option>
+								<option value="3">경기</option>
 							</select>
 						</div>
 						<div class="mb-3 col-2 text-start ms-3 me-3">
@@ -365,7 +362,10 @@
 							</select>
 						</div>
 						<div class="col-2 text-start ms-3 me-3">
-								<input class="form-control form-control-sm p-2" id="end_date" type="text" placeholder="검색어">
+								<input class="form-control form-control-sm p-2" name="shkey" id="name" type="text" placeholder="name">
+						</div>
+						<div class="col-2 text-start ms-3 me-3">
+								<input class="form-control form-control-sm p-2" id="shOption" type="text" placeholder="shOption">
 						</div>
 						<div class="col-2 text-start ms-3 me-3">
 							<button type="submit" class="btn btn-warning btn-sm me-2"><i class="bi bi-search"></i></button>
@@ -388,73 +388,39 @@
 						</select>
 					</div>
 				</div>
-              <!-- Table with stripped rows -->
-              <table class="table table-striped">
-                <thead>
-                  <tr>
-                  	<th scope="col">
-						<input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="0" aria-label="..." name="tabel_check">
-					</th>
-                    <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Position</th>
-                    <th scope="col">Age</th>
-                    <th scope="col">Start Date</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                  	<th scope="col">
-						<input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="0" aria-label="..." name="tabel_check">
-					</th>
-                    <th scope="row">1</th>
-                    <td>Brandon Jacob</td>
-                    <td>Designer</td>
-                    <td>28</td>
-                    <td>2016-05-25</td>
-                  </tr>
-                  <tr>
-                  	<th scope="col">
-						<input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="0" aria-label="..." name="tabel_check">
-					</th>
-                    <th scope="row">2</th>
-                    <td>Bridie Kessler</td>
-                    <td>Developer</td>
-                    <td>35</td>
-                    <td>2014-12-05</td>
-                  </tr>
-                  <tr>
-                  	<th scope="col">
-						<input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="0" aria-label="..." name="tabel_check">
-					</th>
-                    <th scope="row">3</th>
-                    <td>Ashleigh Langosh</td>
-                    <td>Finance</td>
-                    <td>45</td>
-                    <td>2011-08-12</td>
-                  </tr>
-                  <tr>
-                  	<th scope="col">
-						<input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="0" aria-label="..." name="tabel_check">
-					</th>
-                    <th scope="row">4</th>
-                    <td>Angus Grady</td>
-                    <td>HR</td>
-                    <td>34</td>
-                    <td>2012-06-11</td>
-                  </tr>
-                  <tr>
-                  	<th scope="col">
-						<input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="0" aria-label="..." name="tabel_check">
-					</th>
-                    <th scope="row">5</th>
-                    <td>Raheem Lehner</td>
-                    <td>Dynamic Division Officer</td>
-                    <td>47</td>
-                    <td>2011-04-19</td>
-                  </tr>
-                </tbody>
-              </table>
+				<c:choose>
+					<c:when test="${fn:length(listgroup) eq 0}">
+						<tr>
+							<td class="text-center" colspan="9">There is no data!</td>
+						</tr>	
+					</c:when>
+					
+		                  	<c:otherwise>
+		              <!-- Table with stripped rows -->
+		              <table class="table table-striped">
+		                <thead>
+		                  <tr>
+		                  	<th scope="col">
+								<input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="0" aria-label="..." name="tabel_check">
+							</th>
+		                    <th scope="col">seq</th>
+		                    <th scope="col">name</th>
+		                  </tr>
+		                </thead>
+		                <tbody>
+							<c:forEach items="${listgroup}" var="codegroup" varStatus="status">
+		                  		<tr>
+				                  	<th scope="col">
+										<input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="0" aria-label="..." name="tabel_check">
+									</th>
+				                    <td scope="row"><c:out value="${codegroup.seq }"></c:out></td>
+				                    <td><c:out value="${codegroup.name }"></c:out></td>
+			                 	</tr>
+							</c:forEach>
+		                </tbody>
+		              </table>
+					</c:otherwise>
+				</c:choose>
               <!-- End Table with stripped rows -->
 
             </div>
