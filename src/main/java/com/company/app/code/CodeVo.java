@@ -1,12 +1,11 @@
-package com.company.app.codegroup;
+package com.company.app.code;
 
-public class CodeGroupVo {
+public class CodeVo {
 	
 	private Integer shOption;
 	private String shkey;
 	private String seq;
 	
-//	-----------------
 	public Integer getShOption() {
 		return shOption;
 	}
@@ -26,7 +25,4 @@ public class CodeGroupVo {
 		this.seq = seq;
 	}
 	
-	
-	
-
 }

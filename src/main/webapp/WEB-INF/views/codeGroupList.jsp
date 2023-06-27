@@ -10,12 +10,12 @@
 <form name="formList" method="post">
 	<div class="form-group my-5 p-2 border d-flex align-content-center">
 		<select name="shOption">
-			<option value="">----------</option>
-			<option value="1">seq</option>
-			<option value="2">name</option>
+			<option value="0">Y</option>
+			<option value="1">N</option>
 		</select>
 		<input type="text" placeholder="shkey" value="" name="shkey" class="mx-3">
-		<button type="button" class="btn btn-secondary" id="btn">btn</button>
+		<button type="button" class="btn btn-secondary me-3" id="btn">검색</button>
+		<button type="button" class="btn btn-secondary" id="addBtn" onclick="location.href='/codeGroupForm'">추가</button>
 	</div>
 </form>
 <c:choose>

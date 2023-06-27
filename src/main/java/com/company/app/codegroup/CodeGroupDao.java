@@ -22,6 +22,21 @@ public class CodeGroupDao {
 	
 	public CodeGroup selectOne(CodeGroupVo vo){ return sqlSession.selectOne(namespace + ".selectOne", vo); }
 	
+	public int update(CodeGroup dto) {
+		return sqlSession.update(namespace + ".update", dto);
+	}
+	
+	public int delete(CodeGroup dto) {
+		return sqlSession.delete(namespace + ".delete", dto);
+	}
+	
+	public int insert(CodeGroup dto) {
+		return sqlSession.insert(namespace + ".insert", dto);
+	}
+	
+	public int updateDel(CodeGroup dto) {
+		return sqlSession.update(namespace + ".updateDel", dto);
+	}
 //	public List<CodeGroup> selectList(){ 
 //		return sqlSession.selectList(namespace + ".selectList", ""); 
 //	}

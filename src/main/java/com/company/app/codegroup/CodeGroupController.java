@@ -31,4 +31,32 @@ public class CodeGroupController {
 		
 		return "codeGroupForm";  
 	}
+	
+	
+	@RequestMapping(value = "/codeGroupUpdate")
+	public String codeGroupUpdate(CodeGroup dto) {
+		service.update(dto);
+		return "redirect:/codeGroupList";
+	}
+	
+	@RequestMapping(value = "/codeGroupDelete")
+	public String codeGroupDelete(CodeGroup dto) {
+		
+		service.delete(dto);
+		return "redirect:/codeGroupList";
+	}
+	
+	@RequestMapping(value = "/codeGroupInsert")
+	public String codeGroupInsert(CodeGroup dto) {
+		
+		service.insert(dto);
+		return "redirect:/codeGroupList";
+	}
+	
+	@RequestMapping(value = "/codeGroupUpdateDel")
+	public String codeGroupUpdateDel(CodeGroup dto) {
+		
+		service.updateDel(dto);
+		return "redirect:/codeGroupList";
+	}
 }

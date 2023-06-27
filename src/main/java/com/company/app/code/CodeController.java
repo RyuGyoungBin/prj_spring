@@ -16,9 +16,9 @@ public class CodeController {
 	CodeServiceImpl service;
 	
 	@RequestMapping(value = "/CodeList")
-	public String CodeList(Model model) {
+	public String CodeList(CodeVo vo, Model model) {
 		
-		List<Code> list = service.selectList();
+		List<Code> list = service.selectList(vo);
 		model.addAttribute("codeList", list);
 
 		return "codeList";

@@ -270,11 +270,32 @@
       </li><!-- End Dashboard Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="admin/users-profile.html">
-          <i class="bi bi-person"></i>
-          <span>Profile</span>
+        <a class="nav-link " data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-bar-chart"></i><span>Charts</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-      </li><!-- End Profile Page Nav -->
+        <ul id="charts-nav v-pills-tab" class="nav-content collapse show nav-pills" data-bs-parent="#sidebar-nav" role="tablist" aria-orientation="vertical">
+          <li>
+            <a href="" class="active" id="codeGroup">
+              <i class="bi bi-circle"></i><span>codeGroup</span>
+            </a>
+          </li>
+          <li>
+            <a href="" id="code">
+              <i class="bi bi-circle"></i><span>code</span>
+            </a>
+          </li>
+          <li>
+            <a href="" id="home">
+              <i class="bi bi-circle"></i><span>home</span>
+            </a>
+          </li>
+          <li>
+            <a href="" id="memeber">
+              <i class="bi bi-circle"></i><span>member</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Charts Nav -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="admin/pages-faq.html">
@@ -314,8 +335,7 @@
       <h1>Data Tables</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="admin/index.html">Home</a></li>
-          <li class="breadcrumb-item">Tables</li>
+          <li class="breadcrumb-item"><a href="/concertList">Home</a></li>
           <li class="breadcrumb-item active">Data</li>
         </ol>
       </nav>
@@ -331,7 +351,7 @@
 			  <form autocomplete="off" action="/concertList" method="post">
 					<div class="d-flex">
 						<div class="col-2 text-end ms-3 me-3">
-							<select class="form-select form-select-sm d-flex p-2" id="use_YN">
+							<select class="form-control form-control-sm p-2" id="use_YN">
 								<option value="" selected>---장르---</option>
 								<option value="1">발라드</option>
 								<option value="2">락</option>
@@ -340,7 +360,7 @@
 							</select>
 						</div>
 						<div class="col-2 text-end ms-3 me-3">
-							<select class="form-select form-select-sm d-flex p-2" id="date_">
+							<select class="form-control form-control-sm p-2" id="date_">
 								<option value="" selected>---장소---</option>
 								<option value="1">서울</option>
 								<option value="2">인천</option>
@@ -353,10 +373,13 @@
 						<div class="mb-3 col-2 text-start ms-3 me-3">
 							<input class="form-control form-control-sm p-2" id="end_date" type="text" placeholder="종료일" min="">
 						</div>
+						<div class="mb-3 col-2 text-start ms-3 me-3">
+							<input class="form-control form-control-sm p-2" id="" type="text" placeholder="">
+						</div>
 					</div>
 					<div class="d-flex mb-3 align-items-center">
 						<div class="col-2 text-end ms-3 me-3">
-							<select class="form-select form-select-sm d-flex p-2" id="">
+							<select class="form-control form-control-sm p-2" id="">
 								<option value="1" selected></option>
 								<option value="2"></option>
 							</select>
@@ -365,10 +388,14 @@
 								<input class="form-control form-control-sm p-2" name="shkey" id="name" type="text" placeholder="name">
 						</div>
 						<div class="col-2 text-start ms-3 me-3">
-								<input class="form-control form-control-sm p-2" id="shOption" type="text" placeholder="shOption">
+								<select class="form-control form-control-sm p-2" name="shOption" id="shOption">
+									<option value="">---delNy---</option>
+									<option value="0">Y</option>
+									<option value="1">N</option>
+								</select>
 						</div>
 						<div class="col-2 text-start ms-3 me-3">
-							<button type="submit" class="btn btn-warning btn-sm me-2"><i class="bi bi-search"></i></button>
+							<button type="submit" class="btn btn-warning btn-sm me-2" id="search"><i class="bi bi-search"></i></button>
 							<button type="reset" class="btn btn-danger btn-sm"><i class="bi bi-arrow-clockwise"></i></button>
 						</div>
 					</div>
@@ -376,7 +403,7 @@
 				<div class="d-flex mt-4 mb-2">
 					<div class="col text-start">
 						<div>total : 
-							<span id="totalNum">0</span>
+							<span id="totalNum"></span>
 						</div>
 					</div>
 					<div class="col-1 text-end">
@@ -389,7 +416,7 @@
 					</div>
 				</div>
 				<c:choose>
-					<c:when test="${fn:length(listgroup) eq 0}">
+					<c:when test="${fn:length(list) eq 0}">
 						<tr>
 							<td class="text-center" colspan="9">There is no data!</td>
 						</tr>	
@@ -403,18 +430,20 @@
 		                  	<th scope="col">
 								<input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="0" aria-label="..." name="tabel_check">
 							</th>
-		                    <th scope="col">seq</th>
-		                    <th scope="col">name</th>
+		                    <th>seq</th>
+		                    <th>name</th>
+		                    <th>delNy</th>
 		                  </tr>
 		                </thead>
 		                <tbody>
-							<c:forEach items="${listgroup}" var="codegroup" varStatus="status">
+							<c:forEach items="${list}" var="list" varStatus="status">
 		                  		<tr>
 				                  	<th scope="col">
 										<input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="0" aria-label="..." name="tabel_check">
 									</th>
-				                    <td scope="row"><c:out value="${codegroup.seq }"></c:out></td>
-				                    <td><c:out value="${codegroup.name }"></c:out></td>
+				                    <td scope="row"><c:out value="${list.seq }"></c:out></td>
+				                   <td><a href="/concertForm?seq=<c:out value="${list.seq }"></c:out>"><c:out value="${list.name }"></c:out></a></td>
+				                   <td><c:out value="${list.delNy}"></c:out></td>
 			                 	</tr>
 							</c:forEach>
 		                </tbody>
@@ -446,7 +475,7 @@
 					</div>
 					<div class="col text-end">
 						<button type="button" class="btn btn-success btn-sm" id="excel"><i class="bi bi-file-earmark-excel"></i></button>
-						<button type="button" class="btn btn-primary btn-sm" id="plus" onclick = "location.href = 'sub_01.html'">+</button>
+						<button type="button" class="btn btn-primary btn-sm" id="plus" onclick = "location.href = '/concertForm'">+</button>
 					</div>
 				</div>
           </div>
@@ -558,6 +587,11 @@
 	  	 	}
 		});
 
+	 
+		
+		
+		
+		
 
   	</script>
 

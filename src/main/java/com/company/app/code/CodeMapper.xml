@@ -7,12 +7,63 @@
 
 	<resultMap type="com.company.app.code.Code" id="resultMapObj"></resultMap>
 	<select id="selectList" resultMap="resultMapObj">
-		SELECT
-			seq,
+    	SELECT
+    		seq,
+    		name,
+    		delNy,
+    		codeGroup_seq
+    	FROM
+    		code
+    	WHERE
+			name LIKE CONCAT ('%',#{shkey},'%')
+			and delNy = #{shOption}
+    </select>
+    
+    <select id="selectOne" resultMap="resultMapObj">
+    	SELECT
+    		seq,
+    		name,
+    		codeGroup_seq
+    	FROM
+    		code
+    	WHERE
+			seq = #{seq}
+    </select>
+    
+    <update id="update">
+    	UPDATE 
+    		code
+		SET 
+			name = #{name}
+		WHERE 
+			seq = #{seq}
+    	
+    </update>
+    
+    <delete id="delete">
+    	DELETE FROM 
+    		code
+		WHERE
+			seq = #{seq}
+    
+    </delete>
+    
+    <insert id="insert">
+	    insert into `code` (
 			name,
-			codeGroup_seq
-		FROM
-			code
-		
-	</select>
+			delNy
+		) values (
+			#{name}
+			, 0
+		)
+    </insert>
+    
+    <update id="updateDel">
+   		UPDATE 
+    		code
+		SET 
+			delNy = 1
+		WHERE 
+			seq = #{seq}
+    </update>
 </mapper>

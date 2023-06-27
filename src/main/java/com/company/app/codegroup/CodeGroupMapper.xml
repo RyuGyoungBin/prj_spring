@@ -15,11 +15,13 @@
     <select id="selectList" resultMap="resultMapObj">
     	SELECT
     		seq,
-    		name
+    		name,
+    		delNy
     	FROM
     		codeGroup
     	WHERE
 			name LIKE CONCAT ('%',#{shkey},'%')
+			and delNy = #{shOption}
     </select>
     
     <select id="selectOne" resultMap="resultMapObj">
@@ -32,5 +34,41 @@
 			seq = #{seq}
     </select>
     
+    <update id="update">
+    	UPDATE 
+    		codeGroup
+		SET 
+			name = #{name}
+		WHERE 
+			seq = #{seq}
+    	
+    </update>
+    
+    <delete id="delete">
+    	DELETE FROM 
+    		codeGroup
+		WHERE
+			seq = #{seq}
+    
+    </delete>
+    
+    <insert id="insert">
+	    insert into `codeGroup` (
+			name,
+			delNy
+		) values (
+			#{name}
+			, 0
+		)
+    </insert>
+    
+    <update id="updateDel">
+   		UPDATE 
+    		codeGroup
+		SET 
+			delNy = 1
+		WHERE 
+			seq = #{seq}
+    </update>
 
 </mapper>    
