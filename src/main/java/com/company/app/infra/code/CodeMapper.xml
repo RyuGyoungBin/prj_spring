@@ -3,9 +3,9 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
-<mapper namespace="com.company.app.code.CodeMapper">
+<mapper namespace="com.company.app.infra.code.CodeMapper">
 
-	<resultMap type="com.company.app.code.Code" id="resultMapObj"></resultMap>
+	<resultMap type="com.company.app.infra.code.Code" id="resultMapObj"></resultMap>
 	<select id="selectList" resultMap="resultMapObj">
     	SELECT
     		seq,
@@ -14,16 +14,17 @@
     		codeGroup_seq
     	FROM
     		code
-    	WHERE
-			name LIKE CONCAT ('%',#{shkey},'%')
-			and delNy = #{shOption}
+    	WHERE 1=1
+			<if test="shkey != null and !shkey.equals('')">AND name LIKE CONCAT ('%',#{shkey},'%')</if>
+			<if test="shOption != null and !shOption.equals('')">AND delNy = #{shOption}</if>
     </select>
     
     <select id="selectOne" resultMap="resultMapObj">
     	SELECT
     		seq,
     		name,
-    		codeGroup_seq
+    		codeGroup_seq,
+			delNy    		
     	FROM
     		code
     	WHERE
@@ -34,7 +35,8 @@
     	UPDATE 
     		code
 		SET 
-			name = #{name}
+			name = #{name},
+			delNy= #{delNy}
 		WHERE 
 			seq = #{seq}
     	

@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Citytours - Premium site template for city tours agencies, transfers and tickets.">
     <meta name="author" content="Ansonika">
-    <title>CITY TOURS - City tours and travel site template by Ansonika</title>
+    <title>login</title>
 
     <!-- Favicons-->
     <link rel="shortcut icon" href="/resources/concert/img/favicon.ico" type="image/x-icon">
@@ -52,7 +52,7 @@
                                     <label>Password</label>
                                     <input type="password" class=" form-control" placeholder="Password" value="q1w2e3r4" id="pw">
                                 </div>
-                                <a href="/concertList" class="btn_full">Sign in</a>
+                                <a href="/indexXdmView" class="btn_full">Sign in</a>
                             </form>
                         </div>
                 </div>

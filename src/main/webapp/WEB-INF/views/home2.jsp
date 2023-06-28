@@ -10,8 +10,13 @@
 <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <body>
+	<form name="formList" method="post">
+		<input type="text" name="shkey" id="shkey">
+		<input type="text" name="shOption">
+		<button type="button" id="btn">btn</button>
+	</form>
 	<c:choose>
-		<c:when test="${fn:length(listgroup) eq 0}">
+		<c:when test="${fn:length(list) eq 0}">
 			<tr>
 				<td class="text-center" colspan="9">There is no data!</td>
 			</tr>	
@@ -26,17 +31,23 @@
 					</tr>
 				</thead>
 				<tbody>
-			<c:forEach items="${listgroup}" var="codegroup" varStatus="status">
+			<c:forEach items="${list}" var="list" varStatus="status">
 					<tr>
-					<th><c:out value="${codegroup.seq }"></c:out></th>
-					<td><c:out value="${codegroup.name }"></c:out></td>
-					<td><c:out value="${codegroup.codeGroup_seq }"></c:out></td>
+					<th><c:out value="${list.seq }"></c:out></th>
+					<td><c:out value="${list.name }"></c:out></td>
+					<td><c:out value="${list.codeGroup_seq }"></c:out></td>
 					</tr>
 			</c:forEach>
 				</tbody>
 				</table>
 		</c:otherwise>
 	</c:choose>
+	<script src="/resources/concert/js/jquery-3.6.4.min.js"></script>
+	<script>
+		$("#btn").on("click", function(){
+			$("form[name=formList]").attr("action", "/home2").submit();
+		});
+	</script>
   </body>
 </html>
 

@@ -1,4 +1,4 @@
-package com.company.app.codegroup;
+package com.company.app.infra.codegroup;
 
 import java.util.List;
 

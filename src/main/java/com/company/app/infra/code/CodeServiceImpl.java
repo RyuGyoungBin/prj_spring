@@ -1,11 +1,9 @@
-package com.company.app.code;
+package com.company.app.infra.code;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.company.app.codegroup.CodeGroupVo;
 
 @Service
 public class CodeServiceImpl implements CodeService {

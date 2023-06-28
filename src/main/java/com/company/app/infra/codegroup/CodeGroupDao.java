@@ -1,4 +1,4 @@
-package com.company.app.codegroup;
+package com.company.app.infra.codegroup;
 
 import java.util.List;
 
@@ -15,7 +15,7 @@ public class CodeGroupDao {
 	@Resource(name = "sqlSession")
 	private SqlSession sqlSession;
 	
-	private static String namespace = "com.company.app.codegroup.CodeGroupMapper";
+	private static String namespace = "com.company.app.infra.codegroup.CodeGroupMapper";
 	
 	public List<CodeGroup> selectList(CodeGroupVo vo){ return sqlSession.selectList(namespace + ".selectList", vo); }
 	
@@ -37,6 +37,7 @@ public class CodeGroupDao {
 	public int updateDel(CodeGroup dto) {
 		return sqlSession.update(namespace + ".updateDel", dto);
 	}
+	
 //	public List<CodeGroup> selectList(){ 
 //		return sqlSession.selectList(namespace + ".selectList", ""); 
 //	}

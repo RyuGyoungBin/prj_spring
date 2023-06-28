@@ -1,4 +1,4 @@
-package com.company.app.code;
+package com.company.app.infra.code;
 
 import java.util.List;
 
@@ -8,18 +8,15 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-import com.company.app.codegroup.CodeGroup;
-import com.company.app.codegroup.CodeGroupVo;
-
 @Repository
 public class CodeDao {
 
 	@Inject
 	@Resource(name = "sqlSession")
 	private SqlSession sqlSession;
-	private static String namespace = "com.company.app.code.CodeMapper";
+	private static String namespace = "com.company.app.infra.code.CodeMapper";
 	
-	public List<Code> selectList(CodeVo vo){return sqlSession.selectList(namespace +".selectList", "");}
+	public List<Code> selectList(CodeVo vo){return sqlSession.selectList(namespace +".selectList", vo);}
 	
 	public Code selectOne(CodeVo vo){ return sqlSession.selectOne(namespace + ".selectOne", vo); }
 	

@@ -1,4 +1,4 @@
-package com.company.app.codegroup;
+package com.company.app.infra.codegroup;
 
 import java.util.List;
 
@@ -15,6 +15,7 @@ public interface CodeGroupService {
 	public int insert(CodeGroup dto);
 	
 	public int updateDel(CodeGroup dto);
+	
 		
 	
 }

@@ -1,11 +1,13 @@
-package com.company.app.code;
+package com.company.app.infra.codegroup;
 
-public class CodeVo {
+public class CodeGroupVo {
 	
 	private Integer shOption;
 	private String shkey;
 	private String seq;
+	private Integer delNy;
 	
+//	-----------------
 	public Integer getShOption() {
 		return shOption;
 	}
@@ -24,5 +26,14 @@ public class CodeVo {
 	public void setSeq(String seq) {
 		this.seq = seq;
 	}
+	public Integer getDelNy() {
+		return delNy;
+	}
+	public void setDelNy(Integer delNy) {
+		this.delNy = delNy;
+	}
 	
+	
+	
+
 }

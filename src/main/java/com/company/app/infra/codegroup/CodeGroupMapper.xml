@@ -7,27 +7,30 @@
     해서 관계적으로 해당 파일의 패스와 파일이름(확장자제외)
     그리고 dao 에서 namespace와 일치해야 한다.
      -->
-<mapper namespace="com.company.app.codegroup.CodeGroupMapper">  
-
+<mapper namespace="com.company.app.infra.codegroup.CodeGroupMapper">  
+	
 										<!-- select 결과를 받을 객체 -->
-    <resultMap id="resultMapObj" type="com.company.app.codegroup.CodeGroup"></resultMap>
-    
+    <resultMap id="resultMapObj" type="com.company.app.infra.codegroup.CodeGroup"></resultMap>
+    <sql id="abc">
+    	seq
+    	,name
+    	,delNy
+    </sql>
     <select id="selectList" resultMap="resultMapObj">
     	SELECT
-    		seq,
-    		name,
-    		delNy
+    		<include refid="abc"></include>
     	FROM
     		codeGroup
-    	WHERE
-			name LIKE CONCAT ('%',#{shkey},'%')
-			and delNy = #{shOption}
+    	WHERE 1=1
+			<if test="shkey != null and !shkey.equals('')">AND name LIKE CONCAT ('%',#{shkey},'%')</if>
+			<if test="shOption != null and !shOption.equals('')">AND delNy = #{shOption}</if>
     </select>
     
     <select id="selectOne" resultMap="resultMapObj">
     	SELECT
     		seq,
-    		name
+    		name,
+    		delNy
     	FROM
     		codeGroup
     	WHERE
@@ -38,7 +41,8 @@
     	UPDATE 
     		codeGroup
 		SET 
-			name = #{name}
+			name = #{name},
+			delNy = #{delNy}
 		WHERE 
 			seq = #{seq}
     	
@@ -70,5 +74,6 @@
 		WHERE 
 			seq = #{seq}
     </update>
+    
 
 </mapper>    
