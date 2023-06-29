@@ -13,7 +13,7 @@
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="/concertList">Home</a></li>
-          <li class="breadcrumb-item active">Data</li>
+          <li class="breadcrumb-item active">Data-CodeGroup</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -62,7 +62,7 @@
 							</select>
 						</div>
 						<div class="col-2 text-start ms-3 me-3">
-								<input class="form-control form-control-sm p-2" name="shkey" id="name" type="text" placeholder="name" value='<c:out value="${form.shkey }"></c:out>'>
+								<input class="form-control form-control-sm p-2" name="shkey" id="name" type="text" placeholder="name">
 						</div>
 						<div class="col-2 text-start ms-3 me-3">
 								<select class="form-control form-control-sm p-2" name="shOption" id="shOption">
@@ -90,9 +90,7 @@
 		              <table class="table datatable table-striped">
 		                <thead>
 		                  <tr>
-		                  	<th scope="col">
-								<input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="0" aria-label="..." name="tabel_check">
-							</th>
+		                  	<th scope="col"><input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="0" aria-label="..." name="tabel_check"></th>
 		                    <th>seq</th>
 		                    <th>name</th>
 		                    <th>delNy</th>
@@ -168,12 +166,7 @@
 
 //	  	 	for(i = 0; i < $("input:checkbox[name=tabel_check]").length; i++) {
 //			    console.log($("input:checkbox[name=tabel_check]").eq(i).is(":checked"));	
-	//tabel
-		$("input:checkbox[name=tabel_check]").eq(0).on("click", function(){
-	  	 	if($("input:checkbox[name=tabel_check]").eq(0).is(":checked") == true) {
-	  	 		$("input:checkbox[name=tabel_check]").prop("checked", true);
-	  	 	}
-		});
+	
 		
 	 //modal
 	 	var myModal = new bootstrap.Modal(document.getElementById('myModal'), {
@@ -202,21 +195,35 @@
 	 	})
 	 	
 	 	//tabel
-  	 	$("input:checkbox[name=tabel_check]").eq(0).on("click", function(){
+  	 	$(document).eq(0).on("click", $("input:checkbox[name=tabel_check]").eq(0),function(){
 	  	 	if($("input:checkbox[name=tabel_check]").eq(0).is(":checked") == true) {
 	  	 		$("input:checkbox[name=tabel_check]").prop("checked", true);
 	  	 	}
 		});
+
+	
+	 $( "thead tr th:first-child a" ).contents().unwrap().wrap( '<span></span>' );
+	 
+	 $("thead tr th:first-child a").removeClass("datatable-sorter");
+		
 		
 	 $(".datatable-search").remove();
-	 $(".datatable-sorter").eq(0).remove();
-//	 %("thead tr th:first-of-child").append("<input class='form-check-input' type='checkbox' id='checkboxNoLabel' value='0' aria-label='...' name='tabel_check'>");
 	 
 	 $(".datatable-sorter").on("click", function(){
 	 	$("input[name=tabel_check]").prop("checked", false);
 	 });
-	
-  	</script>
+	 $(".datatable-selector").on("focus", function(){
+		 $("input[name=tabel_check]").prop("checked", false);
+	 });
+	 $( "thead tr th:first-child a" ).contents().unwrap().wrap( '<span></span>' );
+//	 $(".datatable-top").prepend('<input class="form-check-input me-2" type="checkbox" id="checkboxNoLabel" value="0" aria-label="..." name="tabel_check"><span>All Check</span>');
+	 $("#codeGroup").addClass("active");
+	 $(".datatable-top").prepend($(".datatable-info"));
+	 $(function(){
+		 	$("div.datatable-bottom").addClass("d-flex justify-content-center");
+		 	$("nav.datatable-pagination").addClass("float-none");
+	 	}); 
+</script>
 
 </body>
 

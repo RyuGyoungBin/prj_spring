@@ -12,7 +12,7 @@
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="/concertList">Home</a></li>
-          <li class="breadcrumb-item active">Data</li>
+          <li class="breadcrumb-item active">Data-Code</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -61,7 +61,7 @@
 							</select>
 						</div>
 						<div class="col-2 text-start ms-3 me-3">
-								<input class="form-control form-control-sm p-2" name="shkey" id="name" type="text" placeholder="name" value='<c:out value="${form.shkey }"></c:out>'>
+								<input class="form-control form-control-sm p-2" name="shkey" id="name" type="text" placeholder="name">
 						</div>
 						<div class="col-2 text-start ms-3 me-3">
 								<select class="form-control form-control-sm p-2" name="shOption" id="shOption">
@@ -117,21 +117,7 @@
               <!-- End Table with stripped rows -->
 
             </div>
-            <div class="d-flex justify-content-center">
-					<nav aria-label="...">
-						<ul class="pagination">
-					 		<li class="page-item disabled">
-					 			<a class="page-link">Previous</a>
-					    	</li>
-					    	<li class="page-item active" aria-current="page">
-					    		<a class="page-link" href="#">1</a>
-				    		</li>
-						    <li class="page-item disabled">
-						    	<a class="page-link" href="#">Next</a>
-					    	</li>
-						</ul>
-					</nav>
-				</div>
+           
 				<div class="d-flex px-4 pb-5">
 					<div class="col">
 						<button type="button" class="btn btn-danger btn-sm" id="delNot">X</button>
@@ -167,10 +153,71 @@
   </main><!-- End #main -->
 	<jsp:include page="../include/footer.jsp"></jsp:include>
 	<script>
-		$("#totalNum").text($("tbody").find("tr").length);
-		if($("tbody").find("tr").length > $("#viewNum").val()){
-			
-		}
+  	// search
+  	 	$("#start_date").datepicker({
+  	 	});
+  	 	$("#end_date").datepicker({
+  	 		maxDate : "+1m +1w",
+  	 		minDate : "-1y"
+  	 	});
+  		$("#start_date").on("change", function(){
+  			console.log($("#start_date").val())
+  			$("#end_date").datepicker({
+  				minDate: $("#start_date").val()
+  			});
+  		});
+
+//	  	 	for(i = 0; i < $("input:checkbox[name=tabel_check]").length; i++) {
+//			    console.log($("input:checkbox[name=tabel_check]").eq(i).is(":checked"));	
+	
+		
+	 //modal
+	 	var myModal = new bootstrap.Modal(document.getElementById('myModal'), {
+	 		  keyboard: true,
+	 		  backdrop: "static"
+	 		})
+	 	$("#del").on("click", function(){
+	 		$("#myModal").find("h1").text("삭제");
+	 		//$("#myModal").find(".modal-body").text("삭제하시겠습니까");
+	 		$("#myModal").find(".modal-body").empty();
+	 		$("#myModal").find(".modal-body").append("<p>정말 삭제하시겠습니까.</p>");
+	 		$("#myModal").find(".modal-body").append("<p>정말로 삭제하시겠습니까.</p>");
+	 		$("#modalOk").remove();
+	 		$(".modal-footer").append('<button type="button" class="btn btn-danger" id="modalOk">Ok</button>');
+		 	myModal.show();
+	 		
+	 	})
+	 	$("#delNot").on("click", function(){
+	 		$("#myModal").find("h1").text("제거");
+	 		//$("#myModal").find(".modal-body").text("제거하시겠습니까");
+	 		$("#myModal").find(".modal-body").empty();
+	 		$("#myModal").find(".modal-body").append("<p>정말 제거하시겠습니까.</p>");
+	 		$("#modalOk").remove();
+	 		$(".modal-footer").append('<button type="button" class="btn btn-warning" id="modalOk">Ok</button>');
+		 	myModal.show();
+	 	})
+	 	
+	 	//tabel
+  	 	$(document).eq(0).on("click", $("input:checkbox[name=tabel_check]").eq(0),function(){
+	  	 	if($("input:checkbox[name=tabel_check]").eq(0).is(":checked") == true) {
+	  	 		$("input:checkbox[name=tabel_check]").prop("checked", true);
+	  	 	}
+		});
+	 	//tabel
+		$( "thead tr th:first-child a" ).contents().unwrap().wrap( '<span></span>' );
+		
+	 $(".datatable-search").remove();
+	 
+	 $(".datatable-sorter").on("click", function(){
+	 	$("input[name=tabel_check]").prop("checked", false);
+	 });
+	 $("#code").addClass("active");
+	 $(".datatable-top").prepend($(".datatable-info"));
+	 $(function(){
+		 	$("div.datatable-bottom").addClass("d-flex justify-content-center");
+		 	$("nav.datatable-pagination").addClass("float-none");
+	 	}); 
+	 	
 	</script>
 </body>
 </html>

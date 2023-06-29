@@ -30,7 +30,7 @@
 			  	<div class="d-flex flex-wrap justify-content-around">
 	                <div class=" col-5 mb-3">
 	                  	<label for="seq" class=" col-form-label" >seq</label>
-                    	<input type="text" class="form-control" readonly name="seq" id="seq" value="<c:out value="${list.seq }"></c:out>">
+                    	<input type="text" class="form-control bg-dark-subtle" readonly name="seq" id="seq" placeholder="자동생성" value="<c:out value="${list.seq }"></c:out>">
 	                </div>
 	                <div class=" col-5 mb-3">
 	                  	<label for="name" class=" col-form-label">name</label>
@@ -44,17 +44,30 @@
 	                </div>
 	                
 				</div>
-				<div class="d-flex justify-content-between my-5 text-center">
-					<div class="col-2">
-						<button id="btnList" type="button" class="btn btn-secondary" onclick = "location.href = '/codeGroupXdmList'"><i class="bi bi-list"></i></button>
-						<button id="btnDelete" type="button" class="btn btn-danger">delete</button>
-						<button id="btnDelNy" type="button" class="btn btn-danger">uele</button>
+				<c:choose>
+				<c:when test="${empty param.seq }">
+					<div class="d-flex justify-content-between my-5 text-center">
+						<div class="col-2">
+							<button id="btnList" type="button" class="btn btn-secondary" onclick = "location.href = '/codeGroupXdmList'"><i class="bi bi-list"></i></button>
+						</div>
+						<div class="col-2">
+							<button id="btnInsert" type="button" class="btn btn-success">save</button>
+						</div>
 					</div>
-					<div class="col-2">
-						<button id="btnUpdate" type="button" class="btn btn-success">update</button>
-						<button id="btnInsert" type="button" class="btn btn-success">save</button>
+				</c:when>
+				<c:otherwise>
+					<div class="d-flex justify-content-between my-5 text-center">
+						<div class="col-2">
+							<button id="btnList" type="button" class="btn btn-secondary" onclick = "location.href = '/codeGroupXdmList'"><i class="bi bi-list"></i></button>
+							<button id="btnDelete" type="button" class="btn btn-danger">delete</button>
+							<button id="btnDelNy" type="button" class="btn btn-danger">uele</button>
+						</div>
+						<div class="col-2">
+							<button id="btnUpdate" type="button" class="btn btn-success">update</button>
+						</div>
 					</div>
-				</div>
+				</c:otherwise>
+				</c:choose>
               </form>
               <!-- End Table with stripped rows -->
 
@@ -65,35 +78,8 @@
       </div>
     </section>
   </main><!-- End #main -->
-
-  <!-- ======= Footer ======= -->
-  <footer id="footer" class="footer">
-    <div class="copyright">
-      &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
-    </div>
-    <div class="credits">
-      <!-- All the links in the footer should remain intact. -->
-      <!-- You can delete the links only if you purchased the pro version. -->
-      <!-- Licensing information: https://bootstrapmade.com/license/ -->
-      <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-      Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-    </div>
-  </footer><!-- End Footer -->
+<jsp:include page="../include/footer.jsp"></jsp:include>
   
-  <a href="admin/#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
-  <!-- Vendor JS Files -->
-  <script src="/resources/admin/assets/vendor/apexcharts/apexcharts.min.js"></script>
-  <script src="/resources/admin/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="/resources/admin/assets/vendor/chart.js/chart.umd.js"></script>
-  <script src="/resources/admin/assets/vendor/echarts/echarts.min.js"></script>
-  <script src="/resources/admin/assets/vendor/quill/quill.min.js"></script>
-  <script src="/resources/admin/assets/vendor/simple-datatables/simple-datatables.js"></script>
-  <script src="/resources/admin/assets/vendor/tinymce/tinymce.min.js"></script>
-  <script src="/resources/admin/assets/vendor/php-email-form/validate.js"></script>
-
-  <!-- Template Main JS File -->
-  <script src="/resources/admin/assets/js/main.js"></script>
   	<script>
 	  	$("#btnDelete").on("click", function(){
 			$("form[name=form]").attr("action", "/codeGroupXdmDelete").submit();

@@ -10,8 +10,7 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="/resources/admin/assets/img/favicon.png" rel="icon">
-  <link href="/resources/admin/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="/resources/admin/assets/img/favicon.ico" rel="icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -39,6 +38,9 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+  <style>
+  	a {color:#000};
+  </style>
 </head>
 
 <body>
@@ -48,8 +50,8 @@
 
     <div class="d-flex align-items-center justify-content-between">
       <a href="/indexXdmView" class="logo d-flex align-items-center">
-        <img src="/resources/admin/assets/img/logo.png" alt="">
-        <span class="d-none d-lg-block">NiceAdmin</span>
+        <!-- <img src="/resources/admin/assets/img/logo.png" alt=""> -->
+        <span class="d-none d-lg-block">Nice</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
@@ -98,7 +100,7 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="admin/index.html">
+        <a class="nav-link collapsed" href="/indexXdmView">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
@@ -106,7 +108,7 @@
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-bar-chart"></i><span>Charts</span><i class="bi bi-chevron-down ms-auto"></i>
+          <i class="bi bi-bar-chart"></i><span>Table</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="charts-nav" class="nav-content collapse show " data-bs-parent="#sidebar-nav">
           <li>
