@@ -13,13 +13,13 @@ public class CodeController {
 	@Autowired
 	CodeServiceImpl service;
 	
-	@RequestMapping(value = "/CodeList")
-	public String CodeList(CodeVo vo, Model model) {
-		
-		List<Code> list = service.selectList(vo);
-		model.addAttribute("codeList", list);
-
-		return "codeList";
-	}
+//	@RequestMapping(value = "/CodeList")
+//	public String CodeList(CodeVo vo, Model model) {
+//		
+//		List<Code> list = service.selectList(vo);
+//		model.addAttribute("codeList", list);
+//
+//		return "codeList";
+//	}
 	
 }

@@ -20,7 +20,7 @@ public class CodeGroupController {
 //							jsp에서 사용할 변수명
 		model.addAttribute("listgroup", list);
 		
-		return "codeGroupList";
+		return "xdm/infra/codegroup/codeGroupList";
 	}
 	
 	@RequestMapping(value = "/codeGroupForm")
@@ -29,7 +29,7 @@ public class CodeGroupController {
 		CodeGroup codegroup = service.selectOne(vo);
 		model.addAttribute("codeOne", codegroup);
 		
-		return "codeGroupForm";  
+		return "xdm/infra/codegroup/codeGroupForm";  
 	}
 	
 	

@@ -47,7 +47,7 @@
 	                
 				</div>
 				<c:choose>
-					<c:when test="${empty seq }">
+					<c:when test="${empty param.seq }">
 						<div class="d-flex justify-content-between my-5 text-center">
 							<div class="col-2">
 								<button id="btnList" type="button" class="btn btn-secondary" onclick = "location.href = '/codeXdmList'"><i class="bi bi-list"></i></button>
