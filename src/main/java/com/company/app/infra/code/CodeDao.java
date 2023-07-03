@@ -8,6 +8,9 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.company.app.infra.excode.ExCode;
+import com.company.app.infra.excode.ExCodeVo;
+
 @Repository
 public class CodeDao {
 
@@ -35,4 +38,9 @@ public class CodeDao {
 	public int updateDel(Code dto) {
 		return sqlSession.update(namespace + ".updateDel", dto);
 	}
+	public Code selectOneJoin(CodeVo vo) {
+		return sqlSession.selectOne(namespace +".selectOneJoin", vo);
+	}
+	
+	public List<Code> selectListJoin(CodeVo vo){return sqlSession.selectList(namespace +".selectListJoin", vo);}
 }

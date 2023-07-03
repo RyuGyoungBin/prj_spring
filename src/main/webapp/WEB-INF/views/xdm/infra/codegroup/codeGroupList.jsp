@@ -13,7 +13,7 @@
 			<option value="0">Y</option>
 			<option value="1">N</option>
 		</select>
-		<input type="text" placeholder="shkey" value="" name="shkey" class="mx-3">
+		<input type="text" placeholder="shkey" value="" name="shkey" class="mx-3" >
 		<button type="button" class="btn btn-secondary me-3" id="btn">검색</button>
 		<button type="button" class="btn btn-secondary" id="addBtn" onclick="location.href='/codeGroupForm'">추가</button>
 	</div>

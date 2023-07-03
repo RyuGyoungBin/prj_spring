@@ -6,6 +6,7 @@ public class Code {
 	private String name;
 	private String codeGroup_seq;
 	private String delNy;
+	private String groupname;
 	
 	public String getSeq() {
 		return seq;
@@ -30,6 +31,12 @@ public class Code {
 	}
 	public void setDelNy(String delNy) {
 		this.delNy = delNy;
+	}
+	public String getGroupname() {
+		return groupname;
+	}
+	public void setGroupname(String groupname) {
+		this.groupname = groupname;
 	}
 	
 	

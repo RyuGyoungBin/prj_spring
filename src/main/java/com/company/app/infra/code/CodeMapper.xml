@@ -36,7 +36,8 @@
     		code
 		SET 
 			name = #{name},
-			delNy= #{delNy}
+			delNy= #{delNy},
+			codeGroup_seq= #{codeGroup_seq}
 		WHERE 
 			seq = #{seq}
     	
@@ -53,10 +54,12 @@
     <insert id="insert">
 	    insert into `code` (
 			name,
-			delNy
+			delNy,
+			codeGroup_seq
 		) values (
 			#{name}
 			, 0
+			,${codeGroup_seq}
 		)
     </insert>
     
@@ -68,4 +71,41 @@
 		WHERE 
 			seq = #{seq}
     </update>
+    
+    <select id="selectOneJoin" resultMap="resultMapObj">
+		SELECT
+			seq,
+			name,
+			codeGroup_seq,
+			(SELECT
+				b.name
+			FROM codeGroup b 
+			WHERE b.seq=code.codeGroup_seq
+			) as groupname,
+			delNy
+		FROM
+			code
+		WHERE 1=1
+			and seq = #{seq}
+	</select>
+	
+	<select id="selectListJoin" resultMap="resultMapObj">
+		SELECT
+			seq,
+			name,
+			codeGroup_seq,
+			(SELECT
+				b.name
+			FROM codeGroup b 
+			WHERE b.seq=code.codeGroup_seq
+			) as groupname,
+			delNy
+		FROM
+			code
+		WHERE 1=1
+			<if test="codeGroup_seq != null and !codeGroup_seq.equals('')">AND codeGroup_seq = #{codeGroup_seq}</if>
+			<if test="shkey != null and !shkey.equals('')">AND name like CONCAT ('%',#{shkey},'%')</if>
+			<if test="shOption != null and !shOption.equals('')">AND delNy = #{shOption}</if>
+	
+	</select>
 </mapper>

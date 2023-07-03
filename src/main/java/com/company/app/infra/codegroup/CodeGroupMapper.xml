@@ -22,8 +22,8 @@
     	FROM
     		codeGroup
     	WHERE 1=1
-			<if test="shkey != null and !shkey.equals('')">AND name LIKE CONCAT ('%',#{shkey},'%')</if>
-			<if test="shOption != null and !shOption.equals('')">AND delNy = #{shOption}</if>
+			<if test="CGshkey != null and !CGshkey.equals('')">AND name LIKE CONCAT ('%',#{CGshkey},'%')</if>
+			<if test="CGshOption != null and !CGshOption.equals('')">AND delNy = #{CGshOption}</if>
     </select>
     
     <select id="selectOne" resultMap="resultMapObj">
@@ -34,7 +34,7 @@
     	FROM
     		codeGroup
     	WHERE
-			seq = #{seq}
+			seq = #{CGseq}
     </select>
     
     <update id="update">

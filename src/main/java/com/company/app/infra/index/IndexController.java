@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.company.app.infra.code.Code;
@@ -33,7 +34,8 @@ public class IndexController {
 		return "xdm/infra/index/indexXdmView";
 	}
 	@RequestMapping(value = "/codeGroupXdmList")
-	public String codeGroupXdmList(CodeGroupVo vo, Model model) {
+	public String codeGroupXdmList(@ModelAttribute("vo") CodeGroupVo vo, Model model) {
+		vo.setCGshkey(vo.getCGshkey() == null ? "1": vo.getCGshkey());
 		List<CodeGroup> list = service.selectList(vo);
 		model.addAttribute("list", list);
 	    return "xdm/infra/codegroup/codeGroupXdmList"; 
@@ -74,16 +76,24 @@ public class IndexController {
 	CodeService codeservice;
 	
 	@RequestMapping(value = "/codeXdmList")
-	public String codeXdmLIst(CodeVo vo, Model model2) {
-		List<Code> codeList = codeservice.selectList(vo);
-		model2.addAttribute("list", codeList);
+	public String codeXdmLIst(@ModelAttribute("vo") CodeVo vo, CodeGroupVo groupVo, Model model) {
+		
+		vo.setShkey(vo.getShkey() == null ? "": vo.getShkey());
+		
+		List<Code> codeList = codeservice.selectListJoin(vo);
+		List<CodeGroup> groupList = service.selectList(groupVo);
+		model.addAttribute("list", codeList);
+		model.addAttribute("groupList", groupList);
+//		model.addAttribute("vo", vo);
 		return "xdm/infra/code/codeXdmList";
 	}
 	
 	@RequestMapping(value = "/codeXdmForm")
-	public String codeXdmForm(CodeVo vo, Model model) {
+	public String codeXdmForm(CodeVo vo, CodeGroupVo groupVo, Model model) {
 		Code code = codeservice.selectOne(vo);
+		List<CodeGroup> group = service.selectList(groupVo);
 		model.addAttribute("list", code);
+		model.addAttribute("group", group);
 		return "xdm/infra/code/codeXdmForm";
 	}
 

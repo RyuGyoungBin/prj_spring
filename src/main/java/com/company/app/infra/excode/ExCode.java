@@ -9,6 +9,7 @@ public class ExCode {
 	private String groupname;
 	private String groupseq;
 	
+	
 //	--------
 	public String getSeq() {
 		return seq;
@@ -46,6 +47,5 @@ public class ExCode {
 	public void setGroupseq(String groupseq) {
 		this.groupseq = groupseq;
 	}
-	
 	
 }

@@ -42,6 +42,16 @@ public class CodeServiceImpl implements CodeService {
 		return dao.updateDel(dto);
 	}
 
+	@Override
+	public Code selectOneJoin(CodeVo vo) {
+		return dao.selectOneJoin(vo);
+	}
+
+	@Override
+	public List<Code> selectListJoin(CodeVo vo) {
+		return dao.selectListJoin(vo);
+	}
+
 	
 	
 

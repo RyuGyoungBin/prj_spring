@@ -62,13 +62,13 @@
 							</select>
 						</div>
 						<div class="col-2 text-start ms-3 me-3">
-								<input class="form-control form-control-sm p-2" name="shkey" id="name" type="text" placeholder="name">
+								<input class="form-control form-control-sm p-2" name="CGshkey" id="name" type="text" placeholder="name" value="<c:out value="${vo.CGshkey }"/>">
 						</div>
 						<div class="col-2 text-start ms-3 me-3">
-								<select class="form-control form-control-sm p-2" name="shOption" id="shOption">
+								<select class="form-control form-control-sm p-2" name="CGshOption" id="shOption">
 									<option value="" selected>---delNy---</option>
-									<option value="0">Y</option>
-									<option value="1">N</option>
+									<option value="0"<c:if test="${vo.CGshOption eq '0'}">selected</c:if>>Y</option>
+									<option value="1"<c:if test="${vo.CGshOption eq '1'}">selected</c:if>>N</option>
 								</select>
 						</div>
 						<div class="col-2 text-start ms-3 me-3">
@@ -103,7 +103,7 @@
 										<input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="0" aria-label="..." name="tabel_check">
 									</th>
 				                    <td scope="row"><c:out value="${list.seq }"></c:out></td>
-				                   <td><a href="/codeGroupXdmForm?seq=<c:out value="${list.seq }"></c:out>"><c:out value="${list.name }"></c:out></a></td>
+				                   <td><a href="/codeGroupXdmForm?CGseq=<c:out value="${list.seq }"></c:out>"><c:out value="${list.name }"></c:out></a></td>
 				                   <td><c:out value="${list.delNy}"></c:out></td>
 			                 	</tr>
 							</c:forEach>

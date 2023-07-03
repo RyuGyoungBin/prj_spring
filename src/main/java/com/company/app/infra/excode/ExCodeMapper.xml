@@ -86,6 +86,7 @@
 		FROM
 			code
 		WHERE 1=1
+		
 			<if test="codeGroup_seq != null and !codeGroup_seq.equals('')">AND codeGroup_seq = #{codeGroup_seq}</if>
 			<if test="shkey != null and !shkey.equals('')">AND name like CONCAT ('%',#{shkey},'%')</if>
 			<if test="shOption != null and !shOption.equals('')">AND delNy = #{shOption}</if>
@@ -98,11 +99,6 @@
 			name,
 			codeGroup_seq,
 			(SELECT
-				b.seq
-			FROM codeGroup b 
-			WHERE b.seq=code.codeGroup_seq
-			) as groupseq,
-			(SELECT
 				b.name
 			FROM codeGroup b 
 			WHERE b.seq=code.codeGroup_seq
@@ -113,7 +109,20 @@
 		WHERE 1=1
 			and seq = #{seq}
 	</select>
-
+	
+	<select id="selectBoardList" resultType="hashmap" parameterType="hashmap">
+	    <![CDATA[
+	        SELECT
+	            *
+	        FROM
+	            code
+	        WHERE 1=1
+	            
+	        ORDER BY seq DESC
+	        LIMIT #{pageStart}, #{perPageNum}
+	    ]]>
+	</select>
+	
 	
 
 </mapper>

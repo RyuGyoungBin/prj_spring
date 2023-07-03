@@ -38,7 +38,12 @@
 	                </div>
 	                <div class=" col-5 mb-3">
 	                  	<label for="codeGroup_seq" class=" col-form-label">codeGroup_seq</label>
-                    	<input type="text" class="form-control" name="codeGroup_seq" id="codeGroup_seq" value="<c:out value="${list.codeGroup_seq }"></c:out>">
+                    	<%-- <input type="text" class="form-control" name="codeGroup_seq" id="codeGroup_seq" value="<c:out value="${list.codeGroup_seq }"></c:out>"> --%>
+                    	<select class="form-control form-control-sm p-2" name="codeGroup_seq" id="codeGroup_seq">
+                    		<c:forEach items="${group}" var="group" varStatus="status">
+                    			<option value="<c:out value='${group.seq }'></c:out>"><c:out value="${group.name}"></c:out></option>
+                    		</c:forEach>
+						</select>
 	                </div>
 	                <div class=" col-5 mb-3">
 	                  	<label for="delNy" class=" col-form-label">delNy</label>
@@ -60,7 +65,7 @@
 					<c:otherwise>
 						<div class="d-flex justify-content-between my-5 text-center">
 							<div class="col-2">
-								<button id="btnList" type="button" class="btn btn-secondary" onclick = "location.href = '/codeGroupXdmList'"><i class="bi bi-list"></i></button>
+								<button id="btnList" type="button" class="btn btn-secondary" onclick = "location.href = '/codeXdmList'"><i class="bi bi-list"></i></button>
 								<button id="btnDelete" type="button" class="btn btn-danger">delete</button>
 								<button id="btnDelNy" type="button" class="btn btn-danger">uele</button>
 							</div>
@@ -97,7 +102,7 @@
 	 	$("#btnDelNy").on("click", function(){
 			$("form[name=form]").attr("action", "/codeXdmDelNy").submit();
 		});
-	 	
+	 	$("#codeGroup_seq").val("<c:out value='${list.codeGroup_seq}'></c:out>").prop("selected", true);
   	</script>
 
 </body>

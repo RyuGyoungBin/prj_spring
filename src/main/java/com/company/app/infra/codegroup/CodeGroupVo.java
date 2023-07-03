@@ -2,36 +2,38 @@ package com.company.app.infra.codegroup;
 
 public class CodeGroupVo {
 	
-	private Integer shOption;
-	private String shkey;
-	private String seq;
-	private Integer delNy;
+	private Integer CGshOption;
+	private String CGshkey;
+	private String CGseq;
+	private Integer CGdelNy;
+	
+	public Integer getCGshOption() {
+		return CGshOption;
+	}
+	public void setCGshOption(Integer cGshOption) {
+		CGshOption = cGshOption;
+	}
+	public String getCGshkey() {
+		return CGshkey;
+	}
+	public void setCGshkey(String cGshkey) {
+		CGshkey = cGshkey;
+	}
+	public String getCGseq() {
+		return CGseq;
+	}
+	public void setCGseq(String cGseq) {
+		CGseq = cGseq;
+	}
+	public Integer getCGdelNy() {
+		return CGdelNy;
+	}
+	public void setCGdelNy(Integer cGdelNy) {
+		CGdelNy = cGdelNy;
+	}
 	
 //	-----------------
-	public Integer getShOption() {
-		return shOption;
-	}
-	public void setShOption(Integer shOption) {
-		this.shOption = shOption;
-	}
-	public String getShkey() {
-		return shkey;
-	}
-	public void setShkey(String shkey) {
-		this.shkey = shkey;
-	}
-	public String getSeq() {
-		return seq;
-	}
-	public void setSeq(String seq) {
-		this.seq = seq;
-	}
-	public Integer getDelNy() {
-		return delNy;
-	}
-	public void setDelNy(Integer delNy) {
-		this.delNy = delNy;
-	}
+	
 	
 	
 	

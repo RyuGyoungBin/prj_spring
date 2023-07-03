@@ -54,20 +54,22 @@
 						</div>
 					</div>
 					<div class="d-flex mb-3 align-items-center">
-						<div class="col-2 text-end ms-3 me-3">
-							<select class="form-control form-control-sm p-2" id="">
-								<option value="1" selected></option>
-								<option value="2"></option>
+						<div class="mb-3 col-2 text-start ms-3 me-3">
+							<select class="form-control form-control-sm p-2" name="codeGroup_seq" id="codeGroup_seq">
+								<option value="">---codeGroup---</option>
+                    		<c:forEach items="${groupList}" var="group" varStatus="status">
+                    			<option  value="<c:out value='${group.seq }'></c:out>"><c:out value="${group.name}"></c:out></option>
+                    		</c:forEach>
 							</select>
 						</div>
 						<div class="col-2 text-start ms-3 me-3">
-								<input class="form-control form-control-sm p-2" name="shkey" id="name" type="text" placeholder="name">
+								<input class="form-control form-control-sm p-2" name="shkey" id="name" type="text" placeholder="name" value="<c:out value="${vo.shkey }"/>">
 						</div>
 						<div class="col-2 text-start ms-3 me-3">
 								<select class="form-control form-control-sm p-2" name="shOption" id="shOption">
-									<option value="" selected>---delNy---</option>
-									<option value="0">Y</option>
-									<option value="1">N</option>
+									<option value="">---delNy---</option>
+									<option value="0" <c:if test="${vo.shOption eq '0'}">selected</c:if>>Y</option>
+									<option value="1" <c:if test="${vo.shOption eq '1'}">selected</c:if>>N</option>
 								</select>
 						</div>
 						<div class="col-2 text-start ms-3 me-3">
@@ -95,6 +97,7 @@
 		                    <th>seq</th>
 		                    <th>name</th>
 		                    <th>codeGroup_seq</th>
+		                    <th>codeGroup_name</th>
 		                    <th>delNy</th>
 		                  </tr>
 		                </thead>
@@ -107,6 +110,7 @@
 				                    <td scope="row"><c:out value="${list.seq }"></c:out></td>
 				                   <td><a href="/codeXdmForm?seq=<c:out value="${list.seq }"></c:out>"><c:out value="${list.name }"></c:out></a></td>
 				                   <td><c:out value="${list.codeGroup_seq}"></c:out></td>
+				                   <td><c:out value="${list.groupname}"></c:out></td>
 				                   <td><c:out value="${list.delNy}"></c:out></td>
 			                 	</tr>
 							</c:forEach>
@@ -217,6 +221,8 @@
 		 	$("div.datatable-bottom").addClass("d-flex justify-content-center");
 		 	$("nav.datatable-pagination").addClass("float-none");
 	 	}); 
+	 $("#codeGroup_seq").val("${vo.codeGroup_seq}").prop("selected", true);
+	 
 	 	
 	</script>
 </body>

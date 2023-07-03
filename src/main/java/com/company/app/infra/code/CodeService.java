@@ -15,5 +15,9 @@ public interface CodeService {
 	public int insert(Code dto);
 	
 	public int updateDel(Code dto);
+	
+	public Code selectOneJoin(CodeVo vo);
+	
+	public List<Code> selectListJoin(CodeVo vo);
 		
 }

@@ -10,9 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.company.app.infra.codegroup.CodeGroup;
 import com.company.app.infra.codegroup.CodeGroupService;
 import com.company.app.infra.codegroup.CodeGroupVo;
+import com.company.app.infra.excode.paging.Criteria;
+import com.company.app.infra.excode.paging.PageMaker;
 
 @Controller
-public class ExCodeController {
+public class ExCodeController  {
 	
 	@Autowired
 	ExCodeService service;
@@ -20,11 +22,16 @@ public class ExCodeController {
 	CodeGroupService groupService;
 	
 	@RequestMapping(value = "/codeList")
-	public String codeList(ExCodeVo vo, Model model, CodeGroupVo groupvo, Model groupModel) {
+	public String codeList(ExCodeVo vo, Model model, CodeGroupVo groupvo, Criteria cri)  {
+		
+		PageMaker pageMaker = new PageMaker();
+	    pageMaker.setCri(cri);
+	    pageMaker.setTotalCount(100);
+	    
 		List<ExCode> list = service.selectJoin(vo);
 		List<CodeGroup> group = groupService.selectList(groupvo);
 		model.addAttribute("list", list);
-		groupModel.addAttribute("group", group);
+		model.addAttribute("group", group);
 		return "/xdm/infra/code/codeList";
 	}
 	

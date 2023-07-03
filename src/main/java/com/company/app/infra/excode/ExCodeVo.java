@@ -5,6 +5,8 @@ public class ExCodeVo {
 	public String shkey;
 	public Integer shOption;
 	public String codeGroup_seq;
+	public String pageStart;
+	public String perPageNum;
 
 //	---------
 	public String getSeq() {
@@ -37,6 +39,22 @@ public class ExCodeVo {
 
 	public void setCodeGroup_seq(String codeGroup_seq) {
 		this.codeGroup_seq = codeGroup_seq;
+	}
+
+	public String getPageStart() {
+		return pageStart;
+	}
+
+	public void setPageStart(String pageStart) {
+		this.pageStart = pageStart;
+	}
+
+	public String getPerPageNum() {
+		return perPageNum;
+	}
+
+	public void setPerPageNum(String perPageNum) {
+		this.perPageNum = perPageNum;
 	}
 
 }
