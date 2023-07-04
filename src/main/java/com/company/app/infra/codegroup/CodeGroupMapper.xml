@@ -16,7 +16,29 @@
     	,name
     	,delNy
     </sql>
-    <select id="selectList" resultMap="resultMapObj">
+    <sql id ="selectCommon">
+   		FROM    
+	    	codeGroup
+		WHERE 1=1
+			<if test="CGshkey != null and !CGshkey.equals('')">AND name LIKE CONCAT ('%',#{CGshkey},'%')</if>
+			<if test="CGshOption != null and !CGshOption.equals('')">AND delNy = #{CGshOption}</if>
+    </sql>
+
+   	<select id="selectOneCount" resultType="Integer">
+		SELECT count(*)
+		<include refid="selectCommon" />
+	</select>
+
+   	<select id="selectList" resultMap="resultMapObj">
+		SELECT aa.* FROM (   	
+	   		SELECT
+				<include refid="abc" />
+	   			<include refid="selectCommon" />
+		) aa
+		LIMIT #{rowNumToShow} OFFSET #{startRnumForMysql}	   			
+   	</select>
+   	
+    <!-- <select id="selectList" resultMap="resultMapObj">
     	SELECT
     		<include refid="abc"></include>
     	FROM
@@ -24,7 +46,7 @@
     	WHERE 1=1
 			<if test="CGshkey != null and !CGshkey.equals('')">AND name LIKE CONCAT ('%',#{CGshkey},'%')</if>
 			<if test="CGshOption != null and !CGshOption.equals('')">AND delNy = #{CGshOption}</if>
-    </select>
+    </select> -->
     
     <select id="selectOne" resultMap="resultMapObj">
     	SELECT

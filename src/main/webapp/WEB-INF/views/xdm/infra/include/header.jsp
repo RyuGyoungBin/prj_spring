@@ -127,7 +127,7 @@
             </a>
           </li>
           <li>
-            <a href="" id="memeber">
+            <a href="/memberXdmList" id="member">
               <i class="bi bi-circle"></i><span>member</span>
             </a>
           </li>

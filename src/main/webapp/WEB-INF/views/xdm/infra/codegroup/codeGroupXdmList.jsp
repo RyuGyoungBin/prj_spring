@@ -25,7 +25,9 @@
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Datatables</h5>
-			  <form autocomplete="off" action="/codeGroupXdmList" method="post">
+			  <form autocomplete="off" action="/codeGroupXdmList" method="post" name="formList">
+			  	<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage}" default="1"/>">
+				<input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow}"/>">
 					<div class="d-flex">
 						<div class="col-2 text-end ms-3 me-3">
 							<select class="form-control form-control-sm p-2" id="use_YN">
@@ -87,7 +89,7 @@
 					
 		                  	<c:otherwise>
 		              <!-- Table with stripped rows -->
-		              <table class="table datatable table-striped">
+		              <table class="table table-striped">
 		                <thead>
 		                  <tr>
 		                  	<th scope="col"><input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="0" aria-label="..." name="tabel_check"></th>
@@ -112,6 +114,33 @@
 					</c:otherwise>
 				</c:choose>
               <!-- End Table with stripped rows -->
+              <div class="container-fluid px-0 mt-2">
+				    <div class="row">
+				        <div class="col">
+				            <!-- <ul class="pagination pagination-sm justify-content-center mb-0"> -->
+				            <ul class="pagination justify-content-center mb-0">
+				                <!-- <li class="page-item"><a class="page-link" href="#"><i class="fa-solid fa-angles-left"></i></a></li> -->
+				<c:if test="${vo.startPage gt vo.pageNumToShow}">
+				                <li class="page-item"><a class="page-link" href="javascript:goList(${vo.startPage - 1})"><i class="fa-solid fa-angle-left"></i></a></li>
+				</c:if>
+				<c:forEach begin="${vo.startPage}" end="${vo.endPage}" varStatus="i">
+					<c:choose>
+						<c:when test="${i.index eq vo.thisPage}">
+				                <li class="page-item active"><a class="page-link" href="javascript:goList(${i.index})">${i.index}</a></li>
+						</c:when>
+						<c:otherwise>             
+				                <li class="page-item"><a class="page-link" href="javascript:goList(${i.index})">${i.index}</a></li>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>                
+				<c:if test="${vo.endPage ne vo.totalPages}">                
+				                <li class="page-item"><a class="page-link" href="javascript:goList(${vo.endPage + 1})"><i class="fa-solid fa-angle-right"></i></a></li>
+				</c:if>
+				                <!-- <li class="page-item"><a class="page-link" href="#"><i class="fa-solid fa-angles-right"></i></a></li> -->
+				            </ul>
+				        </div>
+				    </div>
+				</div>
 
             </div>
 			<div class="d-flex px-4 pb-5">
@@ -150,7 +179,13 @@
 
   <jsp:include page="../include/footer.jsp"></jsp:include>
   <script>
-  	// search
+//	paging
+		goList = function(thisPage) {
+		$("input:hidden[name=thisPage]").val(thisPage);
+		$("form[name=formList]").attr("action", "codeGroupXdmList").submit();
+		}
+		
+	  	// search
   	 	$("#start_date").datepicker({
   	 	});
   	 	$("#end_date").datepicker({
@@ -207,22 +242,13 @@
 	 $("thead tr th:first-child a").removeClass("datatable-sorter");
 		
 		
-	 $(".datatable-search").remove();
 	 
-	 $(".datatable-sorter").on("click", function(){
-	 	$("input[name=tabel_check]").prop("checked", false);
-	 });
-	 $(".datatable-selector").on("focus", function(){
-		 $("input[name=tabel_check]").prop("checked", false);
-	 });
-	 $( "thead tr th:first-child a" ).contents().unwrap().wrap( '<span></span>' );
-//	 $(".datatable-top").prepend('<input class="form-check-input me-2" type="checkbox" id="checkboxNoLabel" value="0" aria-label="..." name="tabel_check"><span>All Check</span>');
 	 $("#codeGroup").addClass("active");
-	 $(".datatable-top").prepend($(".datatable-info"));
-	 $(function(){
-		 	$("div.datatable-bottom").addClass("d-flex justify-content-center");
-		 	$("nav.datatable-pagination").addClass("float-none");
-	 	}); 
+	
+	 
+
+	
+	
 </script>
 
 </body>

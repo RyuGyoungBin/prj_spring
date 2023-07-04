@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -13,50 +14,53 @@ public class CodeGroupController {
 	@Autowired
 	CodeGroupServiceImpl service;
 	
-	@RequestMapping(value = "/codeGroupList")
-	public String codeGroupList(CodeGroupVo vo, Model model) {
+	@RequestMapping(value = "/codeGroupXdmList")
+	public String codeGroupXdmList(@ModelAttribute("vo") CodeGroupVo vo, Model model) {
+		vo.setCGshkey(vo.getCGshkey() == null ? "": vo.getCGshkey());
+		vo.setParamsPaging(service.selectOneCount(vo));
 		
-		List<CodeGroup> list = service.selectList(vo);
-//							jsp에서 사용할 변수명
-		model.addAttribute("listgroup", list);
-		
-		return "xdm/infra/codegroup/codeGroupList";
+		if(vo.getTotalRows()>0) {
+			List<CodeGroup> list = service.selectList(vo);
+			model.addAttribute("list", list);
+		}else {
+//			by pass
+		}
+	    return "xdm/infra/codegroup/codeGroupXdmList"; 
 	}
 	
-	@RequestMapping(value = "/codeGroupForm")
-	public String codeGroupForm(CodeGroupVo vo, Model model) {
-		
+//	vo.setCGshkey(vo.getCGshkey() == null ? "": vo.getCGshkey());
+//	List<CodeGroup> list = service.selectList(vo);
+//	model.addAttribute("list", list);
+//    return "xdm/infra/codegroup/codeGroupXdmList"; 
+	@RequestMapping(value = "/codeGroupXdmForm")
+	public String codeGroupXdmForm(CodeGroupVo vo, Model model) {
 		CodeGroup codegroup = service.selectOne(vo);
-		model.addAttribute("codeOne", codegroup);
-		
-		return "xdm/infra/codegroup/codeGroupForm";  
+		model.addAttribute("list", codegroup);
+		return "xdm/infra/codegroup/codeGroupXdmForm";
 	}
-	
-	
-	@RequestMapping(value = "/codeGroupUpdate")
-	public String codeGroupUpdate(CodeGroup dto) {
-		service.update(dto);
-		return "redirect:/codeGroupList";
-	}
-	
-	@RequestMapping(value = "/codeGroupDelete")
-	public String codeGroupDelete(CodeGroup dto) {
+	@RequestMapping(value = "/codeGroupXdmDelete")
+	public String concertDelete(CodeGroup dto) {
 		
 		service.delete(dto);
-		return "redirect:/codeGroupList";
+		
+		return "redirect:/codeGroupXdmList";
 	}
 	
-	@RequestMapping(value = "/codeGroupInsert")
-	public String codeGroupInsert(CodeGroup dto) {
+	@RequestMapping(value = "/codeGroupXdmUpdate")
+	public String concertUpdate(CodeGroup dto) {
 		
+		service.update(dto);
+		
+		return "redirect:/codeGroupXdmList";
+	}
+	@RequestMapping(value = "/codeGroupXdmInsert")
+	public String concertInsert(CodeGroup dto) {
 		service.insert(dto);
-		return "redirect:/codeGroupList";
+		return "redirect:/codeGroupXdmList";
 	}
-	
-	@RequestMapping(value = "/codeGroupUpdateDel")
-	public String codeGroupUpdateDel(CodeGroup dto) {
-		
+	@RequestMapping(value = "/codeGroupXdmDelNy")
+	public String concertDelNy(CodeGroup dto) {
 		service.updateDel(dto);
-		return "redirect:/codeGroupList";
+		return "redirect:/codeGroupXdmList";
 	}
 }

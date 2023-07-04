@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.company.app.infra.member.MemberMapper">
+
+	<resultMap type="com.company.app.infra.member.Member" id="resultMapObj"></resultMap>
+	<select id="selectList" resultMap="resultMapObj">
+    	SELECT
+    		seq,
+    		emailFull,
+    		emailDomain,
+    		emailAccount,
+    		id,
+    		password,
+    		name,
+    		dob,
+    		gender,
+    		phoneAgree,
+    		phoneAgreeDate,
+    		emailAgree,
+    		emailAgreeDate,
+    		memberType,
+    		brn,
+    		delNy
+    	FROM
+    		member
+    	WHERE 1=1
+			
+    </select>
+    
+</mapper>

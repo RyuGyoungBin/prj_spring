@@ -98,7 +98,7 @@
                 <h3>concert ticket system</h3>
                 <span class="mb-auto mt-3">Web</span>
                 <div class="mb-5">
-	                <button type="button" class="btn btn-lg border-light text-light" onclick="location.href=''" style="width:45%; height:88px;">User</button>
+	                <button type="button" class="btn btn-lg border-light text-light" onclick="location.href='/indexUsrView'" style="width:45%; height:88px;">User</button>
 	                <button type="button" class="btn btn-lg border-light text-light" onclick="location.href='/loginXdmForm'" style="width:45%; height:88px;">Admin</button>
                 </div>
               </div>
