@@ -24,10 +24,17 @@ public class CodeController {
 	public String codeXdmLIst(@ModelAttribute("vo") CodeVo vo, CodeGroupVo groupVo, Model model) {
 		
 		vo.setShkey(vo.getShkey() == null ? "": vo.getShkey());
+
+		vo.setParamsPaging(codeservice.selectOneCount(vo));
 		
-		List<Code> codeList = codeservice.selectListJoin(vo);
+		if(vo.getTotalRows() > 0) {
+			List<Code> list = codeservice.selectList(vo);
+			model.addAttribute("list", list);
+		} else {
+//			by pass
+		}
+		
 		List<CodeGroup> groupList = service.selectList(groupVo);
-		model.addAttribute("list", codeList);
 		model.addAttribute("groupList", groupList);
 //		model.addAttribute("vo", vo);
 		return "xdm/infra/code/codeXdmList";

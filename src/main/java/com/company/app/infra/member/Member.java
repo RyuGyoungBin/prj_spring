@@ -17,6 +17,13 @@ public class Member {
 	private String memberType;
 	private String brn;
 	private String delNy;
+	private String defaultNy;
+	private String zipCode;
+	private String address;
+	private String addressDetail;
+	private String member_seq;
+	private String number;
+	
 	
 //	----------------------
 	public String getSeq() {
@@ -114,6 +121,42 @@ public class Member {
 	}
 	public void setMemberType(String memberType) {
 		this.memberType = memberType;
+	}
+	public String getDefaultNy() {
+		return defaultNy;
+	}
+	public void setDefaultNy(String defaultNy) {
+		this.defaultNy = defaultNy;
+	}
+	public String getZipCode() {
+		return zipCode;
+	}
+	public void setZipCode(String zipCode) {
+		this.zipCode = zipCode;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public String getAddressDetail() {
+		return addressDetail;
+	}
+	public void setAddressDetail(String addressDetail) {
+		this.addressDetail = addressDetail;
+	}
+	public String getMember_seq() {
+		return member_seq;
+	}
+	public void setMember_seq(String member_seq) {
+		this.member_seq = member_seq;
+	}
+	public String getNumber() {
+		return number;
+	}
+	public void setNumber(String number) {
+		this.number = number;
 	}
 	
 	

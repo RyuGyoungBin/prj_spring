@@ -6,28 +6,114 @@
 <mapper namespace="com.company.app.infra.member.MemberMapper">
 
 	<resultMap type="com.company.app.infra.member.Member" id="resultMapObj"></resultMap>
-	<select id="selectList" resultMap="resultMapObj">
-    	SELECT
-    		seq,
+	<sql id ="selectCommon">
+   		FROM    
+	    	member a
+	    	LEFT JOIN memberAddress b on b.member_seq = a.seq
+    		LEFT JOIN memberPhone c on c.member_seq = a.seq
+		WHERE 1=1
+			<!-- <if test="shKeyword != null and !shKeyword.equals('')">AND ifcgName LIKE CONCAT('%',#{shKeyword},'%')</if> -->
+    </sql>
+
+
+   	<select id="selectOneCount" resultType="Integer">
+		SELECT count(*)
+		<include refid="selectCommon" />
+	</select>
+   	<select id="selectList" resultMap="resultMapObj">
+		SELECT aa.* FROM (   	
+	   		SELECT
+	    		a.seq,
+	    		a.emailFull,
+	    		a.emailDomain,
+	    		a.emailAccount,
+	    		a.id,
+	    		a.password,
+	    		a.name,
+	    		a.dob,
+	    		a.gender,
+	    		a.phoneAgree,
+	    		a.phoneAgreeDate,
+	    		a.emailAgree,
+	    		a.emailAgreeDate,
+	    		a.memberType,
+	    		a.brn,
+	    		a.delNy,
+	    		b.defaultNy,
+	    		b.zipCode,
+	    		b.address,
+	    		b.addressDetail,
+				c.number
+	    	FROM
+	    		member a
+	    		LEFT JOIN memberAddress b on b.member_seq = a.seq
+				LEFT JOIN memberPhone c on c.member_seq = a.seq
+	    	WHERE 1=1
+		) aa
+		LIMIT #{rowNumToShow} OFFSET #{startRnumForMysql}	   			
+   	</select>
+    
+    <insert id="insertMember">
+    	insert into `member` (
     		emailFull,
-    		emailDomain,
-    		emailAccount,
-    		id,
-    		password,
-    		name,
-    		dob,
-    		gender,
-    		phoneAgree,
-    		phoneAgreeDate,
-    		emailAgree,
-    		emailAgreeDate,
-    		memberType,
-    		brn,
-    		delNy
-    	FROM
-    		member
-    	WHERE 1=1
-			
-    </select>
+			emailDomain,
+			emailAccount,
+			id,
+			password,
+			name,
+			dob,
+			gender,
+			phoneAgree,
+			phoneAgreeDate,
+			emailAgree,
+			emailAgreeDate,
+			delNy,
+		    memberType
+    	) values(
+    		CONCAT (#{emailDomain},'@',#{emailDomain}),
+    		#{emailDomain},
+    		#{emailDomain},
+    		#{id},
+    		#{password},
+    		#{name},
+    		#{dob},
+    		#{gender},
+    		#{phoneAgree},
+    		now(),
+    		#{emailAgree},
+    		now(),
+    		0,
+    		0
+    	)
+    </insert>
+    <insert id="insertAddress">
+    	insert into `memberAddress`(
+    		zipCode,
+    		address,
+    		addressDetail,
+    		delNy,
+    		member_seq
+    	) values (
+    		#{zipCode},
+    		#{address},
+    		#{addressDetail},
+    		0,
+    		#{member_seq}
+    	)
+    </insert>
+    <insert id="insertPhone">
+    	insert into `memberPhone` (
+    		defaultNy,
+    		number,
+    		delNy,
+    		member_seq
+    	) values (
+    		#{phoneMark},
+    		#{number},
+    		0
+    		#{member_seq},
+    	)
+    
+    </insert>
     
 </mapper>

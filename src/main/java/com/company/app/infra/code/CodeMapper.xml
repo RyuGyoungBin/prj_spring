@@ -6,18 +6,42 @@
 <mapper namespace="com.company.app.infra.code.CodeMapper">
 
 	<resultMap type="com.company.app.infra.code.Code" id="resultMapObj"></resultMap>
-	<select id="selectList" resultMap="resultMapObj">
-    	SELECT
-    		seq,
-    		name,
-    		delNy,
-    		codeGroup_seq
-    	FROM
-    		code
-    	WHERE 1=1
-			<if test="shkey != null and !shkey.equals('')">AND name LIKE CONCAT ('%',#{shkey},'%')</if>
+    <sql id="abc">
+		seq,
+   		name,
+   		delNy,
+   		codeGroup_seq
+    </sql>
+    <sql id ="selectCommon">
+   		FROM
+			code
+		WHERE 1=1
+			<if test="codeGroup_seq != null and !codeGroup_seq.equals('')">AND codeGroup_seq = #{codeGroup_seq}</if>
+			<if test="shkey != null and !shkey.equals('')">AND name like CONCAT ('%',#{shkey},'%')</if>
 			<if test="shOption != null and !shOption.equals('')">AND delNy = #{shOption}</if>
-    </select>
+    </sql>
+
+   	<select id="selectOneCount" resultType="Integer">
+		SELECT count(*)
+		<include refid="selectCommon" />
+	</select>
+
+   	<select id="selectList" resultMap="resultMapObj">
+		SELECT aa.* FROM (   	
+	   		SELECT
+				seq,
+				name,
+				codeGroup_seq,
+				(SELECT
+					b.name
+				FROM codeGroup b 
+				WHERE b.seq=code.codeGroup_seq
+				) as groupname,
+				delNy
+	   			<include refid="selectCommon" />
+		) aa
+		LIMIT #{rowNumToShow} OFFSET #{startRnumForMysql}	   			
+   	</select>
     
     <select id="selectOne" resultMap="resultMapObj">
     	SELECT

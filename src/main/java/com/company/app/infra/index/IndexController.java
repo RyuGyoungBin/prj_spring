@@ -28,9 +28,9 @@ public class IndexController {
 	public String indexUsrView() {
 		return "usr/infra/index/indexUsrView";
 	}
-	@RequestMapping("/singupUsrForm")
+	@RequestMapping("/signupUsrForm")
 	public String singupUsrForm() {
-		return "usr/infra/index/singupUsrForm";
+		return "usr/infra/index/signupUsrForm";
 	}
 	
 	

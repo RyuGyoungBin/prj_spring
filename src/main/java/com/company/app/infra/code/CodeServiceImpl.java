@@ -11,6 +11,10 @@ public class CodeServiceImpl implements CodeService {
 	@Autowired
 	CodeDao dao;
 
+	@Override
+	public int selectOneCount(CodeVo vo) {
+		return dao.selectOneCount(vo);
+	}
 
 	@Override
 	public List<Code> selectList(CodeVo vo) {
@@ -51,6 +55,8 @@ public class CodeServiceImpl implements CodeService {
 	public List<Code> selectListJoin(CodeVo vo) {
 		return dao.selectListJoin(vo);
 	}
+
+	
 
 	
 	

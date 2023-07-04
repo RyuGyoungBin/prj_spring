@@ -28,22 +28,22 @@
                 	<div id="login">
                     		<div class="text-center"><img src="" alt="Image" width="160" height="34"></div>
                             <hr>
-                           <form class="d-flex flex-wrap justify-content-around">
+                           <form class="d-flex flex-wrap justify-content-around" name="singupForm" method="post">
                                 <div class="form-group col-12 col-xl-5">
                                 	<label>Id</label>
-                                    <input type="text" class=" form-control"  placeholder="Id" name="name">
+                                    <input type="text" class=" form-control"  placeholder="id" name="id">
                                 </div>
                                 <div class="form-group col-12 col-xl-5">
                                 	<label>Email</label>
                                 	<div class="d-flex justify-content-between align-items-center">
-	                                    <input type="email" class=" form-control" placeholder="EmailDomain" name="emailDomain" style="width:45%;">
+	                                    <input type="text" class=" form-control" placeholder="EmailDomain" name="emailDomain" style="width:45%;">
 	                                    @
-	                                    <input type="email" class=" form-control" placeholder="EmailAccount" name="emailAccount" style="width:45%;">
+	                                    <input type="text" class=" form-control" placeholder="EmailAccount" name="emailAccount" style="width:45%;">
                                 	</div>
                                 </div>
                                 <div class="form-group col-12 col-xl-5">
                                 	<label>Password</label>
-                                    <input type="password" class=" form-control" id="password1" placeholder="Password">
+                                    <input type="password" class=" form-control" id="password1" placeholder="Password" name="password">
                                 </div>
                                 <div class="form-group col-12 col-xl-5">
                                 	<label>Confirm password</label>
@@ -51,11 +51,11 @@
                                 </div>
                                 <div class="form-group col-12 col-xl-5">
                                 	<label>User name</label>
-                                    <input type="name" class=" form-control" placeholder="User name">
+                                    <input type="text" class=" form-control" placeholder="User name" name="name">
                                 </div>
                                 <div class="form-group col-12 col-xl-5">
                                		<label>DOB</label>
-                                    <input type="text" class=" form-control" placeholder="dob">
+                                    <input type="text" class=" form-control" placeholder="dob" name="dob">
                                 </div>
                                 <div class="col-12 border d-flex flex-wrap justify-content-around position-relative pt-4 mb-4 phoneBox">
                                 	<div class=" position-absolute top-0 end-0 ">
@@ -63,16 +63,16 @@
 	                                	<button type="button" class="btn btn-light plusBtn">+</button>
                                 	</div>
                                 	<div class="form-group col-12 col-xl-5">
-	                                	<input class="form-check-input phone" type="radio" value="1" name="PhoneMark" checked>
+	                                	<input class="form-check-input phone" type="radio" value="1" name="phoneMark" checked>
 	                                	<label>Phone number</label>
-	                                    <input type="tel" class=" form-control" id="phone1" placeholder="Phone number">
+	                                    <input type="tel" class=" form-control" name="phone1" id="phone1" placeholder="Phone number">
 	                                </div>
                                 </div>
                                 
                                 <div class="col-12 border d-flex flex-wrap justify-content-around pt-4 mb-4 align-items-center">
 									<div class="form-group col-12 col-xl-5">
 										<label>Zip code</label>
-										<input class="form-control" name="address" id="registerZipCode" type="text" placeholder="우편번호">
+										<input class="form-control" name="zipCode" id="registerZipCode" type="text" placeholder="우편번호">
 									</div>
 									<div class="form-group col-12 col-xl-5 mb-0">
 										<input type="button" onclick="address1()" value="우편번호 찾기" class="">
@@ -83,7 +83,7 @@
 									</div>
 									<div class="form-group col-12 col-xl-5">
 										<label>Address detail</label>
-										<input class="form-control" name="address" id="registerAddressDetail" type="text" placeholder="상세주소">
+										<input class="form-control" name="addressDetail" id="registerAddressDetail" type="text" placeholder="상세주소">
 									</div>
                                 </div>
                                 
@@ -92,7 +92,7 @@
 	                                <span>품에 안고 그들에게 밝은 길을 찾아 주며 그들을 행복스럽고 평화스러운 곳으로 인도하겠다는 커다란 이상을 품었기 때문이다</span>
 	                                <div class="form-check form-check-reverse">
 	                                약관 동의
-		                                <input class="form-check-input agree" type="checkbox" value="0" name="agree">
+		                                <input class="form-check-input agree" type="checkbox" value="1" name="agree">
 	                                </div>
                                 </div>
                                <div class="col-12 ps-5 pe-5">
@@ -100,7 +100,7 @@
 	                                <span>품에 안고 그들에게 밝은 길을 찾아 주며 그들을 행복스럽고 평화스러운 곳으로 인도하겠다는 커다란 이상을 품었기 때문이다</span>
 	                                <div class="form-check form-check-reverse">
 	                                문자 수신 동의
-		                                <input class="form-check-input agree" type="checkbox" value="1" name="agree">
+		                                <input class="form-check-input agree" type="checkbox" value="1" name="phoneAgree">
 	                                </div>
                                 </div>
                                 <div class="col-12 ps-5 pe-5">
@@ -108,12 +108,12 @@
 	                                <span>품에 안고 그들에게 밝은 길을 찾아 주며 그들을 행복스럽고 평화스러운 곳으로 인도하겠다는 커다란 이상을 품었기 때문이다</span>
 	                                <div class="form-check form-check-reverse">
 	                                이메일 수신 동의
-		                                <input class="form-check-input agree" type="checkbox" value="2" name="agree">
+		                                <input class="form-check-input agree" type="checkbox" value="1" name="emailAgree">
 	                                </div>
                                 </div>
                                 
                                 <div id="pass-info" class="clearfix"></div>
-                                <button class="btn_full">Create an account</button>
+                                <button class="btn_full" id="singup">Create an account</button>
                             </form>
                         </div>
                 </div>
@@ -153,15 +153,20 @@
 		
 		var i =2;
 		$(".plusBtn").on("click", function(){
-			$(".phoneBox").append('<div class="form-group col-12 col-xl-5"><input class="form-check-input phone" type="radio" value="1" name="PhoneMark"><label>Phone number</label><input type="tel" class=" form-control" id="phone'+i+'" placeholder="Phone number"></div>');
+			$(".phoneBox").append('<div class="form-group col-12 col-xl-5"><input class="form-check-input phone" type="radio" value="1" name="PhoneMark"><label>Phone number</label><input type="tel" class=" form-control" name="phone'+i+'" id="phone'+i+'" placeholder="Phone number"></div>');
 			i++;
 		});
 		$(function(){
 			$(".RemoveBtn").on("click", function(){
-				$(".phoneBox").find(".form-group").last().remove();
+				if($(".phoneBox").find(".form-group").length>1){
+					$(".phoneBox").find(".form-group").last().remove();
+				}
 			});
 			
 		})
+		$("#singup").on("click", function(){
+				$("form[name=singupForm]").attr("action", "/memberinsert").submit();				
+		});
 		
 	</script>
 	</body>
