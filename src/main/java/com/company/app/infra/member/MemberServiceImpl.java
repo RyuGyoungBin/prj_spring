@@ -23,19 +23,11 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public int insertMember(Member dto) {
-		return dao.insertMember(dto);
+		dao.insertMember(dto);
+		dao.insertAddress(dto);
+		dao.insertPhone(dto);
+		return 1;
 	}
 
-	@Override
-	public int insertAddress(Member dto) {
-		return dao.insertAddress(dto);
-	}
-
-	@Override
-	public int insertPhone(Member dto) {
-		return dao.insertPhone(dto);
-	}
-
-	
 
 }

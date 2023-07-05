@@ -10,7 +10,4 @@ public interface MemberService {
 	
 	public int insertMember(Member dto);
 	
-	public int insertAddress(Member dto);
-	
-	public int insertPhone(Member dto);
 }

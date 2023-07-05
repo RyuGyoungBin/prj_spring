@@ -32,10 +32,6 @@ public class MemberController {
 	public String memberinsert(Member dto) {
 		System.out.println("123");
 		service.insertMember(dto);
-		dto.setMember_seq(dto.getSeq());
-		System.out.println(dto.getMember_seq());
-		service.insertAddress(dto);
-		service.insertPhone(dto);
 		return "redirect:/indexUsrView";
 	}
 	

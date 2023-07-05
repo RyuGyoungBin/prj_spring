@@ -23,6 +23,7 @@ public class Member {
 	private String addressDetail;
 	private String member_seq;
 	private String number;
+	private String phoneMark;
 	
 	
 //	----------------------
@@ -157,6 +158,12 @@ public class Member {
 	}
 	public void setNumber(String number) {
 		this.number = number;
+	}
+	public String getPhoneMark() {
+		return phoneMark;
+	}
+	public void setPhoneMark(String phoneMark) {
+		this.phoneMark = phoneMark;
 	}
 	
 	

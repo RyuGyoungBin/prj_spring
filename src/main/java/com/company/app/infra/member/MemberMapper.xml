@@ -9,8 +9,8 @@
 	<sql id ="selectCommon">
    		FROM    
 	    	member a
-	    	LEFT JOIN memberAddress b on b.member_seq = a.seq
-    		LEFT JOIN memberPhone c on c.member_seq = a.seq
+	    	LEFT JOIN memberAddress b on b.member_seq = a.seq and b.defaultNy = 1
+    		LEFT JOIN memberPhone c on c.member_seq = a.seq and c.defaultNy = 1
 		WHERE 1=1
 			<!-- <if test="shKeyword != null and !shKeyword.equals('')">AND ifcgName LIKE CONCAT('%',#{shKeyword},'%')</if> -->
     </sql>
@@ -52,6 +52,7 @@
 		) aa
 		LIMIT #{rowNumToShow} OFFSET #{startRnumForMysql}	   			
    	</select>
+   	
     
     <insert id="insertMember">
     	insert into `member` (
@@ -78,13 +79,22 @@
     		#{name},
     		#{dob},
     		#{gender},
-    		#{phoneAgree},
+    		<choose>
+				<when test="phoneAgree != null">#{phoneAgree},</when>
+				<otherwise>0,</otherwise>
+			</choose>
     		now(),
-    		#{emailAgree},
+    		<choose>
+				<when test="emailAgree != null">#{emailAgree},</when>
+				<otherwise>0,</otherwise>
+			</choose>
     		now(),
     		0,
     		0
     	)
+    	<selectKey resultType="String" keyProperty="seq" order="AFTER">
+			SELECT last_insert_id()
+		 </selectKey>
     </insert>
     <insert id="insertAddress">
     	insert into `memberAddress`(
@@ -98,7 +108,7 @@
     		#{address},
     		#{addressDetail},
     		0,
-    		#{member_seq}
+    		#{seq}
     	)
     </insert>
     <insert id="insertPhone">
@@ -108,10 +118,13 @@
     		delNy,
     		member_seq
     	) values (
-    		#{phoneMark},
+    		<choose>
+				<when test="phoneMark != null">#{phoneMark},</when>
+				<otherwise>0,</otherwise>
+			</choose>
     		#{number},
-    		0
-    		#{member_seq},
+    		0,
+    		#{seq}
     	)
     
     </insert>

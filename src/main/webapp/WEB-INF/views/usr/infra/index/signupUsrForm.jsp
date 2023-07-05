@@ -65,7 +65,7 @@
                                 	<div class="form-group col-12 col-xl-5">
 	                                	<input class="form-check-input phone" type="radio" value="1" name="phoneMark" checked>
 	                                	<label>Phone number</label>
-	                                    <input type="tel" class=" form-control" name="phone1" id="phone1" placeholder="Phone number">
+	                                    <input type="tel" class=" form-control" name="number" id="phone1" placeholder="Phone number">
 	                                </div>
                                 </div>
                                 
@@ -153,7 +153,7 @@
 		
 		var i =2;
 		$(".plusBtn").on("click", function(){
-			$(".phoneBox").append('<div class="form-group col-12 col-xl-5"><input class="form-check-input phone" type="radio" value="1" name="PhoneMark"><label>Phone number</label><input type="tel" class=" form-control" name="phone'+i+'" id="phone'+i+'" placeholder="Phone number"></div>');
+			$(".phoneBox").append('<div class="form-group col-12 col-xl-5"><input class="form-check-input phone" type="radio" value="1" name="phoneMark"><label>Phone number</label><input type="tel" class=" form-control" name="number" id="phone'+i+'" placeholder="Phone number"></div>');
 			i++;
 		});
 		$(function(){
