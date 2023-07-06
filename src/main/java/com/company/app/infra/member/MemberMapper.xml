@@ -9,10 +9,35 @@
 	<sql id ="selectCommon">
    		FROM    
 	    	member a
-	    	LEFT JOIN memberAddress b on b.member_seq = a.seq and b.defaultNy = 1
-    		LEFT JOIN memberPhone c on c.member_seq = a.seq and c.defaultNy = 1
+	    	LEFT JOIN memberAddress b on b.member_seq = a.seq 
+    		LEFT JOIN memberPhone c on c.member_seq = a.seq 
 		WHERE 1=1
-			<!-- <if test="shKeyword != null and !shKeyword.equals('')">AND ifcgName LIKE CONCAT('%',#{shKeyword},'%')</if> -->
+			<if test="name != null and !name.equals('')">AND name LIKE CONCAT('%',#{name},'%')</if>
+			<if test="gender != null and !gender.equals('')">AND gender LIKE CONCAT('%',#{gender},'%')</if>
+			<if test="emailAccount != null and !emailAccount.equals('')">AND emailAccount LIKE CONCAT('%',#{emailAccount},'%')</if>
+    </sql>
+    <sql id="selectMember">
+    	a.seq,
+   		a.emailFull,
+   		a.emailDomain,
+   		a.emailAccount,
+   		a.id,
+   		a.password,
+   		a.name,
+   		a.dob,
+   		a.gender,
+   		a.phoneAgree,
+   		a.phoneAgreeDate,
+   		a.emailAgree,
+   		a.emailAgreeDate,
+   		a.memberType,
+   		a.brn,
+   		a.delNy,
+   		b.defaultNy,
+   		b.zipCode,
+   		b.address,
+   		b.addressDetail,
+		c.number
     </sql>
 
 
@@ -23,32 +48,8 @@
    	<select id="selectList" resultMap="resultMapObj">
 		SELECT aa.* FROM (   	
 	   		SELECT
-	    		a.seq,
-	    		a.emailFull,
-	    		a.emailDomain,
-	    		a.emailAccount,
-	    		a.id,
-	    		a.password,
-	    		a.name,
-	    		a.dob,
-	    		a.gender,
-	    		a.phoneAgree,
-	    		a.phoneAgreeDate,
-	    		a.emailAgree,
-	    		a.emailAgreeDate,
-	    		a.memberType,
-	    		a.brn,
-	    		a.delNy,
-	    		b.defaultNy,
-	    		b.zipCode,
-	    		b.address,
-	    		b.addressDetail,
-				c.number
-	    	FROM
-	    		member a
-	    		LEFT JOIN memberAddress b on b.member_seq = a.seq
-				LEFT JOIN memberPhone c on c.member_seq = a.seq
-	    	WHERE 1=1
+    		<include refid="selectMember" />
+	    	<include refid="selectCommon" />
 		) aa
 		LIMIT #{rowNumToShow} OFFSET #{startRnumForMysql}	   			
    	</select>
@@ -128,5 +129,40 @@
     	)
     
     </insert>
+    
+    <select id="selectOne" resultMap="resultMapObj">
+    	SELECT
+    		<include refid="selectMember" />
+	    	<include refid="selectCommon" /> 
+	    	AND a.seq = #{seq}
+	    	
+    </select>
+    
+    <update id="updateMember">
+    	UPDATE 
+    		member
+		SET 
+			password = #{password}
+		WHERE 
+			seq = #{seq}
+    </update>
+    <update id="updateMemberPhone">
+    	UPDATE 
+    		memberPhone
+		SET 
+			number = #{number}
+		WHERE 
+			member_seq = #{seq}
+    </update>
+    <update id="updateMemberAddress">
+    	UPDATE 
+    		memberAddress
+		SET 
+			zipCode = #{zipCode},
+			address = #{address},
+			addressDetail = #{addressDetail}
+		WHERE 
+			member_seq = #{seq}
+    </update>
     
 </mapper>

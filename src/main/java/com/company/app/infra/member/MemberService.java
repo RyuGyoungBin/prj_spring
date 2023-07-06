@@ -10,4 +10,8 @@ public interface MemberService {
 	
 	public int insertMember(Member dto);
 	
+	public Member selectOne(MemberVo vo);
+	
+	public int updateMember(Member dto);
+	
 }

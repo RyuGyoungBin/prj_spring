@@ -6,15 +6,6 @@
 	<!-- NOTIFY BUBBLES  -->
 	<!-- <script src="/resources/concert/js/notify_func.js"></script> -->
 	<script>
-		$(function(){
-			$(window).scroll(function(){
-
-		        if ($(window).scrollTop() == 0) {
-		        	$(".header_link").removeClass("link-dark").addClass("link-light");
-		        } else {
-					$(".header_link").removeClass("link-light").addClass("link-dark");
-		        }
-		    });
-		});
+		
 	
 	</script>

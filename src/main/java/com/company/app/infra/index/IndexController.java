@@ -2,15 +2,21 @@ package com.company.app.infra.index;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.company.app.infra.codegroup.CodeGroupServiceImpl;
+import com.company.app.infra.member.Member;
+import com.company.app.infra.member.MemberServiceImpl;
+import com.company.app.infra.member.MemberVo;
 
 @Controller
 public class IndexController {
 	
 	@Autowired
 	CodeGroupServiceImpl service;
+	@Autowired
+	MemberServiceImpl memberService;
 	
 	@RequestMapping("/biographyUsrView")
 	public String biographyUsrView() {
@@ -31,6 +37,22 @@ public class IndexController {
 	@RequestMapping("/signupUsrForm")
 	public String singupUsrForm() {
 		return "usr/infra/index/signupUsrForm";
+	}
+	@RequestMapping("/mymenuUsrView")
+	public String mymenuUsrView() {
+		return "usr/infra/index/mymenuUsrView";
+	}
+	@RequestMapping("/informationUsrForm")
+	public String informationUsrForm(MemberVo vo, Model model) {
+		Member listOne = memberService.selectOne(vo);
+		model.addAttribute("listOne", listOne);
+		return "usr/infra/index/informationUsrForm";
+	}
+	@RequestMapping("/informationUsrUpdate")
+	public String informationUsrUpdate(Member dto) {
+		System.out.println("1234");
+		memberService.updateMember(dto);
+		return "redirect:/informationUsrForm";
 	}
 	
 	

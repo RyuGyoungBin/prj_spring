@@ -57,6 +57,16 @@
                                		<label>DOB</label>
                                     <input type="text" class=" form-control" placeholder="dob" name="dob">
                                 </div>
+                                <div class="form-group col-12 col-xl-5">
+                               		<label>gender</label>
+                                    <select class=" form-control" name="gender">
+                                    	<option value="1">남</option>
+                                    	<option value="2">여</option>
+                                    	<option value="3">기타</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-12 col-xl-5">
+                                </div>
                                 <div class="col-12 border d-flex flex-wrap justify-content-around position-relative pt-4 mb-4 phoneBox">
                                 	<div class=" position-absolute top-0 end-0 ">
 	                                	<button type="button" class="btn btn-sm btn-danger RemoveBtn">-</button>

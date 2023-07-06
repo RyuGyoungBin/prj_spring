@@ -26,7 +26,23 @@ public class MemberServiceImpl implements MemberService {
 		dao.insertMember(dto);
 		dao.insertAddress(dto);
 		dao.insertPhone(dto);
+		System.out.println(dto.getNumber());
+		System.out.println(dto.getNumberArray().length);
+		
 		return 1;
+	}
+
+	@Override
+	public Member selectOne(MemberVo vo) {
+		return dao.selectOne(vo);
+	}
+
+	@Override
+	public int updateMember(Member dto) {
+		dao.updateMember(dto);
+		dao.updateMemberPhone(dto);
+		dao.updateMemberAddress(dto);
+		return 0;
 	}
 
 

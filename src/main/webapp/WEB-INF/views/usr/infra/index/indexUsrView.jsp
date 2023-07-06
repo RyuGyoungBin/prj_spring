@@ -185,7 +185,17 @@
 	<jsp:include page="../include/footer.jsp"></jsp:include>
 	<jsp:include page="../include/script.jsp"></jsp:include>
 	<script>
+		$(".header_link").removeClass("link-dark").addClass("link-light");
+		$(function(){
+			$(window).scroll(function(){
 	
+		        if ($(window).scrollTop() == 0) {
+		        	$(".header_link").removeClass("link-dark").addClass("link-light");
+		        } else {
+					$(".header_link").removeClass("link-light").addClass("link-dark");
+		        }
+		    });
+		});
 	</script>
     
     

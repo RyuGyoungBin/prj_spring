@@ -57,8 +57,15 @@
 					</div>
 					<div class="d-flex mb-3 align-items-center">
 						<div class="col-2 text-start ms-3 me-3">
-								<input class="form-control form-control-sm p-2" name="shkey" id="name" type="text" placeholder="name" value="">
+								<input class="form-control form-control-sm p-2" name="name" id="name" type="text" placeholder="name" value="<c:out value="${vo.name}"></c:out>">
 						</div>
+						<div class="col-2 text-start ms-3 me-3">
+								<input class="form-control form-control-sm p-2" name="gender" id="gender" type="text" placeholder="gender" value="<c:out value="${vo.gender}"></c:out>">
+						</div>
+						<div class="col-2 text-start ms-3 me-3">
+								<input class="form-control form-control-sm p-2" name="emailAccount" id="emailAccount" type="text" placeholder="emailAccount" value="<c:out value="${vo.emailAccount}"></c:out>">
+						</div>
+						
 						<div class="col-2 text-start ms-3 me-3">
 							<button type="submit" class="btn btn-warning btn-sm me-2" id="search"><i class="bi bi-search"></i></button>
 							<button type="reset" class="btn btn-danger btn-sm"><i class="bi bi-arrow-clockwise"></i></button>
@@ -113,7 +120,7 @@
 				                   <td><c:out value="${list.emailFull }"></c:out></td>
 				                   <td><c:out value="${list.emailDomain}"></c:out></td>
 				                   <td><c:out value="${list.emailAccount}"></c:out></td>
-				                   <td><c:out value="${list.id}"></c:out></td>
+				                   <td><a href="/informationUsrForm?seq=<c:out value="${list.seq }"></c:out>"><c:out value="${list.id}"></c:out></a></td>
 				                   <td><c:out value="${list.password}"></c:out></td>
 				                   <td><c:out value="${list.name}"></c:out></td>
 				                   <td><c:out value="${list.dob}"></c:out></td>
@@ -205,6 +212,38 @@
 		$("input:hidden[name=thisPage]").val(thisPage);
 		$("form[name=formList]").attr("action", "memberXdmList").submit();
 	}
+	
+	//modal
+ 	var myModal = new bootstrap.Modal(document.getElementById('myModal'), {
+ 		  keyboard: true,
+ 		  backdrop: "static"
+ 		})
+ 	$("#del").on("click", function(){
+ 		$("#myModal").find("h1").text("삭제");
+ 		//$("#myModal").find(".modal-body").text("삭제하시겠습니까");
+ 		$("#myModal").find(".modal-body").empty();
+ 		$("#myModal").find(".modal-body").append("<p>정말 삭제하시겠습니까.</p>");
+ 		$("#myModal").find(".modal-body").append("<p>정말로 삭제하시겠습니까.</p>");
+ 		$("#modalOk").remove();
+ 		$(".modal-footer").append('<button type="button" class="btn btn-danger" id="modalOk">Ok</button>');
+	 	myModal.show();
+ 		
+ 	})
+ 	$("#delNot").on("click", function(){
+ 		$("#myModal").find("h1").text("제거");
+ 		//$("#myModal").find(".modal-body").text("제거하시겠습니까");
+ 		$("#myModal").find(".modal-body").empty();
+ 		$("#myModal").find(".modal-body").append("<p>정말 제거하시겠습니까.</p>");
+ 		$("#modalOk").remove();
+ 		$(".modal-footer").append('<button type="button" class="btn btn-warning" id="modalOk">Ok</button>');
+	 	myModal.show();
+ 	})
+ 	//tabel
+  	 	$(document).eq(0).on("click", $("input:checkbox[name=tabel_check]").eq(0),function(){
+	  	 	if($("input:checkbox[name=tabel_check]").eq(0).is(":checked") == true) {
+	  	 		$("input:checkbox[name=tabel_check]").prop("checked", true);
+	  	 	}
+		});
 	$("#member").addClass("active");
 	
 </script>
