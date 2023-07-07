@@ -24,6 +24,7 @@
   <link href="/resources/admin/assets/vendor/quill/quill.bubble.css" rel="stylesheet">
   <link href="/resources/admin/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="/resources/admin/assets/vendor/simple-datatables/style.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
   <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/themes/smoothness/jquery-ui.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>

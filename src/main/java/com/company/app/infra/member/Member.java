@@ -26,7 +26,7 @@ public class Member {
 	private String phoneMark;
 	
 //	phoneArray
-	private String[] defaultNyArray;
+	private String[] phoneMarkArray;
 	private String[] numberArray;
 	private String[] delNyArray;
 	
@@ -169,12 +169,6 @@ public class Member {
 	public void setPhoneMark(String phoneMark) {
 		this.phoneMark = phoneMark;
 	}
-	public String[] getDefaultNyArray() {
-		return defaultNyArray;
-	}
-	public void setDefaultNyArray(String[] defaultNyArray) {
-		this.defaultNyArray = defaultNyArray;
-	}
 	public String[] getNumberArray() {
 		return numberArray;
 	}
@@ -186,6 +180,12 @@ public class Member {
 	}
 	public void setDelNyArray(String[] delNyArray) {
 		this.delNyArray = delNyArray;
+	}
+	public String[] getPhoneMarkArray() {
+		return phoneMarkArray;
+	}
+	public void setPhoneMarkArray(String[] phoneMarkArray) {
+		this.phoneMarkArray = phoneMarkArray;
 	}
 	
 	
