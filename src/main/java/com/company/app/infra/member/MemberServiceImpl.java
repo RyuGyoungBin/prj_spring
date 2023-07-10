@@ -25,13 +25,14 @@ public class MemberServiceImpl implements MemberService {
 	public int insertMember(Member dto) {
 		dao.insertMember(dto);
 		dao.insertAddress(dto);
-		System.out.println(dto.getNumberArray());
-		System.out.println(dto.getNumberArray().length);
+		System.out.println(dto.getPhoneMarkArray());
+		System.out.println(dto.getPhoneMarkArray().length);
 		
 		for(int i = 0 ; i < dto.getNumberArray().length ; i++) {
 			dto.setNumber(dto.getNumberArray()[i]);
 			dto.setPhoneMark(dto.getPhoneMarkArray()[i]);
 //			dto.setDelNy(dto.getDelNyArray()[i]);
+			System.out.println(dto.getPhoneMark());
 			dao.insertPhone(dto);
 		}
 		
@@ -49,6 +50,11 @@ public class MemberServiceImpl implements MemberService {
 		dao.updateMemberPhone(dto);
 		dao.updateMemberAddress(dto);
 		return 0;
+	}
+
+	@Override
+	public List<Member> selectListPhone(MemberVo vo) {
+		return dao.selectListPhone(vo);
 	}
 
 

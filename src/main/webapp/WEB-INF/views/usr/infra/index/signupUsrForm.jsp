@@ -74,6 +74,7 @@
                                 	</div>
                                 	<div class="form-group col-12 col-xl-5">
 	                                	<input class="form-check-input phone" type="radio" value="1" name="phoneMarkArray" checked>
+	                                	<input name="phoneMarkArray" class="phoneMarkHidden" type="hidden" value="0">
 	                                	<label>Phone number</label>
 	                                    <input type="text" class=" form-control" name="numberArray" id="phone1" placeholder="Phone number">
 	                                </div>
@@ -126,7 +127,6 @@
                                 <button class="btn_full" id="singup">Create an account</button>
                             </form>
                         </div>
-                        <button type="button" id="bbb" class="btn">bcgsd</button>
                 </div>
             </div>
         </div>
@@ -164,7 +164,7 @@
 		
 		var i =2;
 		$(".plusBtn").on("click", function(){
-			$(".phoneBox").append('<div class="form-group col-12 col-xl-5"><input class="form-check-input phone" type="radio" value="0" name="phoneMarkArray"><input name="phoneMarkArray" class="phoneMarkHidden" type="hidden" value="0"><label>Phone number</label><input type="text" class=" form-control" name="numberArray" id="phone'+i+'" placeholder="Phone number"></div>');
+			$(".phoneBox").append('<div class="form-group col-12 col-xl-5"><input class="form-check-input phone" type="radio" value="1" name="phoneMarkArray"><input name="phoneMarkArray" class="phoneMarkHidden" type="hidden" value="0"><label>Phone number</label><input type="text" class=" form-control" name="numberArray" id="phone'+i+'" placeholder="Phone number"></div>');
 			i++;
 		});
 		$(function(){
@@ -179,16 +179,6 @@
 				$("form[name=singupForm]").attr("action", "/memberinsert").submit();				
 		});
 		
-		/* $("#bbb").on("click", function(){
-			for(var i = 0; i < $("input[name=phoneMarkArray]").length; i++){
-				if($("input[name=phoneMarkArray]").eq(i).is(":checked")==true){
-					$(this).siblings().find(".phoneMarkHidden").remove();
-				} else {
-				}
-				
-			}
-			
-		}) */
 		
 		
 		

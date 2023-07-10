@@ -10,7 +10,7 @@
    		FROM    
 	    	member a
 	    	LEFT JOIN memberAddress b on b.member_seq = a.seq 
-    		LEFT JOIN memberPhone c on c.member_seq = a.seq 
+    		LEFT JOIN memberPhone c on c.member_seq = a.seq AND c.defaultNY = 1
 		WHERE 1=1
 			<if test="name != null and !name.equals('')">AND name LIKE CONCAT('%',#{name},'%')</if>
 			<if test="gender != null and !gender.equals('')">AND gender LIKE CONCAT('%',#{gender},'%')</if>
@@ -54,6 +54,19 @@
 		LIMIT #{rowNumToShow} OFFSET #{startRnumForMysql}	   			
    	</select>
    	
+   	<select id="selectListPhone" resultMap="resultMapObj">
+   		SELECT
+   			seq,
+   			defaultNy,
+   			number,
+   			delNy
+   		FROM
+   			memberPhone
+   		WHERE 1=1
+   			AND delNy = 0
+   			AND member_seq = #{seq}
+   	
+   	</select>
     
     <insert id="insertMember">
     	insert into `member` (
@@ -119,10 +132,12 @@
     		delNy,
     		member_seq
     	) values (
-    		<choose>
-				<when test="phoneMark != null">#{phoneMark},</when>
-				<otherwise>0,</otherwise>
-			</choose>
+    	
+<!--     		<choose> -->
+<!-- 				<when test="phoneMark != null">#{phoneMark},</when> -->
+<!-- 				<otherwise>0,</otherwise> -->
+<!-- 			</choose> -->
+			#{phoneMark},			
     		#{number},
     		0,
     		#{seq}
@@ -133,7 +148,14 @@
     <select id="selectOne" resultMap="resultMapObj">
     	SELECT
     		<include refid="selectMember" />
-	    	<include refid="selectCommon" /> 
+    	FROM
+    		member a
+	    	LEFT JOIN memberAddress b on b.member_seq = a.seq 
+    		LEFT JOIN memberPhone c on c.member_seq = a.seq AND c.defaultNy = 1
+		WHERE 1=1
+			<if test="name != null and !name.equals('')">AND name LIKE CONCAT('%',#{name},'%')</if>
+			<if test="gender != null and !gender.equals('')">AND gender LIKE CONCAT('%',#{gender},'%')</if>
+			<if test="emailAccount != null and !emailAccount.equals('')">AND emailAccount LIKE CONCAT('%',#{emailAccount},'%')</if>
 	    	AND a.seq = #{seq}
 	    	
     </select>

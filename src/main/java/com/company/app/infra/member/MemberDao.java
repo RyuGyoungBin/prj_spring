@@ -18,6 +18,9 @@ public class MemberDao {
 	
 	public int selectOneCount(MemberVo vo){ return sqlSession.selectOne(namespace + ".selectOneCount", vo); }
 	public List<Member> selectList(MemberVo vo){return sqlSession.selectList(namespace +".selectList", vo);}
+	public List<Member> selectListPhone(MemberVo vo){
+		return sqlSession.selectList(namespace +".selectListPhone", vo);
+	}
 	public int insertMember(Member dto) {
 		return sqlSession.insert(namespace+".insertMember", dto);
 	}

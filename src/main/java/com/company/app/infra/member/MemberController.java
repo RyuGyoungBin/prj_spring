@@ -35,5 +35,10 @@ public class MemberController {
 		return "redirect:/indexUsrView";
 	}
 	
+	@RequestMapping("/memberXdmForm")
+	public String memberXdmForm() {
+		return "xdm/infra/member/memberXdmForm";
+	}
+	
 
 }

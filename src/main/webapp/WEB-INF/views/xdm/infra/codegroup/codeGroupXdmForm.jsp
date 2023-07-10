@@ -45,7 +45,7 @@
 	                
 				</div>
 				<c:choose>
-				<c:when test="${empty param.CGseq }">
+				<c:when test="${empty param.seq }">
 					<div class="d-flex justify-content-between my-5 text-center">
 						<div class="col-2">
 							<button id="btnList" type="button" class="btn btn-secondary" onclick = "location.href = '/codeGroupXdmList'"><i class="bi bi-list"></i></button>
@@ -79,17 +79,38 @@
     </section>
   </main><!-- End #main -->
 <jsp:include page="../include/footer.jsp"></jsp:include>
-  
+<jsp:include page="../include/validation.jsp"></jsp:include>
   	<script>
+  		validationUpdt = function(param){
+//   			if($.trim($("#name").val()) == "" || $.trim($("#name").val()) == null){
+// 	 			alert("123123");
+// 	 			$("#name").focus();
+// 	 			return false;
+// 	 		} else {
+// 	 		}
+			myRe = /^[a-zA-Z0-9]*$/;
+			if(reqNameEng.test($.trim($("#name").val())) == false){
+				alert("공백없는 대소문자(2,10)만 입력 가능합니다.");
+				$("#name").focus();
+				return false;
+			}
+  		}
+  		
+  		validationInst = function(){
+  			if(validationUpdt() == false) return false;
+  		}
+  	
 	  	$("#btnDelete").on("click", function(){
 			$("form[name=form]").attr("action", "/codeGroupXdmDelete").submit();
 		});
 	 	
 	 	$("#btnUpdate").on("click", function(){
+	 		if(validationUpdt() == false) return false;
 			$("form[name=form]").attr("action", "/codeGroupXdmUpdate").submit();
 		});
 	 	
 	 	$("#btnInsert").on("click", function(){
+	 		if(validationInst($("#name")) == false) return false;
 			$("form[name=form]").attr("action", "/codeGroupXdmInsert").submit();
 		});
 	 	$("#btnDelNy").on("click", function(){

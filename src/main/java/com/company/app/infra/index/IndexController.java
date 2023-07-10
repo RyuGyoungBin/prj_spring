@@ -1,5 +1,7 @@
 package com.company.app.infra.index;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -45,7 +47,9 @@ public class IndexController {
 	@RequestMapping("/informationUsrForm")
 	public String informationUsrForm(MemberVo vo, Model model) {
 		Member listOne = memberService.selectOne(vo);
+		List<Member> list = memberService.selectListPhone(vo);
 		model.addAttribute("listOne", listOne);
+		model.addAttribute("list", list);
 		return "usr/infra/index/informationUsrForm";
 	}
 	@RequestMapping("/informationUsrUpdate")

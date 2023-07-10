@@ -16,7 +16,7 @@ public class CodeGroupController {
 	
 	@RequestMapping(value = "/codeGroupXdmList")
 	public String codeGroupXdmList(@ModelAttribute("vo") CodeGroupVo vo, Model model) {
-		vo.setCGshkey(vo.getCGshkey() == null ? "": vo.getCGshkey());
+		vo.setShkey(vo.getShkey() == null ? "": vo.getShkey());
 		vo.setParamsPaging(service.selectOneCount(vo));
 		
 		if(vo.getTotalRows()>0) {

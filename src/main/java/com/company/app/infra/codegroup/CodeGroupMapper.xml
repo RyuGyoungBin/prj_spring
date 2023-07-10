@@ -20,8 +20,8 @@
    		FROM    
 	    	codeGroup
 		WHERE 1=1
-			<if test="CGshkey != null and !CGshkey.equals('')">AND name LIKE CONCAT ('%',#{CGshkey},'%')</if>
-			<if test="CGshOption != null and !CGshOption.equals('')">AND delNy = #{CGshOption}</if>
+			<if test="shkey != null and !shkey.equals('')">AND name LIKE CONCAT ('%',#{shkey},'%')</if>
+			<if test="shOption != null and !shOption.equals('')">AND delNy = #{shOption}</if>
     </sql>
 
    	<select id="selectOneCount" resultType="Integer">
@@ -56,7 +56,7 @@
     	FROM
     		codeGroup
     	WHERE
-			seq = #{CGseq}
+			seq = #{seq}
     </select>
     
     <update id="update">

@@ -87,16 +87,32 @@
   </main><!-- End #main -->
 
   <jsp:include page="../include/footer.jsp"></jsp:include>
+  <jsp:include page="../include/validation.jsp"></jsp:include>
   	<script>
+  	
+  	validationUpdt = function(){
+		if(check($.trim($("#name").val())) == false){
+			return false;
+		}
+		
+	}
+	
+	validationInst = function(){
+		if(validationUpdt() == false) return false;
+	}
+  	
+  	
 	  	$("#btnDelete").on("click", function(){
 			$("form[name=form]").attr("action", "/codeXdmDelete").submit();
 		});
 	 	
 	 	$("#btnUpdate").on("click", function(){
+	 		if(validationUpdt() == false) return false;
 			$("form[name=form]").attr("action", "/codeXdmUpdate").submit();
 		});
 	 	
 	 	$("#btnInsert").on("click", function(){
+	 		if(validationInst() == false) return false;
 			$("form[name=form]").attr("action", "/codeXdmInsert").submit();
 		});
 	 	$("#btnDelNy").on("click", function(){

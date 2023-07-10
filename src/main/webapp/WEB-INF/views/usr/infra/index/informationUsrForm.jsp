@@ -76,11 +76,22 @@
 	            	<button type="button" class="btn btn-sm btn-danger RemoveBtn">-</button>
 	            	<button type="button" class="btn btn-light plusBtn">+</button>
 	           	</div>
+	           	<c:forEach items="${List}" var="list" varStatus="status">
 	           	<div class="form-group col-12 col-xl-5">
-	            	<input class="form-check-input phone" type="radio" value="1" name="phoneMark" checked>
+	           		<c:choose>
+	           			<c:when test="${1 eq list.defaultNy }">
+	           				<input class="form-check-input phone" type="radio" value="1" name="phoneMark" checked >
+	           			</c:when>
+	           			<c:otherwise>
+			            	<input class="form-check-input phone" type="radio" value="1" name="phoneMark">
+	           			</c:otherwise>
+	           		</c:choose>
+	           		<input name="phoneMarkArray" class="phoneMarkHidden" type="hidden" value="0">
 	            	<label>Phone number</label>
-	                <input type="text" class=" form-control" name="number" id="number" placeholder="Phone number">
+	                <input type="text" class=" form-control" name="number" placeholder="Phone number" value="<c:out value='${list.number }'></c:out>">
+					<div><c:out value='${list.number }'></c:out>"></div>
 	            </div>
+	           	</c:forEach>
             </div>
 		</div>
 		<!-- End row -->
@@ -173,7 +184,7 @@
 	
 	var i =2;
 	$(".plusBtn").on("click", function(){
-		$(".phoneBox").append('<div class="form-group col-12 col-xl-5"><input class="form-check-input phone" type="radio" value="1" name="PhoneMark"><label>Phone number</label><input type="tel" class=" form-control" id="phone'+i+'" placeholder="Phone number"></div>');
+		$(".phoneBox").append('<div class="form-group col-12 col-xl-5"><input class="form-check-input phone" type="radio" value="1" name="PhoneMarkArray"><input name="phoneMarkArray" class="phoneMarkHidden" type="hidden" value="0"><label>Phone number</label><input type="tel" class=" form-control" name="numberArray" id="phone'+i+'" placeholder="Phone number"></div>');
 		i++;
 	});
 	$(function(){

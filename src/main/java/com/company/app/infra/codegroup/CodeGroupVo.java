@@ -2,10 +2,10 @@ package com.company.app.infra.codegroup;
 
 public class CodeGroupVo {
 	
-	private Integer CGshOption;
-	private String CGshkey;
-	private String CGseq;
-	private Integer CGdelNy;
+	private Integer shOption;
+	private String shkey;
+	private String seq;
+	private Integer delNy;
 //	paging
 	private int thisPage = 1;									// 현재 페이지
 //	private int rowNumToShow = Constants.ROW_NUM_TO_SHOW;		// 화면에 보여줄 데이터 줄 갯수
@@ -25,29 +25,30 @@ public class CodeGroupVo {
 
 	private int startRnumForMysql = 0;							// 쿼리 시작 row
 	
-	public Integer getCGshOption() {
-		return CGshOption;
+	
+	public Integer getShOption() {
+		return shOption;
 	}
-	public void setCGshOption(Integer cGshOption) {
-		CGshOption = cGshOption;
+	public void setShOption(Integer shOption) {
+		this.shOption = shOption;
 	}
-	public String getCGshkey() {
-		return CGshkey;
+	public String getShkey() {
+		return shkey;
 	}
-	public void setCGshkey(String cGshkey) {
-		CGshkey = cGshkey;
+	public void setShkey(String shkey) {
+		this.shkey = shkey;
 	}
-	public String getCGseq() {
-		return CGseq;
+	public String getSeq() {
+		return seq;
 	}
-	public void setCGseq(String cGseq) {
-		CGseq = cGseq;
+	public void setSeq(String seq) {
+		this.seq = seq;
 	}
-	public Integer getCGdelNy() {
-		return CGdelNy;
+	public Integer getDelNy() {
+		return delNy;
 	}
-	public void setCGdelNy(Integer cGdelNy) {
-		CGdelNy = cGdelNy;
+	public void setDelNy(Integer delNy) {
+		this.delNy = delNy;
 	}
 	public int getThisPage() {
 		return thisPage;
