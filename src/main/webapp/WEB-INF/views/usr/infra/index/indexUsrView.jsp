@@ -178,11 +178,13 @@
         <!-- /container -->
         </div>
         <!-- /white_bg -->
+        
 
 		
 	</main>
 	<!-- End main -->
 	<jsp:include page="../include/footer.jsp"></jsp:include>
+	<jsp:include page="../include/modal.jsp"></jsp:include>
 	<jsp:include page="../include/script.jsp"></jsp:include>
 	<script>
 		$(".header_link").removeClass("link-dark").addClass("link-light");
@@ -196,6 +198,23 @@
 		        }
 		    });
 		});
+		
+		var myModal = new bootstrap.Modal(document.getElementById('myModal'), {
+	 		  keyboard: true,
+	 		  backdrop: "static"
+	 		})
+	 	$("#loginModal").on("click", function(){
+	 		$("#myModal").find("h1").text("로그인");
+	 		//$("#myModal").find(".modal-body").text("삭제하시겠습니까");
+	 		$("#myModal").find(".modal-body").empty();
+	 		$("#myModal").find(".modal-body").append('<form><div class="form-group"><label>ID</label><input type="text" class=" form-control " placeholder="Id"></div><div class="form-group"><label>Password</label><input type="password" class=" form-control" placeholder="Password"></div><p class="small"><a href="#">Forgot Password?</a></p><a href="#" class="btn_full">Sign in</a><a href="/signupUsrForm " class="btn_full_outline">Register</a></form>');
+	 		$("#modalOk").remove();
+	 		$("#modalClose").remove();
+	 		
+		 	myModal.show();
+	 		
+	 	})
+	 	
 	</script>
     
     

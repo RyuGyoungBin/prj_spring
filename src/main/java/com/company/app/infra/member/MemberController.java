@@ -36,7 +36,11 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/memberXdmForm")
-	public String memberXdmForm() {
+	public String memberXdmForm(MemberVo vo, Model model ) {
+		Member member = service.selectOne(vo);
+		List<Member> list = service.selectListPhone(vo);
+		model.addAttribute("listPhone", list);
+		model.addAttribute("list", member);
 		return "xdm/infra/member/memberXdmForm";
 	}
 	

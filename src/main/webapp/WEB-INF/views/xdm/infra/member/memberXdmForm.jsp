@@ -1,12 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="rb" uri="http://www.springframework.org/tags" %>
-
 <jsp:include page="../include/header.jsp"></jsp:include>
-
   <main id="main" class="main">
 
     <div class="pagetitle">
@@ -43,9 +40,9 @@
 	                <div class=" col-5 mb-3">
 	                  	<label for="emailDomain" class=" col-form-label">email</label>
                     	<div class="d-flex justify-content-between align-items-center">
-                           <input type="text" class=" form-control" placeholder="EmailDomain" name="emailDomain" id="emailDomain" style="width:45%;">
+                           <input type="text" class=" form-control" placeholder="EmailDomain" name="emailDomain" id="emailDomain" style="width:45%;" value="<c:out value="${list.emailDomain }"></c:out>">
                            @
-                           <input type="text" class=" form-control" placeholder="EmailAccount" name="emailAccount" style="width:45%;">
+                           <input type="text" class=" form-control" placeholder="EmailAccount" name="emailAccount" style="width:45%;" value="<c:out value="${list.emailAccount }"></c:out>">
                       	</div>
 	                </div>
 	                <div class=" col-5 mb-3">
@@ -69,35 +66,32 @@
 	                     	<button type="button" class="btn btn-sm btn-danger RemoveBtn">-</button>
 	                     	<button type="button" class="btn btn-light plusBtn">+</button>
                     	</div>
+                    	<c:forEach items="listPhone" var="listPhone" varStatus="status">
                     	<div class="form-group col-12 col-xl-5">
-	                     	<input class="form-check-input phone" type="radio" value="1" name="phoneMarkArray" checked>
+	                     	<input class="form-check-input phone" type="radio" value="1" name="phoneMarkArray" <c:if test="${listPhone.defaultNy eq '1'}">checked</c:if>checked >
 	                     	<input name="phoneMarkArray" class="phoneMarkHidden" type="hidden" value="0">
 	                     	<label>Phone number</label>
-                         	<input type="text" class=" form-control" name="numberArray" id="phone1" placeholder="Phone number">
+                         	<input type="text" class=" form-control" name="numberArray" id="phone1" placeholder="Phone number"  value="<c:out value="${listPhone.number }"></c:out>">
                         </div>
+                    	</c:forEach>
                     </div>
-	                <div class=" col-5 mb-3">
-	                  	<label for="delNy" class=" col-form-label">delNy</label>
-                    	<input type="text" class="form-control" name="delNy" id="delNy" value="<c:out value="${list.delNy }"></c:out>">
-	                </div>
-	                <div class=" col-5 mb-3">
-	                  	<label for="delNy" class=" col-form-label">delNy</label>
-                    	<input type="text" class="form-control" name="delNy" id="delNy" value="<c:out value="${list.delNy }"></c:out>">
-	                </div>
-	                <div class=" col-5 mb-3">
-	                  	<label for="delNy" class=" col-form-label">delNy</label>
-                    	<input type="text" class="form-control" name="delNy" id="delNy" value="<c:out value="${list.delNy }"></c:out>">
-	                </div>
-	                <div class=" col-5 mb-3">
-	                  	<label for="delNy" class=" col-form-label">delNy</label>
-                    	<input type="text" class="form-control" name="delNy" id="delNy" value="<c:out value="${list.delNy }"></c:out>">
-	                </div>
-	                <div class=" col-5 mb-3">
-	                  	<label for="delNy" class=" col-form-label">delNy</label>
-                    	<input type="text" class="form-control" name="delNy" id="delNy" value="<c:out value="${list.delNy }"></c:out>">
-	                </div>
-	                
-	                
+	                <div class="col-12 border d-flex flex-wrap justify-content-around pt-4 mb-4 align-items-center">
+						<div class="form-group col-12 col-xl-5">
+							<label>Zip code</label>
+							<input class="form-control" name="zipCode" id="registerZipCode" type="text" placeholder="우편번호" value="<c:out value="${list.zipCode }"></c:out>">
+						</div>
+						<div class="form-group col-12 col-xl-5 mb-0">
+							<input type="button" onclick="address1()" value="우편번호 찾기" class="btn btn-secondary">
+						</div>
+						<div class="form-group col-12 col-xl-5">
+							<label>Address</label>
+							<input class="form-control" name="address" id="registerAddress" type="text" placeholder="주소" value="<c:out value="${list.address }"></c:out>">
+						</div>
+						<div class="form-group col-12 col-xl-5">
+							<label>Address detail</label>
+							<input class="form-control" name="addressDetail" id="registerAddressDetail" type="text" placeholder="상세주소" value="<c:out value="${list.addressDetail }"></c:out>">
+						</div>
+                    </div>
 				</div>
 				<c:choose>
 					<c:when test="${empty param.seq }">
@@ -152,27 +146,10 @@
 	}
   	
   	
-	  	$("#btnDelete").on("click", function(){
-			$("form[name=form]").attr("action", "/codeXdmDelete").submit();
-		});
-	 	
-	 	$("#btnUpdate").on("click", function(){
-	 		if(validationUpdt() == false) return false;
-			$("form[name=form]").attr("action", "/codeXdmUpdate").submit();
-		});
-	 	
-	 	$("#btnInsert").on("click", function(){
-	 		if(validationInst() == false) return false;
-			$("form[name=form]").attr("action", "/codeXdmInsert").submit();
-		});
-	 	$("#btnDelNy").on("click", function(){
-			$("form[name=form]").attr("action", "/codeXdmDelNy").submit();
-		});
-	 	$("#codeGroup_seq").val("<c:out value='${list.codeGroup_seq}'></c:out>").prop("selected", true);
 	 	
 	 	var i =2;
 		$(".plusBtn").on("click", function(){
-			$(".phoneBox").append('<div class="form-group col-12 col-xl-5"><input class="form-check-input phone" type="radio" value="1" name="phoneMarkArray"><input name="phoneMarkArray" class="phoneMarkHidden" type="hidden" value="0"><label>Phone number</label><input type="text" class=" form-control" name="numberArray" id="phone'+i+'" placeholder="Phone number"></div>');
+			$(".phoneBox").append('<div class="form-group col-12 col-xl-5 mt-2"><input class="form-check-input phone" type="radio" value="1" name="phoneMarkArray"><input name="phoneMarkArray" class="phoneMarkHidden" type="hidden" value="0"><label>Phone number</label><input type="text" class=" form-control" name="numberArray" id="phone'+i+'" placeholder="Phone number"></div>');
 			i++;
 		});
 		$(function(){

@@ -81,19 +81,11 @@
 <jsp:include page="../include/footer.jsp"></jsp:include>
 <jsp:include page="../include/validation.jsp"></jsp:include>
   	<script>
-  		validationUpdt = function(param){
-//   			if($.trim($("#name").val()) == "" || $.trim($("#name").val()) == null){
-// 	 			alert("123123");
-// 	 			$("#name").focus();
-// 	 			return false;
-// 	 		} else {
-// 	 		}
-			myRe = /^[a-zA-Z0-9]*$/;
-			if(reqNameEng.test($.trim($("#name").val())) == false){
-				alert("공백없는 대소문자(2,10)만 입력 가능합니다.");
-				$("#name").focus();
-				return false;
-			}
+  	
+  		var objName = $("#name");
+  	
+  		validationUpdt = function(){
+  			if(check(objName) == false) return false;
   		}
   		
   		validationInst = function(){
@@ -110,7 +102,7 @@
 		});
 	 	
 	 	$("#btnInsert").on("click", function(){
-	 		if(validationInst($("#name")) == false) return false;
+	 		if(validationInst() == false) return false;
 			$("form[name=form]").attr("action", "/codeGroupXdmInsert").submit();
 		});
 	 	$("#btnDelNy").on("click", function(){

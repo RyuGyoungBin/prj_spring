@@ -90,8 +90,10 @@
   <jsp:include page="../include/validation.jsp"></jsp:include>
   	<script>
   	
+  	var objName = $("#name");
+  	
   	validationUpdt = function(){
-		if(check($.trim($("#name").val())) == false){
+		if(check(objName) == false){
 			return false;
 		}
 		

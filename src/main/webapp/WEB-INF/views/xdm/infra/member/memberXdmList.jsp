@@ -120,7 +120,7 @@
 				                   <td><c:out value="${list.emailFull }"></c:out></td>
 				                   <td><c:out value="${list.emailDomain}"></c:out></td>
 				                   <td><c:out value="${list.emailAccount}"></c:out></td>
-				                   <td><a href="/informationUsrForm?seq=<c:out value="${list.seq }"></c:out>"><c:out value="${list.id}"></c:out></a></td>
+				                   <td><a href="/memberXdmForm?seq=<c:out value="${list.seq }"></c:out>"><c:out value="${list.id}"></c:out></a></td>
 				                   <td><c:out value="${list.password}"></c:out></td>
 				                   <td><c:out value="${list.name}"></c:out></td>
 				                   <td><c:out value="${list.dob}"></c:out></td>

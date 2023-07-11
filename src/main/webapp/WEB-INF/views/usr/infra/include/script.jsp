@@ -7,5 +7,4 @@
 	<!-- <script src="/resources/concert/js/notify_func.js"></script> -->
 	<script>
 		
-	
 	</script>

@@ -56,7 +56,7 @@
 	                                <a class="cart_bt dropdown link-dark header_link"><i class="bi bi-person-square"></i></a>
 	                                <ul class="dropdown-menu" id="cart_items">
 	                                    <li><strong><a href="login.html" class="dropdown-item">logout</a></strong></li>
-	                                    <li><strong><a href="" class="dropdown-item">login</a></strong></li>
+	                                    <li><strong><a class="dropdown-item" id="loginModal">login</a></strong></li>
 	                                    <li><strong><a href="/signupUsrForm" class="dropdown-item">sinup</a></strong></li>
 	                            		<li><strong><a href="/mymenuUsrView" class="dropdown-item">mymenu</a></strong></li>
 	                                </ul>

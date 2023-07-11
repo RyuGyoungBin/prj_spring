@@ -31,14 +31,14 @@
                            <form class="d-flex flex-wrap justify-content-around" name="singupForm" method="post">
                                 <div class="form-group col-12 col-xl-5">
                                 	<label>Id</label>
-                                    <input type="text" class=" form-control"  placeholder="id" name="id">
+                                    <input type="text" class=" form-control"  placeholder="id" name="id" id="id">
                                 </div>
                                 <div class="form-group col-12 col-xl-5">
                                 	<label>Email</label>
                                 	<div class="d-flex justify-content-between align-items-center">
-	                                    <input type="text" class=" form-control" placeholder="EmailDomain" name="emailDomain" style="width:45%;">
+	                                    <input type="text" class=" form-control" placeholder="EmailDomain" name="emailDomain" style="width:45%;" id="emailDomain">
 	                                    @
-	                                    <input type="text" class=" form-control" placeholder="EmailAccount" name="emailAccount" style="width:45%;">
+	                                    <input type="text" class=" form-control" placeholder="EmailAccount" name="emailAccount" style="width:45%;" id="emailAccount">
                                 	</div>
                                 </div>
                                 <div class="form-group col-12 col-xl-5">
@@ -51,11 +51,11 @@
                                 </div>
                                 <div class="form-group col-12 col-xl-5">
                                 	<label>User name</label>
-                                    <input type="text" class=" form-control" placeholder="User name" name="name">
+                                    <input type="text" class=" form-control" placeholder="User name" name="name" id="name">
                                 </div>
                                 <div class="form-group col-12 col-xl-5">
                                		<label>DOB</label>
-                                    <input type="text" class=" form-control" placeholder="dob" name="dob">
+                                    <input type="text" class=" form-control" placeholder="dob" name="dob" id="dob">
                                 </div>
                                 <div class="form-group col-12 col-xl-5">
                                		<label>gender</label>
@@ -76,21 +76,21 @@
 	                                	<input class="form-check-input phone" type="radio" value="1" name="phoneMarkArray" checked>
 	                                	<input name="phoneMarkArray" class="phoneMarkHidden" type="hidden" value="0">
 	                                	<label>Phone number</label>
-	                                    <input type="text" class=" form-control" name="numberArray" id="phone1" placeholder="Phone number">
+	                                    <input type="text" class=" form-control" name="numberArray" id="phone0" placeholder="Phone number">
 	                                </div>
                                 </div>
                                 
                                 <div class="col-12 border d-flex flex-wrap justify-content-around pt-4 mb-4 align-items-center">
 									<div class="form-group col-12 col-xl-5">
 										<label>Zip code</label>
-										<input class="form-control" name="zipCode" id="registerZipCode" type="text" placeholder="우편번호">
+										<input class="form-control" name="zipCode" id="registerZipCode" type="text" placeholder="우편번호" readonly>
 									</div>
 									<div class="form-group col-12 col-xl-5 mb-0">
-										<input type="button" onclick="address1()" value="우편번호 찾기" class="">
+										<input type="button" onclick="address1()" value="우편번호 찾기" class="btn btn-secondary">
 									</div>
 									<div class="form-group col-12 col-xl-5">
 										<label>Address</label>
-										<input class="form-control" name="address" id="registerAddress" type="text" placeholder="주소">
+										<input class="form-control" name="address" id="registerAddress" type="text" placeholder="주소" readonly>
 									</div>
 									<div class="form-group col-12 col-xl-5">
 										<label>Address detail</label>
@@ -103,7 +103,7 @@
 	                                <span>품에 안고 그들에게 밝은 길을 찾아 주며 그들을 행복스럽고 평화스러운 곳으로 인도하겠다는 커다란 이상을 품었기 때문이다</span>
 	                                <div class="form-check form-check-reverse">
 	                                약관 동의
-		                                <input class="form-check-input agree" type="checkbox" value="1" name="agree">
+		                                <input class="form-check-input agree" type="checkbox" value="1" name="agree" id="agree">
 	                                </div>
                                 </div>
                                <div class="col-12 ps-5 pe-5">
@@ -111,7 +111,7 @@
 	                                <span>품에 안고 그들에게 밝은 길을 찾아 주며 그들을 행복스럽고 평화스러운 곳으로 인도하겠다는 커다란 이상을 품었기 때문이다</span>
 	                                <div class="form-check form-check-reverse">
 	                                문자 수신 동의
-		                                <input class="form-check-input agree" type="checkbox" value="1" name="phoneAgree">
+		                                <input class="form-check-input agree" type="checkbox" value="1" name="phoneAgree" id="phoneAgree">
 	                                </div>
                                 </div>
                                 <div class="col-12 ps-5 pe-5">
@@ -119,12 +119,12 @@
 	                                <span>품에 안고 그들에게 밝은 길을 찾아 주며 그들을 행복스럽고 평화스러운 곳으로 인도하겠다는 커다란 이상을 품었기 때문이다</span>
 	                                <div class="form-check form-check-reverse">
 	                                이메일 수신 동의
-		                                <input class="form-check-input agree" type="checkbox" value="1" name="emailAgree">
+		                                <input class="form-check-input agree" type="checkbox" value="1" name="emailAgree" id="emailAgree">
 	                                </div>
                                 </div>
                                 
                                 <div id="pass-info" class="clearfix"></div>
-                                <button class="btn_full" id="singup">Create an account</button>
+                                <button type="button" class="btn_full" id="singup">Create an account</button>
                             </form>
                         </div>
                 </div>
@@ -132,16 +132,50 @@
         </div>
     </section>
 	</main><!-- End main -->
-
+	
 	<div id="toTop"></div><!-- Back to top button -->
 
 	<jsp:include page="../include/script.jsp"></jsp:include>
+	<jsp:include page="../include/validation.jsp"></jsp:include>
 
 	<!-- Specific scripts -->
 	<script src="/resources/concert/js/pw_strenght.js"></script>
 	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <!-- Specific scripts -->
 	<script>
+		var objId = $("#id");
+		var objEmailDomain = $("#emailDomain");
+		var objEmailAccount = $("#emailAccount");
+		var objPw = $("#password1");
+		var objPwCheck = $("#password2");
+		var objName = $("#name");
+		var objDob = $("#dob");
+		var objPhone = $("#phone0");
+		var objZipCode = $("#registerZipCode");
+		var objAddress = $("#registerAddress");
+		var objAddressDetail = $("#registerAddressDetail");
+		var objAgree = $("#agree");
+		
+		
+		validationInst = function(){
+			if(checkId(objId) == false) return false;
+			if(checkEmailDomain(objEmailDomain) == false) return false;
+			if(checkEmailAccount(objEmailAccount) == false) return false;
+			if(checkPw(objPw) == false) return false;
+			if(pwCheck(objPwCheck) == false) return false;
+			if(checkName(objName) == false) return false;
+			if(checkDob(objDob) == false) return false;
+// 			for(var p=0; p<objNumber.length; p++){
+// 				if(checkPhone(objPhone.eq(p)) == false) return false;
+// 			}
+			if(checkPhone(objPhone) == false) return false;
+			if(checkAddress(objZipCode) == false) return false;
+			if(checkAddress(objAddress) == false) return false;
+			if(checkAgree(objAgree) == false) return false;
+		}
+	
+	
+	
 		function address1() {
 	        new daum.Postcode({
 	            oncomplete: function(data) {
@@ -162,7 +196,7 @@
 	        }).open();
 	    }
 		
-		var i =2;
+		var i =1;
 		$(".plusBtn").on("click", function(){
 			$(".phoneBox").append('<div class="form-group col-12 col-xl-5"><input class="form-check-input phone" type="radio" value="1" name="phoneMarkArray"><input name="phoneMarkArray" class="phoneMarkHidden" type="hidden" value="0"><label>Phone number</label><input type="text" class=" form-control" name="numberArray" id="phone'+i+'" placeholder="Phone number"></div>');
 			i++;
@@ -174,10 +208,17 @@
 				}
 			});
 			
+			$("#singup").on("click", function(){
+				var objArray = $("input[name=numberArray]");
+				alert(objArray.length);
+				if(validationInst() == false) return false;
+	// 			$("form[name=singupForm]").attr("action", "/memberinsert").submit();				
+			});
+			
 		})
-		$("#singup").on("click", function(){
-				$("form[name=singupForm]").attr("action", "/memberinsert").submit();				
-		});
+		
+		
+		
 		
 		
 		
