@@ -93,9 +93,7 @@
   	var objName = $("#name");
   	
   	validationUpdt = function(){
-		if(check(objName) == false){
-			return false;
-		}
+		if(check(objName) == false) return false;
 		
 	}
 	

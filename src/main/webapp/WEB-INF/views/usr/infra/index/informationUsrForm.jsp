@@ -71,11 +71,10 @@
 		</div>
 		<!-- End row -->
 		<div class="row">
-			<div class="col-12 border d-flex flex-wrap justify-content-around position-relative pt-4 mb-4 phoneBox">
-	           	<div class=" position-absolute top-0 end-0 ">
-	            	<button type="button" class="btn btn-sm btn-danger RemoveBtn">-</button>
-	            	<button type="button" class="btn btn-light plusBtn">+</button>
-	           	</div>
+<!-- 			<div class="col-12 border d-flex flex-wrap justify-content-around position-relative pt-4 mb-4 phoneBox"> -->
+<!-- 	           	<div class=" position-absolute top-0 end-0 "> -->
+<!-- 	            	<button type="button" class="btn btn-light plusBtn">+</button> -->
+<!-- 	           	</div> -->
 	           	<c:forEach items="${List}" var="list" varStatus="status">
 	           	<div class="form-group col-12 col-xl-5">
 	           		<c:choose>
@@ -88,11 +87,12 @@
 	           		</c:choose>
 	           		<input name="phoneMarkArray" class="phoneMarkHidden" type="hidden" value="0">
 	            	<label>Phone number</label>
-	                <input type="text" class=" form-control" name="number" placeholder="Phone number" value="<c:out value='${list.number }'></c:out>">
+<!-- 	            	<button type="button" class="btn btn-sm btn-danger RemoveBtn">-</button> -->
+	                <input type="text" class=" form-control" name="number" id="phone0" placeholder="Phone number" value="<c:out value='${list.number }'></c:out>">
 					<div><c:out value='${list.number }'></c:out>"></div>
 	            </div>
 	           	</c:forEach>
-            </div>
+<!--             </div> -->
 		</div>
 		<!-- End row -->
 
@@ -159,6 +159,7 @@
     
    <jsp:include page="../include/footer.jsp"></jsp:include>
 	<jsp:include page="../include/script.jsp"></jsp:include>
+	<jsp:include page="../include/validation.jsp"></jsp:include>
     <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <!-- Specific scripts -->
 	<script>
@@ -210,10 +211,31 @@
  		
  	});
  	
+ 	var objPw1 = $("#password1");
+ 	var objPw2 = $("#password2");
+ 	var objPhone = $("#phone0");
+ 	var objZipCode = $("#zipCode");
+ 	var objAddress = $("#address");
+ 	var objAddressDetail = $("#addressDetail");
+ 	
+ 	validationUpdt = function(){
+ 		if(checkPw(objPw1) == false) return false;
+ 		if(pwCheck(objPw2) == false) return false;
+ 		if(checkPhone(objPone) == false) return false;
+ 		if(checkAddress(objZipCode) == false) return false;
+ 		
+ 	}
+ 	
  	$("#updateBtn").on("click", function(){
+ 		if(validationUpdt() == false) return false;
  		$("form[name=formList]").attr("action", "/informationUsrUpdate").submit();
  	});
+ 	
+ 	
+ 	
 	</script>
+	
+	
 	
 
 </body>

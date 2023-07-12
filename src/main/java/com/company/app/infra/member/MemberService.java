@@ -15,4 +15,8 @@ public interface MemberService {
 	
 	public int updateMember(Member dto);
 	
+	public int updateDelMemeber(Member dto);
+	
+	public Member selectId(MemberVo vo);
+	
 }

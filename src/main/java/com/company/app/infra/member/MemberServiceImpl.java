@@ -57,5 +57,19 @@ public class MemberServiceImpl implements MemberService {
 		return dao.selectListPhone(vo);
 	}
 
+	@Override
+	public int updateDelMemeber(Member dto) {
+		dao.updateDelMember(dto);
+		dao.updateDelMemberPhone(dto);
+		dao.updateDelMemberAddress(dto);
+		return 0;
+	}
+
+	@Override
+	public Member selectId(MemberVo vo) {
+		return dao.selectId(vo);
+	}
+	
+
 
 }

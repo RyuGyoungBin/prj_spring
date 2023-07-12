@@ -179,6 +179,7 @@
         </div>
         <!-- /white_bg -->
         
+        
 
 		
 	</main>
@@ -186,6 +187,7 @@
 	<jsp:include page="../include/footer.jsp"></jsp:include>
 	<jsp:include page="../include/modal.jsp"></jsp:include>
 	<jsp:include page="../include/script.jsp"></jsp:include>
+	<jsp:include page="../include/validation.jsp"></jsp:include>
 	<script>
 		$(".header_link").removeClass("link-dark").addClass("link-light");
 		$(function(){
@@ -207,12 +209,70 @@
 	 		$("#myModal").find("h1").text("로그인");
 	 		//$("#myModal").find(".modal-body").text("삭제하시겠습니까");
 	 		$("#myModal").find(".modal-body").empty();
-	 		$("#myModal").find(".modal-body").append('<form><div class="form-group"><label>ID</label><input type="text" class=" form-control " placeholder="Id"></div><div class="form-group"><label>Password</label><input type="password" class=" form-control" placeholder="Password"></div><p class="small"><a href="#">Forgot Password?</a></p><a href="#" class="btn_full">Sign in</a><a href="/signupUsrForm " class="btn_full_outline">Register</a></form>');
+	 		$("#myModal").find(".modal-body").append('<form><div class="form-group"><label>ID</label><input type="text" class=" form-control " placeholder="Id" name="id" id="id"></div><div class="form-group"><label>Password</label><input type="password" class=" form-control" placeholder="Password" id="password" name="password"></div><p class="small"><a href="#">Forgot Password?</a></p><a href="#" class="btn_full" id="singinBtn">Sign in</a><a href="/signupUsrForm " class="btn_full_outline">Register</a></form>');
 	 		$("#modalOk").remove();
 	 		$("#modalClose").remove();
 	 		
 		 	myModal.show();
 	 		
+	 	})
+// 	 	$(document).on("keyup", "#id", function(){
+// 	 		$.ajax({
+// 	 			async: true 
+// 	 			,cache: false
+// 	 			,type: "post"
+// 	 			/* ,dataType:"json" */
+// 	 			,url: "/UsrloginProc"
+// 	 			/* ,data : $("#formLogin").serialize() */
+// 	 			,data : { "id" : $("#id").val(),
+// 	 				"password" : $("#password").val()}
+// 	 			,success: function(response) {
+// 	 				if(response.rt == "success") {
+// 	 					alert(response.rtMember.name);
+// 	 					location.href = "/indexUsrView";
+// 	 				} else {
+// 	 					alert("그런 회원 없습니다.");
+// 	 				}
+// 	 			}
+// 	 			,error : function(jqXHR, textStatus, errorThrown){
+// 	 				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+// 	 			}
+// 	 	}
+	 	
+	 	
+	 	$(document).on("click", "#singinBtn", function(){
+		 	var objId = $("#id");
+			var objPw = $("#password");
+			
+			validationInst = function(){
+				if(checkId(objId) == false) return false;
+				if(checkPw(objPw) == false) return false;
+					
+			}
+	 		if(validationInst() == false) return false;
+	 		$.ajax({
+	 			async: true 
+	 			,cache: false
+	 			,type: "post"
+	 			/* ,dataType:"json" */
+	 			,url: "/UsrloginProc"
+	 			/* ,data : $("#formLogin").serialize() */
+	 			,data : { "id" : $("#id").val(),
+	 				"password" : $("#password").val()}
+	 			,success: function(response) {
+	 				if(response.rt == "success") {
+	 					alert(response.rtMember.name);
+	 					location.href = "/indexUsrView";
+	 				} else {
+	 					alert("그런 회원 없습니다.");
+	 				}
+	 			}
+	 			,error : function(jqXHR, textStatus, errorThrown){
+	 				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+	 			}
+	 		});
+	 		
+// 			$("form[name=singupForm]").attr("action", "/indexUsrView").submit();
 	 	})
 	 	
 	</script>

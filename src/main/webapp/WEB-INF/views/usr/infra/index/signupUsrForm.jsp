@@ -60,25 +60,25 @@
                                 <div class="form-group col-12 col-xl-5">
                                		<label>gender</label>
                                     <select class=" form-control" name="gender">
-                                    	<option value="1">남</option>
-                                    	<option value="2">여</option>
-                                    	<option value="3">기타</option>
+                                    	<option value="0">남</option>
+                                    	<option value="1">여</option>
+                                    	<option value="2">기타</option>
                                     </select>
                                 </div>
                                 <div class="form-group col-12 col-xl-5">
                                 </div>
-                                <div class="col-12 border d-flex flex-wrap justify-content-around position-relative pt-4 mb-4 phoneBox">
-                                	<div class=" position-absolute top-0 end-0 ">
-	                                	<button type="button" class="btn btn-sm btn-danger RemoveBtn">-</button>
-	                                	<button type="button" class="btn btn-light plusBtn">+</button>
-                                	</div>
+<!--                                 <div class="col-12 border d-flex flex-wrap justify-content-around position-relative pt-4 mb-4 phoneBox"> -->
+<!--                                 	<div class=" position-absolute top-0 end-0 "> -->
+<!--s 	                                	<button type="button" class="btn btn-light plusBtn">+</button> -->
+<!--                                 	</div> -->
                                 	<div class="form-group col-12 col-xl-5">
 	                                	<input class="form-check-input phone" type="radio" value="1" name="phoneMarkArray" checked>
 	                                	<input name="phoneMarkArray" class="phoneMarkHidden" type="hidden" value="0">
 	                                	<label>Phone number</label>
+<!--                                 		<button type="button" class="btn btn-sm btn-danger RemoveBtn float-end">-</button> -->
 	                                    <input type="text" class=" form-control" name="numberArray" id="phone0" placeholder="Phone number">
 	                                </div>
-                                </div>
+<!--                                 </div> -->
                                 
                                 <div class="col-12 border d-flex flex-wrap justify-content-around pt-4 mb-4 align-items-center">
 									<div class="form-group col-12 col-xl-5">
@@ -196,23 +196,24 @@
 	        }).open();
 	    }
 		
-		var i =1;
-		$(".plusBtn").on("click", function(){
-			$(".phoneBox").append('<div class="form-group col-12 col-xl-5"><input class="form-check-input phone" type="radio" value="1" name="phoneMarkArray"><input name="phoneMarkArray" class="phoneMarkHidden" type="hidden" value="0"><label>Phone number</label><input type="text" class=" form-control" name="numberArray" id="phone'+i+'" placeholder="Phone number"></div>');
-			i++;
-		});
+// 		var i =1;
+// 		$(".plusBtn").on("click", function(){
+// 			$(".phoneBox").append('<div class="form-group col-12 col-xl-5"><input class="form-check-input phone" type="radio" value="1" name="phoneMarkArray"><input name="phoneMarkArray" class="phoneMarkHidden" type="hidden" value="0"><label>Phone number</label><button type="button" class="btn btn-sm btn-danger RemoveBtn float-end">-</button><input type="text" class=" form-control" name="numberArray" id="phone'+i+'" placeholder="Phone number"></div>');
+// 			i++;
+//  		});
+		
+// 		$(document).on("click", ".RemoveBtn", function(){
+// 			if($(".RemoveBtn").length > 1){
+// 				$(this).parent().remove();
+// 			}
+// 		});
+			
 		$(function(){
-			$(".RemoveBtn").on("click", function(){
-				if($(".phoneBox").find(".form-group").length>1){
-					$(".phoneBox").find(".form-group").last().remove();
-				}
-			});
 			
 			$("#singup").on("click", function(){
-				var objArray = $("input[name=numberArray]");
-				alert(objArray.length);
+// 				var objArray = $("input[name=numberArray]");
 				if(validationInst() == false) return false;
-	// 			$("form[name=singupForm]").attr("action", "/memberinsert").submit();				
+				$("form[name=singupForm]").attr("action", "/memberinsert").submit();				
 			});
 			
 		})

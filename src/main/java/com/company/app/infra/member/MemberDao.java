@@ -42,4 +42,16 @@ public class MemberDao {
 	public int updateMemberAddress(Member dto) {
 		return sqlSession.update(namespace+".updateMemberAddress", dto);
 	}
+	public int updateDelMember(Member dto) {
+		return sqlSession.update(namespace+".updateDelMember", dto);
+	}
+	public int updateDelMemberPhone(Member dto) {
+		return sqlSession.update(namespace+".updateDelMemberPhone", dto);
+	}
+	public int updateDelMemberAddress(Member dto) {
+		return sqlSession.update(namespace+".updateDelMemberAddress", dto);
+	}
+	public Member selectId(MemberVo vo) {
+		return sqlSession.selectOne(namespace + ".selectId", vo);
+	}
 }

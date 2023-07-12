@@ -85,16 +85,16 @@
 			delNy,
 		    memberType
     	) values(
-    		CONCAT (#{emailDomain},'@',#{emailDomain}),
+    		CONCAT (#{emailDomain},'@',#{emailAccount}),
     		#{emailDomain},
-    		#{emailDomain},
+    		#{emailAccount},
     		#{id},
     		#{password},
     		#{name},
     		#{dob},
     		#{gender},
     		<choose>
-				<when test="phoneAgree != null">#{phoneAgree},</when>
+				<when test="phoneAgree != null">#{phoneAgree},</when>   
 				<otherwise>0,</otherwise>
 			</choose>
     		now(),
@@ -160,11 +160,30 @@
 	    	
     </select>
     
+    <select id="selectId" resultMap="resultMapObj">
+    	SELECT
+    		seq,
+    		name,
+    		id,
+    		password
+    	FROM
+    		member
+    	WHERE 1=1
+    		AND id = #{id}
+    		AND password = #{password}
+    </select>
+    
     <update id="updateMember">
     	UPDATE 
     		member
 		SET 
-			password = #{password}
+			name = #{name},
+			emailFull = CONCAT (#{emailDomain},'@',#{emailAccount}),
+			emailDomain = #{emailDomain},
+			emailAccount = #{emailAccount},
+			password = #{password},
+			gender = #{gender},
+			memberType  = #{memberType}
 		WHERE 
 			seq = #{seq}
     </update>
@@ -173,8 +192,9 @@
     		memberPhone
 		SET 
 			number = #{number}
-		WHERE 
-			member_seq = #{seq}
+		WHERE 1=1
+			AND member_seq = #{seq}
+			AND defaultNy = 1
     </update>
     <update id="updateMemberAddress">
     	UPDATE 
@@ -185,6 +205,30 @@
 			addressDetail = #{addressDetail}
 		WHERE 
 			member_seq = #{seq}
+    </update>
+    <update id="updateDelMember">
+	    UPDATE 
+	    		member
+			SET 
+				delNy = 1
+			WHERE 
+				seq = #{seq}
+    </update>
+    <update id="updateDelMemberPhone">
+	    UPDATE 
+	    		memberPhone
+			SET 
+				delNy = 1
+			WHERE 
+				seq = #{seq}
+    </update>
+    <update id="updateDelMemberAddress">
+	    UPDATE 
+	    		memberAddress
+			SET 
+				delNy = 1
+			WHERE 
+				seq = #{seq}
     </update>
     
 </mapper>
