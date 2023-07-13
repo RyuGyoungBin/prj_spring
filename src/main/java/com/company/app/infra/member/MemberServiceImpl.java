@@ -69,6 +69,14 @@ public class MemberServiceImpl implements MemberService {
 	public Member selectId(MemberVo vo) {
 		return dao.selectId(vo);
 	}
+
+	@Override
+	public int deleteMember(Member dto) {
+		dao.deleteMemberAddress(dto);
+		dao.deleteMemberPhone(dto);
+		dao.deleteMember(dto);
+		return 0;
+	}
 	
 
 

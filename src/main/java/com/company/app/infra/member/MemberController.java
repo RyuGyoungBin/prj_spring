@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -57,20 +59,51 @@ public class MemberController {
 		service.updateDelMemeber(dto);
 		return "redirect:/memberXdmList";
 	}
+	@RequestMapping("/memberdelete")
+	public String memberdelete(Member dto) {
+		service.deleteMember(dto);
+		return "redirect:/memberXdmList";
+	}
 	
 	@ResponseBody
 	@RequestMapping("/loginProc")
-	public Map<String, Object> loginProc(MemberVo vo){
+	public Map<String, Object> loginProc(MemberVo vo, HttpSession httpSession){
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		
+		Member rtMember = service.selectId(vo);
+		if(rtMember != null) {
+			httpSession.setMaxInactiveInterval(60*60); 
+			httpSession.setAttribute("sessionId", vo.getId());
+			returnMap.put("rtMember", rtMember);
+			returnMap.put("rt", "success");
+		} else {
+			returnMap.put("rt", "fail");
+		}
+		return returnMap;
+	}
+	@ResponseBody
+	@RequestMapping("/UsridProc")
+	public Map<String, Object> UsridProc(MemberVo vo){
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 		
 		Member rtMember = service.selectId(vo);
 		
 		if(rtMember != null) {
 			returnMap.put("rtMember", rtMember);
-			returnMap.put("rt", "success");
-		} else {
 			returnMap.put("rt", "fail");
+		} else {
+			returnMap.put("rt", "success");
 		}
+		return returnMap;
+	}
+	
+	@ResponseBody
+	@RequestMapping("/logoutProc")
+	public Map<String, Object> logoutProc(HttpSession httpSession){
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		System.out.println(httpSession.getAttribute("sessionId"));
+		httpSession.invalidate();
+		returnMap.put("rt", "success");
 		return returnMap;
 	}
 

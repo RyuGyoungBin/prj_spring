@@ -6,5 +6,21 @@
 	<!-- NOTIFY BUBBLES  -->
 	<!-- <script src="/resources/concert/js/notify_func.js"></script> -->
 	<script>
-		
+		$("#logoutBtn").on("click", function(){
+	 		$.ajax({
+	 			async: true 
+	 			,cache: false
+	 			,type: "post"
+	 			/* ,dataType:"json" */
+	 			,url: "/logoutProc"
+	 			/* ,data : $("#formLogin").serialize() */
+	 			,data : { }
+	 			,success: function(response) {
+	 					location.href = "/indexUsrView";
+	 			}
+	 			,error : function(jqXHR, textStatus, errorThrown){
+	 				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+	 			}
+	 		});
+	 	})
 	</script>

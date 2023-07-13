@@ -106,7 +106,7 @@
 		if(reqDob.test($.trim(obj.val())) == false) {
 			obj.addClass("border-danger");
 			obj.siblings(".validation").remove();
-			obj.parent().append("<div class='p-2 text-danger validation'>공백없는 숫자(6)만 입력 가능합니다.</div>");
+			obj.parent().append("<div class='p-2 text-danger validation'>공백없는 숫자(6, 000000) 입력 가능합니다.</div>");
 			obj.focus();
 			return false;
 		} else {

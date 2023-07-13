@@ -1,4 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="rb" uri="http://www.springframework.org/tags" %>
 <body>
 
     <div id="preloader">
@@ -55,10 +59,17 @@
 	                            <div class="dropdown">
 	                                <a class="cart_bt dropdown link-dark header_link"><i class="bi bi-person-square"></i></a>
 	                                <ul class="dropdown-menu" id="cart_items">
-	                                    <li><strong><a href="login.html" class="dropdown-item">logout</a></strong></li>
-	                                    <li><strong><a class="dropdown-item" id="loginModal">login</a></strong></li>
-	                                    <li><strong><a href="/signupUsrForm" class="dropdown-item">sinup</a></strong></li>
-	                            		<li><strong><a href="/mymenuUsrView" class="dropdown-item">mymenu</a></strong></li>
+	                                	<c:choose>
+	                                		<c:when test="${not empty sessionId }">
+	                                			<li><strong>Id:<c:out value="${sessionId }"></c:out> </strong>
+			                                    <li><strong><a class="dropdown-item" id="logoutBtn">logout</a></strong></li>
+			                            		<li><strong><a href="/mymenuUsrView" class="dropdown-item">mymenu</a></strong></li>
+	                                		</c:when>
+	                                		<c:otherwise>
+			                                    <li><strong><a class="dropdown-item" id="loginModal">login</a></strong></li>
+			                                    <li><strong><a href="/signupUsrForm" class="dropdown-item">sinup</a></strong></li>
+	                                		</c:otherwise>
+	                                	</c:choose>
 	                                </ul>
 	                            </div><!-- End dropdown-cart-->
 	                        </li>

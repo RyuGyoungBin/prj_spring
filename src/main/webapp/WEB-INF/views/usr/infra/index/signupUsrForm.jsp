@@ -124,7 +124,7 @@
                                 </div>
                                 
                                 <div id="pass-info" class="clearfix"></div>
-                                <button type="button" class="btn_full" id="singup">Create an account</button>
+                                <button type="button" class="btn_full" id="singupBtn">Create an account</button>
                             </form>
                         </div>
                 </div>
@@ -155,10 +155,10 @@
 		var objAddress = $("#registerAddress");
 		var objAddressDetail = $("#registerAddressDetail");
 		var objAgree = $("#agree");
-		
+		var idajaxck = 0;
 		
 		validationInst = function(){
-			if(checkId(objId) == false) return false;
+// 			if(checkId(objId) == false) return false;
 			if(checkEmailDomain(objEmailDomain) == false) return false;
 			if(checkEmailAccount(objEmailAccount) == false) return false;
 			if(checkPw(objPw) == false) return false;
@@ -173,7 +173,41 @@
 			if(checkAddress(objAddress) == false) return false;
 			if(checkAgree(objAgree) == false) return false;
 		}
-	
+		
+		
+// 		e.keyCode == 13 || e.keyCode == 9
+		$("#id").on("blur", function(e){
+// 			if () {
+				if(checkId(objId) == false) return false;
+		 		$.ajax({
+		 			async: true 
+		 			,cache: false
+		 			,type: "post"
+		 			/* ,dataType:"json" */
+		 			,url: "/UsridProc"
+		 			/* ,data : $("#formLogin").serialize() */
+		 			,data : { "id" : $("#id").val()
+		 				}
+		 			,success: function(response) {
+		 				if(response.rt == "success") {
+		 					$("#id").removeClass("border-danger");
+		 					$("#id").siblings(".validation").remove();
+		 					$("#id").parent().append("<div class='p-2 text-success validation'>사용 가능한 아이디입니다.</div>");
+		 					idajaxck = 1;
+		 				} else {
+		 					$("#id").addClass("border-danger");
+		 					$("#id").siblings(".validation").remove();
+		 					$("#id").parent().append("<div class='p-2 text-danger validation'>사용 불가능한 아이디입니다.</div>");
+		 					$("#id").focus();
+		 					idajaxck = 0;
+		 				}
+		 			}
+		 			,error : function(jqXHR, textStatus, errorThrown){
+		 				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+		 			}
+		 		})
+// 			}
+		})
 	
 	
 		function address1() {
@@ -210,10 +244,16 @@
 			
 		$(function(){
 			
-			$("#singup").on("click", function(){
-// 				var objArray = $("input[name=numberArray]");
-				if(validationInst() == false) return false;
-				$("form[name=singupForm]").attr("action", "/memberinsert").submit();				
+			$("#singupBtn").on("click", function(){
+				if(idajaxck == 1){
+					console.log(idajaxck);
+	// 				var objArray = $("input[name=numberArray]");
+					if(validationInst() == false) return false;
+					$("form[name=singupForm]").attr("action", "/memberinsert").submit();				
+				} else {
+					alert("아이디를 확인해주세요");
+					$("#id").focus();
+				}
 			});
 			
 		})

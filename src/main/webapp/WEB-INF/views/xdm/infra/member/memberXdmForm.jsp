@@ -214,6 +214,9 @@
 		$("#btnDelNy").on("click", function(){
 			$("form[name=form]").attr("action", "/memberupdateDel").submit();
 		})
+		$("#btnDelete").on("click", function(){
+			$("form[name=form]").attr("action", "/memberdelete").submit();
+		})
   	</script>
 
 </body>

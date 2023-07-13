@@ -46,11 +46,11 @@
                             <form name="formList" method="post">
                                 <div class="form-group">
                                     <label>ID</label>
-                                    <input type="text" class=" form-control " placeholder="Id" value="sts41811" id="id" name="id">
+                                    <input type="text" class=" form-control " placeholder="Id" value="abcde" id="id" name="id">
                                 </div>
                                 <div class="form-group">
                                     <label>Password</label>
-                                    <input type="password" class=" form-control" placeholder="Password" value="Q1w2e3r4!" id="password" name="password">
+                                    <input type="password" class=" form-control" placeholder="Password" value="Qwer123!" id="password" name="password">
                                 </div>
                                 <button type="button" class="btn_full" id="loginBtn">Sign in</button>
                             </form>
@@ -94,7 +94,7 @@
 	 			,success: function(response) {
 	 				if(response.rt == "success") {
 	 					alert(response.rtMember.name);
-	 					location.href = "/indexXdmView:";
+	 					location.href = "/indexXdmView";
 	 				} else {
 	 					alert("그런 회원 없습니다.");
 	 				}

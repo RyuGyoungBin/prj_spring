@@ -216,28 +216,7 @@
 		 	myModal.show();
 	 		
 	 	})
-// 	 	$(document).on("keyup", "#id", function(){
-// 	 		$.ajax({
-// 	 			async: true 
-// 	 			,cache: false
-// 	 			,type: "post"
-// 	 			/* ,dataType:"json" */
-// 	 			,url: "/UsrloginProc"
-// 	 			/* ,data : $("#formLogin").serialize() */
-// 	 			,data : { "id" : $("#id").val(),
-// 	 				"password" : $("#password").val()}
-// 	 			,success: function(response) {
-// 	 				if(response.rt == "success") {
-// 	 					alert(response.rtMember.name);
-// 	 					location.href = "/indexUsrView";
-// 	 				} else {
-// 	 					alert("그런 회원 없습니다.");
-// 	 				}
-// 	 			}
-// 	 			,error : function(jqXHR, textStatus, errorThrown){
-// 	 				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
-// 	 			}
-// 	 	}
+	 	
 	 	
 	 	
 	 	$(document).on("click", "#singinBtn", function(){
@@ -255,7 +234,7 @@
 	 			,cache: false
 	 			,type: "post"
 	 			/* ,dataType:"json" */
-	 			,url: "/UsrloginProc"
+	 			,url: "/loginProc"
 	 			/* ,data : $("#formLogin").serialize() */
 	 			,data : { "id" : $("#id").val(),
 	 				"password" : $("#password").val()}
@@ -273,6 +252,24 @@
 	 		});
 	 		
 // 			$("form[name=singupForm]").attr("action", "/indexUsrView").submit();
+	 	})
+	 	
+	 	$("#logoutBtn").on("click", function(){
+	 		$.ajax({
+	 			async: true 
+	 			,cache: false
+	 			,type: "post"
+	 			/* ,dataType:"json" */
+	 			,url: "/logoutProc"
+	 			/* ,data : $("#formLogin").serialize() */
+	 			,data : { }
+	 			,success: function(response) {
+	 					location.href = "/indexUsrView";
+	 			}
+	 			,error : function(jqXHR, textStatus, errorThrown){
+	 				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+	 			}
+	 		});
 	 	})
 	 	
 	</script>

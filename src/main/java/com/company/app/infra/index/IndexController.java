@@ -62,21 +62,7 @@ public class IndexController {
 		return "redirect:/informationUsrForm";
 	}
 	
-	@ResponseBody
-	@RequestMapping("/UsrloginProc")
-	public Map<String, Object> UsrloginProc(MemberVo vo){
-		Map<String, Object> returnMap = new HashMap<String, Object>();
-		
-		Member rtMember = memberService.selectId(vo);
-		
-		if(rtMember != null) {
-			returnMap.put("rtMember", rtMember);
-			returnMap.put("rt", "success");
-		} else {
-			returnMap.put("rt", "fail");
-		}
-		return returnMap;
-	}
+	
 	
 	
 	

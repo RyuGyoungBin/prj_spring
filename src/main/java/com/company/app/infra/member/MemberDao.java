@@ -54,4 +54,14 @@ public class MemberDao {
 	public Member selectId(MemberVo vo) {
 		return sqlSession.selectOne(namespace + ".selectId", vo);
 	}
+	
+	public int deleteMember(Member dto) {
+		return sqlSession.delete(namespace+".deleteMember", dto);
+	}
+	public int deleteMemberAddress(Member dto) {
+		return sqlSession.delete(namespace+".deleteMemberAddress", dto);
+	}
+	public int deleteMemberPhone(Member dto) {
+		return sqlSession.delete(namespace+".deleteMemberPhone", dto);
+	}
 }

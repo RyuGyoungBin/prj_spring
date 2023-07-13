@@ -170,7 +170,8 @@
     		member
     	WHERE 1=1
     		AND id = #{id}
-    		AND password = #{password}
+    		<if test="password != null and !password.equals('')">AND password = #{password}</if>
+    		
     </select>
     
     <update id="updateMember">
@@ -220,7 +221,7 @@
 			SET 
 				delNy = 1
 			WHERE 
-				seq = #{seq}
+				member_seq = #{seq}
     </update>
     <update id="updateDelMemberAddress">
 	    UPDATE 
@@ -228,7 +229,25 @@
 			SET 
 				delNy = 1
 			WHERE 
-				seq = #{seq}
+				member_seq = #{seq}
     </update>
+    <delete id="deleteMember">
+    	DELETE FROM
+    		member
+    	WHERE
+    		seq = #{seq}
+    </delete>
+    <delete id="deleteMemberAddress">
+    	DELETE FROM
+    		memberAddress
+    	WHERE
+    		member_seq = #{seq}
+    </delete>
+    <delete id="deleteMemberPhone">
+    	DELETE FROM
+    		memberPhone
+    	WHERE
+    		member_seq = #{seq}
+    </delete>
     
 </mapper>
