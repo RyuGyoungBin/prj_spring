@@ -91,10 +91,11 @@
             </div>
           </div>
         </div>
-        <div id="portfolio-grid" class="row no-gutter" data-aos="fade-up" data-aos-delay="200">
-          <div class="item single col-sm-6 col-md-4 col-lg-4 mb-4">
+        </div>
+        <div id="portfolio-grid" class="row no-gutter p-5" data-aos="fade-up" data-aos-delay="200">
+          <div class="item single col-sm-6 col-md-4 col-lg-4 mb-4 p-5">
             <div href="work-single.html" class="item-wrap fancybox">
-              <div class="work-info d-flex flex-column justify-content-around pt-5" style="height:100%;">
+              <div class="work-info d-flex flex-column justify-content-around pt-5" style="height:100%; width: 100%;">
                 <h3>concert ticket system</h3>
                 <span class="mb-auto mt-3">Web</span>
                 <div class="mb-5">
@@ -102,8 +103,9 @@
 	                <button type="button" class="btn btn-lg border-light text-light" onclick="location.href='/loginXdmForm'" style="width:45%; height:88px;">Admin</button>
                 </div>
               </div>
-              <img class="img-fluid" src="/resources/assets/img/img_1.jpg">
+              <img class="img-fluid" src="/resources/assets/img/img_1.jpg" style="width:100%">
             </div>
+          </div>
           </div>
     </section><!-- End  Works Section -->
   </main><!-- End #main -->

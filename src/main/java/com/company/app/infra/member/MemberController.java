@@ -74,6 +74,10 @@ public class MemberController {
 		if(rtMember != null) {
 			httpSession.setMaxInactiveInterval(60*60); 
 			httpSession.setAttribute("sessionId", vo.getId());
+			httpSession.setAttribute("sessionSeq", rtMember.getSeq());
+			httpSession.setAttribute("sessionType", rtMember.getMemberType());
+			System.out.println(httpSession.getAttribute("sessionId"));
+			System.out.println("seq = "+httpSession.getAttribute("sessionSeq"));
 			returnMap.put("rtMember", rtMember);
 			returnMap.put("rt", "success");
 		} else {
@@ -86,9 +90,9 @@ public class MemberController {
 	public Map<String, Object> UsridProc(MemberVo vo){
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 		
-		Member rtMember = service.selectId(vo);
+		int rtMember = service.selectOneCount(vo);
 		
-		if(rtMember != null) {
+		if(rtMember > 0) {
 			returnMap.put("rtMember", rtMember);
 			returnMap.put("rt", "fail");
 		} else {
@@ -96,6 +100,7 @@ public class MemberController {
 		}
 		return returnMap;
 	}
+	
 	
 	@ResponseBody
 	@RequestMapping("/logoutProc")

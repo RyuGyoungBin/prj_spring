@@ -108,6 +108,7 @@
 	 	$("#btnDelNy").on("click", function(){
 			$("form[name=form]").attr("action", "/codeGroupXdmDelNy").submit();
 		});
+	 	$("#codeGroup").addClass("active");
   	</script>
 
 </body>

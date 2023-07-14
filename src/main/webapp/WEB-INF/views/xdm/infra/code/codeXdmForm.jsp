@@ -119,6 +119,7 @@
 			$("form[name=form]").attr("action", "/codeXdmDelNy").submit();
 		});
 	 	$("#codeGroup_seq").val("<c:out value='${list.codeGroup_seq}'></c:out>").prop("selected", true);
+	 	$("#code").addClass("active");
   	</script>
 
 </body>

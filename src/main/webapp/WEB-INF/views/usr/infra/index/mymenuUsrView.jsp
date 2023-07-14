@@ -7,7 +7,17 @@
 <html lang="ko">
 <jsp:include page="../include/head.jsp"></jsp:include>
 <jsp:include page="../include/header.jsp"></jsp:include>
-	<div class="d-flex flex-column">
+		<!-- End section -->
+	<main>
+		<div id="position" style="padding-top:90px;">
+			<div class="container">
+				<ul>
+					<li><a href="/indexUsrView">Home</a>
+					</li>
+					<li>mymenu</li>
+				</ul>
+			</div>
+		</div>
 		<div style="min-height:150px;"></div>
 		<div class="col-lg-12 d-flex">
 			<div class="col-lg-2"></div>
@@ -18,26 +28,13 @@
 					</div>
 				</div>
 				<div class="col-lg-8 col-md-8 ps-5 text-start border-start ms-5">
-					<h2 class="mb-5">"<strong></strong>"님의 페이지입니다</h2>
-					<button type="button" class="btn btn-sm btn-secondary mt-3" onclick="location.href='/informationUsrForm'">개인 정보 수정</button>
+					<h2 class="mb-5">"<strong><c:out value="${ sessionId}"></c:out></strong>"님의 페이지입니다</h2>
+					<a class="btn btn-sm btn-secondary mt-3" href="/informationUsrForm?seq=<c:out value="${sessionSeq }"></c:out>">개인 정보 수정</a>
 				</div>
 			</div>
 			<div class="col-lg-2"></div>
 		</div>
 		<div style="min-height:100px;"></div>
-	</div>
-	<!-- End section -->
-	<main>
-		<div id="position">
-			<div class="container">
-				<ul>
-					<li><a href="/indexUsrView">Home</a>
-					</li>
-					<li>mymenu</li>
-				</ul>
-			</div>
-		</div>
-		
 		<div class="margin_60 container">
 			<div id="tabs" class="tabs">
 				<nav>
@@ -50,6 +47,10 @@
 						</li>
 					</ul>
 				</nav>
+				<div class="d-flex flex-column">
+		
+				</div>
+				
 				<div class="content">
 
 					<section id="section-1">

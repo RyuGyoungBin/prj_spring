@@ -123,8 +123,8 @@
             </a>
           </li>
           <li>
-            <a href="" id="home">
-              <i class="bi bi-circle"></i><span>home</span>
+            <a href="/concertXdmList" id="concert">
+              <i class="bi bi-circle"></i><span>concert</span>
             </a>
           </li>
           <li>

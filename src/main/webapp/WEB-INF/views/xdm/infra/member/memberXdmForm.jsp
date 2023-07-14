@@ -118,7 +118,7 @@
 					<c:otherwise>
 						<div class="d-flex justify-content-between my-5 text-center">
 							<div class="col-2">
-								<button id="btnList" type="button" class="btn btn-secondary" onclick = "location.href = '/codeXdmList'"><i class="bi bi-list"></i></button>
+								<button id="btnList" type="button" class="btn btn-secondary" onclick = "location.href = '/memberXdmList'"><i class="bi bi-list"></i></button>
 								<button id="btnDelete" type="button" class="btn btn-danger">delete</button>
 								<button id="btnDelNy" type="button" class="btn btn-danger">uele</button>
 							</div>
@@ -217,6 +217,7 @@
 		$("#btnDelete").on("click", function(){
 			$("form[name=form]").attr("action", "/memberdelete").submit();
 		})
+		$("#member").addClass("active");
   	</script>
 
 </body>

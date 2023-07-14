@@ -59,9 +59,9 @@
 	<!-- Search Menu -->
 	<div class="search-overlay-menu">
 		<span class="search-overlay-close"><i class="icon_set_1_icon-77"></i></span>
-		<form role="search" id="searchform" method="get">
-			<input value="" name="q" type="text" placeholder="Search..." />
-			<button type="submit"><i class="icon_set_1_icon-78"></i>
+		<form role="search" name="searchform" method="get">
+			<input value="" name="search" id="search" type="text" placeholder="Search..." />
+			<button type="button" id="searchBtn"><i class="icon_set_1_icon-78"></i>
 			</button>
 		</form>
 	</div><!-- End Search Menu -->

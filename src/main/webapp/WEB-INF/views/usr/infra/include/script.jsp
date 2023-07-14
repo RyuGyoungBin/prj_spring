@@ -23,4 +23,7 @@
 	 			}
 	 		});
 	 	})
+	 	$("#searchBtn").on("click", function(){
+	 		$("form[name=searchform]").attr("action", "/concertMain").submit();
+	 	})
 	</script>

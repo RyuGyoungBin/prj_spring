@@ -28,6 +28,8 @@
 			<div class="col-md-6">
 				<h4>Your profile</h4>
 				<ul id="profile_summary">
+					<li>User id : <span><c:out value="${listOne.id }"/></span>
+					</li>
 					<li>User email : <span><c:out value="${listOne.emailFull }"/></span>
 					</li>
 					<li>User name : <span><c:out value="${listOne.name }"/></span>
@@ -55,6 +57,13 @@
 		</div>
 		<form name="formList" method="post">
 		<input type="hidden" class=" form-control" name="seq" id="seq" value="<c:out value="${listOne.seq }"/>">
+		<input type="hidden" class=" form-control" name="id" id="id" value="<c:out value="${listOne.id }"/>">
+		<input type="hidden" class=" form-control" name="emailDomain"  value="<c:out value="${listOne.emailDomain }"/>">
+		<input type="hidden" class=" form-control" name="emailAccount"  value="<c:out value="${listOne.emailAccount }"/>">
+		<input type="hidden" class=" form-control" name="dob"  value="<c:out value="${listOne.dob }"/>">
+		<input type="hidden" class=" form-control" name="name"  value="<c:out value="${listOne.name }"/>">
+		<input type="hidden" class=" form-control" name="gender"  value="<c:out value="${listOne.gender }"/>">
+		<input type="hidden" class=" form-control" name="memberType"  value="<c:out value="${listOne.memberType }"/>">
 		<div class="row">
 			<div class="col-md-6">
 				<div class="form-group">
@@ -71,27 +80,36 @@
 		</div>
 		<!-- End row -->
 		<div class="row">
+			<div class="col-md-6">
+				<div class="form-group">
+				  	<input class="form-check-input phone" type="radio" value="1" name="phoneMarkArray" checked>
+				  	<input name="phoneMarkArray" class="phoneMarkHidden" type="hidden" value="0">
+				  	<label>Phone number</label>
+				<!--<button type="button" class="btn btn-sm btn-danger RemoveBtn float-end">-</button> -->
+				    <input type="text" class=" form-control" name="numberArray" id="phone0" placeholder="Phone number" value="<c:out value="${listOne.number }"/>">
+			    </div>
+		    </div>
 <!-- 			<div class="col-12 border d-flex flex-wrap justify-content-around position-relative pt-4 mb-4 phoneBox"> -->
 <!-- 	           	<div class=" position-absolute top-0 end-0 "> -->
 <!-- 	            	<button type="button" class="btn btn-light plusBtn">+</button> -->
 <!-- 	           	</div> -->
-	           	<c:forEach items="${List}" var="list" varStatus="status">
-	           	<div class="form-group col-12 col-xl-5">
-	           		<c:choose>
-	           			<c:when test="${1 eq list.defaultNy }">
-	           				<input class="form-check-input phone" type="radio" value="1" name="phoneMark" checked >
-	           			</c:when>
-	           			<c:otherwise>
-			            	<input class="form-check-input phone" type="radio" value="1" name="phoneMark">
-	           			</c:otherwise>
-	           		</c:choose>
-	           		<input name="phoneMarkArray" class="phoneMarkHidden" type="hidden" value="0">
-	            	<label>Phone number</label>
-<!-- 	            	<button type="button" class="btn btn-sm btn-danger RemoveBtn">-</button> -->
-	                <input type="text" class=" form-control" name="number" id="phone0" placeholder="Phone number" value="<c:out value='${list.number }'></c:out>">
-					<div><c:out value='${list.number }'></c:out>"></div>
-	            </div>
-	           	</c:forEach>
+<%-- 	           	<c:forEach items="${List}" var="list" varStatus="status"> --%>
+<!-- 	           	<div class="form-group col-12 col-xl-5"> -->
+<%-- 	           		<c:choose> --%>
+<%-- 	           			<c:when test="${1 eq list.defaultNy }"> --%>
+<!-- 	           				<input class="form-check-input phone" type="radio" value="1" name="phoneMark" checked > -->
+<%-- 	           			</c:when> --%>
+<%-- 	           			<c:otherwise> --%>
+<!-- 			            	<input class="form-check-input phone" type="radio" value="1" name="phoneMark"> -->
+<%-- 	           			</c:otherwise> --%>
+<%-- 	           		</c:choose> --%>
+<!-- 	           		<input name="phoneMarkArray" class="phoneMarkHidden" type="hidden" value="0"> -->
+<!-- 	            	<label>Phone number</label> -->
+<!-- <!-- 	            	<button type="button" class="btn btn-sm btn-danger RemoveBtn">-</button> -->
+<%-- 	                <input type="text" class=" form-control" name="number" id="phone0" placeholder="Phone number" value="<c:out value='${list.number }'></c:out>"> --%>
+<%-- 					<div><c:out value='${list.number }'></c:out>"></div> --%>
+<!-- 	            </div> -->
+<%-- 	           	</c:forEach> --%>
 <!--             </div> -->
 		</div>
 		<!-- End row -->
@@ -108,20 +126,20 @@
 			<div class="col-md-6">
 				<div class="form-group">
 					<label>Zip code</label>
-					<input class="form-control" name="zipCode" id="zipCode" type="text" placeholder="우편번호">
+					<input class="form-control" name="zipCode" id="zipCode" type="text" placeholder="우편번호" value="<c:out value="${listOne.zipCode }"/>" readonly>
 				</div>
 			</div>
 			<div class="col-md-6"></div>
 			<div class="col-md-6">
 				<div class="form-group">
 					<label>Address</label>
-					<input class="form-control" name="address" id="address" type="text" placeholder="주소">
+					<input class="form-control" name="address" id="address" type="text" placeholder="주소" value="<c:out value="${listOne.address }"/>" readonly>
 				</div>
 			</div>
 			<div class="col-md-6">
 				<div class="form-group">
 					<label>Address detail</label>
-					<input class="form-control" name="addressDetail" id="addressDetail" type="text" placeholder="상세주소">
+					<input class="form-control" name="addressDetail" id="addressDetail" type="text" placeholder="상세주소" value="<c:out value="${listOne.addressDetail }"/>">
 				</div>
 			</div>
 		</div>
@@ -211,7 +229,7 @@
  		
  	});
  	
- 	var objPw1 = $("#password1");
+ 	var objPw = $("#password1");
  	var objPw2 = $("#password2");
  	var objPhone = $("#phone0");
  	var objZipCode = $("#zipCode");
@@ -219,17 +237,19 @@
  	var objAddressDetail = $("#addressDetail");
  	
  	validationUpdt = function(){
- 		if(checkPw(objPw1) == false) return false;
+ 		if(checkPw(objPw) == false) return false;
  		if(pwCheck(objPw2) == false) return false;
- 		if(checkPhone(objPone) == false) return false;
+ 		if(checkPhone(objPhone) == false) return false;
  		if(checkAddress(objZipCode) == false) return false;
  		
  	}
  	
  	$("#updateBtn").on("click", function(){
  		if(validationUpdt() == false) return false;
- 		$("form[name=formList]").attr("action", "/informationUsrUpdate").submit();
+ 		$("form[name=formList]").attr("action", "/memberupdateUsr?seq=<c:out value="${sessionSeq }"></c:out>").submit();
  	});
+ 	
+
  	
  	
  	

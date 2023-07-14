@@ -209,7 +209,7 @@
 	 		$("#myModal").find("h1").text("로그인");
 	 		//$("#myModal").find(".modal-body").text("삭제하시겠습니까");
 	 		$("#myModal").find(".modal-body").empty();
-	 		$("#myModal").find(".modal-body").append('<form><div class="form-group"><label>ID</label><input type="text" class=" form-control " placeholder="Id" name="id" id="id"></div><div class="form-group"><label>Password</label><input type="password" class=" form-control" placeholder="Password" id="password" name="password"></div><p class="small"><a href="#">Forgot Password?</a></p><a href="#" class="btn_full" id="singinBtn">Sign in</a><a href="/signupUsrForm " class="btn_full_outline">Register</a></form>');
+	 		$("#myModal").find(".modal-body").append('<form><div class="form-group"><label>ID</label><input type="text" class=" form-control " placeholder="Id" name="id" id="id" value="abcde"></div><div class="form-group"><label>Password</label><input type="password" class=" form-control" placeholder="Password" id="password" name="password" value="Qwer123!"></div><p class="small"><a href="#">Forgot Password?</a></p><a href="#" class="btn_full" id="singinBtn">Sign in</a><a href="/signupUsrForm " class="btn_full_outline">Register</a></form>');
 	 		$("#modalOk").remove();
 	 		$("#modalClose").remove();
 	 		
@@ -254,23 +254,7 @@
 // 			$("form[name=singupForm]").attr("action", "/indexUsrView").submit();
 	 	})
 	 	
-	 	$("#logoutBtn").on("click", function(){
-	 		$.ajax({
-	 			async: true 
-	 			,cache: false
-	 			,type: "post"
-	 			/* ,dataType:"json" */
-	 			,url: "/logoutProc"
-	 			/* ,data : $("#formLogin").serialize() */
-	 			,data : { }
-	 			,success: function(response) {
-	 					location.href = "/indexUsrView";
-	 			}
-	 			,error : function(jqXHR, textStatus, errorThrown){
-	 				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
-	 			}
-	 		});
-	 	})
+	 	
 	 	
 	</script>
     

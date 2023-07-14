@@ -158,7 +158,7 @@
 		var idajaxck = 0;
 		
 		validationInst = function(){
-// 			if(checkId(objId) == false) return false;
+			if(checkId(objId) == false) return false;
 			if(checkEmailDomain(objEmailDomain) == false) return false;
 			if(checkEmailAccount(objEmailAccount) == false) return false;
 			if(checkPw(objPw) == false) return false;
@@ -246,7 +246,6 @@
 			
 			$("#singupBtn").on("click", function(){
 				if(idajaxck == 1){
-					console.log(idajaxck);
 	// 				var objArray = $("input[name=numberArray]");
 					if(validationInst() == false) return false;
 					$("form[name=singupForm]").attr("action", "/memberinsert").submit();				
