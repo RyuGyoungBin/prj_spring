@@ -26,7 +26,7 @@
 	}
 	
 	checkId = function(obj){
-		if(reqId.test($.trim(obj.val())) == false) {
+		if(reqId.test(obj.val()) == false) {
 			obj.addClass("border-danger");
 			obj.siblings(".validation").remove();
 			obj.parent().append("<div class='p-2 text-danger validation'>공백없는 대소문자(2,10)만 입력 가능합니다.</div>");

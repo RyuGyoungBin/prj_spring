@@ -96,6 +96,7 @@
 										<label>Address detail</label>
 										<input class="form-control" name="addressDetail" id="registerAddressDetail" type="text" placeholder="상세주소">
 									</div>
+									<input name="sido" id="sido" type="hidden">
                                 </div>
                                 
                                 <div class="col-12 ps-5 pe-5">
@@ -191,10 +192,12 @@
 		 			,success: function(response) {
 		 				if(response.rt == "success") {
 		 					$("#id").removeClass("border-danger");
+		 					$("#id").addClass("border-success");
 		 					$("#id").siblings(".validation").remove();
 		 					$("#id").parent().append("<div class='p-2 text-success validation'>사용 가능한 아이디입니다.</div>");
 		 					idajaxck = 1;
 		 				} else {
+		 					$("#id").removeClass("border-success");
 		 					$("#id").addClass("border-danger");
 		 					$("#id").siblings(".validation").remove();
 		 					$("#id").parent().append("<div class='p-2 text-danger validation'>사용 불가능한 아이디입니다.</div>");
@@ -224,6 +227,7 @@
 	                // 우편번호와 주소 정보를 해당 필드에 넣는다.
 	                document.getElementById("registerZipCode").value = data.zonecode;
 	                document.getElementById("registerAddress").value = addr;
+	                document.getElementById("sido").value = data.sido;
 	                // 커서를 상세주소 필드로 이동한다.
 	                document.getElementById("registerAddressDetail").focus();
 	            }

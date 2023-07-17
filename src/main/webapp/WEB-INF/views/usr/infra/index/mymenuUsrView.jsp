@@ -43,7 +43,7 @@
 						</li>
 						<li><a href="#section-2" class="icon-wishlist"><span>관람후기</span></a>
 						</li>
-						<li><a href="#section-3" class="icon-settings" disable><span>등록</span></a>
+						<li><a href="#section-3" class="icon-settings"><span>등록</span></a>
 						</li>
 					</ul>
 				</nav>
@@ -86,7 +86,7 @@
 										<p class="text-danger">취소시 주의사항</p>
 										<p>수수료가 부과됩니다</p>
 									</div>
-									<button type="button" class="btn btn-danger">취소/환불</button>
+									<button type="button" class="btn btn-danger" id="ticketBtn">취소/환불</button>
 								</div>
 							</div>
 							<!-- End row -->
@@ -118,7 +118,7 @@
 										<p class=""></p>
 										<p></p>
 									</div>
-									<button type="button" class="btn btn-primary">수정/등록</button>
+									<button type="button" class="btn btn-primary" id="reviewBtn">수정/등록</button>
 								</div>
 							</div>
 							<!-- End row -->
@@ -182,14 +182,54 @@
 	<!-- End main -->
     
     <jsp:include page="../include/footer.jsp"></jsp:include>
+    <jsp:include page="../include/modal.jsp"></jsp:include>
 	<jsp:include page="../include/script.jsp"></jsp:include>
     <!-- Specific scripts -->
 	<script src="/resources/concert/js/tabs.js"></script>
 	<script>
 		new CBPFWTabs(document.getElementById('tabs'));
+		
+		var myModal = new bootstrap.Modal(document.getElementById('myModal'), {
+	 		  keyboard: true,
+	 		  backdrop: "static"
+	 		})
+		
+	 	$("#ticketBtn").on("click", function(){
+	 		$("#myModal").find("h1").text("티켓 취소 및 환불");
+	 		//$("#myModal").find(".modal-body").text("삭제하시겠습니까");
+	 		$("#myModal").find(".modal-body").empty();
+	 		$("#myModal").find(".modal-body").append('<p>정말 취소 및 환불 하시겠습니까.</p>');
+	 		$("#modalOk").remove();
+	 		$(".modal-footer").append('<button type="button" class="btn btn-danger" id="modalOk">취소 및 환불</button>');
+	 		
+		 	myModal.show();
+	 		
+	 	})
+	 	
+	 	$("#reviewBtn").on("click", function(){
+	 		$("#myModal").find("h1").text("리뷰");
+	 		//$("#myModal").find(".modal-body").text("삭제하시겠습니까");
+	 		$("#myModal").find(".modal-body").empty();
+	 		$("#myModal").find(".modal-body").append("<p>남은 글자 수 : <span id='reviewWord'>200</span></p>");
+	 		$("#myModal").find(".modal-body").append("<textarea name='review' id='review' style='width: 100%; height: 200px; resize: none;' maxlength='200'></textarea>");
+	 		$("#modalOk").remove();
+	 		$(".modal-footer").append('<button type="button" class="btn btn-primary" id="modalOk">등록 및 수정</button>');
+	 		
+		 	myModal.show();
+	 		
+	 	})
+	 	
+	 	$(document).on('keyup', '#review', function(){
+		  // 남은 글자 수를 구한다.
+		  var letterLength = $(this).val().length;
+		  var remain = 200 - letterLength;
+		  
+		  // 문서 객체에 입력한다.
+		  $('#reviewWord').html(remain);
+	 	})
+
 	</script>
-	<script>
-	</script>
+
 	
 
 </body>

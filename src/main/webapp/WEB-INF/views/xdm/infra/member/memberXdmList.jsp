@@ -65,6 +65,9 @@
 						<div class="col-2 text-start ms-3 me-3">
 								<input class="form-control form-control-sm p-2" name="emailAccount" id="emailAccount" type="text" placeholder="emailAccount" value="<c:out value="${vo.emailAccount}"></c:out>">
 						</div>
+						<div class="col-2 text-start ms-3 me-3">
+								<input class="form-control form-control-sm p-2" name="id" id="id" type="text" placeholder="id" value="<c:out value="${vo.id}"></c:out>">
+						</div>
 						
 						<div class="col-2 text-start ms-3 me-3">
 							<button type="submit" class="btn btn-warning btn-sm me-2" id="search"><i class="bi bi-search"></i></button>
@@ -83,7 +86,7 @@
 		                  	<c:otherwise>
 		              <div class="overflow-hidden overflow-x-auto">
 		              <!-- Table with stripped rows -->
-		              <table class="table table-striped">
+		              <table class="table table-striped text-nowrap">
 		                <thead>
 		                  <tr>
 		                  	<th scope="col">

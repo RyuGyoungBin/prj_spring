@@ -26,3 +26,22 @@
 
   <!-- Template Main JS File -->
   <script src="/resources/admin/assets/js/main.js"></script>
+  <script>
+  $("#logoutBtn").on("click", function(){
+		$.ajax({
+			async: true 
+			,cache: false
+			,type: "post"
+			/* ,dataType:"json" */
+			,url: "/logoutProc"
+			/* ,data : $("#formLogin").serialize() */
+			,data : { }
+			,success: function(response) {
+					location.href = "/loginXdmForm";
+			}
+			,error : function(jqXHR, textStatus, errorThrown){
+				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+			}
+		});
+	})
+  </script>
