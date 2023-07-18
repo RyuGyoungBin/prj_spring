@@ -21,6 +21,37 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	<!-- session interceptor s 2023.07.18 for logincheck -->
+	<interceptors>
+		<interceptor>
+			<mapping path="/**"/>
+			<exclude-mapping path="/resources/**" />
+			<exclude-mapping path="/" />
+			<exclude-mapping path="/**Xdm**" />
+			<exclude-mapping path="/biographyUsrView" />
+			<exclude-mapping path="/indexUsrView" />
+			<exclude-mapping path="/loginUsrProc" />
+			<exclude-mapping path="/UsridProc" />
+			<exclude-mapping path="/logoutProc" />
+			<exclude-mapping path="/signupUsrForm" />
+			<exclude-mapping path="/concertUsrMain" />
+			<exclude-mapping path="/concertUsrDetail" />
+			<beans:bean id="checkLoginSessionInterception" class="com.company.app.common.interceptor.CheckLoginSessionInterception"/>
+		</interceptor>
+		<interceptor>
+			<mapping path="/**"/>
+			<exclude-mapping path="/resources/**" />
+			<exclude-mapping path="/" />
+			<exclude-mapping path="/**Usr**" />
+			<exclude-mapping path="/loginXdmForm" />
+			<exclude-mapping path="/loginXdmProc" />
+			<exclude-mapping path="/UsridProc" />
+			<exclude-mapping path="/logoutProc" />
+			<beans:bean id="CheckLoginXdmInterception" class="com.company.app.common.interceptor.CheckLoginXdmInterception"/>
+		</interceptor>
+	</interceptors>	
+	<!-- session interceptor e 2023.07.18 for logincheck -->
+	
 	<context:component-scan base-package="com.company.app"/>
 	
 </beans:beans>

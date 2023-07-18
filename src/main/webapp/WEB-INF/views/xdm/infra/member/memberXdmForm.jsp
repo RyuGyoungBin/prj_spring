@@ -70,6 +70,7 @@
                     	<select class="form-control" name="memberType" id="memberType">
                     		<option value="0" <c:if test="${list.memberType eq '0'}">selected</c:if>>사용자</option>
                     		<option value="1"<c:if test="${list.memberType eq '1'}">selected</c:if>>판매자</option>
+                    		<option value="2"<c:if test="${list.memberType eq '2'}">selected</c:if>>관리자</option>
                     	</select>
 	                </div>
 <!-- 	                <div class="col-11 border d-flex flex-wrap justify-content-around position-relative py-4 mb-4 phoneBox"> -->

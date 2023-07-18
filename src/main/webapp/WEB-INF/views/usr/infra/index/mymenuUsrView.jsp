@@ -43,8 +43,12 @@
 						</li>
 						<li><a href="#section-2" class="icon-wishlist"><span>관람후기</span></a>
 						</li>
-						<li><a href="#section-3" class="icon-settings"><span>등록</span></a>
-						</li>
+						<c:choose>
+							<c:when test="${1 eq sessionType }">
+								<li><a href="#section-3" class="icon-settings"><span>등록</span></a>
+								</li>
+							</c:when>
+						</c:choose>
 					</ul>
 				</nav>
 				<div class="d-flex flex-column">

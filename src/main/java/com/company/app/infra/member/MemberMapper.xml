@@ -106,7 +106,7 @@
 			</choose>
     		now(),
     		0,
-    		0
+    		#{memberType}
     	)
     	<selectKey resultType="String" keyProperty="seq" order="AFTER">
 			SELECT last_insert_id()
@@ -189,7 +189,21 @@
     	WHERE 1=1
     		AND id = #{id}
     		<if test="password != null and !password.equals('')">AND password = #{password}</if>
-    		
+    		ANd memberType != 2
+    </select>
+    <select id="selectIdXdm" resultMap="resultMapObj">
+    	SELECT
+    		seq,
+    		name,
+    		id,
+    		password,
+    		memberType
+    	FROM
+    		member
+    	WHERE 1=1
+    		AND id = #{id}
+    		<if test="password != null and !password.equals('')">AND password = #{password}</if>
+    		And memberType = 2
     </select>
     
     <update id="updateMember">

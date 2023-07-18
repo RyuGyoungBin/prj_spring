@@ -29,6 +29,13 @@
                     		<div class="text-center"><img src="" alt="Image" width="160" height="34"></div>
                             <hr>
                            <form class="d-flex flex-wrap justify-content-around" name="singupForm" method="post">
+                          		<div class="form-group col-12 col-xl-5">
+                                	<label>MemberType</label>
+                                    <select class=" form-control" name="memberType">
+                                    	<option value="0">사용자</option>
+                                    	<option value="1">판매자</option>
+                                    </select>
+                                </div>
                                 <div class="form-group col-12 col-xl-5">
                                 	<label>Id</label>
                                     <input type="text" class=" form-control"  placeholder="id" name="id" id="id">

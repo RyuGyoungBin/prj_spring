@@ -19,6 +19,8 @@ public interface MemberService {
 	
 	public Member selectId(MemberVo vo);
 	
+	public Member selectIdXdm(MemberVo vo);
+	
 	public int deleteMember(Member dto);
 	
 }

@@ -77,6 +77,11 @@ public class MemberServiceImpl implements MemberService {
 		dao.deleteMember(dto);
 		return 0;
 	}
+
+	@Override
+	public Member selectIdXdm(MemberVo vo) {
+		return dao.selectIdXdm(vo);
+	}
 	
 
 

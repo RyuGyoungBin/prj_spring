@@ -24,6 +24,6 @@
 	 		});
 	 	})
 	 	$("#searchBtn").on("click", function(){
-	 		$("form[name=searchform]").attr("action", "/concertMain").submit();
+	 		$("form[name=searchform]").attr("action", "/concertUsrMain").submit();
 	 	})
 	</script>

@@ -15,7 +15,7 @@ public class MemberVo {
 	private String phoneAgreeDate;
 	private String emailAgree;
 	private String emailAgreeDate;
-	private String memberType;
+	private Integer memberType;
 	private String brn;
 	private String delNy;
 	private String defaultNy;
@@ -150,11 +150,13 @@ public class MemberVo {
 		this.emailAgreeDate = emailAgreeDate;
 	}
 
-	public String getMemberType() {
+	
+
+	public Integer getMemberType() {
 		return memberType;
 	}
 
-	public void setMemberType(String memberType) {
+	public void setMemberType(Integer memberType) {
 		this.memberType = memberType;
 	}
 

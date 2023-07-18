@@ -66,8 +66,8 @@ public class MemberController {
 	}
 	
 	@ResponseBody
-	@RequestMapping("/loginProc")
-	public Map<String, Object> loginProc(MemberVo vo, HttpSession httpSession){
+	@RequestMapping("/loginUsrProc")
+	public Map<String, Object> loginUsrProc(MemberVo vo, HttpSession httpSession){
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 		
 		Member rtMember = service.selectId(vo);
@@ -78,6 +78,29 @@ public class MemberController {
 			httpSession.setAttribute("sessionType", rtMember.getMemberType());
 			System.out.println(httpSession.getAttribute("sessionId"));
 			System.out.println("seq = "+httpSession.getAttribute("sessionSeq"));
+			System.out.println("type = "+httpSession.getAttribute("sessionType"));
+			returnMap.put("rtMember", rtMember);
+			returnMap.put("rt", "success");
+		} else {
+			returnMap.put("rt", "fail");
+		}
+		return returnMap;
+	}
+	
+	@ResponseBody
+	@RequestMapping("/loginXdmProc")
+	public Map<String, Object> loginXdmProc(MemberVo vo, HttpSession httpSession){
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		
+		Member rtMember = service.selectIdXdm(vo);
+		if(rtMember != null) {
+			httpSession.setMaxInactiveInterval(60*60); 
+			httpSession.setAttribute("sessionId", vo.getId());
+			httpSession.setAttribute("sessionSeq", rtMember.getSeq());
+			httpSession.setAttribute("sessionType", rtMember.getMemberType());
+			System.out.println(httpSession.getAttribute("sessionId"));
+			System.out.println("seq = "+httpSession.getAttribute("sessionSeq"));
+			System.out.println("type = "+httpSession.getAttribute("sessionType"));
 			returnMap.put("rtMember", rtMember);
 			returnMap.put("rt", "success");
 		} else {

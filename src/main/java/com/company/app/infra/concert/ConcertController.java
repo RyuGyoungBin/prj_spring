@@ -6,11 +6,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class ConcertController {
 
-	@RequestMapping("/concertMain")
+	@RequestMapping("/concertUsrMain")
 	public String concertMain() {
 		return"usr/infra/concert/concert";
 	}
-	@RequestMapping("/concertDetail")
+	@RequestMapping("/concertUsrDetail")
 	public String concertDetail() {
 		return"usr/infra/concert/concertDetail";
 	}
