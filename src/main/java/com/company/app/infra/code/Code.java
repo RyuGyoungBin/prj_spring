@@ -1,5 +1,8 @@
 package com.company.app.infra.code;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Code {
 
 	private String seq;
@@ -7,6 +10,8 @@ public class Code {
 	private String codeGroup_seq;
 	private String delNy;
 	private String groupname;
+	
+	public static List<Code> cachedCodeArrayList = new ArrayList<Code>();
 	
 	public String getSeq() {
 		return seq;
@@ -38,6 +43,13 @@ public class Code {
 	public void setGroupname(String groupname) {
 		this.groupname = groupname;
 	}
+	public static List<Code> getCachedCodeArrayList() {
+		return cachedCodeArrayList;
+	}
+	public static void setCachedCodeArrayList(List<Code> cachedCodeArrayList) {
+		Code.cachedCodeArrayList = cachedCodeArrayList;
+	}
+	
 	
 	
 }

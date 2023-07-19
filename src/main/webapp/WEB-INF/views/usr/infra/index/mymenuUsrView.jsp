@@ -39,9 +39,11 @@
 			<div id="tabs" class="tabs">
 				<nav>
 					<ul>
-						<li><a href="#section-1" class="icon-booking"><span>예매중인 표</span></a>
+						<li>
+							<a href="#section-1" class="icon-booking"><span>예매중인 표</span></a>
 						</li>
-						<li><a href="#section-2" class="icon-wishlist"><span>관람후기</span></a>
+						<li>
+							<a href="#section-2" class="icon-wishlist"><span>관람후기</span></a>
 						</li>
 						<c:choose>
 							<c:when test="${1 eq sessionType }">

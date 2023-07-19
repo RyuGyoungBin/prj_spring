@@ -101,6 +101,7 @@ public class MemberController {
 			System.out.println(httpSession.getAttribute("sessionId"));
 			System.out.println("seq = "+httpSession.getAttribute("sessionSeq"));
 			System.out.println("type = "+httpSession.getAttribute("sessionType"));
+			System.out.println("type = "+httpSession.getAttribute("sessionType").getClass());
 			returnMap.put("rtMember", rtMember);
 			returnMap.put("rt", "success");
 		} else {

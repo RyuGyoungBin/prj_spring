@@ -5,7 +5,7 @@
 <%@ taglib prefix="rb" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html lang="ko">
-<jsp:include page="../include/head.jsp"></jsp:include>
+<jsp:include page="../include/headSwiper.jsp"></jsp:include>
 <jsp:include page="../include/header.jsp"></jsp:include>
 	<main>
 		<div id="carousel-home">
@@ -29,69 +29,179 @@
 				<h2>Concert <span>Top</span> news</h2>
 				<p>concert new desk</p>
 			</div>
-
-            <div class="owl-carousel owl-theme list_carousel add_bottom_30" style="height:360px;">
-                <div class="item" >
-                	<div class="card" style="width: 18rem;">
-	                	<div class="ribbon_3 popular"><span>1</span></div>
-					  <img src="/resources/concert/img/2023 성시경의 축가 콘서트.jpg" class="card-img-top" alt="...">
-					  <div class="card-body position-absolute bottom-0 border-0 bg-dark-subtle">
-					    <h5 class="card-title">성시경의 축가 콘서트</h5>
-					    <div class="card-text">
-					    	<p>기간</p>
-					    	<p>시간</p>
-					    	<p>장소</p>
-					    </div>
-					  </div>
-					</div>
-                </div>
-                <!-- /item -->
-                <div class="item" >
-                	<div class="card" style="width: 18rem;">
-	                	<div class="ribbon_3 popular"><span>1</span></div>
-					  <img src="/resources/concert/img/2023 성시경의 축가 콘서트.jpg" class="card-img-top" alt="...">
-					  <div class="card-body position-absolute bottom-0 border-0 bg-dark-subtle">
-					    <h5 class="card-title">Card title</h5>
-					    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-					  </div>
-					</div>
-                </div>
-                <!-- /item -->
-                <div class="item" >
-                	<div class="card" style="width: 18rem;">
-	                	<div class="ribbon_3 popular"><span>1</span></div>
-					  <img src="/resources/concert/img/2023 성시경의 축가 콘서트.jpg" class="card-img-top" alt="...">
-					  <div class="card-body position-absolute bottom-0 border-0 bg-dark-subtle">
-					    <h5 class="card-title">Card title</h5>
-					    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-					  </div>
-					</div>
-                </div>
-                <!-- /item -->
-                <div class="item" >
-                	<div class="card" style="width: 18rem;">
-	                	<div class="ribbon_3 popular"><span>1</span></div>
-					  <img src="/resources/concert/img/2023 성시경의 축가 콘서트.jpg" class="card-img-top" alt="...">
-					  <div class="card-body position-absolute bottom-0 border-0 bg-dark-subtle">
-					    <h5 class="card-title">Card title</h5>
-					    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-					  </div>
-					</div>
-                </div>
-                <!-- /item -->
-                <div class="item" >
-                	<div class="card" style="width: 18rem;">
-	                	<div class="ribbon_3 popular"><span>1</span></div>
-					  <img src="/resources/concert/img/2023 성시경의 축가 콘서트.jpg" class="card-img-top" alt="...">
-					  <div class="card-body position-absolute bottom-0 border-0 bg-dark-subtle">
-					    <h5 class="card-title">Card title</h5>
-					    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-					  </div>
-					</div>
-                </div>
-                <!-- /item -->
-            </div>
-            <!-- /carousel -->
+			<div id="tabs" class="tabs d-flex ">
+				<nav class="col-2 d-flex justify-content-center">
+					<ul class="col-12 d-flex flex-column">
+						<li><a href="#section-1" class="icon-booking"><span>전체</span></a>
+						</li>
+						<li><a href="#section-2" class="icon-wishlist"><span>발라드</span></a>
+						</li>
+<!-- 						<li><a href="#section-3" class="icon-settings"><span>락</span></a> -->
+<!-- 						</li> -->
+<!-- 						<li><a href="#section-3" class="icon-settings"><span>힙합</span></a> -->
+<!-- 						</li> -->
+<!-- 						<li><a href="#section-3" class="icon-settings"><span>재즈</span></a> -->
+						</li>
+					</ul>
+				</nav>
+				<div class="content">
+					<section id="section-1">
+						<div class="swiper mySwiper">
+						    <div class="swiper-wrapper">
+						      <div class="swiper-slide">
+							  	<div class="card" style="width: 100%;">
+			<!-- 	                	<div class="ribbon_3 popular"><span>1</span></div> -->
+								  <img src="/resources/concert/img/2023 성시경의 축가 콘서트.jpg" class="card-img-top" alt="...">
+								  <div class="card-body position-absolute bottom-0 border-0 bg-dark-subtle">
+								    <h5 class="card-title">성시경의 축가 콘서트</h5>
+								    <div class="card-text">
+								    	<p>기간</p>
+								    	<p>시간</p>
+								    	<p>장소</p>
+								    </div>
+								  </div>
+								</div>
+							  </div>
+							  <div class="swiper-slide">
+							  	<div class="card" style="width: 100%;">
+			<!-- 	                	<div class="ribbon_3 popular"><span>1</span></div> -->
+								  <img src="/resources/concert/img/구름아래소극장.jpg" class="card-img-top" alt="...">
+								  <div class="card-body position-absolute bottom-0 border-0 bg-dark-subtle">
+								    <h5 class="card-title">구름아래소극장</h5>
+								    <div class="card-text">
+								    	<p>기간</p>
+								    	<p>시간</p>
+								    	<p>장소</p>
+								    </div>
+								  </div>
+								</div>
+							  </div>
+							  <div class="swiper-slide">
+							  	<div class="card" style="width: 100%;">
+			<!-- 	                	<div class="ribbon_3 popular"><span>1</span></div> -->
+								  <img src="/resources/concert/img/소향씨어터신한카드홀.jpg" class="card-img-top" alt="...">
+								  <div class="card-body position-absolute bottom-0 border-0 bg-dark-subtle">
+								    <h5 class="card-title">소향씨어터신한카드홀</h5>
+								    <div class="card-text">
+								    	<p>기간</p>
+								    	<p>시간</p>
+								    	<p>장소</p>
+								    </div>
+								  </div>
+								</div>
+							  </div>
+							  <div class="swiper-slide">
+							  	<div class="card" style="width: 100%;">
+			<!-- 	                	<div class="ribbon_3 popular"><span>1</span></div> -->
+								  <img src="/resources/concert/img/한전아트센터.jpg" class="card-img-top" alt="...">
+								  <div class="card-body position-absolute bottom-0 border-0 bg-dark-subtle">
+								    <h5 class="card-title">한전아트센터</h5>
+								    <div class="card-text">
+								    	<p>기간</p>
+								    	<p>시간</p>
+								    	<p>장소</p>
+								    </div>
+								  </div>
+								</div>
+							  </div>
+							  <div class="swiper-slide">
+							  	<div class="card" style="width: 100%;">
+			<!-- 	                	<div class="ribbon_3 popular"><span>1</span></div> -->
+								  <img src="/resources/concert/img/2023 성시경의 축가 콘서트.jpg" class="card-img-top" alt="...">
+								  <div class="card-body position-absolute bottom-0 border-0 bg-dark-subtle">
+								    <h5 class="card-title">성시경의 축가 콘서트</h5>
+								    <div class="card-text">
+								    	<p>기간</p>
+								    	<p>시간</p>
+								    	<p>장소</p>
+								    </div>
+								  </div>
+								</div>
+							  </div>
+						    </div>
+						</div>
+					</section>
+					
+					
+					
+					<section id="section-3">
+						<div class="swiper mySwiper">
+						    <div class="swiper-wrapper">
+						      <div class="swiper-slide">
+							  	<div class="card" style="width: 100%;">
+			<!-- 	                	<div class="ribbon_3 popular"><span>1</span></div> -->
+								  <img src="/resources/concert/img/2023 성시경의 축가 콘서트.jpg" class="card-img-top" alt="...">
+								  <div class="card-body position-absolute bottom-0 border-0 bg-dark-subtle">
+								    <h5 class="card-title">성시경의 축가 콘서트</h5>
+								    <div class="card-text">
+								    	<p>기간</p>
+								    	<p>시간</p>
+								    	<p>장소</p>
+								    </div>
+								  </div>
+								</div>
+							  </div>
+							  <div class="swiper-slide">
+							  	<div class="card" style="width: 100%;">
+			<!-- 	                	<div class="ribbon_3 popular"><span>1</span></div> -->
+								  <img src="/resources/concert/img/구름아래소극장.jpg" class="card-img-top" alt="...">
+								  <div class="card-body position-absolute bottom-0 border-0 bg-dark-subtle">
+								    <h5 class="card-title">구름아래소극장</h5>
+								    <div class="card-text">
+								    	<p>기간</p>
+								    	<p>시간</p>
+								    	<p>장소</p>
+								    </div>
+								  </div>
+								</div>
+							  </div>
+							  <div class="swiper-slide">
+							  	<div class="card" style="width: 100%;">
+			<!-- 	                	<div class="ribbon_3 popular"><span>1</span></div> -->
+								  <img src="/resources/concert/img/소향씨어터신한카드홀.jpg" class="card-img-top" alt="...">
+								  <div class="card-body position-absolute bottom-0 border-0 bg-dark-subtle">
+								    <h5 class="card-title">소향씨어터신한카드홀</h5>
+								    <div class="card-text">
+								    	<p>기간</p>
+								    	<p>시간</p>
+								    	<p>장소</p>
+								    </div>
+								  </div>
+								</div>
+							  </div>
+							  <div class="swiper-slide">
+							  	<div class="card" style="width: 100%;">
+			<!-- 	                	<div class="ribbon_3 popular"><span>1</span></div> -->
+								  <img src="/resources/concert/img/한전아트센터.jpg" class="card-img-top" alt="...">
+								  <div class="card-body position-absolute bottom-0 border-0 bg-dark-subtle">
+								    <h5 class="card-title">한전아트센터</h5>
+								    <div class="card-text">
+								    	<p>기간</p>
+								    	<p>시간</p>
+								    	<p>장소</p>
+								    </div>
+								  </div>
+								</div>
+							  </div>
+							  <div class="swiper-slide">
+							  	<div class="card" style="width: 100%;">
+			<!-- 	                	<div class="ribbon_3 popular"><span>1</span></div> -->
+								  <img src="/resources/concert/img/2023 성시경의 축가 콘서트.jpg" class="card-img-top" alt="...">
+								  <div class="card-body position-absolute bottom-0 border-0 bg-dark-subtle">
+								    <h5 class="card-title">성시경의 축가 콘서트</h5>
+								    <div class="card-text">
+								    	<p>기간</p>
+								    	<p>시간</p>
+								    	<p>장소</p>
+								    </div>
+								  </div>
+								</div>
+							  </div>
+						    </div>
+						</div>
+					</section>
+				</div>
+			</div>
 			<hr class="mt-5 mb-5">
 		</div>
 		<!-- End container -->
@@ -188,7 +298,17 @@
 	<jsp:include page="../include/modal.jsp"></jsp:include>
 	<jsp:include page="../include/script.jsp"></jsp:include>
 	<jsp:include page="../include/validation.jsp"></jsp:include>
+	<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+	<script src="/resources/concert/js/tabs.js"></script>
 	<script>
+	
+		new CBPFWTabs(document.getElementById('tabs'));
+		$("#tabs li a").on("click", function(){
+			$("#tabs li a").removeClass("bg-info");
+			$(this).addClass("bg-info");
+			
+		})
+		
 		$(".header_link").removeClass("link-dark").addClass("link-light");
 		$(function(){
 			$(window).scroll(function(){
@@ -209,7 +329,7 @@
 	 		$("#myModal").find("h1").text("로그인");
 	 		//$("#myModal").find(".modal-body").text("삭제하시겠습니까");
 	 		$("#myModal").find(".modal-body").empty();
-	 		$("#myModal").find(".modal-body").append('<form><div class="form-group"><label>ID</label><input type="text" class=" form-control " placeholder="Id" name="id" id="id" value="abcde"></div><div class="form-group"><label>Password</label><input type="password" class=" form-control" placeholder="Password" id="password" name="password" value="Qwer123!"></div><p class="small"><a href="#">Forgot Password?</a></p><a href="#" class="btn_full" id="singinBtn">Sign in</a><a href="/signupUsrForm " class="btn_full_outline">Register</a></form>');
+	 		$("#myModal").find(".modal-body").append('<form><div class="form-group"><label>ID</label><input type="text" class=" form-control " placeholder="Id" name="id" id="id" value="test1"></div><div class="form-group"><label>Password</label><input type="password" class=" form-control" placeholder="Password" id="password" name="password" value="Test123!"></div><p class="small"><a href="#">Forgot Password?</a></p><a href="#" class="btn_full" id="singinBtn">Sign in</a><a href="/signupUsrForm " class="btn_full_outline">Register</a></form>');
 	 		$("#modalOk").remove();
 	 		$("#modalClose").remove();
 	 		
@@ -254,9 +374,19 @@
 // 			$("form[name=singupForm]").attr("action", "/indexUsrView").submit();
 	 	})
 	 	
+ 	  var swiper = new Swiper(".mySwiper", {
+	      slidesPerView: 4,
+	      spaceBetween: 30,
+	      pagination: {
+	        el: ".swiper-pagination",
+	        clickable: true,
+	      },
+    });
 	 	
 	 	
+
 	</script>
+	
     
     
 

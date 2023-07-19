@@ -11,7 +11,8 @@ public class CheckLoginXdmInterception extends HandlerInterceptorAdapter {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		// TODO Auto-generated method stub
-		if (request.getSession().getAttribute("sessionId") != null) {
+		Object type = 2;
+		if (request.getSession().getAttribute("sessionType") == type) {
 			// by pass
 		} else {
 			response.sendRedirect("/loginXdmForm");
