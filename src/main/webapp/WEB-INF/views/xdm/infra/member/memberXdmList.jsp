@@ -3,10 +3,13 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="rb" uri="http://www.springframework.org/tags" %>
-
+<jsp:useBean id="CodeServiceImpl" class="com.company.app.infra.code.CodeServiceImpl"/>
 <jsp:include page="../include/header.jsp"></jsp:include>
 <main id="main" class="main">
-
+<c:set var="listCodeGender" value="${CodeServiceImpl.selectListCachedCode('1') }"/>
+<c:forEach items="${listCodeGender }" var="listGender" varStatus="status">
+	<c:out value="${listGender.name }"></c:out>
+</c:forEach>
     <div class="pagetitle">
       <h1>Data Tables</h1>
       <nav>
@@ -127,7 +130,11 @@
 				                   <td><c:out value="${list.password}"></c:out></td>
 				                   <td><c:out value="${list.name}"></c:out></td>
 				                   <td><c:out value="${list.dob}"></c:out></td>
-				                   <td><c:out value="${list.gender}"></c:out></td>
+				                   <td>
+				                   	<c:forEach items="${listCodeGender }" var="listGender" varStatus="status">
+										<c:if test="${list.gender eq listGender.codeNum }"><c:out value="${listGender.name }"></c:out></c:if>
+							       	</c:forEach>
+								   </td>
 				                   <td><c:out value="${list.phoneAgree}"></c:out></td>
 				                   <td><c:out value="${list.phoneAgreeDate}"></c:out></td>
 				                   <td><c:out value="${list.emailAgree}"></c:out></td>

@@ -37,6 +37,10 @@
                     	<input type="text" class="form-control" name="name" id="name" value="<c:out value="${list.name }"></c:out>">
 	                </div>
 	                <div class=" col-5 mb-3">
+	                  	<label for="name" class=" col-form-label">codeNum</label>
+                    	<input type="text" class="form-control" name="codeNum" id="codeNum" value="<c:out value="${list.codeNum }"></c:out>">
+	                </div>
+	                <div class=" col-5 mb-3">
 	                  	<label for="codeGroup_seq" class=" col-form-label">codeGroup_seq</label>
                     	<%-- <input type="text" class="form-control" name="codeGroup_seq" id="codeGroup_seq" value="<c:out value="${list.codeGroup_seq }"></c:out>"> --%>
                     	<select class="form-control form-control-sm p-2" name="codeGroup_seq" id="codeGroup_seq">

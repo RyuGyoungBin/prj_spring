@@ -10,6 +10,7 @@ public class Code {
 	private String codeGroup_seq;
 	private String delNy;
 	private String groupname;
+	private Integer codeNum;
 	
 	public static List<Code> cachedCodeArrayList = new ArrayList<Code>();
 	
@@ -49,7 +50,12 @@ public class Code {
 	public static void setCachedCodeArrayList(List<Code> cachedCodeArrayList) {
 		Code.cachedCodeArrayList = cachedCodeArrayList;
 	}
-	
+	public Integer getCodeNum() {
+		return codeNum;
+	}
+	public void setCodeNum(Integer codeNum) {
+		this.codeNum = codeNum;
+	}
 	
 	
 }

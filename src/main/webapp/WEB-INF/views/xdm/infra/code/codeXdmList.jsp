@@ -3,9 +3,15 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="rb" uri="http://www.springframework.org/tags" %>
+<jsp:useBean id="CodeServiceImpl" class="com.company.app.infra.code.CodeServiceImpl"/>
 
 <jsp:include page="../include/header.jsp"></jsp:include>
+<c:set var="listCodeGender" value="${CodeServiceImpl.selectListCachedCode('1') }"/>
+
 <main id="main" class="main">
+<c:forEach items="${listCodeGender }" var="list" varStatus="status">
+	<c:out value="${list.name }"></c:out>
+</c:forEach>
 
     <div class="pagetitle">
       <h1>Data Tables</h1>
@@ -98,6 +104,7 @@
 							</th>
 		                    <th>seq</th>
 		                    <th>name</th>
+		                    <th>codeNum</th>
 		                    <th>codeGroup_seq</th>
 		                    <th>codeGroup_name</th>
 		                    <th>delNy</th>
@@ -111,6 +118,7 @@
 									</th>
 				                    <td scope="row"><c:out value="${list.seq }"></c:out></td>
 				                   <td><a href="/codeXdmForm?seq=<c:out value="${list.seq }"></c:out>"><c:out value="${list.name }"></c:out></a></td>
+				                   <td><c:out value="${list.codeNum}"></c:out></td>
 				                   <td><c:out value="${list.codeGroup_seq}"></c:out></td>
 				                   <td><c:out value="${list.groupname}"></c:out></td>
 				                   <td><c:out value="${list.delNy}"></c:out></td>

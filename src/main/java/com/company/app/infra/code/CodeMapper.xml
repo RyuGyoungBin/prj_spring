@@ -10,6 +10,7 @@
 		seq,
    		name,
    		delNy,
+   		codeNum,
    		codeGroup_seq
     </sql>
     <sql id ="selectCommon">
@@ -31,6 +32,7 @@
 	   		SELECT
 				seq,
 				name,
+				codeNum,
 				codeGroup_seq,
 				(SELECT
 					b.name
@@ -47,6 +49,7 @@
     	SELECT
     		seq,
     		name,
+    		codeNum,
     		codeGroup_seq,
 			delNy    		
     	FROM
@@ -60,6 +63,7 @@
     		code
 		SET 
 			name = #{name},
+			codeNum = #{codeNum},
 			delNy= #{delNy},
 			codeGroup_seq= #{codeGroup_seq}
 		WHERE 
@@ -79,11 +83,13 @@
 	    insert into `code` (
 			name,
 			delNy,
-			codeGroup_seq
+			codeGroup_seq,
+			codeNum
 		) values (
 			#{name}
 			, 0
-			,${codeGroup_seq}
+			,#{codeGroup_seq}
+			,#{codeNum}
 		)
     </insert>
     
@@ -106,7 +112,8 @@
 			FROM codeGroup b 
 			WHERE b.seq=code.codeGroup_seq
 			) as groupname,
-			delNy
+			delNy,
+			codeNum
 		FROM
 			code
 		WHERE 1=1
@@ -123,7 +130,8 @@
 			FROM codeGroup b 
 			WHERE b.seq=code.codeGroup_seq
 			) as groupname,
-			delNy
+			delNy,
+			codeNum
 		FROM
 			code
 		WHERE 1=1
@@ -136,7 +144,8 @@
 		SELECT
 			seq,
 			name,
-			codeGroup_seq
+			codeGroup_seq,
+			codeNum
 		FROM
 			code
 		WHERE 1=1
