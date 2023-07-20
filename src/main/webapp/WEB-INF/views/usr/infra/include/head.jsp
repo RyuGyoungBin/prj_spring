@@ -27,8 +27,12 @@
 	<!-- CUSTOM CSS -->
 	<link href="/resources/concert/css/custom.css" rel="stylesheet">
 	<style>
+		ul {list-style: none;}
 		ul#top_tools a {
 		    color: #000;
+		}
+		a {
+			color: #000;
 		}
 	</style>
 </head>

@@ -24,39 +24,70 @@
 		</div>
 		
 		<div class="margin_60 container">
-			<div class="d-flex flex-column">
-				<h3 class="fw-bold">발라드</h3>
-			</div>
-			<div class="d-flex flex-column border-bottom pt-3 pb-3">
-				<div class="d-flex" style="min-height:200px;">
-					<div class="col-3">
-						<img>
-					</div>
-					<div class="col-7 d-flex flex-column justify-content-around">
-						<h4>제목 :<span class="concertTitle"></span></h4>
-						<p>기간 :<span class="concertDate"></span></p>
-						<p>장소 :<span class="concertAddress"></span></p>
-						<p>출연진 :<span class="ConcertCast"></span></p>
+			<div class="d-flex justify-content-around">
+				<div class="col-2 border">
+					<div>
+						<div class="border-bottom p-3 fw-bold">콘서트</div>
+						<nav>
+							<ul class="d-flex flex-column">
+								<li><a href="" class="active">발라드</a></li>
+								<li class="my-2"><a href="">락</a></li>
+								<li><a href="">힙합</a></li>
+								<li class="my-2"><a href="">재즈</a></li>
+							</ul>
+						</nav>
 					</div>
 				</div>
+				<div class="col-9 d-flex flex-column">
+					<h3 class="fw-bold">발라드</h3>
+					<table class="text-center">
+						<thead class="border-bottom">
+							<tr>
+								<th colspan="2">상품명</th>
+								<th>장소</th>
+								<th>기간</th>
+								<th>출연진</th>
+							</tr>
+						</thead>
+						<tbody class="border-bottom">
+							<tr>
+								<th class="py-3 border-end">
+									<img src="/resources/concert/img/2023 성시경의 축가 콘서트.jpg" class="card-img-center" alt="...">
+								</th>
+								<th>
+									<span><a href="/concertUsrDetail">2023 성시경의 축가 콘서트</a></span>
+								</th>
+								<th>
+									<span>연세대학교 노천극장</span>
+								</th>
+								<th>
+									<span>2023/07/12 - 2023/07/18</span>
+								</th>
+								<th>
+									<span>성시경</span>
+								</th>
+							</tr>
+						</tbody>
+					</table>
+				</div>
 			</div>
-			<nav aria-label="Page navigation example">
-			  <ul class="pagination justify-content-center">
-			    <li class="page-item">
-			      <a class="page-link" href="#" aria-label="Previous">
-			        <span aria-hidden="true">&laquo;</span>
-			      </a>
-			    </li>
-			    <li class="page-item"><a class="page-link active" href="#">1</a></li>
-			    <li class="page-item"><a class="page-link" href="#">2</a></li>
-			    <li class="page-item"><a class="page-link" href="#">3</a></li>
-			    <li class="page-item">
-			      <a class="page-link" href="#" aria-label="Next">
-			        <span aria-hidden="true">&raquo;</span>
-			      </a>
-			    </li>
-			  </ul>
-			</nav>
+<!-- 			<nav aria-label="Page navigation example"> -->
+<!-- 			  <ul class="pagination justify-content-center"> -->
+<!-- 			    <li class="page-item"> -->
+<!-- 			      <a class="page-link" href="#" aria-label="Previous"> -->
+<!-- 			        <span aria-hidden="true">&laquo;</span> -->
+<!-- 			      </a> -->
+<!-- 			    </li> -->
+<!-- 			    <li class="page-item"><a class="page-link active" href="#">1</a></li> -->
+<!-- 			    <li class="page-item"><a class="page-link" href="#">2</a></li> -->
+<!-- 			    <li class="page-item"><a class="page-link" href="#">3</a></li> -->
+<!-- 			    <li class="page-item"> -->
+<!-- 			      <a class="page-link" href="#" aria-label="Next"> -->
+<!-- 			        <span aria-hidden="true">&raquo;</span> -->
+<!-- 			      </a> -->
+<!-- 			    </li> -->
+<!-- 			  </ul> -->
+<!-- 			</nav> -->
 		</div>
 		<!-- end container -->
 		

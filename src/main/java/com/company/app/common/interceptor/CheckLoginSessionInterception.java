@@ -12,7 +12,7 @@ public class CheckLoginSessionInterception extends HandlerInterceptorAdapter {
 			throws Exception {
 		// TODO Auto-generated method stub
 		Object type = 2;
-		if (request.getSession().getAttribute("sessionType") != type) {
+		if (request.getSession().getAttribute("sessionType") != type && request.getSession().getAttribute("sessionId") != null && request.getSession().getAttribute("sessionId") != "") {
 			// by pass
 		} else {
 			response.sendRedirect("/indexUsrView");
