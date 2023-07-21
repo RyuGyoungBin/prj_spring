@@ -153,7 +153,7 @@
 						</div>
 					</div>
 					<div class=text-center>
-						<button type="button" class="btn btn-secondary" style="min-width:80px;">예매</button>
+						<button type="button" class="btn btn-secondary" style="min-width:80px;" onclick="location.href='/concertUsrTicketDate'">예매</button>
 					</div>
 				</div>
 			</div>
@@ -163,7 +163,7 @@
 					<ul>
 						<li><a href="#section-1"><span>상세정보</span></a>
 						</li>
-						<li><a href="#section-2"><span>관람후기</span></a>
+						<li><a href="#section-2"><span>관람후기</span>(1)</a>
 						</li>
 					</ul>
 				</nav>
@@ -187,59 +187,28 @@
 						</div>
 					</section>
 					<section id="section-2">
-						<div class="d-flex justify-content-start align-items-center">
-							<span>평점</span>
-							<div class="rating ms-3">
+						<div class="d-flex justify-content-start align-items-center mb-5">
+							<span>관람 평점</span>
+							<div class="rating mx-3">
 							    <i class="icon-smile h6"></i><i class="icon-smile h6 "></i><i class="icon-smile h6 "></i><i class="icon-smile h6 "></i><i class="icon-smile h6"></i>
 							</div>
+							<span>4.5</span>
 						</div>
 						<div class="d-flex flex-wrap">
-							<div class="card m-3" style="width: 18rem;">
-							  <div class="card-body">
-							    <h5 class="card-title"></h5>
-							    <div class="rating">
-							    	<i class="icon-smile h6"></i><i class="icon-smile h6 "></i><i class="icon-smile h6 "></i><i class="icon-smile h6 "></i><i class="icon-smile h6"></i>
+							<div class="border d-flex col-12">
+								<div class="rating ms-3 col-12 d-flex justify-content-between">
+									<div>
+									    <i class="icon-smile h6"></i><i class="icon-smile h6 "></i><i class="icon-smile h6 "></i><i class="icon-smile h6 "></i><i class="icon-smile h6"></i>
+									</div>
+								    <div>
+								    	<span>ID : 오늘내일로</span>
+								    	<span>2023/07/21</span>
+								    </div>
 								</div>
-							    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-							  </div>
-							</div>
-							<div class="card m-3" style="width: 18rem;">
-							  <div class="card-body">
-							    <h5 class="card-title">Card title</h5>
-							    <div class="rating">
-							    	<i class="icon-smile h6"></i><i class="icon-smile h6 "></i><i class="icon-smile h6 "></i><i class="icon-smile h6 "></i><i class="icon-smile h6"></i>
+								<div>
+									<p class="">오늘내일로</p>
 								</div>
-							    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-							  </div>
 							</div>
-							<div class="card m-3" style="width: 18rem;">
-							  <div class="card-body">
-							    <h5 class="card-title">Card title</h5>
-							    <div class="rating">
-							    	<i class="icon-smile h6"></i><i class="icon-smile h6 "></i><i class="icon-smile h6 "></i><i class="icon-smile h6 "></i><i class="icon-smile h6"></i>
-								</div>
-							    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-							  </div>
-							</div>
-							<div class="card m-3" style="width: 18rem;">
-							  <div class="card-body">
-							    <h5 class="card-title">Card title</h5>
-							    <div class="rating">
-							    	<i class="icon-smile h6"></i><i class="icon-smile h6 "></i><i class="icon-smile h6 "></i><i class="icon-smile h6 "></i><i class="icon-smile h6"></i>
-								</div>
-							    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-							  </div>
-							</div>
-							<div class="card m-3" style="width: 18rem;">
-							  <div class="card-body">
-							    <h5 class="card-title">Card title</h5>
-							    <div class="rating">
-							    	<i class="icon-smile h6"></i><i class="icon-smile h6 "></i><i class="icon-smile h6 "></i><i class="icon-smile h6 "></i><i class="icon-smile h6"></i>
-								</div>
-							    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-							  </div>
-							</div>
-							
 						</div>
 					</section>
 				</div>
@@ -259,6 +228,18 @@
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2793b1acd7ab778b17a809cbd8ebc3ea"></script>
     <!-- Specific scripts -->
 	<script>
+	
+		function findElementByText(text) {
+		    var jSpot = $("b:contains(" + text + ")")
+		                .filter(function() { return $(this).children().length === 0;})
+		                .parent();  // because you asked the parent of that element
+	
+		    return jSpot;
+		}
+		
+		var startMonth;
+		var endMonth;
+	
 		const $calendarTable = document.querySelector("#calendar-table");
 		let today = new Date();
 		const DATE = new Date();
@@ -293,7 +274,7 @@
 		  let count = 0;
 	
 		  for(let i = 0; i<firstDate.getDay();i++){
-		    console.log(i);
+// 		    console.log(i);
 		    cell = row.insertCell();
 		    count++;
 		  }
@@ -307,7 +288,8 @@
 		  }
 	
 		}
-	
+		console.log(today.getMonth()+1)
+		
 		function handleNextMonthClick() {
 		  today = new Date(today.getFullYear(),today.getMonth() + 1,today.getDate());
 		  createCal();
@@ -318,7 +300,26 @@
 		  createCal();
 		}
 		
-		$("td").addClass("disable rounded-pill");
+		$(document).on("ready", function(){
+			startMonth = 7;
+			endMonth =7;
+			  if(today.getMonth()+1 < endMonth){
+			 		$("#next-button").addClass("d-none");
+			  } else {
+				  $("#next-button").removeClass("d-none");
+			  }
+				if(today.getMonth()+1 > startMonth){
+					$("#prev-button").addClass("d-none");
+				  } else {
+					  $("#prev-button").removeClass("d-none");
+				  }
+			
+		})
+		
+// 		$("th").css("width", "40px")
+		$("td").addClass("disable");
+// 		$("td:contains('2')").addClass("text-danger");
+		
 		
 		new CBPFWTabs(document.getElementById('tabs'));
 
@@ -337,8 +338,6 @@
 	 	myModal.show();
 		
 	})
-	
-	
 	
 	
 	$(document).on("click", "#singinBtn", function(){
@@ -384,6 +383,7 @@
 		var map = new kakao.maps.Map(container, options);
 	})
 		
+
 	
 	</script>
 	

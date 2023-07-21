@@ -14,4 +14,12 @@ public class ConcertController {
 	public String concertDetail() {
 		return"usr/infra/concert/concertDetail";
 	}
+	@RequestMapping("/concertUsrTicketDate")
+	public String concertUsrTicketDate() {
+		return"usr/infra/concert/concertUsrTicketDate";
+	}
+	@RequestMapping("/concertUsrTicketSeat")
+	public String concertUsrTicketSeat() {
+		return"usr/infra/concert/concertUsrTicketSeat";
+	}
 }
