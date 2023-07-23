@@ -259,12 +259,8 @@
 		var RPrice = 100000;
 		var SPrice = 80000;
 		var YPrice = 60000;
-		var RSelect = $(".seatR.select").length;
-		var SSelect = $(".seatS.select").length;
-		var TSelect = $(".seatY.select").length;
 		
 		$(".seatContainer .row div").on("click", function(){
-			console.log($(".seatContainer .row div.select").length)
 			if($(this).hasClass("disable") == false){
 				if($(this).hasClass("select") == true){
 					$(this).removeClass("select");
@@ -278,9 +274,16 @@
 					}
 				}
 			}
+			var RSelect = $(".seatR.select").length;
+			var SSelect = $(".seatS.select").length;
+			var YSelect = $(".seatY.select").length;
+			console.log($(".seatContainer .row div.select").length)
+			console.log("RSelect" + RSelect);
+			console.log("SSelect" + SSelect);
+			console.log("YSelect" + YSelect);
 			
+		$("#totalPrice").text(RSelect * RPrice + SSelect * SPrice + YSelect * YPrice + "원");
 		})
-		$("#totalPrice").
 			
 		$("#seatRNy").text($(".seatR").length-$(".seatR.disable").length);
 		$("#seatYNy").text($(".seatY").length-$(".seatY.disable").length);
