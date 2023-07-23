@@ -239,7 +239,6 @@
 				<div class="mb-3 pb-3 border-bottom">
 					<p>가격</p>
 					<span id="totalPrice">0</span>
-					<span>원</span>
 				</div>
 				<div class="p-3 text-center">
 					<div class="mb-1">
