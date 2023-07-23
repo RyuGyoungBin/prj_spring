@@ -290,6 +290,11 @@
 		$("#reSelectBtn").on("click", function(){
 			$(".seatContainer .row div").removeClass("select");
 			$("#selectSeat").empty();
+			RSelect = $(".seatR.select").length;
+			SSelect = $(".seatS.select").length;
+			YSelect = $(".seatY.select").length;
+			$("#totalPrice").text(RSelect * RPrice + SSelect * SPrice + YSelect * YPrice + "원");
+			
 		})
 		
 		
