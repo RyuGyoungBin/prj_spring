@@ -226,9 +226,9 @@
 						<p><span>Y</span>석 : <span id="seatYNy"></span>석</p>
 					</div>
 					<div class="col-6">
-						<p><span id="price1">100000</span>원</p>
-						<p><span id="price2">80000</span>원</p>
-						<p><span id="price3">60000</span>원</p>
+						<p><span id="price1">15000</span>원</p>
+						<p><span id="price2">13000</span>원</p>
+						<p><span id="price3">10000</span>원</p>
 					</div>
 				</div>
 				<div class="mb-3 pb-3 border-bottom">
@@ -255,9 +255,9 @@
 	<jsp:include page="../include/script.jsp"></jsp:include>
 	<script>
 		var sum = 0;
-		var RPrice = 100000;
-		var SPrice = 80000;
-		var YPrice = 60000;
+		var RPrice = 15000;
+		var SPrice = 13000;
+		var YPrice = 10000;
 		
 		$(".seatContainer .row div").on("click", function(){
 			if($(this).hasClass("disable") == false){
