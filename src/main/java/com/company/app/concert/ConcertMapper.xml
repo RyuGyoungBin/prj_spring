@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.company.app.concert.ConcertMapper">
+
+	<resultMap type="com.company.app.concert.Concert" id="resultMapObj"></resultMap>
+	<sql id ="selectCommon">
+   		FROM    
+	    	concert a
+	    	LEFT JOIN concertAddress b on b.concert_seq = a.seq 
+    		LEFT JOIN concertDate c on c.concertAddress_seq = b.seq  
+		WHERE 1=1
+			<if test="seq != null and !seq.equals('')">AND seq = #{seq}</if>
+    </sql>
+    <sql id="selectConcert">
+    	a.seq,
+   		a.concertType,
+   		a.concertTitle,
+   		a.concertDetailText,
+   		a.delNy,
+   		a.defaultNy,
+   		a.memberSeq,
+   		b.concertZipCode,
+   		b.concertSido,
+   		b.concertAddress,
+   		b.concertAddressDetail,
+		c.concertDate,
+		c.concertDateTime
+	</sql>
+
+
+   	<select id="selectOneCount" resultType="Integer">
+		SELECT count(*)
+		<include refid="selectCommon" />
+	</select>
+   	<select id="selectList" resultMap="resultMapObj">
+		SELECT aa.* FROM (   	
+	   		SELECT
+    		<include refid="selectConcert" />
+	    	<include refid="selectCommon" />
+		) aa
+		LIMIT #{rowNumToShow} OFFSET #{startRnumForMysql}	   			
+   	</select>
+   	<select id="selectOne" resultMap="resultMapObj">
+	   		SELECT
+    		<include refid="selectConcert" />
+	    	<include refid="selectCommon" />
+   	</select>
+   	
+   	<insert id="insertConcert">
+    	insert into `concert` (
+    		concertType,
+			concertTitle,
+			concertDetailText,
+			delNy,
+			defaultNy,
+			memberSeq
+    	) values(
+    		#{concertType}
+    		#{concertTitle},
+    		#{concertDetailText},
+    		0,
+    		#{defaultNy},
+    		#{memberSeq}
+    	)
+    	<selectKey resultType="String" keyProperty="seq" order="AFTER">
+			SELECT last_insert_id()
+		 </selectKey>
+    </insert>
+    <insert id="insertConcertAddress">
+    	insert into `concertAddress` (
+    		concertZipCode,
+    		concertSido,
+    		concertAddress,
+    		concertAddressDetail,
+    		concert_seq,
+    		delNy
+    	) values (
+    		#{concertZipCode},
+    		#{concertSido},
+    		#{concertAddress},
+    		#{concderAddressDetail},
+    		#{seq},
+    		0
+    	)
+    	<selectKey resultType="String" keyProperty="concertAddressSeq" order="AFTER">
+			SELECT last_insert_id()
+		 </selectKey>
+    </insert>
+    
+    <insert id="insertConcertDate">
+    	insert into `concertDate` (
+    		concertDate,
+    		concertDateTime,
+    		defaultNy,
+    		concertAddress_seq,
+    		delNy
+    	) values (
+    		#{concertDate},
+    		#{concertDateTime},
+    		#{dateDefaultNy},
+    		#{concertAddressSeq},
+    		0
+    	)
+    </insert>
+   	
+    
+</mapper>

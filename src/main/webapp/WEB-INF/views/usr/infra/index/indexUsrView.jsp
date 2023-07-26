@@ -5,7 +5,7 @@
 <%@ taglib prefix="rb" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html lang="ko">
-<jsp:include page="../include/headSwiper.jsp"></jsp:include>
+<jsp:include page="../include/head.jsp"></jsp:include>
 <jsp:include page="../include/header.jsp"></jsp:include>
 	<main>
 		<div id="carousel-home">
@@ -26,267 +26,149 @@
         <div class="container margin_60">
 
 			<div class="main_title">
-				<h2>Concert <span>Top</span> news</h2>
+				<h2>Concert <span>Top</span> rank</h2>
 				<p>concert new desk</p>
 			</div>
-			<div id="tabs" class="tabs d-flex ">
-				<nav class="col-2 d-flex justify-content-center">
-					<ul class="col-12 d-flex flex-column">
-						<li><a href="#section-1" class="icon-booking"><span>전체</span></a>
-						</li>
-						<li><a href="#section-2" class="icon-wishlist"><span>발라드</span></a>
-						</li>
-<!-- 						<li><a href="#section-3" class="icon-settings"><span>락</span></a> -->
-<!-- 						</li> -->
-<!-- 						<li><a href="#section-3" class="icon-settings"><span>힙합</span></a> -->
-<!-- 						</li> -->
-<!-- 						<li><a href="#section-3" class="icon-settings"><span>재즈</span></a> -->
-						</li>
+			<div class="d-flex align-items-center">
+				<nav class="col-2 border text-center mt-0" id="rankTab">
+					<ul class="d-flex flex-column justify-content-around ps-0 mb-0" style="height: 300px;">
+						<li><span class="#list1">전체</span></li>
+						<li><span class="#list2">발라드</span></li>
+						<li><span class="#list3">락</span></li>
+						<li><span class="#list4">힙합</span></li>
+						<li><span class="#list5">재즈</span></li>
 					</ul>
 				</nav>
-				<div class="content">
-					<section id="section-1">
-						<div class="swiper mySwiper">
-						    <div class="swiper-wrapper">
-						      <div class="swiper-slide">
-							  	<div class="card" style="width: 100%;">
-			<!-- 	                	<div class="ribbon_3 popular"><span>1</span></div> -->
-								  <img src="/resources/concert/img/2023 성시경의 축가 콘서트.jpg" class="card-img-top" alt="...">
-								  <div class="card-body position-absolute bottom-0 border-0 bg-dark-subtle">
-								    <h5 class="card-title">성시경의 축가 콘서트</h5>
-								    <div class="card-text">
-								    	<p>기간</p>
-								    	<p>시간</p>
-								    	<p>장소</p>
-								    </div>
-								  </div>
-								</div>
-							  </div>
-							  <div class="swiper-slide">
-							  	<div class="card" style="width: 100%;">
-			<!-- 	                	<div class="ribbon_3 popular"><span>1</span></div> -->
-								  <img src="/resources/concert/img/구름아래소극장.jpg" class="card-img-top" alt="...">
-								  <div class="card-body position-absolute bottom-0 border-0 bg-dark-subtle">
-								    <h5 class="card-title">구름아래소극장</h5>
-								    <div class="card-text">
-								    	<p>기간</p>
-								    	<p>시간</p>
-								    	<p>장소</p>
-								    </div>
-								  </div>
-								</div>
-							  </div>
-							  <div class="swiper-slide">
-							  	<div class="card" style="width: 100%;">
-			<!-- 	                	<div class="ribbon_3 popular"><span>1</span></div> -->
-								  <img src="/resources/concert/img/소향씨어터신한카드홀.jpg" class="card-img-top" alt="...">
-								  <div class="card-body position-absolute bottom-0 border-0 bg-dark-subtle">
-								    <h5 class="card-title">소향씨어터신한카드홀</h5>
-								    <div class="card-text">
-								    	<p>기간</p>
-								    	<p>시간</p>
-								    	<p>장소</p>
-								    </div>
-								  </div>
-								</div>
-							  </div>
-							  <div class="swiper-slide">
-							  	<div class="card" style="width: 100%;">
-			<!-- 	                	<div class="ribbon_3 popular"><span>1</span></div> -->
-								  <img src="/resources/concert/img/한전아트센터.jpg" class="card-img-top" alt="...">
-								  <div class="card-body position-absolute bottom-0 border-0 bg-dark-subtle">
-								    <h5 class="card-title">한전아트센터</h5>
-								    <div class="card-text">
-								    	<p>기간</p>
-								    	<p>시간</p>
-								    	<p>장소</p>
-								    </div>
-								  </div>
-								</div>
-							  </div>
-							  <div class="swiper-slide">
-							  	<div class="card" style="width: 100%;">
-			<!-- 	                	<div class="ribbon_3 popular"><span>1</span></div> -->
-								  <img src="/resources/concert/img/2023 성시경의 축가 콘서트.jpg" class="card-img-top" alt="...">
-								  <div class="card-body position-absolute bottom-0 border-0 bg-dark-subtle">
-								    <h5 class="card-title">성시경의 축가 콘서트</h5>
-								    <div class="card-text">
-								    	<p>기간</p>
-								    	<p>시간</p>
-								    	<p>장소</p>
-								    </div>
-								  </div>
-								</div>
-							  </div>
-						    </div>
-						</div>
-					</section>
-					
-					
-					
-					<section id="section-3">
-						<div class="swiper mySwiper">
-						    <div class="swiper-wrapper">
-						      <div class="swiper-slide">
-							  	<div class="card" style="width: 100%;">
-			<!-- 	                	<div class="ribbon_3 popular"><span>1</span></div> -->
-								  <img src="/resources/concert/img/2023 성시경의 축가 콘서트.jpg" class="card-img-top" alt="...">
-								  <div class="card-body position-absolute bottom-0 border-0 bg-dark-subtle">
-								    <h5 class="card-title">성시경의 축가 콘서트</h5>
-								    <div class="card-text">
-								    	<p>기간</p>
-								    	<p>시간</p>
-								    	<p>장소</p>
-								    </div>
-								  </div>
-								</div>
-							  </div>
-							  <div class="swiper-slide">
-							  	<div class="card" style="width: 100%;">
-			<!-- 	                	<div class="ribbon_3 popular"><span>1</span></div> -->
-								  <img src="/resources/concert/img/구름아래소극장.jpg" class="card-img-top" alt="...">
-								  <div class="card-body position-absolute bottom-0 border-0 bg-dark-subtle">
-								    <h5 class="card-title">구름아래소극장</h5>
-								    <div class="card-text">
-								    	<p>기간</p>
-								    	<p>시간</p>
-								    	<p>장소</p>
-								    </div>
-								  </div>
-								</div>
-							  </div>
-							  <div class="swiper-slide">
-							  	<div class="card" style="width: 100%;">
-			<!-- 	                	<div class="ribbon_3 popular"><span>1</span></div> -->
-								  <img src="/resources/concert/img/소향씨어터신한카드홀.jpg" class="card-img-top" alt="...">
-								  <div class="card-body position-absolute bottom-0 border-0 bg-dark-subtle">
-								    <h5 class="card-title">소향씨어터신한카드홀</h5>
-								    <div class="card-text">
-								    	<p>기간</p>
-								    	<p>시간</p>
-								    	<p>장소</p>
-								    </div>
-								  </div>
-								</div>
-							  </div>
-							  <div class="swiper-slide">
-							  	<div class="card" style="width: 100%;">
-			<!-- 	                	<div class="ribbon_3 popular"><span>1</span></div> -->
-								  <img src="/resources/concert/img/한전아트센터.jpg" class="card-img-top" alt="...">
-								  <div class="card-body position-absolute bottom-0 border-0 bg-dark-subtle">
-								    <h5 class="card-title">한전아트센터</h5>
-								    <div class="card-text">
-								    	<p>기간</p>
-								    	<p>시간</p>
-								    	<p>장소</p>
-								    </div>
-								  </div>
-								</div>
-							  </div>
-							  <div class="swiper-slide">
-							  	<div class="card" style="width: 100%;">
-			<!-- 	                	<div class="ribbon_3 popular"><span>1</span></div> -->
-								  <img src="/resources/concert/img/2023 성시경의 축가 콘서트.jpg" class="card-img-top" alt="...">
-								  <div class="card-body position-absolute bottom-0 border-0 bg-dark-subtle">
-								    <h5 class="card-title">성시경의 축가 콘서트</h5>
-								    <div class="card-text">
-								    	<p>기간</p>
-								    	<p>시간</p>
-								    	<p>장소</p>
-								    </div>
-								  </div>
-								</div>
-							  </div>
-						    </div>
-						</div>
-					</section>
+				<div class="col-10 py-2 px-3 rankList" id="list1">
+					<div class="d-flex justify-content-around align-items-center overflow-hidden" style="width: 100%">
+						<div class="tour_container mb-0">
+                        	<div class="ribbon_3 popular"><span>1</span></div>
+                            <div class="positoin-relative">
+                                <img src="/resources/concert/img/2023 성시경의 축가 콘서트.jpg" alt="" class="img-fluid">
+                                <div class="position-absolute bottom-0 text-center p-2 d-none postTitle">
+                                    <span>2023 성시경의 축가 콘서트</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tour_container mb-0">
+                        	<div class="ribbon_3 popular"><span>2</span></div>
+                            <div class="positoin-relative">
+                                <img src="/resources/concert/img/2023 성시경의 축가 콘서트.jpg" alt="" class="img-fluid">
+                                <div class="position-absolute bottom-0 text-center p-2 d-none postTitle">
+                                    <span>2023 성시경의 축가 콘서트</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tour_container mb-0">
+                        	<div class="ribbon_3 popular"><span>3</span></div>
+                            <div class="positoin-relative">
+                                <img src="/resources/concert/img/2023 성시경의 축가 콘서트.jpg" alt="" class="img-fluid">
+                                <div class="position-absolute bottom-0 text-center p-2 d-none postTitle">
+                                    <span>2023 성시경의 축가 콘서트</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tour_container mb-0">
+                        	<div class="ribbon_3 popular"><span>4</span></div>
+                            <div class="positoin-relative">
+                                <img src="/resources/concert/img/2023 성시경의 축가 콘서트.jpg" alt="" class="img-fluid">
+                                <div class="position-absolute bottom-0 text-center p-2 d-none postTitle">
+                                    <span>2023 성시경의 축가 콘서트</span>
+                                </div>
+                            </div>
+                        </div>
+					</div>
 				</div>
+				<div class="col-10 py-2 px-3 d-none rankList" id="list2">
+					<div class="d-flex justify-content-around overflow-hidden" style="width: 100%">
+                        <div class="tour_container mb-0" style="width: 20%;">
+                        	<div class="ribbon_3 popular"><span>2</span></div>
+                            <div class="positoin-relative">
+                                <img src="/resources/concert/img/구름아래소극장.jpg" alt="" class="img-fluid" style="width: 100%; object-fit: cover;">
+                                <div class="position-absolute bottom-0 text-center p-2 d-none postTitle">
+                                    <span>2023 성시경의 축가 콘서트</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tour_container mb-0" style="width: 20%;">
+                        	<div class="ribbon_3 popular"><span>2</span></div>
+                            <div class="positoin-relative">
+                                <img src="/resources/concert/img/구름아래소극장.jpg" alt="" class="img-fluid" style="width: 100%; object-fit: cover;">
+                                <div class="position-absolute bottom-0 text-center p-2 d-none postTitle">
+                                    <span>2023 성시경의 축가 콘서트</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tour_container mb-0" style="width: 20%;">
+                        	<div class="ribbon_3 popular"><span>2</span></div>
+                            <div class="positoin-relative">
+                                <img src="/resources/concert/img/구름아래소극장.jpg" alt="" class="img-fluid" style="width: 100%; object-fit: cover;">
+                                <div class="position-absolute bottom-0 text-center p-2 d-none postTitle">
+                                    <span>2023 성시경의 축가 콘서트</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tour_container mb-0" style="width: 20%;">
+                        	<div class="ribbon_3 popular"><span>2</span></div>
+                            <div class="positoin-relative">
+                                <img src="/resources/concert/img/구름아래소극장.jpg" alt="" class="img-fluid" style="width: 100%; object-fit: cover;">
+                                <div class="position-absolute bottom-0 text-center p-2 d-none postTitle">
+                                    <span>2023 성시경의 축가 콘서트</span>
+                                </div>
+                            </div>
+                        </div>
+					</div>
+				</div>
+				
+				
 			</div>
 			<hr class="mt-5 mb-5">
 		</div>
 		<!-- End container -->
         <!-- rank --------------------------------------------------------------------------------------------------  -->
 		<div class="main_title">
-			<h2>Concert <span>Top</span> rank</h2>
+			<h2><span>New</span> Concert</h2>
 		</div>
 
-        <div class="white_bg">
-        <div class="container margin_60 rank">
-            <div class="row small-gutters categories_grid">
-				<div class="col-sm-12 col-md-6 tour_container">
-                	<div class="ribbon_3 popular"><span>1</span></div>
-                    <a href="all_tours_list.html">
-                        <img src="/resources/concert/img/img_cat_home_1.jpg" alt="" class="img-fluid">
-                        <div class="tour_title wrapper">
-                            <h2 class="text-light"><strong>Versailles</strong> tour</h2>
-                            <p class="rating">
-                            	<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><small>(75)</small>
-                            </p>
-	                        <!-- end rating -->
-                        </div>
-                    </a>
-                </div>
-                <div class="col-sm-12 col-md-6">
-                    <div class="row small-gutters mt-md-0 mt-sm-2">
-                        <div class="col-sm-6 tour_container">
-                        	<div class="ribbon_3 popular"><span>2</span></div>
-                            <a href="all_tours_list.html">
-                                <img src="/resources/concert/img/img_cat_home_2.jpg" alt="" class="img-fluid">
-                                <div class="wrapper">
-                                    <h2>Tours</h2>
-                                    <p class="rating">
-	                            		<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><small>(75)</small>
-		                            </p>
-			                        <!-- end rating -->
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-sm-6 tour_container">
-                        	<div class="ribbon_3 popular"><span>3</span></div>
-                            <a href="all_hotels_list.html">
-                                <img src="/resources/concert/img/img_cat_home_3.jpg" alt="" class="img-fluid">
-                                <div class="wrapper">
-                                    <h2>Hotels</h2>
-                                    <p class="rating">
-		                            	<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><small>(75)</small>
-		                            </p>
-			                        <!-- end rating -->
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-sm-6 mt-sm-2 tour_container">
-                        	<div class="ribbon_3 popular"><span>4</span></div>
-                            <a href="all_hotels_list.html">
-                                <img src="/resources/concert/img/img_cat_home_3.jpg" alt="" class="img-fluid">
-                                <div class="wrapper">
-                                    <h2>Hotels</h2>
-                                    <p class="rating">
-		                            	<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><small>(75)</small>
-		                            </p>
-			                        <!-- end rating -->
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-sm-6 mt-sm-2 tour_container">
-                        	<div class="ribbon_3 popular"><span>5</span></div>
-                            <a href="all_restaurants_list.html">
-                                <img src="/resources/concert/img/img_cat_home_3.jpg" alt="" class="img-fluid">
-                                <div class="wrapper">
-                                    <h2>Restaurants</h2>
-                                    <p class="rating">
-		                            	<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><small>(75)</small>
-		                            </p>
-			                        <!-- end rating -->
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--/categories_grid-->
-        </div>
-        <!-- /container -->
-        </div>
+<!--         <div class="white_bg"> -->
+<!--         <div class="container margin_60 rank"> -->
+<!--             <div class="d-flex justify-content-around overflow-hidden" style="width: 100%"> -->
+<!--                 <div class="tour_container mb-0" style="width: 20%;"> -->
+<!--                     <div class="positoin-relative"> -->
+<!--                         <img src="/resources/concert/img/구름아래소극장.jpg" alt="" class="img-fluid" style="width: 100%; object-fit: cover;"> -->
+<!--                         <div class="position-absolute bottom-0 text-center p-2 d-none postTitle"> -->
+<!--                             <span>2023 성시경의 축가 콘서트</span> -->
+<!--                         </div> -->
+<!--                     </div> -->
+<!--                 </div> -->
+<!--                 <div class="tour_container mb-0" style="width: 20%;"> -->
+<!--                     <div class="positoin-relative"> -->
+<!--                         <img src="/resources/concert/img/구름아래소극장.jpg" alt="" class="img-fluid" style="width: 100%; object-fit: cover;"> -->
+<!--                         <div class="position-absolute bottom-0 text-center p-2 d-none postTitle"> -->
+<!--                             <span>2023 성시경의 축가 콘서트</span> -->
+<!--                         </div> -->
+<!--                     </div> -->
+<!--                 </div> -->
+<!--                 <div class="tour_container mb-0" style="width: 20%;"> -->
+<!--                     <div class="positoin-relative"> -->
+<!--                         <img src="/resources/concert/img/구름아래소극장.jpg" alt="" class="img-fluid" style="width: 100%; object-fit: cover;"> -->
+<!--                         <div class="position-absolute bottom-0 text-center p-2 d-none postTitle"> -->
+<!--                             <span>2023 성시경의 축가 콘서트</span> -->
+<!--                         </div> -->
+<!--                     </div> -->
+<!--                 </div> -->
+<!--                 <div class="tour_container mb-0" style="width: 20%;"> -->
+<!--                     <div class="positoin-relative"> -->
+<!--                         <img src="/resources/concert/img/구름아래소극장.jpg" alt="" class="img-fluid" style="width: 100%; object-fit: cover;"> -->
+<!--                         <div class="position-absolute bottom-0 text-center p-2 d-none postTitle"> -->
+<!--                             <span>2023 성시경의 축가 콘서트</span> -->
+<!--                         </div> -->
+<!--                     </div> -->
+<!--                 </div> -->
+<!-- 			</div> -->
+<!--         </div> -->
+<!--         /container -->
+<!--         </div> -->
         <!-- /white_bg -->
         
         
@@ -298,11 +180,17 @@
 	<jsp:include page="../include/modal.jsp"></jsp:include>
 	<jsp:include page="../include/script.jsp"></jsp:include>
 	<jsp:include page="../include/validation.jsp"></jsp:include>
-	<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-	<script src="/resources/concert/js/tabs.js"></script>
 	<script>
 	
-		new CBPFWTabs(document.getElementById('tabs'));
+		var swiper = new Swiper(".mySwiper", {
+		      slidesPerView: 4,
+		      spaceBetween: 30,
+		      pagination: {
+		        el: ".swiper-pagination",
+		        clickable: true,
+		      },
+	  });
+		
 		$("#tabs li a").on("click", function(){
 			$("#tabs li a").removeClass("bg-info");
 			$(this).addClass("bg-info");
@@ -325,7 +213,7 @@
 	 		  keyboard: true,
 	 		  backdrop: "static"
 	 		})
-	 	$("#loginModal").on("click", function(){
+	 	$(".loginModal").on("click", function(){
 	 		$("#myModal").find("h1").text("로그인");
 	 		//$("#myModal").find(".modal-body").text("삭제하시겠습니까");
 	 		$("#myModal").find(".modal-body").empty();
@@ -373,14 +261,20 @@
 // 			$("form[name=singupForm]").attr("action", "/indexUsrView").submit();
 	 	})
 	 	
- 	  var swiper = new Swiper(".mySwiper", {
-	      slidesPerView: 4,
-	      spaceBetween: 30,
-	      pagination: {
-	        el: ".swiper-pagination",
-	        clickable: true,
-	      },
-    });
+// 		$(".tour_container").hover(function(){
+// 			$(this).find(".postTitle").toggleClass("d-none");
+// 		})
+		
+		$("#rankTab span").on("click", function(){
+			var target = "";
+			target = $(this).prop('class');
+			targetHref = target.slice(-6);
+			$(".rankList").addClass("d-none");
+			$(targetHref).removeClass("d-none");
+			$("#rankTab span").parent().removeClass("text-primary");
+			$(this).parent().addClass("text-primary");
+			
+		})
 	 	
 	 	
 

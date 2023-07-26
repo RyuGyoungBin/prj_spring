@@ -21,6 +21,7 @@
 	<!-- CUSTOM CSS -->
 	<link href="/resources/concert/css/custom.css" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <jsp:include page="../include/calendarCss.jsp"></jsp:include>
   <style>
   	li {
   		list-style:none;
@@ -70,38 +71,7 @@
 		<div class="col-5 light p-5 text-center">
 			<section class="text-center mb-3">
 			    <!-- 달력 Start -->
-			    <div id="wrapper">
-			        <span id="day" style="display: none;"></span>
-			        <span id="date" style="display: none;"></span>
-			        <span id="month" class="h4"></span>
-				</div>
-				<div id="calendar-wrapper" class="d-flex justify-content-around align-items-center">
-					<div id="prev" class="button-wrapper col-1">
-						<button type="button" id="prev-button" class="calbtn">
-							<i class="bi bi-caret-left-fill"></i>
-						</button>
-					</div>
-					<div id="table-wrapper">
-						<h3 id="week"></h3>
-						<table id="calendar-table">
-							<thead>
-								<tr>
-									<th>SUN</th>
-									<th>MON</th>
-									<th>TUE</th>
-									<th>WED</th>
-									<th>THU</th>
-									<th>FRI</th>
-									<th>SAT</th>
-								</tr>
-							</thead>
-						</table>
-					</div>
-					<div id="next" class="button-wrapper col-1">
-						<button type="button" id="next-button" class="calbtn">
-						<i class="bi bi-caret-right-fill"></i>
-					</div>
-				</div>
+			    <div class="calendar-wrapper" id="calendar-wrapper"></div>
 				<!-- 달력 End -->
 			</section>
 			<div>
@@ -168,65 +138,9 @@
 		</div>
 	</div>
 	<jsp:include page="../include/script.jsp"></jsp:include>
+	<jsp:include page="../include/calendarScript.jsp"></jsp:include>
 	<script>
-		const $calendarTable = document.querySelector("#calendar-table");
-		let today = new Date();
-		const DATE = new Date();
-		const WEEK = new Array("SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT");
-		const $day = document.querySelector("#day");
-		const $date = document.querySelector("#date");
-		const MONTH = new Array("JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC");
-		const $month = document.querySelector("#month");
-		const tbody = document.createElement("tbody");
-		$calendarTable.append(tbody);
-	
-		const $prevButton = document.querySelector("#prev-button");
-		$prevButton.addEventListener("click",handlePrevMonthClick);
-		const $nextButton = document.querySelector("#next-button");
-		$nextButton.addEventListener("click",handleNextMonthClick);
-	
-		createCal();
-	
-		function createCal() {
-		  $day.textContent = WEEK[today.getDay()];
-		  $date.textContent = today.getDate();
-		  $month.textContent = `${MONTH[today.getMonth()]} ${today.getFullYear()}`;
-	
-		  const firstDate = new Date(today.getFullYear(),today.getMonth(),1);
-		  const lastDate = new Date(today.getFullYear(),today.getMonth()+1,0);
-	
-		  while(tbody.rows.length > 0){
-		    tbody.deleteRow(tbody.rows.length-1);
-		  }
-		  let row = tbody.insertRow();
-		  let cell = "";
-		  let count = 0;
-	
-		  for(let i = 0; i<firstDate.getDay();i++){
-		    console.log(i);
-		    cell = row.insertCell();
-		    count++;
-		  }
-		  for(let j = 1;j<=lastDate.getDate();j++){
-		    if(count % 7 === 0){
-		      row = tbody.insertRow();
-		    }
-		    cell = row.insertCell();
-		    cell.textContent = j;
-		    count++;
-		  }
-	
-		}
-	
-		function handleNextMonthClick() {
-		  today = new Date(today.getFullYear(),today.getMonth() + 1,today.getDate());
-		  createCal();
-		}
-	
-		function handlePrevMonthClick(){
-		  today = new Date(today.getFullYear(),today.getMonth() - 1,today.getDate());
-		  createCal();
-		}
+		
 	</script>
 </body>
 </html>

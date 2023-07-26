@@ -33,6 +33,7 @@
 	
 	<!-- CUSTOM CSS -->
 	<link href="/resources/concert/css/custom.css" rel="stylesheet">
+	<jsp:include page="../include/calendarCss.jsp"></jsp:include>
 	<style>
 		ul#top_tools a {
 		    color: #000;
@@ -94,40 +95,8 @@
 				<div class="col-5 light">
 					<section class="text-center mb-3">
 					    <!-- 달력 Start -->
-					    <div id="wrapper">
-					        <span id="day" style="display: none;"></span>
-					        <span id="date" style="display: none;"></span>
-					        <span id="month" class=""></span>
-					      </div>
-					      <div id="calendar-wrapper" class="d-flex justify-content-around align-items-center">
-					        <div id="prev" class="button-wrapper col-1">
-					          <button type="button" id="prev-button" class="calbtn">
-					            <i class="bi bi-caret-left-fill"></i>
-					          </button>
-					        </div>
-					        <div id="table-wrapper">
-						        <h3 id="week"></h3>
-						        <table id="calendar-table">
-						          <thead>
-						          <tr>
-						            <th>SUN</th>
-						            <th>MON</th>
-						            <th>TUE</th>
-						            <th>WED</th>
-						            <th>THU</th>
-						            <th>FRI</th>
-						            <th>SAT</th>
-						          </tr>
-						          </thead>
-						        </table>
-					        </div>
-				        	<div id="next" class="button-wrapper col-1">
-					          <button type="button" id="next-button" class="calbtn">
-					            <i class="bi bi-caret-right-fill"></i>
-					          </button>
-				          	</div>
-				        </div>
-				    <!-- 달력 End -->
+					    <div class="calendar-wrapper" id="calendar-wrapper"></div>
+				    	<!-- 달력 End -->
 				  </section>
 				  <div>
 				  	<ul class="d-flex justify-content-center p-0 mb-3">
@@ -153,7 +122,14 @@
 						</div>
 					</div>
 					<div class=text-center>
-						<button type="button" class="btn btn-secondary" style="min-width:80px;">예매</button>
+					<c:choose>
+						<c:when test="${empty sessionId }">
+							<a class="btn btn-secondary loginModal" style="min-width:80px;" target=”_blank”>예매</a>
+						</c:when>
+						<c:otherwise>
+							<a class="btn btn-secondary" style="min-width:80px;" target=”_blank” href="/concertUsrTicketDate">예매</a>
+						</c:otherwise>
+					</c:choose>
 					</div>
 				</div>
 			</div>
@@ -256,69 +232,10 @@
 	<jsp:include page="../include/script.jsp"></jsp:include>
 	<jsp:include page="../include/validation.jsp"></jsp:include>
 	<script src="/resources/concert/js/tabs.js"></script>
+	<jsp:include page="../include/calendarScript.jsp"></jsp:include>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2793b1acd7ab778b17a809cbd8ebc3ea"></script>
     <!-- Specific scripts -->
 	<script>
-		const $calendarTable = document.querySelector("#calendar-table");
-		let today = new Date();
-		const DATE = new Date();
-		const WEEK = new Array("SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT");
-		const $day = document.querySelector("#day");
-		const $date = document.querySelector("#date");
-		const MONTH = new Array("JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC");
-		const $month = document.querySelector("#month");
-		const tbody = document.createElement("tbody");
-		$calendarTable.append(tbody);
-	
-		const $prevButton = document.querySelector("#prev-button");
-		$prevButton.addEventListener("click",handlePrevMonthClick);
-		const $nextButton = document.querySelector("#next-button");
-		$nextButton.addEventListener("click",handleNextMonthClick);
-	
-		createCal();
-	
-		function createCal() {
-		  $day.textContent = WEEK[today.getDay()];
-		  $date.textContent = today.getDate();
-		  $month.textContent = MONTH[today.getMonth()] + " " +today.getFullYear();
-	
-		  const firstDate = new Date(today.getFullYear(),today.getMonth(),1);
-		  const lastDate = new Date(today.getFullYear(),today.getMonth()+1,0);
-	
-		  while(tbody.rows.length > 0){
-		    tbody.deleteRow(tbody.rows.length-1);
-		  }
-		  let row = tbody.insertRow();
-		  let cell = "";
-		  let count = 0;
-	
-		  for(let i = 0; i<firstDate.getDay();i++){
-		    console.log(i);
-		    cell = row.insertCell();
-		    count++;
-		  }
-		  for(let j = 1;j<=lastDate.getDate();j++){
-		    if(count % 7 === 0){
-		      row = tbody.insertRow();
-		    }
-		    cell = row.insertCell();
-		    cell.textContent = j;
-		    count++;
-		  }
-	
-		}
-	
-		function handleNextMonthClick() {
-		  today = new Date(today.getFullYear(),today.getMonth() + 1,today.getDate());
-		  createCal();
-		}
-	
-		function handlePrevMonthClick(){
-		  today = new Date(today.getFullYear(),today.getMonth() - 1,today.getDate());
-		  createCal();
-		}
-		
-		$("td").addClass("disable rounded-pill");
 		
 		new CBPFWTabs(document.getElementById('tabs'));
 
@@ -326,6 +243,20 @@
 		  keyboard: true,
 		  backdrop: "static"
 		})
+	
+	$(".loginModal").on("click", function(){
+		$("#myModal").find("h1").text("로그인");
+		$("#myModal").find(".modal-body").empty();
+		$("#myModal").find(".modal-body").append('<form><div class="form-group"><label>ID</label><input type="text" class=" form-control " placeholder="Id" name="id" id="id" value="test1"></div><div class="form-group"><label>Password</label><input type="password" class=" form-control" placeholder="Password" id="password" name="password" value="Test123!"></div><p class="small"><a href="#">Forgot Password?</a></p><a href="#" class="btn_full" id="singinBtn">Sign in</a><a href="/signupUsrForm " class="btn_full_outline">Register</a></form>');
+		$("#modalOk").remove();
+		$("#modalClose").remove();
+		
+	 	myModal.show();
+		
+	})
+	
+	
+	
 	$("#concertAddress").on("click", function(){
 		$("#myModal").find("h1").text("연세대학교 노천극장");
 		//$("#myModal").find(".modal-body").text("삭제하시겠습니까");
@@ -337,7 +268,7 @@
 	 	myModal.show();
 		
 	})
-	
+
 	
 	
 	
@@ -363,7 +294,7 @@
 			,success: function(response) {
 				if(response.rt == "success") {
 					alert(response.rtMember.name);
-					location.href = "/indexUsrView";
+					location.href = "/concertUsrDetail";
 				} else {
 					alert("그런 회원 없습니다.");
 				}
@@ -383,6 +314,9 @@
 			};
 		var map = new kakao.maps.Map(container, options);
 	})
+	
+
+	
 		
 	
 	</script>

@@ -66,7 +66,7 @@
 			                            		<li><strong><a href="/mymenuUsrView" class="dropdown-item">mymenu</a></strong></li>
 	                                		</c:when>
 	                                		<c:otherwise>
-			                                    <li><strong><a class="dropdown-item" id="loginModal">login</a></strong></li>
+			                                    <li><strong><a class="dropdown-item loginModal">login</a></strong></li>
 			                                    <li><strong><a href="/signupUsrForm" class="dropdown-item">sinup</a></strong></li>
 	                                		</c:otherwise>
 	                                	</c:choose>

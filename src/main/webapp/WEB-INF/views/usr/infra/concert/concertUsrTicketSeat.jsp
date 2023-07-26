@@ -109,7 +109,7 @@
 		</div>
 		<div class="d-flex p-5 justify-content-center">
 			<div class="col-6 d-flex flex-column align-items-center">
-				<div class="border d-flex justify-content-center align-items-center mb-3" style="width:160px; height:80px;">스크린</div>
+				<div class="border d-flex justify-content-center align-items-center mb-3" style="width:160px; height:80px;">무대</div>
 				<div class="seatContainer position-relative mb-3">
 		            <div class="row">
 		                <div class="seatR disable">a1</div>

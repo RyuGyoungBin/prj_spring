@@ -103,11 +103,10 @@
 		  keyboard: true,
 		  backdrop: "static"
 		})
-	$("#loginModal").on("click", function(){
+	$(".loginModal").on("click", function(){
 		$("#myModal").find("h1").text("로그인");
-		//$("#myModal").find(".modal-body").text("삭제하시겠습니까");
 		$("#myModal").find(".modal-body").empty();
-		$("#myModal").find(".modal-body").append('<form><div class="form-group"><label>ID</label><input type="text" class=" form-control " placeholder="Id" name="id" id="id" value="abcde"></div><div class="form-group"><label>Password</label><input type="password" class=" form-control" placeholder="Password" id="password" name="password" value="Qwer123!"></div><p class="small"><a href="#">Forgot Password?</a></p><a href="#" class="btn_full" id="singinBtn">Sign in</a><a href="/signupUsrForm " class="btn_full_outline">Register</a></form>');
+		$("#myModal").find(".modal-body").append('<form><div class="form-group"><label>ID</label><input type="text" class=" form-control " placeholder="Id" name="id" id="id" value="test1"></div><div class="form-group"><label>Password</label><input type="password" class=" form-control" placeholder="Password" id="password" name="password" value="Test123!"></div><p class="small"><a href="#">Forgot Password?</a></p><a href="#" class="btn_full" id="singinBtn">Sign in</a><a href="/signupUsrForm " class="btn_full_outline">Register</a></form>');
 		$("#modalOk").remove();
 		$("#modalClose").remove();
 		
@@ -139,7 +138,7 @@
 			,success: function(response) {
 				if(response.rt == "success") {
 					alert(response.rtMember.name);
-					location.href = "/indexUsrView";
+					location.href = "/concertUsrMain";
 				} else {
 					alert("그런 회원 없습니다.");
 				}
