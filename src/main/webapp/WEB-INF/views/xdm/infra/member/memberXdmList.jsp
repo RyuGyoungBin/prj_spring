@@ -189,6 +189,7 @@
 					</div>
 					<div class="col text-end">
 						<button type="button" class="btn btn-success btn-sm" id="excel"><i class="bi bi-file-earmark-excel"></i></button>
+						<button type="button" class="btn btn-primary btn-sm" id="plus" onclick = "location.href = '/memberXdmForm'">+</button>
 					</div>
 				</div>
           </div>

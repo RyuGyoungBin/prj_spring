@@ -46,11 +46,11 @@ public class ConcertController {
 	@RequestMapping("/concertXdmForm")
 	public String concertXdmForm(ConcertVo vo, Model model) {
 		Concert item = service.selectOne(vo);
-		model.addAttribute("concertList", item);
+		model.addAttribute("list", item);
 		return"xdm/infra/concert/concertXdmForm";
 	}
 	
-	@RequestMapping("/concertInsert")
+	@RequestMapping("/concertXdmInsert")
 	public String concertInsert(Concert dto) {
 		service.insertConcert(dto);
 		return "redirect:/concertXdmList";

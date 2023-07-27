@@ -225,6 +225,8 @@
   <jsp:include page="../include/footer.jsp"></jsp:include>
   <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
   <jsp:include page="../include/validation.jsp"></jsp:include>
+  <script src="/resources/common/commonXdm.js"></script>
+  <script src="/resources/common/ConstantsXdm.js"></script>
   	<script>
   	
 	var objEmailDomain = $("#emailDomain");

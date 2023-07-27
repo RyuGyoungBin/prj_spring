@@ -31,6 +31,8 @@ public class ConcertServiceImpl implements ConcertService {
 		dao.insertConcert(dto);
 		dao.insertConcertAddress(dto);
 		dao.insertConcertDate(dto);
+		dao.insertConcertCasting(dto);
+		dao.insertConcertCastingGroup(dto);
 		return 0;
 	}
 

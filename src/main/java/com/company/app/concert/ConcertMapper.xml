@@ -10,9 +10,10 @@
    		FROM    
 	    	concert a
 	    	LEFT JOIN concertAddress b on b.concert_seq = a.seq 
-    		LEFT JOIN concertDate c on c.concertAddress_seq = b.seq  
+    		LEFT JOIN concertDate c on c.concertAddress_seq = b.seq
+    		LEFT JOIN concertCastingGroup d on d.concert_seq = a.seq
 		WHERE 1=1
-			<if test="seq != null and !seq.equals('')">AND seq = #{seq}</if>
+			<if test="seq != null and !seq.equals('')">AND a.seq = #{seq}</if>
     </sql>
     <sql id="selectConcert">
     	a.seq,
@@ -23,11 +24,18 @@
    		a.defaultNy,
    		a.memberSeq,
    		b.concertZipCode,
-   		b.concertSido,
    		b.concertAddress,
    		b.concertAddressDetail,
 		c.concertDate,
-		c.concertDateTime
+		c.concertDateTime,
+		(SELECT
+			e.name
+		FROM
+			concertCasting e
+		WHERE 1=1
+			AND e.seq = d.concertCasting_seq
+		) as name
+		
 	</sql>
 
 
@@ -46,7 +54,13 @@
    	<select id="selectOne" resultMap="resultMapObj">
 	   		SELECT
     		<include refid="selectConcert" />
-	    	<include refid="selectCommon" />
+    	FROM    
+	    	concert a
+	    	LEFT JOIN concertAddress b on b.concert_seq = a.seq 
+    		LEFT JOIN concertDate c on c.concertAddress_seq = b.seq
+    		LEFT JOIN concertCastingGroup d on d.concert_seq = a.seq
+		WHERE 1=1
+			AND a.seq = #{seq}
    	</select>
    	
    	<insert id="insertConcert">
@@ -58,7 +72,7 @@
 			defaultNy,
 			memberSeq
     	) values(
-    		#{concertType}
+    		#{concertType},
     		#{concertTitle},
     		#{concertDetailText},
     		0,
@@ -72,20 +86,18 @@
     <insert id="insertConcertAddress">
     	insert into `concertAddress` (
     		concertZipCode,
-    		concertSido,
     		concertAddress,
     		concertAddressDetail,
     		concert_seq,
     		delNy
     	) values (
     		#{concertZipCode},
-    		#{concertSido},
     		#{concertAddress},
-    		#{concderAddressDetail},
+    		#{concertAddressDetail},
     		#{seq},
     		0
     	)
-    	<selectKey resultType="String" keyProperty="concertAddressSeq" order="AFTER">
+    	<selectKey resultType="String" keyProperty="concertAddress_seq" order="AFTER">
 			SELECT last_insert_id()
 		 </selectKey>
     </insert>
@@ -95,16 +107,35 @@
     		concertDate,
     		concertDateTime,
     		defaultNy,
-    		concertAddress_seq,
-    		delNy
+    		concertAddress_seq
     	) values (
     		#{concertDate},
     		#{concertDateTime},
     		#{dateDefaultNy},
-    		#{concertAddressSeq},
-    		0
+    		#{concertAddress_seq}
     	)
     </insert>
+    <insert id="insertConcertCasting">
+    	insert into `concertCasting` (
+    		name
+    	) values (
+    		#{name}
+    	)
+    	<selectKey resultType="String" keyProperty="concertCasting_seq" order="AFTER">
+			SELECT last_insert_id()
+		 </selectKey>
+    </insert>
+    <insert id="insertConcertCastingGroup">
+    	insert into `concertCastingGroup` (
+    		concert_seq,
+    		concertCasting_seq
+    	) values (
+    		#{seq},
+    		#{concertCasting_seq}
+    	)
+    </insert>
+   	<update id="updateConcert">
    	
+   	</update>
     
 </mapper>

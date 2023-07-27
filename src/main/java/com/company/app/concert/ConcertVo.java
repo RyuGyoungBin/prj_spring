@@ -25,6 +25,7 @@ public class ConcertVo {
 //	concertDate
 	private String concertDate;
 	private String concertDateTime;
+	private Integer dateDefaultNy;
 	private String concertAddress_seq;
 //	concertTicket
 	private String ticketDate;
@@ -67,8 +68,15 @@ public class ConcertVo {
 
 	private int startRnumForMysql = 0;							// 쿼리 시작 row
 //	-----
+	
 	public String getSeq() {
 		return seq;
+	}
+	public Integer getDateDefaultNy() {
+		return dateDefaultNy;
+	}
+	public void setDateDefaultNy(Integer dateDefaultNy) {
+		this.dateDefaultNy = dateDefaultNy;
 	}
 	public void setSeq(String seq) {
 		this.seq = seq;

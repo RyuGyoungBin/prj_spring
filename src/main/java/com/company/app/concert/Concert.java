@@ -25,6 +25,7 @@ public class Concert {
 //	concertDate
 	private String concertDate;
 	private String concertDateTime;
+	private Integer dateDefaultNy;
 	private String concertAddress_seq;
 //	concertTicket
 	private String ticketDate;
@@ -48,6 +49,13 @@ public class Concert {
 	private String ext;
 	private String size;
 	private String pseq;
+	
+	public Integer getDateDefaultNy() {
+		return dateDefaultNy;
+	}
+	public void setDateDefaultNy(Integer dateDefaultNy) {
+		this.dateDefaultNy = dateDefaultNy;
+	}
 	public String getSeq() {
 		return seq;
 	}

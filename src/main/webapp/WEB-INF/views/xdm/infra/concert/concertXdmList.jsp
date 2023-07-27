@@ -89,7 +89,9 @@
 					
 		                  	<c:otherwise>
 		              <!-- Table with stripped rows -->
-		              <table class="table table-striped">
+		              <div class="overflow-hidden overflow-x-auto">
+		              
+		              <table class="table table-striped text-nowrap">
 		                <thead>
 		                  <tr>
 		                  	<th scope="col"><input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="0" aria-label="..." name="tabel_check"></th>
@@ -101,11 +103,11 @@
 		                    <th>defaultNy</th>
 		                    <th>memberSeq</th>
 		                    <th>concertZipCode</th>
-		                    <th>concertSido</th>
 		                    <th>concertAddress</th>
 		                    <th>concertAddressDetail</th>
 		                    <th>concertDate</th>
 		                    <th>concertDateTime</th>
+		                    <th>name</th>
 		                  </tr>
 		                </thead>
 		                <tbody>
@@ -114,6 +116,7 @@
 				                  	<th scope="col">
 										<input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="0" aria-label="..." name="tabel_check">
 									</th>
+									<td><c:out value="${list.seq }"></c:out></td>
 				                    <td><c:out value="${list.concertType }"></c:out></td>
   				                    <td><a href="/concertXdmForm?seq=<c:out value="${list.seq }"></c:out>"><c:out value="${list.concertTitle }"></c:out></a></td>
 				                    <td><c:out value="${list.concertDetailText }"></c:out></td>
@@ -121,15 +124,16 @@
 				                   <td><c:out value="${list.defaultNy}"></c:out></td>
 				                   <td><c:out value="${list.memberSeq}"></c:out></td>
 				                   <td><c:out value="${list.concertZipCode}"></c:out></td>
-				                   <td><c:out value="${list.concertSido}"></c:out></td>
 				                   <td><c:out value="${list.concertAddress}"></c:out></td>
 				                   <td><c:out value="${list.concertAddressDetail}"></c:out></td>
 				                   <td><c:out value="${list.concertDate}"></c:out></td>
 				                   <td><c:out value="${list.concertDateTime}"></c:out></td>
+				                   <td><c:out value="${list.name}"></c:out></td>
 			                 	</tr>
 							</c:forEach>
 		                </tbody>
 		              </table>
+					</div>
 					</c:otherwise>
 				</c:choose>
               <!-- End Table with stripped rows -->
