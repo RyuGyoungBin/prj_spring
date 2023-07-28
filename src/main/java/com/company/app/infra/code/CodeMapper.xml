@@ -9,6 +9,7 @@
     <sql id="abc">
 		seq,
    		name,
+   		nameKor,
    		delNy,
    		codeNum,
    		codeGroup_seq
@@ -32,6 +33,7 @@
 	   		SELECT
 				seq,
 				name,
+				nameKor,
 				codeNum,
 				codeGroup_seq,
 				(SELECT
@@ -49,6 +51,7 @@
     	SELECT
     		seq,
     		name,
+    		nameKor,
     		codeNum,
     		codeGroup_seq,
 			delNy    		
@@ -63,6 +66,7 @@
     		code
 		SET 
 			name = #{name},
+			nameKor = #{nameKor},
 			codeNum = #{codeNum},
 			delNy= #{delNy},
 			codeGroup_seq= #{codeGroup_seq}
@@ -82,11 +86,13 @@
     <insert id="insert">
 	    insert into `code` (
 			name,
+			nameKor,
 			delNy,
 			codeGroup_seq,
 			codeNum
 		) values (
 			#{name}
+			,#{nameKor}
 			, 0
 			,#{codeGroup_seq}
 			,#{codeNum}
@@ -106,6 +112,7 @@
 		SELECT
 			seq,
 			name,
+			nameKor,
 			codeGroup_seq,
 			(SELECT
 				b.name
@@ -124,6 +131,7 @@
 		SELECT
 			seq,
 			name,
+			nameKor,
 			codeGroup_seq,
 			(SELECT
 				b.name
@@ -144,6 +152,7 @@
 		SELECT
 			seq,
 			name,
+			nameKor,
 			codeGroup_seq,
 			codeNum
 		FROM

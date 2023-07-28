@@ -14,12 +14,12 @@ import com.company.app.infra.member.MemberVo;
 
 @Controller
 public class IndexController {
-	
+
 	@Autowired
 	CodeGroupServiceImpl service;
 	@Autowired
 	MemberServiceImpl memberService;
-	
+
 	@RequestMapping("/biographyUsrView")
 	public String biographyUsrView() {
 		return "usr/infra/biography/biographyUsrView";
@@ -63,10 +63,10 @@ public class IndexController {
 		memberService.updateMember(dto);
 		return "redirect:/informationUsrForm";
 	}
-	
-	
-	
-	
-	
+
+
+
+
+
 
 }

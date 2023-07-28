@@ -49,7 +49,7 @@ public class Concert {
 	private String ext;
 	private String size;
 	private String pseq;
-	
+
 	public Integer getDateDefaultNy() {
 		return dateDefaultNy;
 	}
@@ -284,10 +284,10 @@ public class Concert {
 	public void setPseq(String pseq) {
 		this.pseq = pseq;
 	}
-	
+
 //	----------------------
-	
-	
-	
-	
+
+
+
+
 }

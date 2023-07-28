@@ -15,12 +15,13 @@ public class MemberDao {
 	@Resource(name = "sqlSession")
 	private SqlSession sqlSession;
 	private static String namespace = "com.company.app.infra.member.MemberMapper";
-	
+
 	public int selectOneCount(MemberVo vo){ return sqlSession.selectOne(namespace + ".selectOneCount", vo); }
 	public List<Member> selectList(MemberVo vo){return sqlSession.selectList(namespace +".selectList", vo);}
 	public List<Member> selectListPhone(MemberVo vo){
 		return sqlSession.selectList(namespace +".selectListPhone", vo);
 	}
+	public List<Member> selectUploaded(MemberVo vo){return sqlSession.selectList(namespace +".selectUploaded", vo);}
 	public int insertMember(Member dto) {
 		return sqlSession.insert(namespace+".insertMember", dto);
 	}
@@ -57,7 +58,7 @@ public class MemberDao {
 	public Member selectIdXdm(MemberVo vo) {
 		return sqlSession.selectOne(namespace + ".selectIdXdm", vo);
 	}
-	
+
 	public int deleteMember(Member dto) {
 		return sqlSession.delete(namespace+".deleteMember", dto);
 	}
@@ -67,4 +68,6 @@ public class MemberDao {
 	public int deleteMemberPhone(Member dto) {
 		return sqlSession.delete(namespace+".deleteMemberPhone", dto);
 	}
+
+	public int insertUploaded(Member dto) { return sqlSession.insert(namespace + ".insertUploaded", dto); }
 }

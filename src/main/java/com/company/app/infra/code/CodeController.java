@@ -19,27 +19,27 @@ public class CodeController {
 	CodeService codeservice;
 	@Autowired
 	CodeGroupServiceImpl service;
-	
+
 	@RequestMapping(value = "/codeXdmList")
 	public String codeXdmLIst(@ModelAttribute("vo") CodeVo vo, CodeGroupVo groupVo, Model model) {
-		
+
 		vo.setShkey(vo.getShkey() == null ? "": vo.getShkey());
 
 		vo.setParamsPaging(codeservice.selectOneCount(vo));
-		
+
 		if(vo.getTotalRows() > 0) {
 			List<Code> list = codeservice.selectList(vo);
 			model.addAttribute("list", list);
 		} else {
 //			by pass
 		}
-		
+
 		List<CodeGroup> groupList = service.selectList(groupVo);
 		model.addAttribute("groupList", groupList);
 //		model.addAttribute("vo", vo);
 		return "xdm/infra/code/codeXdmList";
 	}
-	
+
 	@RequestMapping(value = "/codeXdmForm")
 	public String codeXdmForm(CodeVo vo, CodeGroupVo groupVo, Model model) {
 		Code code = codeservice.selectOne(vo);
@@ -51,33 +51,33 @@ public class CodeController {
 
 	@RequestMapping(value = "/codeXdmDelete")
 	public String codeXdmDelete(Code dto) {
-		
+
 		codeservice.delete(dto);
-		
+
 		return "redirect:/codeXdmList";
 	}
 	@RequestMapping(value = "/codeXdmUpdate")
 	public String codeXdmUpdate(Code dto) {
-		
+
 		codeservice.update(dto);
-		
+
 		return "redirect:/codeXdmList";
 	}
 	@RequestMapping(value = "/codeXdmInsert")
 	public String codeXdmInsert(Code dto) {
-		
+
 		codeservice.insert(dto);
-		
+
 		return "redirect:/codeXdmList";
 	}
 	@RequestMapping(value = "/codeXdmDelNy")
 	public String codeXdmDelNy(Code dto) {
-		
+
 		codeservice.updateDel(dto);
-		
+
 		return "redirect:/codeXdmList";
 	}
 
-	
-	
+
+
 }

@@ -259,10 +259,6 @@
 		
 	 $("#concert").addClass("active");
 	
-	 
-
-	
-	
 </script>
 
 </body>

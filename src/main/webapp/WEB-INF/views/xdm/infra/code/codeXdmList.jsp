@@ -104,6 +104,7 @@
 							</th>
 		                    <th>seq</th>
 		                    <th>name</th>
+		                    <th>nameKor</th>
 		                    <th>codeNum</th>
 		                    <th>codeGroup_seq</th>
 		                    <th>codeGroup_name</th>
@@ -118,6 +119,7 @@
 									</th>
 				                    <td scope="row"><c:out value="${list.seq }"></c:out></td>
 				                   <td><a href="/codeXdmForm?seq=<c:out value="${list.seq }"></c:out>"><c:out value="${list.name }"></c:out></a></td>
+				                   <td><c:out value="${list.nameKor}"></c:out></td>
 				                   <td><c:out value="${list.codeNum}"></c:out></td>
 				                   <td><c:out value="${list.codeGroup_seq}"></c:out></td>
 				                   <td><c:out value="${list.groupname}"></c:out></td>

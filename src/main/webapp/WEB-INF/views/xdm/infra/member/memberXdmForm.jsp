@@ -73,7 +73,7 @@
 	                </div>
 	                <div class=" col-5 mb-3">
 	                  	<label for="id" class=" col-form-label">id</label>
-                    	<input type="text" class="form-control" name="id" id="id" value="<c:out value="${list.id }"></c:out>" readonly>
+                    	<input type="text" class="form-control" name="id" id="id" value="<c:out value="${list.id }"></c:out>">
 	                </div>
 	                <div class=" col-5 mb-3">
 	                  	<label for="emailDomain" class=" col-form-label">email</label>
@@ -100,8 +100,10 @@
                     	<input type="text" class="form-control" name="dob" id="dob" value="<c:out value="${list.dob }"></c:out>">
 	                </div>
 	                <div class=" col-5 mb-3">
+	                	<input class="form-check-input phone" type="radio" value="1" name="phoneMarkArray" checked>
+                       	<input name="phoneMarkArray" class="phoneMarkHidden" type="hidden" value="0">
 	                  	<label for="dob" class=" col-form-label">Phone</label>
-                    	<input type="text" class="form-control" name="number" id="phone" value="<c:out value="${list.number }"></c:out>">
+                    	<input type="text" class="form-control" name="numberArray" id="phone" value="<c:out value="${list.number }"></c:out>">
 	                </div>
 	                <div class=" col-5 mb-3">
 	                  	<label for="dob" class=" col-form-label">member type</label>
@@ -191,7 +193,7 @@
 					<c:when test="${empty param.seq }">
 						<div class="d-flex justify-content-between my-5 text-center">
 							<div class="col-2">
-								<button id="btnList" type="button" class="btn btn-secondary" onclick = "location.href = '/codeXdmList'"><i class="bi bi-list"></i></button>
+								<button id="btnList" type="button" class="btn btn-secondary" onclick = "location.href = '/memberXdmList'"><i class="bi bi-list"></i></button>
 							</div>
 							<div class="col-2">
 								<button id="btnInsert" type="button" class="btn btn-success">save</button>
@@ -226,7 +228,7 @@
   <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
   <jsp:include page="../include/validation.jsp"></jsp:include>
   <script src="/resources/common/commonXdm.js"></script>
-  <script src="/resources/common/ConstantsXdm.js"></script>
+  <script src="/resources/common/imgconstantsXdm.js"></script>
   	<script>
   	
 	var objEmailDomain = $("#emailDomain");
@@ -291,8 +293,11 @@
 	            }
 	        }).open();
 	    }
+		$("#btnInsert").on("click", function(){
+			if(validationInst() == false) return false;
+			$("form[name=form]").attr("action", "/memberinsert").submit();
+		})
 		$("#btnUpdate").on("click", function(){
-			console.log("dasf");
 			if(validationUpdt() == false) return false;
 			$("form[name=form]").attr("action", "/memberupdate").submit();
 		})

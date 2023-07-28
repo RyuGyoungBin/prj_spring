@@ -1,9 +1,9 @@
 
-	var reqId =  /^[a-zA-Z0-9]{2,10}$/;
+	var reqId =  /^[a-zA-Z0-9]{2,20}$/;
 	
-	var reqKor = /^[ㄱ-ㅎ가-힣]{2,5}$/;
+	var reqKor = /^[ㄱ-ㅎ가-힣]{2,10}$/;
 	
-	var reqEng = /^[a-zA-Z]{2,10}$/;
+	var reqEng = /^[a-zA-Z]{2,20}$/;
 	
 	var reqEmailAccount = /^[\a-z\.-]+\.[a-z\.]{2,6}$/;
 	
@@ -17,11 +17,27 @@
 
 	check = function(obj){
 		if(reqEng.test($.trim(obj.val())) == false) {
-			alert("공백없는 대소문자(2,10)만 입력 가능합니다.");
+			obj.addClass("border-danger");
+			obj.siblings(".validation").remove();
+			obj.parent().append("<div class='p-2 text-danger validation'>공백없는 대소문자(2,20)만 입력 가능합니다.</div>");
 			obj.focus();
 			return false;
 		} else {
-			
+			obj.removeClass("border-danger");
+			obj.siblings(".validation").remove();
+		}
+	}
+	
+	checkKor = function(obj){
+		if(reqKor.test($.trim(obj.val())) == false) {
+			obj.addClass("border-danger");
+			obj.siblings(".validation").remove();
+			obj.parent().append("<div class='p-2 text-danger validation'>공백없는 한글(2,20)만 입력 가능합니다.</div>");
+			obj.focus();
+			return false;
+		} else {
+			obj.removeClass("border-danger");
+			obj.siblings(".validation").remove();
 		}
 	}
 	
@@ -29,7 +45,7 @@
 		if(reqId.test($.trim(obj.val())) == false) {
 			obj.addClass("border-danger");
 			obj.siblings(".validation").remove();
-			obj.parent().append("<div class='p-2 text-danger validation'>공백없는 대소문자(2,10)만 입력 가능합니다.</div>");
+			obj.parent().append("<div class='p-2 text-danger validation'>공백없는 대소문자 또는 숫자(2,20)만 입력 가능합니다.</div>");
 			obj.focus();
 			return false;
 		} else {

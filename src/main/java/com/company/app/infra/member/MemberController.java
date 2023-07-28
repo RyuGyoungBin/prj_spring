@@ -34,7 +34,7 @@ public class MemberController {
 	}
 
 	@RequestMapping("/memberinsert")
-	public String memberinsert(Member dto) {
+	public String memberinsert(Member dto) throws Exception {
 		System.out.println("123");
 		service.insertMember(dto);
 		return "redirect:/indexUsrView";
@@ -43,7 +43,9 @@ public class MemberController {
 	@RequestMapping("/memberXdmForm")
 	public String memberXdmForm(MemberVo vo, Model model) {
 		Member member = service.selectOne(vo);
+		List<Member> list = service.selectUploaded(vo);
 		model.addAttribute("list", member);
+		model.addAttribute("listUploaded", list);
 //		List<Member> list = service.selectListPhone(vo);
 //		model.addAttribute("listPhone", list);
 		return "xdm/infra/member/memberXdmForm";
@@ -70,7 +72,7 @@ public class MemberController {
 	@ResponseBody
 	@RequestMapping("/loginUsrProc")
 	public Map<String, Object> loginUsrProc(MemberVo vo, HttpSession httpSession) {
-		Map<String, Object> returnMap = new HashMap<String, Object>();
+		Map<String, Object> returnMap = new HashMap<>();
 
 		Member rtMember = service.selectId(vo);
 		if (rtMember != null) {
@@ -92,7 +94,7 @@ public class MemberController {
 	@ResponseBody
 	@RequestMapping("/loginXdmProc")
 	public Map<String, Object> loginXdmProc(MemberVo vo, HttpSession httpSession) {
-		Map<String, Object> returnMap = new HashMap<String, Object>();
+		Map<String, Object> returnMap = new HashMap<>();
 
 		Member rtMember = service.selectIdXdm(vo);
 		if (rtMember != null) {
@@ -115,7 +117,7 @@ public class MemberController {
 	@ResponseBody
 	@RequestMapping("/UsridProc")
 	public Map<String, Object> UsridProc(MemberVo vo) {
-		Map<String, Object> returnMap = new HashMap<String, Object>();
+		Map<String, Object> returnMap = new HashMap<>();
 
 		int rtMember = service.selectOneCount(vo);
 
@@ -131,7 +133,7 @@ public class MemberController {
 	@ResponseBody
 	@RequestMapping("/logoutProc")
 	public Map<String, Object> logoutProc(HttpSession httpSession) {
-		Map<String, Object> returnMap = new HashMap<String, Object>();
+		Map<String, Object> returnMap = new HashMap<>();
 		System.out.println(httpSession.getAttribute("sessionId"));
 		httpSession.invalidate();
 		returnMap.put("rt", "success");

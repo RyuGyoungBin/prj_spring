@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CodeServiceImpl implements CodeService {
-	
+
 	@Autowired
 	CodeDao dao;
 
@@ -62,19 +62,19 @@ public class CodeServiceImpl implements CodeService {
 	// cache
 		@PostConstruct
 		public void selectListCachedCodeArrayList() throws Exception {
-			List<Code> codeListFromDb = (ArrayList<Code>) dao.selectListCachedCodeArrayList();
-			codeListFromDb = (ArrayList<Code>) dao.selectListCachedCodeArrayList();
+			List<Code> codeListFromDb = dao.selectListCachedCodeArrayList();
+			codeListFromDb = dao.selectListCachedCodeArrayList();
 			Code.cachedCodeArrayList.clear();
 			Code.cachedCodeArrayList.addAll(codeListFromDb);
 			System.out.println("cachedCodeArrayList:" + Code.cachedCodeArrayList.size() + "cached!") ;
 		}
-		
+
 		public static void clear() throws Exception {
 			Code.cachedCodeArrayList.clear();
 		}
-		
+
 		public static List<Code> selectListCachedCode(String codeGroup_seq) throws Exception {
-			List<Code> rt = new ArrayList<Code>();
+			List<Code> rt = new ArrayList<>();
 			for(Code codeRow : Code.cachedCodeArrayList) {
 				if(codeRow.getCodeGroup_seq().equals(codeGroup_seq)) {
 					rt.add(codeRow);
@@ -84,7 +84,7 @@ public class CodeServiceImpl implements CodeService {
 			}
 			return rt;
 		}
-		
+
 		public static String selectOneCachedCode(int code) throws Exception{
 			String rt = "";
 			for(Code codeRow : Code.cachedCodeArrayList) {
@@ -96,6 +96,6 @@ public class CodeServiceImpl implements CodeService {
 			}
 			return rt;
 		}
-		
-		
+
+
 }

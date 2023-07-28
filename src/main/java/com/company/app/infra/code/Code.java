@@ -7,13 +7,20 @@ public class Code {
 
 	private String seq;
 	private String name;
+	private String nameKor;
 	private String codeGroup_seq;
 	private String delNy;
 	private String groupname;
 	private Integer codeNum;
-	
-	public static List<Code> cachedCodeArrayList = new ArrayList<Code>();
-	
+
+	public static List<Code> cachedCodeArrayList = new ArrayList<>();
+
+	public String getNameKor() {
+		return nameKor;
+	}
+	public void setNameKor(String nameKor) {
+		this.nameKor = nameKor;
+	}
 	public String getSeq() {
 		return seq;
 	}
@@ -56,6 +63,6 @@ public class Code {
 	public void setCodeNum(Integer codeNum) {
 		this.codeNum = codeNum;
 	}
-	
-	
+
+
 }

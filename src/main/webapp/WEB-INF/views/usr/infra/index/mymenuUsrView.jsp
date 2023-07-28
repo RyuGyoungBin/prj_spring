@@ -137,7 +137,7 @@
 
 						<div class="strip_booking">
 							<div class="text-end mb-3">
-								<button type="button" class="btn btn-secondary">등록</button>
+								<button type="button" class="btn btn-secondary" onclick="location.href='/concertUsrRegistration'">등록</button>
 							</div>
 							<div class="row">
 								<div class="col-lg-4 col-md-4 position-relative">

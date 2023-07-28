@@ -37,6 +37,10 @@
                     	<input type="text" class="form-control" name="name" id="name" value="<c:out value="${list.name }"></c:out>">
 	                </div>
 	                <div class=" col-5 mb-3">
+	                  	<label for="nameKor" class=" col-form-label">nameKor</label>
+                    	<input type="text" class="form-control" name="nameKor" id="nameKor" value="<c:out value="${list.nameKor }"></c:out>">
+	                </div>
+	                <div class=" col-5 mb-3">
 	                  	<label for="name" class=" col-form-label">codeNum</label>
                     	<input type="text" class="form-control" name="codeNum" id="codeNum" value="<c:out value="${list.codeNum }"></c:out>">
 	                </div>
@@ -95,9 +99,11 @@
   	<script>
   	
   	var objName = $("#name");
+  	var objNameKor = $("#nameKor");
   	
   	validationUpdt = function(){
-		if(check(objName) == false) return false;
+  		if(check(objName) == false) return false;
+  		if(checkKor(objNameKor) == false) return false;
 		
 	}
 	

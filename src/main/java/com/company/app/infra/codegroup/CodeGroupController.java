@@ -13,25 +13,25 @@ public class CodeGroupController {
 
 	@Autowired
 	CodeGroupServiceImpl service;
-	
+
 	@RequestMapping(value = "/codeGroupXdmList")
 	public String codeGroupXdmList(@ModelAttribute("vo") CodeGroupVo vo, Model model) {
 		vo.setShkey(vo.getShkey() == null ? "": vo.getShkey());
 		vo.setParamsPaging(service.selectOneCount(vo));
-		
+
 		if(vo.getTotalRows()>0) {
 			List<CodeGroup> list = service.selectList(vo);
 			model.addAttribute("list", list);
 		}else {
 //			by pass
 		}
-	    return "xdm/infra/codegroup/codeGroupXdmList"; 
+	    return "xdm/infra/codegroup/codeGroupXdmList";
 	}
-	
+
 //	vo.setCGshkey(vo.getCGshkey() == null ? "": vo.getCGshkey());
 //	List<CodeGroup> list = service.selectList(vo);
 //	model.addAttribute("list", list);
-//    return "xdm/infra/codegroup/codeGroupXdmList"; 
+//    return "xdm/infra/codegroup/codeGroupXdmList";
 	@RequestMapping(value = "/codeGroupXdmForm")
 	public String codeGroupXdmForm(CodeGroupVo vo, Model model) {
 		CodeGroup codegroup = service.selectOne(vo);
@@ -40,17 +40,17 @@ public class CodeGroupController {
 	}
 	@RequestMapping(value = "/codeGroupXdmDelete")
 	public String concertDelete(CodeGroup dto) {
-		
+
 		service.delete(dto);
-		
+
 		return "redirect:/codeGroupXdmList";
 	}
-	
+
 	@RequestMapping(value = "/codeGroupXdmUpdate")
 	public String concertUpdate(CodeGroup dto) {
-		
+
 		service.update(dto);
-		
+
 		return "redirect:/codeGroupXdmList";
 	}
 	@RequestMapping(value = "/codeGroupXdmInsert")

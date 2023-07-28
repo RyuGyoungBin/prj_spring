@@ -55,6 +55,15 @@
 		) aa
 		LIMIT #{rowNumToShow} OFFSET #{startRnumForMysql}	   			
    	</select>
+   	<select id="selectUploaded" resultMap="resultMapObj">
+    	SELECT
+    		*
+    	FROM
+    		memberUploaded
+		WHERE 1=1
+	    	AND pseq = #{seq}
+	    	
+    </select>
    	
    	<select id="selectListPhone" resultMap="resultMapObj">
    		SELECT
@@ -147,6 +156,8 @@
     
     </insert>
     
+    
+    
     <select id="selectOne" resultMap="resultMapObj">
     	SELECT
     		<include refid="selectMember" />
@@ -154,6 +165,7 @@
     		member a
 	    	LEFT JOIN memberAddress b on b.member_seq = a.seq 
     		LEFT JOIN memberPhone c on c.member_seq = a.seq AND c.defaultNy = 1
+    		
 		WHERE 1=1
 			<if test="name != null and !name.equals('')">AND name LIKE CONCAT('%',#{name},'%')</if>
 			<if test="gender != null and !gender.equals('')">AND gender LIKE CONCAT('%',#{gender},'%')</if>
@@ -281,5 +293,30 @@
     	WHERE
     		member_seq = #{seq}
     </delete>
-    
+    <!-- uploaded s -->
+	<insert id="insertUploaded">
+		INSERT INTO ${tableName} (
+			type
+			,defaultNy
+			,sort
+			,path
+			,originalName
+			,uuidName
+			,ext
+			,size
+			,delNy
+			,pseq
+		) values (
+			#{type}
+			,#{defaultNy}
+			,#{sort}
+			,#{path}
+			,#{originalName}
+			,#{uuidName}
+			,#{ext}
+			,#{size}
+			,0
+			,#{seq}
+		)
+	</insert>
 </mapper>

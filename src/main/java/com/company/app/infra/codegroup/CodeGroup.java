@@ -2,11 +2,11 @@ package com.company.app.infra.codegroup;
 
 public class CodeGroup {
 
-	
+
 //	디비 컬럼명 첫글자는 소문자
 //	seq는 편의상 디비에는 int지만 자바에서는 String으로 사용된다
 //	주로 테이블의 칼럼명과 일치
-	
+
 	private String seq;
 	private String name;
 	private String delNy;
@@ -29,5 +29,5 @@ public class CodeGroup {
 	public void setDelNy(String delNy) {
 		this.delNy = delNy;
 	}
-	
+
 }

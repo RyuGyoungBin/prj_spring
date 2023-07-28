@@ -26,14 +26,14 @@ public class Member {
 	private String member_seq;
 	private String number;
 	private String phoneMark;
-	
+
 //	phoneArray
 	private String[] phoneMarkArray;
 	private String[] numberArray;
 	private String[] delNyArray;
 //	uploaded
 	private String tableName;
-	
+
 	private Integer type;
 	private Integer sort;
 	private String path;
@@ -42,21 +42,21 @@ public class Member {
 	private String ext;
 	private long size;
 	private String pseq;
-	
+
 	private MultipartFile[] uploadImg;
-	private Integer uploadImgType;	
+	private Integer uploadImgType;
 	private Integer uploadImgMaxNumber;
 	private String[] uploadImgDeleteSeq;
 	private String[] uploadImgDeletePathFile;
-	
+
 	private MultipartFile[] uploadImgProfile;
-	private Integer uploadImgProfileType;	
+	private Integer uploadImgProfileType;
 	private Integer uploadImgProfileMaxNumber;
 	private String[] uploadImgProfileDeleteSeq;
 	private String[] uploadImgProfileDeletePathFile;
-	
+
 	private MultipartFile[] uploadFile;
-	private Integer uploadFileType;	
+	private Integer uploadFileType;
 	private Integer uploadFileMaxNumber;
 	private String[] uploadFileDeleteSeq;
 	private String[] uploadFileDeletePathFile;
@@ -151,7 +151,7 @@ public class Member {
 	public void setDelNy(String delNy) {
 		this.delNy = delNy;
 	}
-	
+
 	public Integer getMemberType() {
 		return memberType;
 	}
@@ -362,8 +362,8 @@ public class Member {
 	public void setUploadFileDeletePathFile(String[] uploadFileDeletePathFile) {
 		this.uploadFileDeletePathFile = uploadFileDeletePathFile;
 	}
-	
-	
-	
-	
+
+
+
+
 }

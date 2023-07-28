@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ConcertServiceImpl implements ConcertService {
-	
+
 	@Autowired
 	ConcertDao dao;
 
@@ -20,7 +20,7 @@ public class ConcertServiceImpl implements ConcertService {
 	public List<Concert> selectList(ConcertVo vo) {
 		return dao.selectList(vo);
 	}
-	
+
 	@Override
 	public Concert selectOne(ConcertVo vo) {
 		return dao.selectOne(vo);
