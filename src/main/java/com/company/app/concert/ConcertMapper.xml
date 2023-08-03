@@ -34,7 +34,9 @@
 			concertCasting e
 		WHERE 1=1
 			AND e.seq = d.concertCasting_seq
-		) as name
+		) as name,
+		c.seq as concertDateSeq
+		
 		
 	</sql>
 
@@ -61,6 +63,49 @@
     		LEFT JOIN concertCastingGroup d on d.concert_seq = a.seq
 		WHERE 1=1
 			AND a.seq = #{seq}
+   	</select>
+   	<select id="selectSeatCount" resultType="Integer">
+   		SELECT
+   			count(*)
+   		FROM
+   			concertAddressSeat
+   		WHERE 1=1
+   			AND concertDate_seq = #{concertDateSeq}
+   	</select>
+   	<select id="selectSeat" resultMap="resultMapObj">
+   		SELECT
+   			*
+   		FROM
+   			concertAddressSeat
+   		WHERE 1=1
+   			AND concertDate_seq = #{concertDateSeq}
+   	</select>
+   	<select id="selectTicket" resultMap="resultMapObj">
+   		SELECT
+   			seq,
+   			delNy,
+   			ticketDate,
+   			ticketDateRe,
+   			memberSeq,
+   			concertAddressSeat_seq
+   		FROM
+   			concertTicket
+   		WHERE 1=1
+   	</select>
+   	<select id="selectReview" resultMap="resultMapObj">
+   		SELECT
+   			seq,
+   			content,
+   			concertGrade,
+   			concertReviewDate,
+   			defaultNy,
+   			delNy,
+   			memberSeq,
+   			concertDate_seq,
+   			concertTicket_seq
+   		FROM
+   			concertReview
+   		WHERE 1=1
    	</select>
    	
    	<insert id="insertConcert">
@@ -134,8 +179,31 @@
     		#{concertCasting_seq}
     	)
     </insert>
-   	<update id="updateConcert">
+    <!-- uploaded s -->
+	<insert id="insertUploaded">
+		INSERT INTO ${tableName} (
+			type
+			,defaultNy
+			,sort
+			,path
+			,originalName
+			,uuidName
+			,ext
+			,size
+			,delNy
+			,pseq
+		) values (
+			#{type}
+			,#{defaultNy}
+			,#{sort}
+			,#{path}
+			,#{originalName}
+			,#{uuidName}
+			,#{ext}
+			,#{size}
+			,0
+			,#{seq}
+		)
+	</insert>
    	
-   	</update>
-    
 </mapper>

@@ -23,6 +23,7 @@ public class ConcertVo {
 	private Integer seatRankPrice;
 	private String concertDate_seq;
 //	concertDate
+	private String concertDateSeq;
 	private String concertDate;
 	private String concertDateTime;
 	private Integer dateDefaultNy;
@@ -71,6 +72,12 @@ public class ConcertVo {
 
 	public String getSeq() {
 		return seq;
+	}
+	public String getConcertDateSeq() {
+		return concertDateSeq;
+	}
+	public void setConcertDateSeq(String concertDateSeq) {
+		this.concertDateSeq = concertDateSeq;
 	}
 	public Integer getDateDefaultNy() {
 		return dateDefaultNy;

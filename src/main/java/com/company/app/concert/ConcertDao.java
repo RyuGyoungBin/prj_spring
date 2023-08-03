@@ -19,6 +19,8 @@ public class ConcertDao {
 
 	public int selectOneCount(ConcertVo vo){ return sqlSession.selectOne(namespace + ".selectOneCount", vo); }
 	public List<Concert> selectList(ConcertVo vo){return sqlSession.selectList(namespace +".selectList", vo);}
+	public int selectSeatCount(ConcertVo vo){ return sqlSession.selectOne(namespace + ".selectSeatCount", vo); }
+	public List<Concert> selectSeat(ConcertVo vo){return sqlSession.selectList(namespace +".selectSeat", vo);}
 	public Concert selectOne(ConcertVo vo) {return sqlSession.selectOne(namespace + ".selectOne", vo);}
 
 	public int insertConcert(Concert dto) {return sqlSession.insert(namespace+".insertConcert", dto);}
@@ -26,6 +28,6 @@ public class ConcertDao {
 	public int insertConcertDate(Concert dto) {return sqlSession.insert(namespace+".insertConcertDate", dto);}
 	public int insertConcertCasting(Concert dto) {return sqlSession.insert(namespace+".insertConcertCasting", dto);}
 	public int insertConcertCastingGroup(Concert dto) {return sqlSession.insert(namespace+".insertConcertCastingGroup", dto);}
-
+	public int insertUploaded(Concert dto) { return sqlSession.insert(namespace + ".insertUploaded", dto); }
 
 }

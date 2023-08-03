@@ -33,6 +33,7 @@
 		<interceptor>
 			<mapping path="/**"/>
 			<exclude-mapping path="/resources/**" />
+			<exclude-mapping path="/rest/**" />
 			<exclude-mapping path="/" />
 			<exclude-mapping path="/**Xdm**" />
 			<exclude-mapping path="/**insert**" />
@@ -47,10 +48,14 @@
 			<exclude-mapping path="/signupUsrForm" />
 			<exclude-mapping path="/concertUsrMain" />
 			<exclude-mapping path="/concertUsrDetail" />
+			<exclude-mapping path="/publicCorona1List" />
+			
 			<beans:bean id="checkLoginSessionInterception" class="com.company.app.common.interceptor.CheckLoginSessionInterception"/>
 		</interceptor>
 		<interceptor>
 			<mapping path="/**"/>
+			<exclude-mapping path="/publicCorona1List" />
+			<exclude-mapping path="/rest/**" />
 			<exclude-mapping path="/resources/**" />
 			<exclude-mapping path="/" />
 			<exclude-mapping path="/**Usr**" />
