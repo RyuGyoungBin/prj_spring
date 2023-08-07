@@ -209,11 +209,6 @@
 			<version>1.4</version>
 		</dependency>
 		<!-- fileupload e 2022.03.30 -->
-		<dependency>
-			<groupId>prj_spring_TagMatch</groupId>
-			<artifactId>prj_spring_TagMatch</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
 	</dependencies>
     <build>
         <plugins>

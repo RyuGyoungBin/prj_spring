@@ -119,7 +119,7 @@
 									</th>
 									<td><c:out value="${list.seq }"></c:out></td>
 				                    <td><c:out value="${list.concertType }"></c:out></td>
-  				                    <td><a href="/concertXdmForm?seq=<c:out value="${list.seq }"></c:out>"><c:out value="${list.concertTitle }"></c:out></a></td>
+  				                    <td><a href="/concertXdmForm?seq=<c:out value="${list.seq }"></c:out>&concertDateSeq=<c:out value="${list.concertDateSeq}"></c:out>"><c:out value="${list.concertTitle }"></c:out></a></td>
 				                    <td><c:out value="${list.concertDetailText }"></c:out></td>
 				                   <td><c:out value="${list.defaultNy}"></c:out></td>
 				                   <td><c:out value="${list.delNy}"></c:out></td>
@@ -127,7 +127,10 @@
 				                   <td><c:out value="${list.concertZipCode}"></c:out></td>
 				                   <td><c:out value="${list.concertAddress}"></c:out></td>
 				                   <td><c:out value="${list.concertAddressDetail}"></c:out></td>
-				                   <td><c:out value="${list.concertDate}"></c:out></td>
+				                   <td>
+				                   		<input type="hidden" value="<c:out value="${list.concertDateSeq}"></c:out>">
+				                   		<c:out value="${list.concertDate}"></c:out>
+				                   </td>
 				                   <td><c:out value="${list.concertDateTime}"></c:out></td>
 				                   <td><c:out value="${list.name}"></c:out></td>
 				                   	<td>
@@ -267,13 +270,13 @@
 	 $(document).on("click", ".seatView", function(){
 		 	var objSeq = $(this).next();
 		 	console.log(objSeq.val());
-			
+			alert("asdfasdf");
 	 		$.ajax({
 	 			async: true 
 	 			,cache: false
 	 			,type: "post"
 	 			/* ,dataType:"json" */
-	 			,url: "/seatView"
+	 			,url: "/seatXdmView"
 	 			/* ,data : $("#formLogin").serialize() */
 	 			,data : { "concertDate_seq" : objSeq.val()}
 	 			,success: function(response) {

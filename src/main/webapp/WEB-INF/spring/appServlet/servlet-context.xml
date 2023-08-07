@@ -29,6 +29,7 @@
 	</beans:bean>
 	<!-- fileUpload e 2022.03.30 -->
 	<!-- session interceptor s 2023.07.18 for logincheck -->
+	
 	<interceptors>
 		<interceptor>
 			<mapping path="/**"/>
@@ -70,6 +71,7 @@
 			<beans:bean id="CheckLoginXdmInterception" class="com.company.app.common.interceptor.CheckLoginXdmInterception"/>
 		</interceptor>
 	</interceptors>	
+	
 	<!-- session interceptor e 2023.07.18 for logincheck -->
 	
 	<context:component-scan base-package="com.company.app"/>

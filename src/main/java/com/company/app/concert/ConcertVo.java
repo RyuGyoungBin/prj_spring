@@ -28,6 +28,8 @@ public class ConcertVo {
 	private String concertDateTime;
 	private Integer dateDefaultNy;
 	private String concertAddress_seq;
+	private String concertDateMax;
+	private String concertDateMin;
 //	concertTicket
 	private String ticketDate;
 	private String ticketDateRe;
@@ -72,6 +74,18 @@ public class ConcertVo {
 
 	public String getSeq() {
 		return seq;
+	}
+	public String getConcertDateMax() {
+		return concertDateMax;
+	}
+	public void setConcertDateMax(String concertDateMax) {
+		this.concertDateMax = concertDateMax;
+	}
+	public String getConcertDateMin() {
+		return concertDateMin;
+	}
+	public void setConcertDateMin(String concertDateMin) {
+		this.concertDateMin = concertDateMin;
 	}
 	public String getConcertDateSeq() {
 		return concertDateSeq;

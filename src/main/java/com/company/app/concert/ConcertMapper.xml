@@ -14,6 +14,7 @@
     		LEFT JOIN concertCastingGroup d on d.concert_seq = a.seq
 		WHERE 1=1
 			<if test="seq != null and !seq.equals('')">AND a.seq = #{seq}</if>
+			<if test="concertType != null and !concertType.equals('')">AND a.concertType = #{concertType}</if>
     </sql>
     <sql id="selectConcert">
     	a.seq,
@@ -63,6 +64,48 @@
     		LEFT JOIN concertCastingGroup d on d.concert_seq = a.seq
 		WHERE 1=1
 			AND a.seq = #{seq}
+			AND c.seq = #{concertDateSeq}
+   	</select>
+   	<select id="selectConcertList" resultMap="resultMapObj">
+   		SELECT
+   			a.seq,
+   			a.concertType,
+   			a.concertTitle,
+   			(SELECT
+   				MIN(d.concertDate)
+   			FROM
+   				concertDate d
+   			WHERE 1=1
+   				AND d.concertAddress_Seq = b.seq
+   			) as concertDateMin,
+   			(SELECT
+   				MAX(d.concertDate)
+   			FROM
+   				concertDate d
+   			WHERE 1=1
+   				AND d.concertAddress_Seq = b.seq
+   			) as concertDateMax,
+   			(SELECT
+				e.name
+			FROM
+				concertCasting e
+			WHERE 1=1
+				AND e.seq = d.concertCasting_seq
+			) as name,
+			b.concertAddress,
+			b.concertAddressDetail,
+			e.type,
+			e.path,
+			e.originalName,
+			e.uuidName
+   		FROM
+   			concert a
+   			LEFT JOIN concertAddress b on b.concert_seq = a.seq 
+   			LEFT JOIN concertCastingGroup d on d.concert_seq = a.seq
+   			LEFT JOIN concertUploaded e on e.pseq = a.seq
+   		WHERE 1=1
+   			<if test="concertType != null and !concertType.equals('')">AND a.concertType = #{concertType}</if>
+   			AND e.type = 1
    	</select>
    	<select id="selectSeatCount" resultType="Integer">
    		SELECT
@@ -107,6 +150,15 @@
    			concertReview
    		WHERE 1=1
    	</select>
+   	<select id="selectUploaded" resultMap="resultMapObj">
+    	SELECT
+    		*
+    	FROM
+    		concertUploaded
+		WHERE 1=1
+	    	AND pseq = #{seq}
+	    	
+    </select>
    	
    	<insert id="insertConcert">
     	insert into `concert` (

@@ -50,23 +50,29 @@
 							</tr>
 						</thead>
 						<tbody class="border-bottom">
+							<c:forEach items="${concertList}" var="list" varStatus="status">
 							<tr>
 								<th class="py-3 border-end">
-									<img src="/resources/concert/img/2023 성시경의 축가 콘서트.jpg" class="card-img-center" alt="...">
+								<c:set var="type" value="1"/>		<!-- #-> -->
+					        	<c:set var="name" value="uploadImgProfile"/>		<!-- #-> -->
+									<c:if test="${list.type eq type }">
+										<img id="<c:out value="${name }"/>Preview" src="<c:out value="${list.path }"/><c:out value="${list.uuidName }"/>" class="card-img-center" style="width:194px; height:259px;">
+									</c:if>
 								</th>
 								<th>
-									<span><a href="/concertUsrDetail">2023 성시경의 축가 콘서트</a></span>
+									<span><a href="/concertUsrDetail"><c:out value="${list.concertTitle }"></c:out></a></span>
 								</th>
 								<th>
-									<span>연세대학교 노천극장</span>
+									<span><c:out value="${list.concertAddress }"></c:out>  <c:out value="${list.concertAddressDetail }"></c:out></span>
 								</th>
 								<th>
-									<span>2023/07/12 - 2023/07/18</span>
+									<span><c:out value="${list.concertDateMin }"></c:out> - <c:out value="${list.concertDateMax }"></c:out></span>
 								</th>
 								<th>
-									<span>성시경</span>
+									<span><c:out value="${list.name }"></c:out></span>
 								</th>
 							</tr>
+							</c:forEach>
 						</tbody>
 					</table>
 				</div>

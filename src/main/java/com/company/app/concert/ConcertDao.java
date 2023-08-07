@@ -22,6 +22,8 @@ public class ConcertDao {
 	public int selectSeatCount(ConcertVo vo){ return sqlSession.selectOne(namespace + ".selectSeatCount", vo); }
 	public List<Concert> selectSeat(ConcertVo vo){return sqlSession.selectList(namespace +".selectSeat", vo);}
 	public Concert selectOne(ConcertVo vo) {return sqlSession.selectOne(namespace + ".selectOne", vo);}
+	public List<Concert> selectUploaded(ConcertVo vo){return sqlSession.selectList(namespace +".selectUploaded", vo);}
+	public List<Concert> selectConcertList(ConcertVo vo){return sqlSession.selectList(namespace + ".selectConcertList", vo);}
 
 	public int insertConcert(Concert dto) {return sqlSession.insert(namespace+".insertConcert", dto);}
 	public int insertConcertAddress(Concert dto) {return sqlSession.insert(namespace+".insertConcertAddress", dto);}

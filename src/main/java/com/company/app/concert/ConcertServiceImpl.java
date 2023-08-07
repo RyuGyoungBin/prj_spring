@@ -34,6 +34,12 @@ public class ConcertServiceImpl implements ConcertService {
 	public List<Concert> selectSeat(ConcertVo vo) {return dao.selectSeat(vo);}
 	
 	@Override
+	public List<Concert> selectUploaded(ConcertVo vo) {return dao.selectUploaded(vo);}
+
+	@Override
+	public List<Concert> selectConcertList(ConcertVo vo) {return dao.selectConcertList(vo);}
+	
+	@Override
 	public int insertConcert(Concert dto) throws Exception {
 		dao.insertConcert(dto);
 		dao.insertConcertAddress(dto);
@@ -95,6 +101,8 @@ public class ConcertServiceImpl implements ConcertService {
     		}
 		}
 	}
+
+
 
 
 

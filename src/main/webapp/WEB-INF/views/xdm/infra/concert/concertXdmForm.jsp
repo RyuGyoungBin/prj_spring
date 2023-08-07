@@ -26,7 +26,7 @@
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Datatables</h5>
-			  <form name="form" method="post">
+			  <form name="form" method="post" autocomplete="off" enctype="multipart/form-data">
 			  	<div class="d-flex flex-wrap justify-content-around">
 	                <div class=" col-5 mb-3">
 	                  	<label for="seq" class=" col-form-label" >seq</label>

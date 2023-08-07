@@ -4,8 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,15 +11,26 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.company.app.infra.code.Code;
+import com.company.app.infra.code.CodeServiceImpl;
+import com.company.app.infra.code.CodeVo;
+
 
 @Controller
 public class ConcertController {
 
 	@Autowired
 	ConcertServiceImpl service;
+	@Autowired
+	CodeServiceImpl codeService;
 
 	@RequestMapping("/concertUsrMain")
-	public String concertMain() {
+	public String concertMain(ConcertVo vo, CodeVo codeVo, Model model) {
+		List<Concert> list = service.selectConcertList(vo);
+		List<Concert> uploaded = service.selectUploaded(vo);
+		List<Code> codeList = codeService.selectList(codeVo);
+		model.addAttribute("concertList", list);
+		model.addAttribute("listUploaded", uploaded);
 		return"usr/infra/concert/concert";
 	}
 	@RequestMapping("/concertUsrDetail")
@@ -51,22 +60,26 @@ public class ConcertController {
 	@RequestMapping("/concertXdmForm")
 	public String concertXdmForm(ConcertVo vo, Model model) {
 		Concert item = service.selectOne(vo);
+		List<Concert> uploaded = service.selectUploaded(vo);
 		model.addAttribute("list", item);
+		model.addAttribute("listUploaded", uploaded);
 		return"xdm/infra/concert/concertXdmForm";
 	}
 
 	@RequestMapping("/concertXdmInsert")
 	public String concertInsert(Concert dto) throws Exception {
+		System.out.println("sdfsd");
 		service.insertConcert(dto);
 		return "redirect:/concertXdmList";
 	}
+	
 	@RequestMapping("/concertUsrRegistration")
 	public String concertUsrRegistration() {
 		return"usr/infra/concert/concertUsrRegistration";
 	}
 	
 	@ResponseBody
-	@RequestMapping("/seatView")
+	@RequestMapping("/seatXdmView")
 	public Map<String, Object> seatView(ConcertVo vo, Model model) {
 		Map<String, Object> returnMap = new HashMap<>();
 		int rtMember = service.selectSeatCount(vo);

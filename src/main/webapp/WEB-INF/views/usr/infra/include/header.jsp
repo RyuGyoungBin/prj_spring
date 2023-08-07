@@ -37,16 +37,16 @@
                         <a href="#" class="open_close" id="close_in"><i class="icon_set_1_icon-77"></i></a>
                         <ul class="text-end me-5">
                             <li class="submenu">
-                                <a href="/concertUsrMain;" class="show-submenu link-dark header_link">발라드 </a>
+                                <a href="/concertUsrMain?concertType=1;" class="show-submenu link-dark header_link">발라드 </a>
                             </li>
                             <li class="submenu">
-                                <a href="/concertUsrMain" class="show-submenu link-dark header_link">락 </a>
+                                <a href="/concertUsrMain?concertType=2" class="show-submenu link-dark header_link">재즈 </a>
                             </li>
                              <li class="submenu">
-                                <a href="/concertUsrMain" class="show-submenu link-dark header_link">힙합 </a>
+                                <a href="/concertUsrMain?concertType=3" class="show-submenu link-dark header_link">트로트 </a>
                             </li>
                             <li class="submenu">
-                                <a href="/concertUsrMain" class="show-submenu link-dark header_link">재즈 </a>
+                                <a href="/concertUsrMain?concertType=4" class="show-submenu link-dark header_link">힙합 </a>
                             </li>
                          </ul>
                     </div><!-- End main-menu -->

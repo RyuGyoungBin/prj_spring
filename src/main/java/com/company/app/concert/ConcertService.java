@@ -9,6 +9,8 @@ public interface ConcertService {
 	public int selectSeatCount(ConcertVo vo);
 	public List<Concert> selectSeat(ConcertVo vo);
 	public Concert selectOne(ConcertVo vo);
+	public List<Concert> selectUploaded(ConcertVo vo);
+	public List<Concert> selectConcertList(ConcertVo vo);
 
 	public int insertConcert(Concert dto) throws Exception;
 
