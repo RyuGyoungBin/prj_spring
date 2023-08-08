@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,10 +29,7 @@ public class ConcertController {
 	@RequestMapping("/concertUsrMain")
 	public String concertMain(ConcertVo vo, CodeVo codeVo, Model model) {
 		List<Concert> list = service.selectConcertList(vo);
-		List<Concert> uploaded = service.selectUploaded(vo);
-		List<Code> codeList = codeService.selectList(codeVo);
 		model.addAttribute("concertList", list);
-		model.addAttribute("listUploaded", uploaded);
 		return"usr/infra/concert/concert";
 	}
 	@RequestMapping("/concertUsrDetail")

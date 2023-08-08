@@ -3,6 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="rb" uri="http://www.springframework.org/tags" %>
+<jsp:useBean id="CodeServiceImpl" class="com.company.app.infra.code.CodeServiceImpl"/>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -39,7 +40,17 @@
 					</div>
 				</div>
 				<div class="col-9 d-flex flex-column">
-					<h3 class="fw-bold">발라드</h3>
+					<c:choose>
+						<c:when test="${not empty param.concertType}">
+							<c:set var="listConcertType" value="${CodeServiceImpl.selectListCachedCode('7') }"/>
+							<c:forEach items="${listConcertType }" var="listConcertType" varStatus="status">
+								<c:if test="${param.concertType eq listConcertType.codeNum }"><h3 class="fw-bold"><c:out value="${listConcertType.nameKor}"></c:out></h3></c:if>
+							</c:forEach>
+						</c:when>
+						<c:otherwise>
+							<h3 class="fw-bold">"<span>${param.search}</span>"에 대한 검색결과 입니다.</h3>
+						</c:otherwise>
+					</c:choose>
 					<table class="text-center">
 						<thead class="border-bottom">
 							<tr>

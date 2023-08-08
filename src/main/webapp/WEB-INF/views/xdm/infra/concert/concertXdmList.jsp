@@ -205,6 +205,21 @@
 	    	</div>
 	 	</div>
 	</div>
+	<div class="modal fade" id="seatModal">
+		<div class="modal-dialog modal-dialog-centered">
+	    	<div class="modal-content">
+	   			<div class="modal-header">
+	      			<h1 class="modal-title fs-5">좌석</h1>
+	        		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+	      		</div>
+	      		<div class="modal-body">
+	      			<c:forEach items="${seatList}" var="seatList" varStatus="status">
+	      				<div><c:out value="${seatList.seatRow }"></c:out></div>123
+	      			</c:forEach>
+	      		</div>
+	    	</div>
+	 	</div>
+	</div>
 
   </main><!-- End #main -->
 
@@ -236,6 +251,12 @@
 	 		  keyboard: true,
 	 		  backdrop: "static"
 	 		})
+	 
+	 	var seatModal = new bootstrap.Modal(document.getElementById('seatModal'), {
+	 		  keyboard: true,
+	 		  backdrop: "static"
+	 		})
+	 
 	 	$("#del").on("click", function(){
 	 		$("#myModal").find("h1").text("삭제");
 	 		//$("#myModal").find(".modal-body").text("삭제하시겠습니까");
@@ -270,7 +291,7 @@
 	 $(document).on("click", ".seatView", function(){
 		 	var objSeq = $(this).next();
 		 	console.log(objSeq.val());
-			alert("asdfasdf");
+		 	jQuery.ajaxSettings.traditional = true;
 	 		$.ajax({
 	 			async: true 
 	 			,cache: false
@@ -281,13 +302,7 @@
 	 			,data : { "concertDate_seq" : objSeq.val()}
 	 			,success: function(response) {
 	 				if(response.rt == "success") {
-	 					$("#myModal").find("h1").text("제거");
-	 			 		//$("#myModal").find(".modal-body").text("제거하시겠습니까");
-	 			 		$("#myModal").find(".modal-body").empty();
-	 			 		$("#myModal").find(".modal-body").append("<p>정말 제거하시겠습니까.</p>");
-	 			 		$("#modalOk").remove();
-	 			 		$(".modal-footer").append('<button type="button" class="btn btn-secondary" id="modalOk">Ok</button>');
-	 				 	myModal.show();
+	 				 	seatModal.show();
 	 				} else {
 	 					alert("좌석이 없습니다");
 	 				}

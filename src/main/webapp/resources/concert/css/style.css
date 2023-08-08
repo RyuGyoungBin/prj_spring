@@ -4220,7 +4220,7 @@ blockquote.styled {
 	display: table-cell;
 	vertical-align: middle;
 	padding: 0 20%;
-	padding-top: 100px;
+/* 	padding-top: 100px; */
 	background: rgba(0, 0, 0, 0.6);
 }
 
@@ -7354,7 +7354,7 @@ a.box_news ul li:after {
 	
 	#search {
 		padding: 0 15%;
-		padding-top: 100px;
+/* 		padding-top: 100px; */
 	}
 }
 /* END MEDIA QUERIES size 768/1200px  */
@@ -7463,7 +7463,7 @@ only screen and (min-device-pixel-ratio: 2) and (max-width: 991px) {
 	
 	#search {
 		padding: 0 5%;
-		padding-top: 130px;
+/* 		padding-top: 130px; */
 	}
 	
 	.plan {
@@ -7581,7 +7581,7 @@ only screen and (min-device-pixel-ratio: 2) and (max-width: 991px) {
 	/* New v1.4 */
 	#search {
 		padding: 0 5%;
-		padding-top: 100px;
+/* 		padding-top: 100px; */
 	}
 	
 	.view_on_map {
@@ -8116,7 +8116,7 @@ only screen and (min-device-pixel-ratio: 2) and (max-width: 991px) {
 	
 	#search {
 		padding: 0 5%;
-		padding-top: 100px;
+/* 		padding-top: 100px; */
 	}
 	
 	.promo_full_wp div h3 {

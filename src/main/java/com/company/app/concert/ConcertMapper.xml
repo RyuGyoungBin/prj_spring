@@ -113,7 +113,7 @@
    		FROM
    			concertAddressSeat
    		WHERE 1=1
-   			AND concertDate_seq = #{concertDateSeq}
+   			AND concertDate_seq = #{concertDate_seq}
    	</select>
    	<select id="selectSeat" resultMap="resultMapObj">
    		SELECT
@@ -121,7 +121,9 @@
    		FROM
    			concertAddressSeat
    		WHERE 1=1
-   			AND concertDate_seq = #{concertDateSeq}
+   			AND concertDate_seq = #{concertDate_seq}
+   		ORDER BY
+   			seatRow, seatCol
    	</select>
    	<select id="selectTicket" resultMap="resultMapObj">
    		SELECT
