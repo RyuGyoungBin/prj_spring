@@ -5,7 +5,39 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="rb" uri="http://www.springframework.org/tags" %>
 <jsp:include page="../include/header.jsp"></jsp:include>
+<style>
+	.seatR {
+		width: 20px;
+		height: 20px;
+		margin: 1px;
+		padding: 0;
+		background: #dc354580;
+		font-size:0;
+	}
+	
+	.seatS {
+		width: 20px;
+		height: 20px;
+		margin: 1px;
+		padding: 0;
+		background: #ffc10780;
+		font-size:0;
+	}
+	
+	.seatY {
+		width: 20px;
+		height: 20px;
+		margin: 1px;
+		padding: 0;
+		background: #19875480;
+		font-size:0;
+	}
+	
+	.disable {
+		background: rgba(0,0,0,.5);
+	}
 
+  </style>
   <main id="main" class="main">
 
     <div class="pagetitle">
@@ -212,10 +244,7 @@
 	      			<h1 class="modal-title fs-5">좌석</h1>
 	        		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 	      		</div>
-	      		<div class="modal-body">
-	      			<c:forEach items="${seatList}" var="seatList" varStatus="status">
-	      				<div><c:out value="${seatList.seatRow }"></c:out></div>123
-	      			</c:forEach>
+	      		<div class="modal-body d-flex justify-content-center">
 	      		</div>
 	    	</div>
 	 	</div>
@@ -302,6 +331,30 @@
 	 			,data : { "concertDate_seq" : objSeq.val()}
 	 			,success: function(response) {
 	 				if(response.rt == "success") {
+	 					$("#seatModal").find(".modal-body").empty();
+	 					
+		      			<jsp:useBean id="CodeServiceImpl" class="com.company.app.infra.code.CodeServiceImpl"/>
+		      				
+							<c:forEach items="${seatList }" var="seatList" varStatus="status">
+								<c:set var="seatList" value="${seatList}"/>
+								<c:forEach items="${listSeatRank }" var="listSeatRank" varStatus="status">
+									<c:if test="${list.gender eq listGender.codeNum }"><c:out value="${listGender.name }"></c:out></c:if>
+						       	</c:forEach>
+								<c:out value="${listGender.name }"></c:out>
+				      			<div class="seatR"></div>
+							</c:forEach>
+			      			
+		      			</div>
+	 					var divImage = "";
+	 					divImage += '<div class="d-flex flex-wrap">';
+	 					divImage += '<c:forEach items="${seatList }" var="seatList" varStatus="status">	';
+	 					divImage += '<c:forEach items="${listSeatRank }" var="listSeatRank" varStatus="status">	';
+	 					divImage += '<div class="seat<c:if test="${seatList.seatRank eq listSeatRank.codeNum }"><c:out value="${listSeatRank.name }"></c:out></c:if>" />"></div>';
+	 					divImage += '</c:forEach>	';
+	 					divImage += '</c:forEach>	';
+	 					divImage += '</div> ';
+	 					
+	 					$("#seatModal").find(".modal-body").append(divImage);
 	 				 	seatModal.show();
 	 				} else {
 	 					alert("좌석이 없습니다");
