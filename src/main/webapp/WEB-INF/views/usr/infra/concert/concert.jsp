@@ -71,10 +71,11 @@
 									</c:if>
 								</th>
 								<th>
-									<span><a href="/concertUsrDetail"><c:out value="${list.concertTitle }"></c:out></a></span>
+									<span><a href="/concertUsrDetail?seq=<c:out value="${list.seq }"/>&concertAddress_seq=<c:out value="${list.concertAddress_seq }"></c:out>"><c:out value="${list.concertTitle }"></c:out></a></span>
 								</th>
 								<th>
 									<span><c:out value="${list.concertAddress }"></c:out>  <c:out value="${list.concertAddressDetail }"></c:out></span>
+									<input type="hidden" name="concertAddress_seq" value="<c:out value="${list.concertAddress_seq }"></c:out>">
 								</th>
 								<th>
 									<span><c:out value="${list.concertDateMin }"></c:out> - <c:out value="${list.concertDateMax }"></c:out></span>

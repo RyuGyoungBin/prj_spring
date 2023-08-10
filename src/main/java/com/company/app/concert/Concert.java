@@ -23,6 +23,8 @@ public class Concert {
 	private Integer seatNy;
 	private Integer seatRank;
 	private Integer seatRankPrice;
+	private Integer seatTotal;
+	private Integer seatN;
 	private String concertDate_seq;
 //	concertDate
 	private String concertDateSeq;
@@ -70,6 +72,18 @@ public class Concert {
 	private String[] uploadImgProfileDeletePathFile;
 	
 	
+	public Integer getSeatN() {
+		return seatN;
+	}
+	public void setSeatN(Integer seatN) {
+		this.seatN = seatN;
+	}
+	public Integer getSeatTotal() {
+		return seatTotal;
+	}
+	public void setSeatTotal(Integer seatTotal) {
+		this.seatTotal = seatTotal;
+	}
 	public String getConcertDateMax() {
 		return concertDateMax;
 	}

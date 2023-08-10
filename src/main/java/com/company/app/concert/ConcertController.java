@@ -33,7 +33,15 @@ public class ConcertController {
 		return"usr/infra/concert/concert";
 	}
 	@RequestMapping("/concertUsrDetail")
-	public String concertDetail() {
+	public String concertDetail(ConcertVo vo, CodeVo codeVo, Model model) {
+		Concert concert = service.selectConcertOne(vo);
+		List<Concert> list = service.selectUploaded(vo);
+		List<Concert> seat = service.selectSeatGroup(vo);
+		List<Concert> date = service.selectDate(vo);
+		model.addAttribute("item", concert);
+		model.addAttribute("uploaded", list);
+		model.addAttribute("seat", seat);
+		model.addAttribute("date", date);
 		return"usr/infra/concert/concertDetail";
 	}
 	@RequestMapping("/concertUsrTicketDate")

@@ -94,6 +94,7 @@
 			) as name,
 			b.concertAddress,
 			b.concertAddressDetail,
+			b.seq concertAddress_seq,
 			e.type,
 			e.path,
 			e.originalName,
@@ -106,6 +107,51 @@
    		WHERE 1=1
    			<if test="concertType != null and !concertType.equals('')">AND a.concertType = #{concertType}</if>
    			AND e.type = 1
+   	</select>
+   	<select id="selectConcertOne" resultMap="resultMapObj">
+   		SELECT
+   			a.seq,
+   			a.concertType,
+   			a.concertTitle,
+   			(SELECT
+   				MIN(d.concertDate)
+   			FROM
+   				concertDate d
+   			WHERE 1=1
+   				AND d.concertAddress_Seq = b.seq
+   			) as concertDateMin,
+   			(SELECT
+   				MAX(d.concertDate)
+   			FROM
+   				concertDate d
+   			WHERE 1=1
+   				AND d.concertAddress_Seq = b.seq
+   			) as concertDateMax,
+   			(SELECT
+				e.name
+			FROM
+				concertCasting e
+			WHERE 1=1
+				AND e.seq = d.concertCasting_seq
+			) as name,
+			b.concertAddress,
+			b.concertAddressDetail
+   		FROM
+   			concert a
+   			LEFT JOIN concertAddress b on b.concert_seq = a.seq 
+   			LEFT JOIN concertCastingGroup d on d.concert_seq = a.seq
+   		WHERE 1=1
+   			AND a.seq = #{seq}
+   	</select>
+   	<select id="selectDate" resultMap="resultMapObj">
+   		SELECT
+   			*
+   		FROM
+   			concertDate
+   		WHERE 1=1
+   			AND concertAddress_seq = #{concertAddress_seq}
+   		ORDER BY
+   			concertDate, concertDateTime
    	</select>
    	<select id="selectSeatCount" resultType="Integer">
    		SELECT
@@ -124,6 +170,16 @@
    			AND concertDate_seq = #{concertDate_seq}
    		ORDER BY
    			seatRow, seatCol
+   	</select>
+   	<select id="selectSeatGroup" resultMap="resultMapObj">
+   		SELECT
+   			*,
+   			sum(seatNy) seatN,
+   			count(seatNy) seatTotal
+   		FROM
+   			concertAddressSeat
+   		WHERE 1=1
+   		GROUP BY seatRank
    	</select>
    	<select id="selectTicket" resultMap="resultMapObj">
    		SELECT

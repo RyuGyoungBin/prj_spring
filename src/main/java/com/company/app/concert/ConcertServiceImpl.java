@@ -31,13 +31,22 @@ public class ConcertServiceImpl implements ConcertService {
 	public int selectSeatCount(ConcertVo vo) {return dao.selectSeatCount(vo);}
 	
 	@Override
+	public List<Concert> selectDate(ConcertVo vo) {return dao.selectDate(vo);}
+	
+	@Override
 	public List<Concert> selectSeat(ConcertVo vo) {return dao.selectSeat(vo);}
+	
+	@Override
+	public List<Concert> selectSeatGroup(ConcertVo vo) {return dao.selectSeatGroup(vo);}
 	
 	@Override
 	public List<Concert> selectUploaded(ConcertVo vo) {return dao.selectUploaded(vo);}
 
 	@Override
 	public List<Concert> selectConcertList(ConcertVo vo) {return dao.selectConcertList(vo);}
+	
+	@Override
+	public Concert selectConcertOne(ConcertVo vo) {return dao.selectConcertOne(vo);}
 	
 	@Override
 	public int insertConcert(Concert dto) throws Exception {
@@ -101,6 +110,7 @@ public class ConcertServiceImpl implements ConcertService {
     		}
 		}
 	}
+
 
 
 

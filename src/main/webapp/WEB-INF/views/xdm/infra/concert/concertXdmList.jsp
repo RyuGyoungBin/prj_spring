@@ -245,6 +245,11 @@
 	        		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 	      		</div>
 	      		<div class="modal-body d-flex justify-content-center">
+<%-- 	      		<c:set var="seatList" value="${ seatList}" scope="page"/> --%>
+<%-- 	      		<c:out value="${seatList.seatRow }"></c:out> --%>
+<%-- 					<c:forEach items="${seatList }" var="seatList" varStatus="status"> --%>
+<%-- 						<c:out value="${seatList.seatRow }"></c:out> --%>
+<%-- 					</c:forEach> --%>
 	      		</div>
 	    	</div>
 	 	</div>
@@ -320,7 +325,7 @@
 	 $(document).on("click", ".seatView", function(){
 		 	var objSeq = $(this).next();
 		 	console.log(objSeq.val());
-		 	jQuery.ajaxSettings.traditional = true;
+// 		 	jQuery.ajaxSettings.traditional = true;
 	 		$.ajax({
 	 			async: true 
 	 			,cache: false
@@ -335,23 +340,25 @@
 	 					
 		      			<jsp:useBean id="CodeServiceImpl" class="com.company.app.infra.code.CodeServiceImpl"/>
 		      				
-							<c:forEach items="${seatList }" var="seatList" varStatus="status">
-								<c:set var="seatList" value="${seatList}"/>
-								<c:forEach items="${listSeatRank }" var="listSeatRank" varStatus="status">
-									<c:if test="${list.gender eq listGender.codeNum }"><c:out value="${listGender.name }"></c:out></c:if>
-						       	</c:forEach>
-								<c:out value="${listGender.name }"></c:out>
-				      			<div class="seatR"></div>
-							</c:forEach>
+// 							<c:forEach items="${seatList }" var="seatList" varStatus="status">
+// 								<c:set var="seatList" value="${seatList}"/>
+// 								<c:forEach items="${listSeatRank }" var="listSeatRank" varStatus="status">
+// 									<c:if test="${list.gender eq listGender.codeNum }"><c:out value="${listGender.name }"></c:out></c:if>
+// 						       	</c:forEach>
+// 								<c:out value="${listGender.name }"></c:out>
+// 				      			<div class="seatR"></div>
+// 							</c:forEach>
 			      			
-		      			</div>
+// 		      			</div>
 	 					var divImage = "";
 	 					divImage += '<div class="d-flex flex-wrap">';
-	 					divImage += '<c:forEach items="${seatList }" var="seatList" varStatus="status">	';
-	 					divImage += '<c:forEach items="${listSeatRank }" var="listSeatRank" varStatus="status">	';
-	 					divImage += '<div class="seat<c:if test="${seatList.seatRank eq listSeatRank.codeNum }"><c:out value="${listSeatRank.name }"></c:out></c:if>" />"></div>';
-	 					divImage += '</c:forEach>	';
-	 					divImage += '</c:forEach>	';
+	 					<c:set var="listSeat" value="${ listSeat}"/>
+	 					<c:forEach items="${seatList }" var="seatList" varStatus="status">
+	 						<c:set var="listSeatRank" value="${CodeServiceImpl.selectListCachedCode('9') }"/>
+							<c:forEach items="${listSeatRank }" var="listSeatRank" varStatus="status">
+	 						divImage += '<div class="seat<c:if test="${seatList.seatRank eq listSeatRank.codeNum }"><c:out value="${listSeatRank.name }"></c:out></c:if>" />"></div>';
+	 						</c:forEach>
+	 					</c:forEach>
 	 					divImage += '</div> ';
 	 					
 	 					$("#seatModal").find(".modal-body").append(divImage);
