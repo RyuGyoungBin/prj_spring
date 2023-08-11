@@ -17,4 +17,5 @@ publicCorona1List
 	<br><c:out value="${item.KIT_PROD_QTY }"/>	
 	<br><c:out value="${item.KIT_EXPRT_QTY }"/>	
 	<br><c:out value="${item.KIT_STOCK_QTY }"/>	
+	<br><hr>
 </c:forEach>

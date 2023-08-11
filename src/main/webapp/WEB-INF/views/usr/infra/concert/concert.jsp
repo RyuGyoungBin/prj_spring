@@ -26,20 +26,7 @@
 		
 		<div class="margin_60 container">
 			<div class="d-flex justify-content-around">
-				<div class="col-2 border">
-					<div>
-						<div class="border-bottom p-3 fw-bold">콘서트</div>
-						<nav>
-							<ul class="d-flex flex-column">
-								<li><a href="" class="active">발라드</a></li>
-								<li class="my-2"><a href="">락</a></li>
-								<li><a href="">힙합</a></li>
-								<li class="my-2"><a href="">재즈</a></li>
-							</ul>
-						</nav>
-					</div>
-				</div>
-				<div class="col-9 d-flex flex-column">
+				<div class="col-12 d-flex flex-column">
 					<c:choose>
 						<c:when test="${not empty param.concertType}">
 							<c:set var="listConcertType" value="${CodeServiceImpl.selectListCachedCode('7') }"/>
@@ -71,7 +58,7 @@
 									</c:if>
 								</th>
 								<th>
-									<span><a href="/concertUsrDetail?seq=<c:out value="${list.seq }"/>&concertAddress_seq=<c:out value="${list.concertAddress_seq }"></c:out>"><c:out value="${list.concertTitle }"></c:out></a></span>
+									<span><a href="/concertUsrDetail?seq=<c:out value="${list.seq }"/>&concertAddress_seq=<c:out value="${list.concertAddress_seq }"></c:out>&dateDefaultNy=1"><c:out value="${list.concertTitle }"></c:out></a></span>
 								</th>
 								<th>
 									<span><c:out value="${list.concertAddress }"></c:out>  <c:out value="${list.concertAddressDetail }"></c:out></span>

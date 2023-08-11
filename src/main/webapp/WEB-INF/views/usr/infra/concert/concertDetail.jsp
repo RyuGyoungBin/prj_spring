@@ -34,7 +34,9 @@
 	
 	<!-- CUSTOM CSS -->
 	<link href="/resources/concert/css/custom.css" rel="stylesheet">
-	<jsp:include page="../include/calendarCss.jsp"></jsp:include>
+	<!-- CALENDAR -->
+	<link href="/resources/common/zabuto_calendar.min.css" rel="stylesheet">
+	
 	<style>
 		ul#top_tools a {
 		    color: #000;
@@ -74,8 +76,8 @@
 			<div class="d-flex flex-column mb-4 ps-5">
 				<h3 class="fw-bold"><c:out value="${item.concertTitle }"></c:out></h3>
 			</div>
+			<form name="form" method="post">
 			<div class="d-flex mb-5">
-				<form name="form" method="post">
 				<div class="col-3 text-center pt-5">
 					<c:set var="type" value="1"/>		<!-- #-> -->
 		        	<c:set var="name" value="uploadImgProfile"/>		<!-- #-> -->
@@ -107,7 +109,7 @@
 				<div class="col-5 light">
 					<section class="text-center mb-3">
 					    <!-- 달력 Start -->
-					    <div class="calendar-wrapper" id="calendar-wrapper"></div>
+					    <div class="calendar" id="calendar"></div>
 				    	<!-- 달력 End -->
 				  </section>
 				  <div>
@@ -117,13 +119,14 @@
 				  	</ul>
 				  </div>
 				  <div class="text-center mb-3">
-				  	<input type="radio" class="btn-check" name="options" id="option1" autocomplete="off" checked>
-					<label class="btn btn-sm btn-secondary me-2" for="option1">1회차<span>11:00</span></label>
-					
-					<input type="radio" class="btn-check" name="options" id="option2" autocomplete="off">
-					<label class="btn btn-sm btn-secondary ms-2" for="option2">2회차<span>15:00</span></label>
+				  	<c:forEach items="${date }" var="date" varStatus="statusUploaded">
+					  	<input type="radio" class="btn-check" name="concertDateTime" id="option<c:out value="${date.seq }" />" autocomplete="off" value="<c:out value="${date.concertDateTime }" />" checked>
+						<label class="btn btn-sm btn-secondary me-2" for="option<c:out value="${date.seq }" />"><span class="times"><c:out value="${date.concertDateTime }" /></span></label>
+						<input type="hidden" value="<c:out value="${date.seq }" />" name="concertDate_seq">
+				  	</c:forEach>
 				  </div>
 				  	<input type="hidden" name="concertDate" id="concertDate">
+				  	<input type="hidden" name="concertAddress_seq" id="concertAddress_seq" value="${param.concertAddress_seq }">
 				  <div class="d-flex justify-content-center">
 						<div class="col-2">
 							<p>잔여 좌석</p>
@@ -150,8 +153,8 @@
 					</c:choose>
 					</div>
 				</div>
-				</form>
 			</div>
+			</form>
 			<!-- concertDetail -->
 			<div id="tabs" class="tabs">
 				<nav>
@@ -214,8 +217,6 @@
 					</section>
 				</div>
 			</div>
-			
-			
 		</div>
 		<!-- end container -->
 		
@@ -228,6 +229,8 @@
 	<script src="/resources/concert/js/tabs.js"></script>
 	<jsp:include page="../include/calendarScript.jsp"></jsp:include>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2793b1acd7ab778b17a809cbd8ebc3ea"></script>
+	<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+	<script src="/resources/common/zabuto_calendar.min.js"></script>
     <!-- Specific scripts -->
 	<script>
 		
@@ -315,41 +318,60 @@
 	
 	</script>
 	<script type="text/javascript">
-      var config = `
-	function selectDate(date) {
-	  $('#calendar-wrapper').updateCalendarOptions({
-	    date: date
-	  });
-	  console.log(calendar.getSelectedDate());
-	}
-	
-	var defaultConfig = {
-	  weekDayLength: 1,
-	  date: '06/02/2023',
-	  onClickDate: selectDate,
-	  showYearDropdown: true,
-	  startOnMonday: false,
-	  showTodayButton: false,
-	};
-	
-	var calendar = $('#calendar-wrapper').calendar(defaultConfig);
-	console.log(calendar.getSelectedDate());
-	`;
-      eval(config);
-      
-    </script>
-    <script defer src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <script defer>
-     
-      
-      $('.calendar-wrapper').updateCalendarOptions({
-    	  disable: function (date) {
-    	    const days = [0,2,5]
-    	    return !days.includes(date.getDay())
-    	},
-    	min: "06/02/2023",
-    	max: "06/06/2023"
-    	});   
+	 $(document).ready(function () {
+         $("#calendar").zabuto_calendar({
+             classname: 'table clickable',
+             year: 2023,
+             month: 6,
+             language: 'kr',
+             events: [
+                 {
+                     "date": "2023-06-02",
+                     "markup": "<div class=\"badge rounded-pill bg-success able\">[day]</div>"
+                     
+                 },
+                 
+             ]
+             
+         
+         });
+     });
+	 $(function(){
+	     var $el = $('#calendar');
+	     $el.on('zabuto:calendar:day', function (e) {
+	             $("#concertDate").val(e.value);
+	             $.ajax({
+	       			async: true 
+	       			,cache: false
+	       			,type: "post"
+	//        			,dataType:"json"
+	       			,url: "/selectConcertDate"
+	       			/* ,data : $("#formLogin").serialize() */
+	       			,data : { "concertDate" : $("#concertDate").val(),
+	       				"concertAddress_seq" : $("#concertAddress_seq").val()}
+	       			,success: function(response) {
+	       				if(response.rtDate != null) {
+	       					
+	       					console.log()
+	       					console.log(response.concertDate)
+	       				} else {
+	       					alert("데이터가 없습니다.");
+	       				}
+	       			}
+	       			,error : function(jqXHR, textStatus, errorThrown){
+	       				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+	       			}
+	       		});
+	    		 
+	     });
+		 
+	 })
+// 	 $(".times").substr(0,5);
+	 console.log($(".times").length)
+	 console.log($(".times").eq(0).text().substr(0,5))
+	 for(var i = 0;i < $(".times").length;i++){
+		 $(".times").eq(i).text((i+1)+"회차 "+$(".times").eq(i).text().substr(0,5));
+	 }
     </script>
 	
 

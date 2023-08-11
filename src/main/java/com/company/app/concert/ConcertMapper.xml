@@ -150,6 +150,9 @@
    			concertDate
    		WHERE 1=1
    			AND concertAddress_seq = #{concertAddress_seq}
+   			<if test="concertDate != null and !concertDate.equals('')">AND concertDate LIKE CONCAT('%',#{concertDate},'%')</if>
+   			<if test="dateDefaultNy != null and !dateDefaultNy.equals('')">AND defaultNy = 1</if>
+   			
    		ORDER BY
    			concertDate, concertDateTime
    	</select>
@@ -179,6 +182,7 @@
    		FROM
    			concertAddressSeat
    		WHERE 1=1
+   			<if test="concertDate_seq != null and !concertDate_seq.equals('')">AND concertDate_seq = #{concertDate_seq}</if>
    		GROUP BY seatRank
    	</select>
    	<select id="selectTicket" resultMap="resultMapObj">

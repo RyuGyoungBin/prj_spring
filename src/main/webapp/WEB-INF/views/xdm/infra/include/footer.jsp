@@ -26,6 +26,9 @@
 
   <!-- Template Main JS File -->
   <script src="/resources/admin/assets/js/main.js"></script>
+  <script src="/resources/concert/js/calendar.min.js"></script>
+<script src="https://unpkg.com/codeflask/build/codeflask.min.js"></script>
+  
   <script>
   $("#logoutBtn").on("click", function(){
 		$.ajax({

@@ -4,8 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,7 +11,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.company.app.infra.code.Code;
 import com.company.app.infra.code.CodeServiceImpl;
 import com.company.app.infra.code.CodeVo;
 
@@ -98,6 +95,21 @@ public class ConcertController {
 			model.addAttribute("seatList", Concert);
 		} else {
 			returnMap.put("rt", "fail");
+		}
+		return returnMap;
+	}
+	
+	@ResponseBody
+	@RequestMapping("/selectConcertDate")
+	public Map<String, List<Concert>> selectConcertDate(ConcertVo vo, Model model) {
+		Map<String, List<Concert>> returnMap = new HashMap<>();
+		List<Concert> rtDate = service.selectDate(vo);
+		System.out.println(rtDate.size());
+		System.out.println("asdf");
+		if (rtDate.size() > 0) {
+			returnMap.put("rtDate", rtDate);
+			model.addAttribute("date", rtDate);
+		} else {
 		}
 		return returnMap;
 	}
