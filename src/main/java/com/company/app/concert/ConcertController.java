@@ -4,12 +4,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.company.app.infra.code.CodeServiceImpl;
 import com.company.app.infra.code.CodeVo;
@@ -105,7 +109,6 @@ public class ConcertController {
 		Map<String, List<Concert>> returnMap = new HashMap<>();
 		List<Concert> rtDate = service.selectDate(vo);
 		System.out.println(rtDate.size());
-		System.out.println("asdf");
 		if (rtDate.size() > 0) {
 			returnMap.put("rtDate", rtDate);
 			model.addAttribute("date", rtDate);
@@ -113,5 +116,21 @@ public class ConcertController {
 		}
 		return returnMap;
 	}
+	
+	@ResponseBody
+	@RequestMapping("/selectConcertDateTimeSeat")
+	public Map<String, List<Concert>> selectConcertDateTimeSeat(ConcertVo vo, Model model) {
+		Map<String, List<Concert>> returnMap = new HashMap<>();
+		List<Concert> rtSeat = service.selectSeatGroup(vo);
+		System.out.println(rtSeat.size());
+		if (rtSeat.size() > 0) {
+			returnMap.put("rtSeat", rtSeat);
+			model.addAttribute("seat", rtSeat);
+		} else {
+		}
+		return returnMap;
+	}
+	
+
 
 }

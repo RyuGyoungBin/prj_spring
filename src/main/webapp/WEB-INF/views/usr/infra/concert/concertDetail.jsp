@@ -118,7 +118,7 @@
 				  		<li class="d-flex mx-2"><div class="bg-warning bg-opacity-50" style="width:20px;"></div>선택된 날짜</li>
 				  	</ul>
 				  </div>
-				  <div class="text-center mb-3">
+				  <div class="text-center mb-3" id="concertTime">
 				  	<c:forEach items="${date }" var="date" varStatus="statusUploaded">
 					  	<input type="radio" class="btn-check" name="concertDateTime" id="option<c:out value="${date.seq }" />" autocomplete="off" value="<c:out value="${date.concertDateTime }" />" checked>
 						<label class="btn btn-sm btn-secondary me-2" for="option<c:out value="${date.seq }" />"><span class="times"><c:out value="${date.concertDateTime }" /></span></label>
@@ -131,12 +131,12 @@
 						<div class="col-2">
 							<p>잔여 좌석</p>
 						</div>
-						<div class="col-2">
+						<c:set var="listCodeSeat" value="${CodeServiceImpl.selectListCachedCode('9') }"/>
+						<div class="col-2" id="concertSeat">
 							<c:forEach items="${seat}" var="seat" varStatus="statusUploaded">
-								<c:set var="listCodeSeat" value="${CodeServiceImpl.selectListCachedCode('9') }"/>
-								<c:forEach items="${listCodeSeat }" var="listCodeSeat" varStatus="status">
-									<c:if test="${seat.seatRank eq listCodeSeat.codeNum }"><p><span><c:out value="${listCodeSeat.name }"></c:out></span>석 : <span><c:out value="${seat.seatTotal - seat.seatN }" />석</span></p></c:if>
-						       	</c:forEach>
+									<c:forEach items="${listCodeSeat }" var="listCodeSeat" varStatus="status">
+										<c:if test="${seat.seatRank eq listCodeSeat.codeNum }"><p><span><c:out value="${listCodeSeat.name }"></c:out></span>석 : <span><c:out value="${seat.seatTotal - seat.seatN }" />석</span></p></c:if>
+							       	</c:forEach>
 							</c:forEach>
 <!-- 							<p><span>R</span>석 : <span>20</span>석</p> -->
 							
@@ -351,9 +351,20 @@
 	       				"concertAddress_seq" : $("#concertAddress_seq").val()}
 	       			,success: function(response) {
 	       				if(response.rtDate != null) {
-	       					
-	       					console.log()
-	       					console.log(response.concertDate)
+	       					$("#concertTime").empty();
+		       				 $.each(response.rtDate,function(index, value) { // 값이 여러개 일 때는 반복문 사용
+// 		                     	alert(index);
+// 	                         	alert(value.seq); 
+// 		                     	alert(value.concertDate); 
+// 	                         	alert(value.concertDateTime);
+	                         	timeDiv ='';
+	                         	timeDiv +='<input type="radio" class="btn-check" name="concertDateTime" id="option'+value.seq+'" autocomplete="off" value="'+value.concertDateTime+'" checked>';
+	                         	timeDiv +='<label class="btn btn-sm btn-secondary me-2" for="option'+value.seq+'"><span class="times">'+value.concertDateTime+'</span></label>';
+	                         	timeDiv +='<input type="hidden" value="'+value.seq+'" name="concertDate_seq" id="concertDate_seq'+value.seq+'">';
+	                         	$("#concertTime").append(timeDiv);
+		                     })
+	                         	timeStr();
+		       				 
 	       				} else {
 	       					alert("데이터가 없습니다.");
 	       				}
@@ -366,11 +377,51 @@
 	     });
 		 
 	 })
+		 
+	 $(document).on("click",".times",function(){
+		 $.ajax({
+    			async: true 
+    			,cache: false
+    			,type: "post"
+//        			,dataType:"json"
+    			,url: "/selectConcertDateTimeSeat"
+    			/* ,data : $("#formLogin").serialize() */
+    			,data : { "concertDate_seq" : $(this).parent().next().val()}
+    			,success: function(response) {
+    				if(response.rtSeat != null) {
+    					$("#concertSeat").empty();
+    					var code = '<c:set var="listCodeSeat" value="${CodeServiceImpl.selectListCachedCode('9') }"/>';
+    					
+    					console.log(response)
+    					console.log(response.rtSeat)
+	       				 $.each(response.rtSeat,function(index, value, code) { // 값이 여러개 일 때는 반복문 사용
+//	                     	alert(index);
+//                       	alert(value.seq); 
+//	                     	alert(value.concertDate); 
+//                       	alert(value.concertDateTime);
+						
+						seatDiv ='';
+// 						if(value.seatRank == code.codeNum)
+                      	seatDiv +='<p><span>'+code+'</span>석 : <span>'+(value.seatTotal +-+value.seatN)+'석</span></p>';
+                      	$("#concertSeat").append(seatDiv);
+	                     })
+    				} else {
+    					alert("데이터가 없습니다.");
+    				}
+    			}
+    			,error : function(jqXHR, textStatus, errorThrown){
+    				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+    			}
+    		});
+	 })
 // 	 $(".times").substr(0,5);
-	 console.log($(".times").length)
-	 console.log($(".times").eq(0).text().substr(0,5))
-	 for(var i = 0;i < $(".times").length;i++){
-		 $(".times").eq(i).text((i+1)+"회차 "+$(".times").eq(i).text().substr(0,5));
+// 	 console.log($(".times").length)
+// 	 console.log($(".times").eq(0).text().substr(0,5))
+	timeStr();
+	 function timeStr(){
+		 for(var i = 0;i < $(".times").length;i++){
+			 $(".times").eq(i).text((i+1)+"회차 "+$(".times").eq(i).text().substr(0,5));
+		 }
 	 }
     </script>
 	

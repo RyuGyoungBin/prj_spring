@@ -50,7 +50,7 @@
 			<exclude-mapping path="/concertUsrMain" />
 			<exclude-mapping path="/concertUsrDetail" />
 			<exclude-mapping path="/publicCorona1List" />
-			<exclude-mapping path="/selectConcertDate" />
+			<exclude-mapping path="/selectConcert**" />
 			<beans:bean id="checkLoginSessionInterception" class="com.company.app.common.interceptor.CheckLoginSessionInterception"/>
 		</interceptor>
 		<interceptor>
@@ -68,7 +68,7 @@
 			<exclude-mapping path="/loginXdmProc" />
 			<exclude-mapping path="/UsridProc" />
 			<exclude-mapping path="/logoutProc" />
-			<exclude-mapping path="/selectConcertDate" />
+			<exclude-mapping path="/selectConcert**" />
 			<beans:bean id="CheckLoginXdmInterception" class="com.company.app.common.interceptor.CheckLoginXdmInterception"/>
 		</interceptor>
 	</interceptors>	
