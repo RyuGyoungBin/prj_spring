@@ -40,6 +40,9 @@ public class ConcertServiceImpl implements ConcertService {
 	public List<Concert> selectSeatGroup(ConcertVo vo) {return dao.selectSeatGroup(vo);}
 	
 	@Override
+	public List<Concert> selectSeatRow(ConcertVo vo) {return dao.selectSeatRow(vo);}
+	
+	@Override
 	public List<Concert> selectUploaded(ConcertVo vo) {return dao.selectUploaded(vo);}
 
 	@Override
@@ -110,6 +113,7 @@ public class ConcertServiceImpl implements ConcertService {
     		}
 		}
 	}
+
 
 
 

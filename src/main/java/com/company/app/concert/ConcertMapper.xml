@@ -12,6 +12,7 @@
 	    	LEFT JOIN concertAddress b on b.concert_seq = a.seq 
     		LEFT JOIN concertDate c on c.concertAddress_seq = b.seq
     		LEFT JOIN concertCastingGroup d on d.concert_seq = a.seq
+    		LEFT JOIN concertUploaded e on e.pseq = a.seq AND e.type = 1
 		WHERE 1=1
 			<if test="seq != null and !seq.equals('')">AND a.seq = #{seq}</if>
 			<if test="concertType != null and !concertType.equals('')">AND a.concertType = #{concertType}</if>
@@ -36,7 +37,10 @@
 		WHERE 1=1
 			AND e.seq = d.concertCasting_seq
 		) as name,
-		c.seq as concertDateSeq
+		c.seq as concertDateSeq,
+		e.type,
+		e.path,
+		e.uuidName
 		
 		
 	</sql>
@@ -103,7 +107,7 @@
    			concert a
    			LEFT JOIN concertAddress b on b.concert_seq = a.seq 
    			LEFT JOIN concertCastingGroup d on d.concert_seq = a.seq
-   			LEFT JOIN concertUploaded e on e.pseq = a.seq
+   			LEFT JOIN concertUploaded e on e.pseq = a.seq ANd e.type =1
    		WHERE 1=1
    			<if test="concertType != null and !concertType.equals('')">AND a.concertType = #{concertType}</if>
    			AND e.type = 1
@@ -135,7 +139,8 @@
 				AND e.seq = d.concertCasting_seq
 			) as name,
 			b.concertAddress,
-			b.concertAddressDetail
+			b.concertAddressDetail,
+			b.seq concertAddress_seq
    		FROM
    			concert a
    			LEFT JOIN concertAddress b on b.concert_seq = a.seq 
@@ -184,6 +189,15 @@
    		WHERE 1=1
    			<if test="concertDate_seq != null and !concertDate_seq.equals('')">AND concertDate_seq = #{concertDate_seq}</if>
    		GROUP BY seatRank
+   	</select>
+   	<select id="selectSeatRow" resultMap="resultMapObj">
+   		SELECT
+   			*
+   		FROM
+   			concertAddressSeat
+   		WHERE 1=1
+   			<if test="concertDate_seq != null and !concertDate_seq.equals('')">AND concertDate_seq = #{concertDate_seq}</if>
+   		GROUP BY seatRow
    	</select>
    	<select id="selectTicket" resultMap="resultMapObj">
    		SELECT

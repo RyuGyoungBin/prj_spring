@@ -132,15 +132,15 @@
 							<p>잔여 좌석</p>
 						</div>
 						<c:set var="listCodeSeat" value="${CodeServiceImpl.selectListCachedCode('9') }"/>
-						<div class="col-2" id="concertSeat">
-							<c:forEach items="${seat}" var="seat" varStatus="statusUploaded">
-									<c:forEach items="${listCodeSeat }" var="listCodeSeat" varStatus="status">
-										<c:if test="${seat.seatRank eq listCodeSeat.codeNum }"><p><span><c:out value="${listCodeSeat.name }"></c:out></span>석 : <span><c:out value="${seat.seatTotal - seat.seatN }" />석</span></p></c:if>
-							       	</c:forEach>
-							</c:forEach>
-<!-- 							<p><span>R</span>석 : <span>20</span>석</p> -->
-							
-						</div>
+							<div class="col-2" id="concertSeat">
+								<c:forEach items="${seat}" var="seat" varStatus="statusUploaded">
+										<c:forEach items="${listCodeSeat }" var="listCodeSeat" varStatus="status">
+											<c:if test="${seat.seatRank eq listCodeSeat.codeNum }"><p><span><c:out value="${listCodeSeat.name }"></c:out></span>석 : <span><c:out value="${seat.seatTotal - seat.seatN }" />석</span></p></c:if>
+								       	</c:forEach>
+								</c:forEach>
+	<!-- 							<p><span>R</span>석 : <span>20</span>석</p> -->
+								
+							</div>
 					</div>
 					<div class=text-center>
 					<c:choose>
@@ -148,7 +148,7 @@
 							<a class="btn btn-secondary loginModal" style="min-width:80px;" target=”_blank”>예매</a>
 						</c:when>
 						<c:otherwise>
-							<a class="btn btn-secondary" style="min-width:80px;" target=”_blank” href="/concertUsrTicketDate">예매</a>
+							<a class="btn btn-secondary" style="min-width:80px;" target=”_blank” href="/concertUsrTicketDate?seq=<c:out value="${item.seq }"/>&concertAddress_seq=<c:out value="${item.concertAddress_seq }"/>&dateDefaultNy=1">예매</a>
 						</c:otherwise>
 					</c:choose>
 					</div>
@@ -290,7 +290,6 @@
 				"password" : $("#password").val()}
 			,success: function(response) {
 				if(response.rt == "success") {
-					alert(response.rtMember.name);
 					location.href = "/concertUsrDetail";
 				} else {
 					alert("그런 회원 없습니다.");
@@ -377,7 +376,19 @@
 	     });
 		 
 	 })
-		 
+		
+	var code = '<c:set var="listCodeSeat" value="${CodeServiceImpl.selectListCachedCode('9') }"/>';
+	var foreachS = '<c:forEach items="listCodeSeat" var="listCodeSeat">';
+	var foreachE = '</c:forEach>';
+	var codeNum = '${listCodeSeat.codeNum}';
+	var codeName = '${listCodeSeat.name}';
+	div = '';
+	div += foreachS;
+	div += codeNum;
+	console.log(codeNum);
+	div += foreachE;
+	
+	$("#concertSeat").append(div);
 	 $(document).on("click",".times",function(){
 		 $.ajax({
     			async: true 
@@ -390,19 +401,16 @@
     			,success: function(response) {
     				if(response.rtSeat != null) {
     					$("#concertSeat").empty();
-    					var code = '<c:set var="listCodeSeat" value="${CodeServiceImpl.selectListCachedCode('9') }"/>';
-    					
-    					console.log(response)
     					console.log(response.rtSeat)
-	       				 $.each(response.rtSeat,function(index, value, code) { // 값이 여러개 일 때는 반복문 사용
-//	                     	alert(index);
-//                       	alert(value.seq); 
-//	                     	alert(value.concertDate); 
-//                       	alert(value.concertDateTime);
-						
+	       				 $.each(response.rtSeat,function(index, value) { // 값이 여러개 일 때는 반복문 사용
+	       					 
 						seatDiv ='';
 // 						if(value.seatRank == code.codeNum)
-                      	seatDiv +='<p><span>'+code+'</span>석 : <span>'+(value.seatTotal +-+value.seatN)+'석</span></p>';
+// 							 $.each(response.rtSeat,function(index, value){
+								 
+// 							 }
+							
+                      	seatDiv +='<p><span>'+value.seatRank+'</span>석 : <span>'+(value.seatTotal +-+value.seatN)+'석</span></p>';
                       	$("#concertSeat").append(seatDiv);
 	                     })
     				} else {

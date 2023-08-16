@@ -4,17 +4,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
+import com.company.app.infra.code.Code;
 import com.company.app.infra.code.CodeServiceImpl;
 import com.company.app.infra.code.CodeVo;
 
@@ -46,11 +43,28 @@ public class ConcertController {
 		return"usr/infra/concert/concertDetail";
 	}
 	@RequestMapping("/concertUsrTicketDate")
-	public String concertUsrTicketDate() {
+	public String concertUsrTicketDate(ConcertVo vo, CodeVo codeVo, Model model) {
+		Concert concert = service.selectConcertOne(vo);
+		List<Concert> list = service.selectUploaded(vo);
+		List<Concert> seat = service.selectSeatGroup(vo);
+		List<Concert> date = service.selectDate(vo);
+		model.addAttribute("item", concert);
+		model.addAttribute("uploaded", list);
+		model.addAttribute("seat", seat);
+		model.addAttribute("date", date);
 		return"usr/infra/concert/concertUsrTicketDate";
 	}
 	@RequestMapping("/concertUsrTicketSeat")
-	public String concertUsrTicketSeat() {
+	public String concertUsrTicketSeat(ConcertVo vo, CodeVo codeVo, Model model) {
+		Concert concert = service.selectConcertOne(vo);
+		List<Concert> seat = service.selectSeat(vo);
+		List<Concert> seatGroup = service.selectSeatGroup(vo);
+		List<Concert> seatRow = service.selectSeatRow(vo);
+		
+		model.addAttribute("item", concert);
+		model.addAttribute("seat", seat);
+		model.addAttribute("seatGroup", seatGroup);
+		model.addAttribute("row", seatRow);
 		return"usr/infra/concert/concertUsrTicketSeat";
 	}
 	@RequestMapping("/concertXdmList")
@@ -119,13 +133,12 @@ public class ConcertController {
 	
 	@ResponseBody
 	@RequestMapping("/selectConcertDateTimeSeat")
-	public Map<String, List<Concert>> selectConcertDateTimeSeat(ConcertVo vo, Model model) {
+	public Map<String, List<Concert>> selectConcertDateTimeSeat(ConcertVo vo, Model model) throws Exception {
 		Map<String, List<Concert>> returnMap = new HashMap<>();
 		List<Concert> rtSeat = service.selectSeatGroup(vo);
 		System.out.println(rtSeat.size());
 		if (rtSeat.size() > 0) {
 			returnMap.put("rtSeat", rtSeat);
-			model.addAttribute("seat", rtSeat);
 		} else {
 		}
 		return returnMap;

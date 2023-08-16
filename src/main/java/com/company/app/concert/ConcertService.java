@@ -10,6 +10,7 @@ public interface ConcertService {
 	public List<Concert> selectDate(ConcertVo vo);
 	public List<Concert> selectSeat(ConcertVo vo);
 	public List<Concert> selectSeatGroup(ConcertVo vo);
+	public List<Concert> selectSeatRow(ConcertVo vo);
 	public Concert selectOne(ConcertVo vo);
 	public List<Concert> selectUploaded(ConcertVo vo);
 	public List<Concert> selectConcertList(ConcertVo vo);

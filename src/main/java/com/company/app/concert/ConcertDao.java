@@ -26,6 +26,7 @@ public class ConcertDao {
 	public List<Concert> selectConcertList(ConcertVo vo){return sqlSession.selectList(namespace + ".selectConcertList", vo);}
 	public Concert selectConcertOne(ConcertVo vo) {return sqlSession.selectOne(namespace + ".selectConcertOne", vo);}
 	public List<Concert> selectSeatGroup(ConcertVo vo){return sqlSession.selectList(namespace +".selectSeatGroup", vo);}
+	public List<Concert> selectSeatRow(ConcertVo vo){return sqlSession.selectList(namespace +".selectSeatRow", vo);}
 	public List<Concert> selectDate(ConcertVo vo){return sqlSession.selectList(namespace +".selectDate", vo);}
 	
 

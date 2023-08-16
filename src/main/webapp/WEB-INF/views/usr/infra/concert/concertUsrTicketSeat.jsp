@@ -3,6 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="rb" uri="http://www.springframework.org/tags" %>
+<jsp:useBean id="CodeServiceImpl" class="com.company.app.infra.code.CodeServiceImpl"/>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -55,32 +56,26 @@
 	#selectSeat span:last-of-type:after {
 		content:" "
 	}
-	
-	.seatR {
+	.row {
+		width: 250px;
+	}
+	.seat {
 		width: 20px;
 		height: 20px;
 		margin: 1px;
 		padding: 0;
+		font-size:0;
+	}	
+	.seat0 {
 		background: #dc354580;
-		font-size:0;
 	}
 	
-	.seatS {
-		width: 20px;
-		height: 20px;
-		margin: 1px;
-		padding: 0;
+	.seat1 {
 		background: #ffc10780;
-		font-size:0;
 	}
 	
-	.seatY {
-		width: 20px;
-		height: 20px;
-		margin: 1px;
-		padding: 0;
+	.seat2 {
 		background: #19875480;
-		font-size:0;
 	}
 	
 	.disable {
@@ -105,102 +100,21 @@
 	</div>
 	<div class="d-flex flex-column">
 		<div class="text-center">
-			<h3>TITLE</h3>
+			<h3><c:out value="${item.concertTitle }"/></h3>
 		</div>
 		<div class="d-flex p-5 justify-content-center">
 			<div class="col-6 d-flex flex-column align-items-center">
 				<div class="border d-flex justify-content-center align-items-center mb-3" style="width:160px; height:80px;">무대</div>
 				<div class="seatContainer position-relative mb-3">
 		            <div class="row">
-		                <div class="seatR disable">a1</div>
-		                <div class="seatR">a2</div>
-		                <div class="seatR">a3</div>
-		                <div class="seatR">a4</div>
-		                <div class="seatR">a5</div>
-		                <div class="seatR">a6</div>
-		                <div class="seatR">a7</div>
-		                <div class="seatR">a8</div>
-		                <div class="seatR">a9</div>
-		                <div class="seatR">a10</div>
-		                <div class="seatR">a11</div>
-		            </div>
-		
-		            <div class="row">
-		                <div class="seatR">b1</div>
-		                <div class="seatR">b2</div>
-		                <div class="seatR">b3</div>
-		                <div class="seatR">b4</div>
-		                <div class="seatR">b5</div>
-		                <div class="seatR">b6</div>
-		                <div class="seatR">b7</div>
-		                <div class="seatR">b8</div>
-		                <div class="seatR">b9</div>
-		                <div class="seatR">b10</div>
-		                <div class="seatR">b11</div>
-		            </div>
-		
-		            <div class="row">
-		                <div class="seatS">c1</div>
-		                <div class="seatS">c2</div>
-		                <div class="seatS">c3</div>
-		                <div class="seatS">c4</div>
-		                <div class="seatS">c5</div>
-		                <div class="seatS">c6</div>
-		                <div class="seatS">c7</div>
-		                <div class="seatS">c8</div>
-		                <div class="seatS">c9</div>
-		                <div class="seatS">c10</div>
-		                <div class="seatS">c11</div>
-		            </div>
-		
-		            <div class="row">
-		                <div class="seatS">d1</div>
-		                <div class="seatS">d2</div>
-		                <div class="seatS">d3</div>
-		                <div class="seatS">d4</div>
-		                <div class="seatS">d5</div>
-		                <div class="seatS">d6</div>
-		                <div class="seatS">d7</div>
-		                <div class="seatS">d8</div>
-		                <div class="seatS">d9</div>
-		                <div class="seatS">d10</div>
-		                <div class="seatS">d11</div>
-		            </div>
-		
-		            <div class="row">
-		                <div class="seatY">e1</div>
-		                <div class="seatY">e2</div>
-		                <div class="seatY">e3</div>
-		                <div class="seatY">e4</div>
-		                <div class="seatY">e5</div>
-		                <div class="seatY">e6</div>
-		                <div class="seatY">e7</div>
-		                <div class="seatY">e8</div>
-		                <div class="seatY">e9</div>
-		                <div class="seatY">e10</div>
-		                <div class="seatY">e11</div>
-		            </div>
-		
-		            <div class="row">
-		                <div class="seatY">f1</div>
-		                <div class="seatY">f2</div>
-		                <div class="seatY">f3</div>
-		                <div class="seatY">f4</div>
-		                <div class="seatY">f5</div>
-		                <div class="seatY">f6</div>
-		                <div class="seatY">f7</div>
-		                <div class="seatY">f8</div>
-		                <div class="seatY">f9</div>
-		                <div class="seatY">f10</div>
-		                <div class="seatY">f11</div>
+		            	<c:forEach items="${seat}" var="seat" varStatus="statusUploaded">
+		            		<div class="seat seat${seat.seatRank } <c:if test="${seat.seatNy eq 1 }">disable</c:if>" ><c:out value="${seat.seatRow }"/><c:out value="${seat.seatCol }"/></div>
+		            	</c:forEach>
 		            </div>
 		            <div class="position-absolute top-0 start-100" style="transform:translate(17px);">
-		            	<div class="seatRow">a</div>
-		            	<div class="seatRow">b</div>
-		            	<div class="seatRow">c</div>
-		            	<div class="seatRow">d</div>
-		            	<div class="seatRow">e</div>
-		            	<div class="seatRow">f</div>
+		            	<c:forEach items="${row}" var="row" varStatus="statusUploaded">
+		            		<div class="seatRow"><c:out value="${row.seatRow }"/></div>
+		            	</c:forEach>
 		            </div>
 		        </div>
 		        <div>
@@ -220,15 +134,18 @@
 			<div class="col-3 border d-flex flex-column p-3">
 				<p class="h5 mb-3">잔여좌석/가격</p>
 				<div class="d-flex border-bottom mb-3">
-					<div class="col-6">
-						<p><span>R</span>석 : <span id="seatRNy"></span>석</p>
-						<p><span>S</span>석 : <span id="seatSNy"></span>석</p>
-						<p><span>Y</span>석 : <span id="seatYNy"></span>석</p>
+					<div class="col-6" id="seat">
+					<c:forEach items="${seatGroup}" var="seatGroup" varStatus="statusUploaded">
+						<c:set var="listCodeSeat" value="${CodeServiceImpl.selectListCachedCode('9') }"/>
+						<c:forEach items="${listCodeSeat }" var="listCodeSeat" varStatus="status">
+							<c:if test="${seatGroup.seatRank eq listCodeSeat.codeNum }"><p><span><c:out value="${listCodeSeat.name }"></c:out></span>석 : <span id='seat${listCodeSeat.name }Ny'><c:out value="${seatGroup.seatTotal - seatGroup.seatN }" />석</span></p></c:if>
+				       	</c:forEach>
+					</c:forEach>
 					</div>
 					<div class="col-6">
-						<p><span id="price1">15000</span>원</p>
-						<p><span id="price2">13000</span>원</p>
-						<p><span id="price3">10000</span>원</p>
+					<c:forEach items="${seatGroup}" var="seatGroup" varStatus="statusUploaded">
+						<p><span class="seatPrice" id="price${seatGroup.seatRank }"><c:out value="${seatGroup.seatRankPrice }"/></span>원</p>
+					</c:forEach>
 					</div>
 				</div>
 				<div class="mb-3 pb-3 border-bottom">
@@ -245,7 +162,7 @@
 						<button type="button" class="btn btn-secondary">선택완료</button>
 					</div>
 					<div>
-						<button type="button" class="btn btn-secondary" style="width:95px;" onclick="location.href='/concertUsrTicketDate'">이전</button>
+						<button type="button" class="btn btn-secondary" style="width:95px;" onclick="location.href='/concertUsrTicketDate?seq=${param.seq}&concertAddress_seq=${param.concertAddress_seq}&dateDefaultNy=1'">이전</button>
 						<button type="button" class="btn btn-secondary" style="width:95px;" id="reSelectBtn">다시 선택</button>
 					</div>
 				</div>
@@ -255,10 +172,8 @@
 	<jsp:include page="../include/script.jsp"></jsp:include>
 	<script>
 		var sum = 0;
-		var RPrice = 15000;
-		var SPrice = 13000;
-		var YPrice = 10000;
-		
+		var seat = $(".seatPrice");
+		console.log(seat.eq(0).text())
 		$(".seatContainer .row div").on("click", function(){
 			if($(this).hasClass("disable") == false){
 				if($(this).hasClass("select") == true){
@@ -280,20 +195,23 @@
 			console.log("RSelect" + RSelect);
 			console.log("SSelect" + SSelect);
 			console.log("YSelect" + YSelect);
+			for(var i=0;i<seat.length;i++){
+				sum += $("'"+eval(".seat"+i)+".select'").length * parseInt(seat.eq(i).text());
+			}
 			
-		$("#totalPrice").text(RSelect * RPrice + SSelect * SPrice + YSelect * YPrice + "원");
+		$("#totalPrice").text(sum + "원");
 		})
 			
-		$("#seatRNy").text($(".seatR").length-$(".seatR.disable").length);
-		$("#seatYNy").text($(".seatY").length-$(".seatY.disable").length);
-		$("#seatSNy").text($(".seatS").length-$(".seatS.disable").length);
+// 		$("#seatRNy").text($(".seatR").length-$(".seatR.disable").length);
+// 		$("#seatYNy").text($(".seatY").length-$(".seatY.disable").length);
+// 		$("#seatSNy").text($(".seatS").length-$(".seatS.disable").length);
 		$("#reSelectBtn").on("click", function(){
 			$(".seatContainer .row div").removeClass("select");
 			$("#selectSeat").empty();
 			RSelect = $(".seatR.select").length;
 			SSelect = $(".seatS.select").length;
 			YSelect = $(".seatY.select").length;
-			$("#totalPrice").text(RSelect * RPrice + SSelect * SPrice + YSelect * YPrice + "원");
+			$("#totalPrice").text(RSelect * price0 + SSelect * Price1 + YSelect * Price2 + "원");
 			
 		})
 		
