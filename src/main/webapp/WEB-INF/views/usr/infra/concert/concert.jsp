@@ -58,7 +58,7 @@
 									</c:if>
 								</th>
 								<th>
-									<span><a href="/concertUsrDetail?seq=<c:out value="${list.seq }"/>&concertAddress_seq=<c:out value="${list.concertAddress_seq }"></c:out>&dateDefaultNy=1"><c:out value="${list.concertTitle }"></c:out></a></span>
+									<span><a href="/concertUsrDetail?seq=<c:out value="${list.seq }"/>&concertAddress_seq=<c:out value="${list.concertAddress_seq }"></c:out>"><c:out value="${list.concertTitle }"></c:out></a></span>
 								</th>
 								<th>
 									<span><c:out value="${list.concertAddress }"></c:out>  <c:out value="${list.concertAddressDetail }"></c:out></span>

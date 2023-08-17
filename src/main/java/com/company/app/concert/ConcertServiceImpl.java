@@ -114,6 +114,86 @@ public class ConcertServiceImpl implements ConcertService {
 		}
 	}
 
+	@Override
+	public int insertSeat(Concert dto) {
+		String seatRow = "a";
+		Integer seatCol = 1;
+		Integer colNumber = 11;
+		Integer seatRank = 0;
+		Integer seatRankPrice = 18000;
+		String concertDate_seq = "6";
+		for(int i=1;i<colNumber+1;i++) {
+			dto.setSeatRow(seatRow);
+			dto.setSeatCol(seatCol);
+			dto.setSeatRank(seatRank);
+			dto.setSeatRankPrice(seatRankPrice);
+			dto.setConcertDate_seq(concertDate_seq);
+			seatCol++;
+			dao.insertSeat(dto);
+		}
+		seatRow = "b";
+		seatCol = 1;
+		for(int i=1;i<colNumber+1;i++) {
+			dto.setSeatRow(seatRow);
+			dto.setSeatCol(seatCol);
+			dto.setSeatRank(seatRank);
+			dto.setSeatRankPrice(seatRankPrice);
+			dto.setConcertDate_seq(concertDate_seq);
+			seatCol++;
+			dao.insertSeat(dto);
+		}
+		seatRow = "c";
+		seatCol = 1;
+		seatRank = 1;
+		seatRankPrice = 15000;
+		for(int i=1;i<colNumber+1;i++) {
+			dto.setSeatRow(seatRow);
+			dto.setSeatCol(seatCol);
+			dto.setSeatRank(seatRank);
+			dto.setSeatRankPrice(seatRankPrice);
+			dto.setConcertDate_seq(concertDate_seq);
+			seatCol++;
+			dao.insertSeat(dto);
+		}
+		seatRow = "d";
+		seatCol = 1;
+		for(int i=1;i<colNumber+1;i++) {
+			dto.setSeatRow(seatRow);
+			dto.setSeatCol(seatCol);
+			dto.setSeatRank(seatRank);
+			dto.setSeatRankPrice(seatRankPrice);
+			dto.setConcertDate_seq(concertDate_seq);
+			seatCol++;
+			dao.insertSeat(dto);
+		}
+		seatRow = "e";
+		seatCol = 1;
+		seatRank = 2;
+		seatRankPrice = 13000;
+		for(int i=1;i<colNumber+1;i++) {
+			dto.setSeatRow(seatRow);
+			dto.setSeatCol(seatCol);
+			dto.setSeatRank(seatRank);
+			dto.setSeatRankPrice(seatRankPrice);
+			dto.setConcertDate_seq(concertDate_seq);
+			seatCol++;
+			dao.insertSeat(dto);
+		}
+		seatRow = "f";
+		seatCol = 1;
+		for(int i=1;i<colNumber+1;i++) {
+			dto.setSeatRow(seatRow);
+			dto.setSeatCol(seatCol);
+			dto.setSeatRank(seatRank);
+			dto.setSeatRankPrice(seatRankPrice);
+			dto.setConcertDate_seq(concertDate_seq);
+			seatCol++;
+			dao.insertSeat(dto);
+		}
+		
+		return 0;
+	}
+
 
 
 

@@ -164,6 +164,9 @@
 					<div>
 						<button type="button" class="btn btn-secondary" style="width:95px;" onclick="location.href='/concertUsrTicketDate?seq=${param.seq}&concertAddress_seq=${param.concertAddress_seq}&dateDefaultNy=1'">이전</button>
 						<button type="button" class="btn btn-secondary" style="width:95px;" id="reSelectBtn">다시 선택</button>
+						<input type="hidden" name="seq" value="${param.seq }">
+						<input type="hidden" name="concertAddress_seq" value="${param.concertAddress_seq }">
+						<input type="hidden" name="concertDate_seq" value="${param.concertDate_seq }">
 					</div>
 				</div>
 			</div>
@@ -172,8 +175,10 @@
 	<jsp:include page="../include/script.jsp"></jsp:include>
 	<script>
 		var sum = 0;
-		var seat = $(".seatPrice");
-		console.log(seat.eq(0).text())
+		<c:forEach items="${seatGroup}" var="seatGroup" varStatus="statusUploaded">
+			var price${seatGroup.seatRank} = ${seatGroup.seatRankPrice};
+		</c:forEach>
+
 		$(".seatContainer .row div").on("click", function(){
 			if($(this).hasClass("disable") == false){
 				if($(this).hasClass("select") == true){
@@ -184,22 +189,20 @@
 						$(this).addClass("select");
 						$("#selectSeat").append("<span id='"+$(this).text()+"'>"+$(this).text()+"</span>");
 					} else {
-						
+						alert("")
 					}
 				}
 			}
-			var RSelect = $(".seatR.select").length;
-			var SSelect = $(".seatS.select").length;
-			var YSelect = $(".seatY.select").length;
-			console.log($(".seatContainer .row div.select").length)
-			console.log("RSelect" + RSelect);
-			console.log("SSelect" + SSelect);
-			console.log("YSelect" + YSelect);
-			for(var i=0;i<seat.length;i++){
-				sum += $("'"+eval(".seat"+i)+".select'").length * parseInt(seat.eq(i).text());
-			}
+			<c:forEach items="${seatGroup}" var="seatGroup" varStatus="statusUploaded">
+			var select${seatGroup.seatRank} = $(".seat${seatGroup.seatRank}.select").length;
+			</c:forEach>
+			
+			<c:forEach items="${seatGroup}" var="seatGroup" varStatus="statusUploaded">
+				sum += (select${seatGroup.seatRank} * price${seatGroup.seatRank});
+			</c:forEach>
 			
 		$("#totalPrice").text(sum + "원");
+		sum=0;
 		})
 			
 // 		$("#seatRNy").text($(".seatR").length-$(".seatR.disable").length);
@@ -208,10 +211,8 @@
 		$("#reSelectBtn").on("click", function(){
 			$(".seatContainer .row div").removeClass("select");
 			$("#selectSeat").empty();
-			RSelect = $(".seatR.select").length;
-			SSelect = $(".seatS.select").length;
-			YSelect = $(".seatY.select").length;
-			$("#totalPrice").text(RSelect * price0 + SSelect * Price1 + YSelect * Price2 + "원");
+			sum = 0;
+			$("#totalPrice").text(sum + "원");
 			
 		})
 		

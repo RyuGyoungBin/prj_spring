@@ -119,11 +119,7 @@
 				  	</ul>
 				  </div>
 				  <div class="text-center mb-3" id="concertTime">
-				  	<c:forEach items="${date }" var="date" varStatus="statusUploaded">
-					  	<input type="radio" class="btn-check" name="concertDateTime" id="option<c:out value="${date.seq }" />" autocomplete="off" value="<c:out value="${date.concertDateTime }" />" checked>
-						<label class="btn btn-sm btn-secondary me-2" for="option<c:out value="${date.seq }" />"><span class="times"><c:out value="${date.concertDateTime }" /></span></label>
-						<input type="hidden" value="<c:out value="${date.seq }" />" name="concertDate_seq">
-				  	</c:forEach>
+				  	공연 날짜를 선택해주세요
 				  </div>
 				  	<input type="hidden" name="concertDate" id="concertDate">
 				  	<input type="hidden" name="concertAddress_seq" id="concertAddress_seq" value="${param.concertAddress_seq }">
@@ -131,15 +127,8 @@
 						<div class="col-2">
 							<p>잔여 좌석</p>
 						</div>
-						<c:set var="listCodeSeat" value="${CodeServiceImpl.selectListCachedCode('9') }"/>
-							<div class="col-2" id="concertSeat">
-								<c:forEach items="${seat}" var="seat" varStatus="statusUploaded">
-										<c:forEach items="${listCodeSeat }" var="listCodeSeat" varStatus="status">
-											<c:if test="${seat.seatRank eq listCodeSeat.codeNum }"><p><span><c:out value="${listCodeSeat.name }"></c:out></span>석 : <span><c:out value="${seat.seatTotal - seat.seatN }" />석</span></p></c:if>
-								       	</c:forEach>
-								</c:forEach>
-	<!-- 							<p><span>R</span>석 : <span>20</span>석</p> -->
-								
+							<div class="col-5" id="concertSeat">
+								공연시간을 선택해주세요
 							</div>
 					</div>
 					<div class=text-center>
@@ -290,7 +279,7 @@
 				"password" : $("#password").val()}
 			,success: function(response) {
 				if(response.rt == "success") {
-					location.href = "/concertUsrDetail";
+					location.href = "/concertUsrDetail?seq=${param.seq}&concertAddress_seq=${param.concertAddress_seq}";
 				} else {
 					alert("그런 회원 없습니다.");
 				}
@@ -317,18 +306,20 @@
 	
 	</script>
 	<script type="text/javascript">
+	var concertDate = <c:out value="${item.concertDateMin}"/>;
 	 $(document).ready(function () {
          $("#calendar").zabuto_calendar({
              classname: 'table clickable',
              year: 2023,
-             month: 6,
+             month: 06,
              language: 'kr',
              events: [
+                	 <c:forEach items="${date}" var="date" varStatus="statusUploaded">
                  {
-                     "date": "2023-06-02",
-                     "markup": "<div class=\"badge rounded-pill bg-success able\">[day]</div>"
-                     
+                     "date": "<c:out value="${date.concertDate }"/>",
+                     "markup": "<div class=\"badge rounded-pill bg-danger bg-opacity-50\">[day]</div>"
                  },
+					</c:forEach>
                  
              ]
              
@@ -357,38 +348,42 @@
 // 		                     	alert(value.concertDate); 
 // 	                         	alert(value.concertDateTime);
 	                         	timeDiv ='';
-	                         	timeDiv +='<input type="radio" class="btn-check" name="concertDateTime" id="option'+value.seq+'" autocomplete="off" value="'+value.concertDateTime+'" checked>';
+	                         	timeDiv +='<input type="radio" class="btn-check" name="concertDateTime" id="option'+value.seq+'" autocomplete="off" value="'+value.concertDateTime+'">';
 	                         	timeDiv +='<label class="btn btn-sm btn-secondary me-2" for="option'+value.seq+'"><span class="times">'+value.concertDateTime+'</span></label>';
 	                         	timeDiv +='<input type="hidden" value="'+value.seq+'" name="concertDate_seq" id="concertDate_seq'+value.seq+'">';
 	                         	$("#concertTime").append(timeDiv);
+	                         	
 		                     })
 	                         	timeStr();
-		       				 
+			            	 $(".zabuto-calendar__event").find("div").removeClass("bg-warning").addClass("bg-danger");
+			            	 $(e.element).children().removeClass("bg-danger");
+		            	     $(e.element).children().addClass("bg-warning");
+		            	     $(".btn-check").eq(0).prop("checked", true).click();
+		            	     $("#concertSeat").text("공연시간을 선택해 주세요");
 	       				} else {
-	       					alert("데이터가 없습니다.");
+	       					alert("공연일이 아닙니다.");
 	       				}
 	       			}
 	       			,error : function(jqXHR, textStatus, errorThrown){
 	       				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
 	       			}
 	       		});
-	    		 
+                 
 	     });
 		 
 	 })
 		
-	var code = '<c:set var="listCodeSeat" value="${CodeServiceImpl.selectListCachedCode('9') }"/>';
-	var foreachS = '<c:forEach items="listCodeSeat" var="listCodeSeat">';
-	var foreachE = '</c:forEach>';
+// 	var code = '<c:set var="listCodeSeat" value="${CodeServiceImpl.selectListCachedCode('9') }"/>';
+// 	var foreachS = '<c:forEach items="listCodeSeat" var="listCodeSeat" varStatus="status">';
+// 	var foreachE = '</c:forEach>';
 	var codeNum = '${listCodeSeat.codeNum}';
 	var codeName = '${listCodeSeat.name}';
-	div = '';
-	div += foreachS;
-	div += codeNum;
-	console.log(codeNum);
-	div += foreachE;
-	
-	$("#concertSeat").append(div);
+// 	div = '';
+// 	div += foreachS;
+// 	div += codeNum;
+// 	console.log(codeNum);
+// 	div += foreachE;
+// 	$("#concertSeat").append(div);
 	 $(document).on("click",".times",function(){
 		 $.ajax({
     			async: true 
@@ -399,19 +394,20 @@
     			/* ,data : $("#formLogin").serialize() */
     			,data : { "concertDate_seq" : $(this).parent().next().val()}
     			,success: function(response) {
-    				if(response.rtSeat != null) {
+    				if(response.seat.rtSeat != null) {
     					$("#concertSeat").empty();
-    					console.log(response.rtSeat)
-	       				 $.each(response.rtSeat,function(index, value) { // 값이 여러개 일 때는 반복문 사용
-	       					 
-						seatDiv ='';
-// 						if(value.seatRank == code.codeNum)
-// 							 $.each(response.rtSeat,function(index, value){
-								 
-// 							 }
-							
-                      	seatDiv +='<p><span>'+value.seatRank+'</span>석 : <span>'+(value.seatTotal +-+value.seatN)+'석</span></p>';
-                      	$("#concertSeat").append(seatDiv);
+    					console.log(response.seat.rtSeat)
+    					console.log(response.code.rtCode)
+    					
+	       				 $.each(response.seat.rtSeat,function(index, value) { // 값이 여러개 일 때는 반복문 사용
+	       					$.each(response.code.rtCode,function(seq, code){
+	    						
+								seatDiv ='';
+								if(value.seatRank == code.codeNum){
+		                      	seatDiv +='<p><span>'+code.name+'</span>석 : <span>'+(value.seatTotal +-+value.seatN)+'석</span></p>';
+		                      	$("#concertSeat").append(seatDiv);
+								}
+	    					})
 	                     })
     				} else {
     					alert("데이터가 없습니다.");
@@ -428,9 +424,16 @@
 	timeStr();
 	 function timeStr(){
 		 for(var i = 0;i < $(".times").length;i++){
-			 $(".times").eq(i).text((i+1)+"회차 "+$(".times").eq(i).text().substr(0,5));
+			 $(".times").eq(i).text((i+1)+"회차 "+$(".times").eq(i).text());
 		 }
 	 }
+// 	 var list = new Array();
+// 		list = ${listCodeSeat};
+// 	 console.log(list.length)
+	
+// 	for(let q=0; q<list.length; q++){
+// 		console.log(list[q].name+ " : " + list[q].codeNum);
+// 	}
     </script>
 	
 

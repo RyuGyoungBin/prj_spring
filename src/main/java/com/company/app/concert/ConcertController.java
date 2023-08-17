@@ -102,19 +102,22 @@ public class ConcertController {
 	
 	@ResponseBody
 	@RequestMapping("/seatXdmView")
-	public Map<String, Object> seatView(ConcertVo vo, Model model) {
+	public Map<String, Map> seatView(ConcertVo vo, Model model) {
+		Map<String, Map> returnTotal = new HashMap<>();
 		Map<String, Object> returnMap = new HashMap<>();
+		Map<String, List<Concert>> returnSeat = new HashMap<>();
 		int rtMember = service.selectSeatCount(vo);
-		List<Concert> Concert = service.selectSeat(vo);
-		System.out.println("asdf");
+		List<Concert> concert = service.selectSeat(vo);
 		if (rtMember > 0) {
 			returnMap.put("rtMember", rtMember);
+			returnSeat.put("rtConcert", concert);
+			returnTotal.put("seat", returnSeat);
+			returnTotal.put("rtMap", returnMap);
 			returnMap.put("rt", "success");
-			model.addAttribute("seatList", Concert);
 		} else {
 			returnMap.put("rt", "fail");
 		}
-		return returnMap;
+		return returnTotal;
 	}
 	
 	@ResponseBody
@@ -131,19 +134,35 @@ public class ConcertController {
 		return returnMap;
 	}
 	
+	@SuppressWarnings("static-access")
 	@ResponseBody
 	@RequestMapping("/selectConcertDateTimeSeat")
-	public Map<String, List<Concert>> selectConcertDateTimeSeat(ConcertVo vo, Model model) throws Exception {
+	public Map<String, Map> selectConcertDateTimeSeat(ConcertVo vo, Model model) throws Exception {
+		Map<String, Map> returnTotal = new HashMap<>();
 		Map<String, List<Concert>> returnMap = new HashMap<>();
+		Map<String, List<Code>> returnCodeMap = new HashMap<>();
 		List<Concert> rtSeat = service.selectSeatGroup(vo);
+		List<Code> rtCode = codeService.selectListCachedCode("9");
 		System.out.println(rtSeat.size());
 		if (rtSeat.size() > 0) {
 			returnMap.put("rtSeat", rtSeat);
+			returnCodeMap.put("rtCode", rtCode);
+			returnTotal.put("code", returnCodeMap);
+			returnTotal.put("seat", returnMap);
 		} else {
 		}
-		return returnMap;
+		return returnTotal;
 	}
 	
+	@RequestMapping("/insertSeat")
+	public String insertSeat(Concert dto) {
+		service.insertSeat(dto);
+		return "redirect:/test";
+	}
+	@RequestMapping("/test")
+	public String test() {
+		return "/test";
+	}
 
 
 }

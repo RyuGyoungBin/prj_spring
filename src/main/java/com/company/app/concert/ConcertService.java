@@ -17,6 +17,7 @@ public interface ConcertService {
 	public Concert selectConcertOne(ConcertVo vo);
 
 	public int insertConcert(Concert dto) throws Exception;
+	public int insertSeat(Concert dto);
 
 
 }

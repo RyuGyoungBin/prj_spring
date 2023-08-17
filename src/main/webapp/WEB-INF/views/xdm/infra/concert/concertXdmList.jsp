@@ -6,7 +6,7 @@
 <%@ taglib prefix="rb" uri="http://www.springframework.org/tags" %>
 <jsp:include page="../include/header.jsp"></jsp:include>
 <style>
-	.seatR {
+	.seat0 {
 		width: 20px;
 		height: 20px;
 		margin: 1px;
@@ -15,7 +15,7 @@
 		font-size:0;
 	}
 	
-	.seatS {
+	.seat1 {
 		width: 20px;
 		height: 20px;
 		margin: 1px;
@@ -24,7 +24,7 @@
 		font-size:0;
 	}
 	
-	.seatY {
+	.seat2 {
 		width: 20px;
 		height: 20px;
 		margin: 1px;
@@ -335,34 +335,19 @@
 	 			/* ,data : $("#formLogin").serialize() */
 	 			,data : { "concertDate_seq" : objSeq.val()}
 	 			,success: function(response) {
-	 				if(response.rt == "success") {
+	 				if(response.rtMap.rt == "success") {
 	 					$("#seatModal").find(".modal-body").empty();
-	 					
-		      			<jsp:useBean id="CodeServiceImpl" class="com.company.app.infra.code.CodeServiceImpl"/>
-		      				
-// 							<c:forEach items="${seatList }" var="seatList" varStatus="status">
-// 								<c:set var="seatList" value="${seatList}"/>
-// 								<c:forEach items="${listSeatRank }" var="listSeatRank" varStatus="status">
-// 									<c:if test="${list.gender eq listGender.codeNum }"><c:out value="${listGender.name }"></c:out></c:if>
-// 						       	</c:forEach>
-// 								<c:out value="${listGender.name }"></c:out>
-// 				      			<div class="seatR"></div>
-// 							</c:forEach>
-			      			
-// 		      			</div>
+	 					console.log(response.seat.rtConcert)
 	 					var divImage = "";
-	 					divImage += '<div class="d-flex flex-wrap">';
-	 					<c:set var="listSeat" value="${ listSeat}"/>
-	 					<c:forEach items="${seatList }" var="seatList" varStatus="status">
-	 						<c:set var="listSeatRank" value="${CodeServiceImpl.selectListCachedCode('9') }"/>
-							<c:forEach items="${listSeatRank }" var="listSeatRank" varStatus="status">
-	 						divImage += '<div class="seat<c:if test="${seatList.seatRank eq listSeatRank.codeNum }"><c:out value="${listSeatRank.name }"></c:out></c:if>" />"></div>';
-	 						</c:forEach>
-	 					</c:forEach>
-	 					divImage += '</div> ';
-	 					
+	 					divImage += '<div class="d-flex flex-wrap" style="width:250px;">';
+		      			$.each(response.seat.rtConcert,function(index, value){
+	 						divImage += '<div class="seat'+value.seatRank+' ';
+	 						if(value.seatNy == 1){divImage += 'disable'}
+	 						divImage += '"></div>';
+		      			})
 	 					$("#seatModal").find(".modal-body").append(divImage);
 	 				 	seatModal.show();
+	 				 	<c:if test="${seat.seatNy eq 1 }">disable</c:if>
 	 				} else {
 	 					alert("좌석이 없습니다");
 	 				}
@@ -373,7 +358,9 @@
 	 		});
 	 		
 	 	})
-	
+// 	$.each(response.seat.rtConcert,function(index, value){
+// 	 						divImage += '<div class="seat'+value.seatRank+'"></div>'
+// 		      			})
 </script>
 
 </body>

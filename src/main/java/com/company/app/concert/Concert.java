@@ -19,7 +19,7 @@ public class Concert {
 	private String concert_seq;
 //	concertAddressSeat
 	private String seatRow;
-	private String seatCol;
+	private Integer seatCol;
 	private Integer seatNy;
 	private Integer seatRank;
 	private Integer seatRankPrice;
@@ -249,10 +249,10 @@ public class Concert {
 	public void setSeatRow(String seatRow) {
 		this.seatRow = seatRow;
 	}
-	public String getSeatCol() {
+	public Integer getSeatCol() {
 		return seatCol;
 	}
-	public void setSeatCol(String seatCol) {
+	public void setSeatCol(Integer seatCol) {
 		this.seatCol = seatCol;
 	}
 	public Integer getSeatNy() {

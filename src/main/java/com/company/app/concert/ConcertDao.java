@@ -36,5 +36,6 @@ public class ConcertDao {
 	public int insertConcertCasting(Concert dto) {return sqlSession.insert(namespace+".insertConcertCasting", dto);}
 	public int insertConcertCastingGroup(Concert dto) {return sqlSession.insert(namespace+".insertConcertCastingGroup", dto);}
 	public int insertUploaded(Concert dto) { return sqlSession.insert(namespace + ".insertUploaded", dto); }
+	public int insertSeat(Concert dto) {return sqlSession.insert(namespace + ".insertSeat", dto);}
 
 }

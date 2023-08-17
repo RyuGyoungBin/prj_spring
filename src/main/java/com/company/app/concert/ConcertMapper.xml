@@ -29,7 +29,7 @@
    		b.concertAddress,
    		b.concertAddressDetail,
 		c.concertDate,
-		c.concertDateTime,
+		DATE_FORMAT (c.concertDateTime, '%H:%i')as concertDateTime,
 		(SELECT
 			e.name
 		FROM
@@ -150,7 +150,11 @@
    	</select>
    	<select id="selectDate" resultMap="resultMapObj">
    		SELECT
-   			*
+   			seq,
+   			concertDate,
+   			concertAddress_seq,
+   			defaultNy,
+   			DATE_FORMAT (concertDateTime, '%H:%i')as concertDateTime
    		FROM
    			concertDate
    		WHERE 1=1
@@ -333,5 +337,43 @@
 			,#{seq}
 		)
 	</insert>
+	<insert id="insertSeat">
+		insert into `concertAddressSeat`(
+			seatRow,
+			seatCol,
+			seatNy,
+			seatRank,
+			seatRankPrice,
+			concertDate_seq
+		) values (
+			#{seatRow},
+			#{seatCol},
+			0,
+			#{seatRank},
+			#{seatRankPrice},
+			#{concertDate_seq}
+		)
+	
+	</insert>
+	<update id="update">
+    	UPDATE 
+    		concert
+		SET 
+			concertType = #{concertType},
+			concertTitle = #{concertTitle},
+			codeNumconcertDetailText = #{codeNumconcertDetailText},
+			delNy= #{delNy},
+			defaultNy= #{defaultNy},
+			member_seq= #{member_seq}
+		WHERE 
+			seq = #{seq}
+    </update>
+    <delete id="delete">
+    	DELETE FROM 
+    		concert
+		WHERE
+			seq = #{seq}
+    
+    </delete>
    	
 </mapper>

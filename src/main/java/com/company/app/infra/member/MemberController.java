@@ -184,7 +184,6 @@ String apiUrl = "http://apis.data.go.kr/1471000/CovidDagnsRgntProdExprtStusServi
 			System.out.println("[key]:" + key + ", [value]:" + value);
 		}
 		
-		
 		Map<String, Object> header = new HashMap<String, Object>();
 		header = (Map<String, Object>) map.get("header");
 		
