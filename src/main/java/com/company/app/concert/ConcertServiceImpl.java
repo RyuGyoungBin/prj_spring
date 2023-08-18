@@ -194,6 +194,45 @@ public class ConcertServiceImpl implements ConcertService {
 		return 0;
 	}
 
+	@Override
+	public int deleteConcert(Concert dto) {
+		dao.deleteconcertUploaded(dto);
+		dao.deleteconcertGroup(dto);
+		dao.deleteconcertReview(dto);
+		dao.deleteconcertTicket(dto);
+		dao.deleteconcertAddressSeat(dto);
+		dao.deleteconcertDate(dto);
+		dao.deleteconcertAdderss(dto);
+		dao.deleteConcert(dto);
+		return 0;
+	}
+
+	@Override
+	public int updateConcert(Concert dto) {
+		dao.updateconcertUploaded(dto);
+		dao.updateconcertGroup(dto);
+		dao.updateconcertReview(dto);
+		dao.updateconcertTicket(dto);
+		dao.updateconcertAddressSeat(dto);
+		dao.updateconcertDate(dto);
+		dao.updateconcertAdderss(dto);
+		dao.updateConcert(dto);
+		return 0;
+	}
+
+	@Override
+	public int ueleteConcert(Concert dto) {
+		dao.ueleteconcertUploaded(dto);
+		dao.ueleteconcertGroup(dto);
+		dao.ueleteconcertReview(dto);
+		dao.ueleteconcertTicket(dto);
+		dao.ueleteconcertAddressSeat(dto);
+		dao.ueleteconcertDate(dto);
+		dao.ueleteconcertAdderss(dto);
+		dao.ueleteConcert(dto);
+		return 0;
+	}
+
 
 
 

@@ -37,12 +37,7 @@
 		WHERE 1=1
 			AND e.seq = d.concertCasting_seq
 		) as name,
-		c.seq as concertDateSeq,
-		e.type,
-		e.path,
-		e.uuidName
-		
-		
+		c.seq as concertDateSeq
 	</sql>
 
 
@@ -154,7 +149,9 @@
    			concertDate,
    			concertAddress_seq,
    			defaultNy,
-   			DATE_FORMAT (concertDateTime, '%H:%i')as concertDateTime
+   			DATE_FORMAT (concertDateTime, '%H:%i')as concertDateTime,
+   			concertDateYear,
+   			concertDateMonth
    		FROM
    			concertDate
    		WHERE 1=1
@@ -368,12 +365,182 @@
 		WHERE 
 			seq = #{seq}
     </update>
-    <delete id="delete">
+    <delete id="deleteconcert">
     	DELETE FROM 
     		concert
 		WHERE
 			seq = #{seq}
-    
     </delete>
-   	
+    <delete id="deleteconcertAdderss">
+    	DELETE FROM 
+    		concertAdderss
+		WHERE
+			concert_seq = #{seq}
+    </delete>
+    <delete id="deleteconcertDate">
+    	DELETE FROM 
+    		concertDate
+		WHERE
+			seq = #{concertDateSeq}
+    </delete>
+    <delete id="deleteconcertAddressSeat">
+    	DELETE FROM 
+    		concertAddressSeat
+		WHERE
+			concertDate_seq = #{concertDateSeq}
+    </delete>
+    <delete id="deleteconcertTicket">
+    	DELETE FROM 
+    		concertTicket
+		WHERE
+			concertAddressSeat_seq = #{concertAddressSeat_seq}
+    </delete>
+    <delete id="deleteconcertUploaded">
+    	DELETE FROM 
+    		concertUploaded
+		WHERE
+			pseq = #{seq}
+    </delete>
+    <delete id="deleteconcertReview">
+    	DELETE FROM 
+    		concertReview
+		WHERE
+			concertTicket_seq = #{concertTicket_seq}
+    </delete>
+    <delete id="deleteconcertGroup">
+    	DELETE FROM 
+    		concertCastingGroup
+		WHERE
+			concert_seq = #{seq}
+    </delete>
+    
+    <update id="updateconcert">
+    	update 
+    		concert
+    	SET 
+    		concertType = #{concertType}
+    		, concertTitle = #{concertTitle}
+    		, concertDetailText = #{concertDetailText}
+    		, delNy = #{delNy}
+    		, defaultNy = #{defaultNy}
+    		, memberSeq = #{memberSeq}
+		WHERE
+			seq = #{seq}
+    </update>
+    <update id="updateconcertAddress">
+    	update 
+    		concertAddress
+    	SET 
+    		concertZipCode = #{concertZipCode}
+    		, concertSido = #{concertSido}
+    		, concertAddress = #{concertAddress}
+    		, concertAddressDetail = #{concertAddressDetail}
+    		, delNy = #{delNy}
+		WHERE
+    		concert_seq = #{seq}
+    </update>
+    <update id="updateconcertAddressSeat">
+    	update 
+    		concertAddressSeat
+    	SET 
+    		seatRow = #{seatRow}
+    		, seatCol = #{seatCol}
+    		, seatNy = #{seatNy}
+    		, seatRank = #{seatRank}
+    		, SeatRankPrice = #{SeatRankPrice}
+		WHERE 1=1
+			AND concertDate_seq = #{concertDate_seq}
+			AND seatCol = #{seatCol}
+			AND seatRow = #{seatRow}
+    </update>
+    <update id="updateconcertDate">
+    	update 
+    		concertDate
+    	SET 
+    		concertDate = #{concertDate}
+    		, concertdatetime = #{concertDateTime}
+    		, defaultNy = #{defaultNy}
+    		, delNy = #{delNy}
+		WHERE 1=1
+			AND seq = #{concertDateSeq}
+    </update>
+    <update id="updateconcertGroup">
+    	update 
+    		concertCastingGroup
+    	SET 
+    		concertCasting_seq = #{concertCasting_seq}
+		WHERE
+			concert_seq = #{seq}
+    </update>
+    <update id="updateconcertReview">
+    	update 
+    		concertReview
+    	SET 
+    		content = #{content}
+    		, concertGrade = #{concertGrade}
+    		, concertReviewDate = #{concertReviewDate}
+    		, defaultNy = #{defaultNy}
+    		, delNy = #{delNy}
+    		, memberSeq = #{memberSeq}
+		WHERE 1=1
+			AND	concertDate_seq = #{concertDate_seq}
+			AND concertTicket_seq = #{concertTicket_seq}
+    </update>
+    <update id="updateconcertTicket">
+    	update 
+    		concertTicket
+    	SET 
+    		ticketDate = #{ticketDate}
+    		, ticketDateRe = #{ticketDateRe}
+    		, memberSeq = #{memberSeq}
+    		, delNy = #{delNy}
+		WHERE 1=1
+			AND	concertAddressSeat_seq = #{concertAddressSeat_seq}
+    </update>
+    
+   	<update id="ueleteconcert">
+    	update 
+    		concert
+    	SET 
+    		delNy = 1
+		WHERE
+			seq = #{seq}
+    </update>
+    <update id="ueleteconcertAddress">
+    	update 
+    		concertAddress
+    	SET 
+    		concertZipCode = #{concertZipCode}
+    		, concertSido = #{concertSido}
+    		, concertAddress = #{concertAddress}
+    		, concertAddressDetail = #{concertAddressDetail}
+    		, delNy = #{delNy}
+		WHERE
+    		concert_seq = #{seq}
+    </update>
+    <update id="ueleteconcertDate">
+    	update 
+    		concertDate
+    	SET 
+    		delNy = 1
+		WHERE
+			concertAddress_seq = #{concertAddress_seq}
+    </update>
+    <update id="ueleteconcertReview">
+    	update 
+    		concertReview
+    	SET 
+    		delNy = 1
+		WHERE 1=1
+			AND	concertDate_seq = #{concertDate_seq}
+			AND concertTicket_seq = #{concertTicket_seq}
+    </update>
+    <update id="ueleteconcertTicket">
+    	update 
+    		concertTicket
+    	SET 
+    		delNy = 1
+		WHERE 1=1
+			AND	concertAddressSeat_seq = #{concertAddressSeat_seq}
+    </update>
 </mapper>

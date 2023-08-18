@@ -144,7 +144,7 @@
 					</div>
 					<div class="col-6">
 					<c:forEach items="${seatGroup}" var="seatGroup" varStatus="statusUploaded">
-						<p><span class="seatPrice" id="price${seatGroup.seatRank }"><c:out value="${seatGroup.seatRankPrice }"/></span>원</p>
+						<p><span class="seatPrice" id="price${seatGroup.seatRank }"><fmt:formatNumber value="${seatGroup.seatRankPrice }" pattern="#,###" /></span>원</p>
 					</c:forEach>
 					</div>
 				</div>
@@ -162,7 +162,7 @@
 						<button type="button" class="btn btn-secondary">선택완료</button>
 					</div>
 					<div>
-						<button type="button" class="btn btn-secondary" style="width:95px;" onclick="location.href='/concertUsrTicketDate?seq=${param.seq}&concertAddress_seq=${param.concertAddress_seq}&dateDefaultNy=1'">이전</button>
+						<button type="button" class="btn btn-secondary" style="width:95px;" onclick="location.href='/concertUsrTicketDate?seq=${param.seq}&concertAddress_seq=${param.concertAddress_seq}'">이전</button>
 						<button type="button" class="btn btn-secondary" style="width:95px;" id="reSelectBtn">다시 선택</button>
 						<input type="hidden" name="seq" value="${param.seq }">
 						<input type="hidden" name="concertAddress_seq" value="${param.concertAddress_seq }">
@@ -200,6 +200,7 @@
 			<c:forEach items="${seatGroup}" var="seatGroup" varStatus="statusUploaded">
 				sum += (select${seatGroup.seatRank} * price${seatGroup.seatRank});
 			</c:forEach>
+			sum = sum.toLocaleString('ko-KR');
 			
 		$("#totalPrice").text(sum + "원");
 		sum=0;

@@ -159,6 +159,24 @@ public class ConcertController {
 		service.insertSeat(dto);
 		return "redirect:/test";
 	}
+	
+	@RequestMapping("/deleteConcert")
+	public String deleteConcert(Concert dto) {
+		service.deleteConcert(dto);
+		return "redirect:/test";
+	}
+	
+	@RequestMapping("/updateConcert")
+	public String updateConcert(Concert dto) {
+		service.updateConcert(dto);
+		return "redirect:/test";
+	}
+	
+	@RequestMapping("/ueleteConcert")
+	public String ueleteConcert(Concert dto) {
+		service.ueleteConcert(dto);
+		return "redirect:/test";
+	}
 	@RequestMapping("/test")
 	public String test() {
 		return "/test";

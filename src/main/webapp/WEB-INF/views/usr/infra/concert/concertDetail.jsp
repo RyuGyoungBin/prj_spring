@@ -98,7 +98,7 @@
 							<c:forEach items="${seat}" var="seat" varStatus="statusUploaded">
 							<c:set var="listCodeSeat" value="${CodeServiceImpl.selectListCachedCode('9') }"/>
 								<c:forEach items="${listCodeSeat }" var="listCodeSeat" varStatus="status">
-									<c:if test="${seat.seatRank eq listCodeSeat.codeNum }"><p><span><c:out value="${listCodeSeat.name }"></c:out></span>석 : <span><c:out value="${seat.seatRankPrice }" />원</span></p></c:if>
+									<c:if test="${seat.seatRank eq listCodeSeat.codeNum }"><p><span><c:out value="${listCodeSeat.name }"></c:out></span>석 : <span><fmt:formatNumber value="${seat.seatRankPrice }" pattern="#,###" />원</span></p></c:if>
 						       	</c:forEach>
 							</c:forEach>
 						</div>
@@ -137,7 +137,7 @@
 							<a class="btn btn-secondary loginModal" style="min-width:80px;" target=”_blank”>예매</a>
 						</c:when>
 						<c:otherwise>
-							<a class="btn btn-secondary" style="min-width:80px;" target=”_blank” href="/concertUsrTicketDate?seq=<c:out value="${item.seq }"/>&concertAddress_seq=<c:out value="${item.concertAddress_seq }"/>&dateDefaultNy=1">예매</a>
+							<a id="ticketBtn" class="btn btn-secondary" style="min-width:80px;" target=”_blank”>예매</a>
 						</c:otherwise>
 					</c:choose>
 					</div>
@@ -306,12 +306,15 @@
 	
 	</script>
 	<script type="text/javascript">
-	var concertDate = <c:out value="${item.concertDateMin}"/>;
+	var concertDate = "${item.concertDateMin}";
+	var strArray = concertDate.split("-");
+	
 	 $(document).ready(function () {
          $("#calendar").zabuto_calendar({
              classname: 'table clickable',
-             year: 2023,
-             month: 06,
+             year: parseInt(strArray[0]),
+             month: parseInt(strArray[1]),
+             week_starts: 'sunday',
              language: 'kr',
              events: [
                 	 <c:forEach items="${date}" var="date" varStatus="statusUploaded">
@@ -385,6 +388,7 @@
 // 	div += foreachE;
 // 	$("#concertSeat").append(div);
 	 $(document).on("click",".times",function(){
+		 $("#ticketBtn").attr("href", "/concertUsrTicketSeat?seq=<c:out value="${item.seq }"/>&concertAddress_seq=<c:out value="${item.concertAddress_seq }"/>&concertDate_seq="+$(this).parent().next().val());
 		 $.ajax({
     			async: true 
     			,cache: false

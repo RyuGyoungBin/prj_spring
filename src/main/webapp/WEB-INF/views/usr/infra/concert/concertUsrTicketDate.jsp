@@ -84,11 +84,7 @@
 		</div>
 		<div class="col-1 pt-5">
 		  	<div class="text-center mb-3" id="concertTime">
-			  	<c:forEach items="${date }" var="date" varStatus="statusUploaded">
-				  	<input type="radio" class="btn-check" name="concertDateTime" id="option<c:out value="${date.seq }" />" autocomplete="off" value="<c:out value="${date.concertDateTime }" />" checked>
-					<label class="btn btn-sm btn-secondary my-2" for="option<c:out value="${date.seq }" />"><span class="times"><c:out value="${date.concertDateTime }" /></span></label>
-					<input type="hidden" value="<c:out value="${date.seq }" />" name="concertDate_seq">
-			  	</c:forEach>
+		  		공연날짜를<br>선택해주세요
 		  	</div>
 			<input type="hidden" name="concertDate" id="concertDate">
 		  	<input type="hidden" name="concertAddress_seq" id="concertAddress_seq" value="${param.concertAddress_seq }">
@@ -122,7 +118,7 @@
 					<c:forEach items="${seat}" var="seat" varStatus="statusUploaded">
 					<c:set var="listCodeSeat" value="${CodeServiceImpl.selectListCachedCode('9') }"/>
 						<c:forEach items="${listCodeSeat }" var="listCodeSeat" varStatus="status">
-							<c:if test="${seat.seatRank eq listCodeSeat.codeNum }"><p><span><c:out value="${listCodeSeat.name }"></c:out></span>석 : <span><c:out value="${seat.seatRankPrice }" />원</span></p></c:if>
+							<c:if test="${seat.seatRank eq listCodeSeat.codeNum }"><p><span><c:out value="${listCodeSeat.name }"></c:out></span>석 : <span><fmt:formatNumber value="${seat.seatRankPrice }" pattern="#,###" />원</span></p></c:if>
 				       	</c:forEach>
 					</c:forEach>
 				</div>
@@ -146,19 +142,25 @@
 		
 	</script>
 	<script type="text/javascript">
+	var concertDate = "${item.concertDateMin}";
+	var strArray = concertDate.split("-");
 	 $(document).ready(function () {
          $("#calendar").zabuto_calendar({
              classname: 'table clickable',
-             year: 2023,
-             month: 6,
+             year: parseInt(strArray[0]),
+             month: parseInt(strArray[1]),
+             week_starts: 'sunday',
              language: 'kr',
              events: [
-                 {
-                     "date": "2023-06-02",
-                     "markup": "<div class=\"badge rounded-pill bg-danger bg-opacity-50\">[day]</div>"
-                     
-                 },
                  
+                	 <c:forEach items="${date}" var="date" varStatus="statusUploaded">
+                     {
+                         "date": "<c:out value="${date.concertDate }"/>",
+                         "markup": "<div class=\"badge rounded-pill bg-danger bg-opacity-50\">[day]</div>"
+                     },
+    					</c:forEach>
+                 
+                
              ]
              
          

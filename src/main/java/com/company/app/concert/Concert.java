@@ -34,6 +34,8 @@ public class Concert {
 	private String concertAddress_seq;
 	private String concertDateMax;
 	private String concertDateMin;
+	private Integer concertDateYear;
+	private Integer concertDateMonth;
 //	concertTicket
 	private String ticketDate;
 	private String ticketDateRe;
@@ -72,6 +74,18 @@ public class Concert {
 	private String[] uploadImgProfileDeletePathFile;
 	
 	
+	public Integer getConcertDateYear() {
+		return concertDateYear;
+	}
+	public void setConcertDateYear(Integer concertDateYear) {
+		this.concertDateYear = concertDateYear;
+	}
+	public Integer getConcertDateMonth() {
+		return concertDateMonth;
+	}
+	public void setConcertDateMonth(Integer concertDateMonth) {
+		this.concertDateMonth = concertDateMonth;
+	}
 	public Integer getSeatN() {
 		return seatN;
 	}
