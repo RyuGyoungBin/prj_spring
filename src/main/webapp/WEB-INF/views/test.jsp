@@ -6,6 +6,11 @@
 
 <html>
 <form name="form"></form>
+<input type="text" name="seatRow" placeholder="seatRow">
+<input type="text" name="seatCol"placeholder="seatCol">
+<input type="text" name="seatRank"placeholder="seatRank">
+<input type="text" name="seatRankPrice"placeholder="seatRankPrice">
+<input type="text" name="concertDate_seq"placeholder="concertDate_seq">
 <button type="button" id="btn">btn</button>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script type="text/javascript">

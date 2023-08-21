@@ -103,7 +103,9 @@
 							</c:forEach>
 						</div>
 					</div>
+					<c:if test="${not empty item.name }">
 					<p>출연진 : <span><c:out value="${item.name }"/></span></p>
+					</c:if>
 					<div id="map"></div>
 				</div>
 				<div class="col-5 light">

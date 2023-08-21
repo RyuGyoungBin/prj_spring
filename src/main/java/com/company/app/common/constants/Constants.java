@@ -1,4 +1,4 @@
-package com.company.app.common.constant;
+package com.company.app.common.constants;
 
 public class Constants {
 

@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 <footer class="revealed">
         <div class="container">
             <div class="row">
@@ -47,7 +48,7 @@
                             <li><a href="#"><i class="icon-vimeo"></i></a></li>
                             <li><a href="#"><i class="icon-youtube-play"></i></a></li>
                         </ul>
-                        <p>� Concert 2023</p>
+                        <p>© Concert 2023</p>
                     </div>
                 </div>
             </div><!-- End row -->
@@ -59,7 +60,12 @@
 	<!-- Search Menu -->
 	<div class="search-overlay-menu">
 		<span class="search-overlay-close"><i class="icon_set_1_icon-77"></i></span>
-		<form role="search" name="searchform" method="get">
+		<form role="search" name="searchform" method="get" action="/concertUsrMain">
+			<select class="form-control" name="searchType">
+				<option value="da.name">출연진</option>
+				<option value="b.concertAddress">장소</option>
+				<option value="a.concertTitle">제목</option>
+			</select>
 			<input value="" name="search" id="search" type="text" placeholder="Search..." />
 			<button type="button" id="searchBtn"><i class="icon_set_1_icon-78"></i>
 			</button>

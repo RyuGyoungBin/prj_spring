@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.company.app.common.constant.Constants;
+import com.company.app.common.constants.Constants;
 
 
 

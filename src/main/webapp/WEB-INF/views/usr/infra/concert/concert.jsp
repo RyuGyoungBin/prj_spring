@@ -35,7 +35,13 @@
 							</c:forEach>
 						</c:when>
 						<c:otherwise>
-							<h3 class="fw-bold">"<span>${param.search}</span>"에 대한 검색결과 입니다.</h3>
+							<h3 class="fw-bold">
+							<c:choose>
+								<c:when test="${param.searchType eq 'da.name' }">출연진</c:when>
+								<c:when test="${param.searchType eq 'b.concertAddress' }">장소</c:when>
+								<c:otherwise>제목</c:otherwise>
+							</c:choose>
+								"<span>${param.search}</span>"에 대한 검색결과 입니다.</h3>
 						</c:otherwise>
 					</c:choose>
 					<table class="text-center">
@@ -58,7 +64,7 @@
 									</c:if>
 								</th>
 								<th>
-									<span><a href="/concertUsrDetail?seq=<c:out value="${list.seq }"/>&concertAddress_seq=<c:out value="${list.concertAddress_seq }"></c:out>"><c:out value="${list.concertTitle }"></c:out></a></span>
+									<span><a href="/concertUsrDetail?seq=<c:out value="${list.seq }"/>&concertAddress_seq=<c:out value="${list.concertAddress_seq }"></c:out>&concertDate_seq=<c:out value="${list.concertDate_seq }"/>"><c:out value="${list.concertTitle }"></c:out></a></span>
 								</th>
 								<th>
 									<span><c:out value="${list.concertAddress }"></c:out>  <c:out value="${list.concertAddressDetail }"></c:out></span>

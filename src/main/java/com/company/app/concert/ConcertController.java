@@ -1,5 +1,14 @@
 package com.company.app.concert;
 
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,6 +36,7 @@ public class ConcertController {
 	@RequestMapping("/concertUsrMain")
 	public String concertMain(ConcertVo vo, CodeVo codeVo, Model model) {
 		List<Concert> list = service.selectConcertList(vo);
+		System.out.println(vo.getSearchType());
 		model.addAttribute("concertList", list);
 		return"usr/infra/concert/concert";
 	}
@@ -163,24 +173,25 @@ public class ConcertController {
 	@RequestMapping("/deleteConcert")
 	public String deleteConcert(Concert dto) {
 		service.deleteConcert(dto);
-		return "redirect:/test";
+		return "redirect:/concertXdmList";
 	}
 	
 	@RequestMapping("/updateConcert")
 	public String updateConcert(Concert dto) {
 		service.updateConcert(dto);
-		return "redirect:/test";
+		return "redirect:/concertXdmList";
 	}
 	
 	@RequestMapping("/ueleteConcert")
 	public String ueleteConcert(Concert dto) {
 		service.ueleteConcert(dto);
-		return "redirect:/test";
+		return "redirect:/concertXdmList";
 	}
 	@RequestMapping("/test")
-	public String test() {
+	public String test(Concert dto) {
 		return "/test";
 	}
 
+	
 
 }

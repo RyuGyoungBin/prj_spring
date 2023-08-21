@@ -70,10 +70,25 @@ public class ConcertVo {
 	private Integer RNUM;
 
 	private int startRnumForMysql = 0;							// 쿼리 시작 row
+//	search
+	private String search;
+	private Object searchType;
 //	-----
 
 	public String getSeq() {
 		return seq;
+	}
+	public Object getSearchType() {
+		return searchType;
+	}
+	public void setSearchType(String searchType) {
+		this.searchType = searchType;
+	}
+	public String getSearch() {
+		return search;
+	}
+	public void setSearch(String search) {
+		this.search = search;
 	}
 	public String getConcertDateMax() {
 		return concertDateMax;

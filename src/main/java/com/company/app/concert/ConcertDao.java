@@ -39,29 +39,26 @@ public class ConcertDao {
 	public int insertSeat(Concert dto) {return sqlSession.insert(namespace + ".insertSeat", dto);}
 	
 	public int deleteConcert(Concert dto) {return sqlSession.delete(namespace + ".deleteconcert", dto);}
-	public int deleteconcertAdderss(Concert dto) {return sqlSession.delete(namespace + ".deleteconcertAdderss", dto);}
+	public int deleteconcertAddress(Concert dto) {return sqlSession.delete(namespace + ".deleteconcertAddress", dto);}
 	public int deleteconcertDate(Concert dto) {return sqlSession.delete(namespace + ".deleteconcertDate", dto);}
 	public int deleteconcertAddressSeat(Concert dto) {return sqlSession.delete(namespace + ".deleteconcertAddressSeat", dto);}
 	public int deleteconcertTicket(Concert dto) {return sqlSession.delete(namespace + ".deleteconcertTicket", dto);}
-	public int deleteconcertUploaded(Concert dto) {return sqlSession.delete(namespace + ".deleteconcertUploaded", dto);}
 	public int deleteconcertReview(Concert dto) {return sqlSession.delete(namespace + ".deleteconcertReview", dto);}
 	public int deleteconcertGroup(Concert dto) {return sqlSession.delete(namespace + ".deleteconcertGroup", dto);}
 	
 	public int updateConcert(Concert dto) {return sqlSession.update(namespace + ".updateconcert", dto);}
-	public int updateconcertAdderss(Concert dto) {return sqlSession.update(namespace + ".updateconcertAdderss", dto);}
+	public int updateconcertAddress(Concert dto) {return sqlSession.update(namespace + ".updateconcertAddress", dto);}
 	public int updateconcertDate(Concert dto) {return sqlSession.update(namespace + ".updateconcertDate", dto);}
 	public int updateconcertAddressSeat(Concert dto) {return sqlSession.update(namespace + ".updateconcertAddressSeat", dto);}
 	public int updateconcertTicket(Concert dto) {return sqlSession.update(namespace + ".updateconcertTicket", dto);}
-	public int updateconcertUploaded(Concert dto) {return sqlSession.update(namespace + ".updateconcertUploaded", dto);}
 	public int updateconcertReview(Concert dto) {return sqlSession.update(namespace + ".updateconcertReview", dto);}
 	public int updateconcertGroup(Concert dto) {return sqlSession.update(namespace + ".updateconcertGroup", dto);}
 	
 	public int ueleteConcert(Concert dto) {return sqlSession.update(namespace + ".ueleteconcert", dto);}
-	public int ueleteconcertAdderss(Concert dto) {return sqlSession.update(namespace + ".ueleteconcertAdderss", dto);}
+	public int ueleteconcertAddress(Concert dto) {return sqlSession.update(namespace + ".ueleteconcertAddress", dto);}
 	public int ueleteconcertDate(Concert dto) {return sqlSession.update(namespace + ".ueleteconcertDate", dto);}
 	public int ueleteconcertAddressSeat(Concert dto) {return sqlSession.update(namespace + ".ueleteconcertAddressSeat", dto);}
 	public int ueleteconcertTicket(Concert dto) {return sqlSession.update(namespace + ".ueleteconcertTicket", dto);}
-	public int ueleteconcertUploaded(Concert dto) {return sqlSession.update(namespace + ".ueleteconcertUploaded", dto);}
 	public int ueleteconcertReview(Concert dto) {return sqlSession.update(namespace + ".ueleteconcertReview", dto);}
 	public int ueleteconcertGroup(Concert dto) {return sqlSession.update(namespace + ".ueleteconcertGroup", dto);}
 

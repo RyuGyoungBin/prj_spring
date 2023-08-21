@@ -79,10 +79,6 @@
 				        </div>
 	                </div>
 	                <div class=" col-5 mb-3">
-	                	<label for="concertDetailText" class=" col-form-label">concertDetailText</label>
-                    	<textarea type="text" class="form-control" name="concertDetailText" id="concertDetailText"><c:out value="${list.concertDetailText }"></c:out></textarea>
-	                </div>
-	                <div class=" col-5 mb-3">
 	                  	<label for="defaultNy" class=" col-form-label">defaultNy</label>
                     	<input type="text" class="form-control" name="defaultNy" id="defaultNy" value="<c:out value="${list.defaultNy }"></c:out>">
 	                </div>
@@ -110,6 +106,7 @@
                     <div class=" col-5 mb-3">
 	                  	<label for="concertDate" class=" col-form-label">concertDate</label>
                     	<input type="date" class="form-control" name="concertDate" id="concertDate" value="<c:out value="${list.concertDate }"></c:out>">
+                    	<input type="hidden" value="${param.concertDateSeq }" name="concertDateSeq">
 	                </div>
 	                <div class=" col-5 mb-3">
 	                  	<label for="concertTime" class=" col-form-label">concertTime</label>
@@ -217,12 +214,12 @@
 //   		}
   	
 	  	$("#btnDelete").on("click", function(){
-			$("form[name=form]").attr("action", "/codeGroupXdmDelete").submit();
+			$("form[name=form]").attr("action", "/deleteConcert").submit();
 		});
 	 	
 	 	$("#btnUpdate").on("click", function(){
-	 		if(validationUpdt() == false) return false;
-			$("form[name=form]").attr("action", "/codeGroupXdmUpdate").submit();
+// 	 		if(validationUpdt() == false) return false;
+			$("form[name=form]").attr("action", "/updateConcert").submit();
 		});
 	 	
 	 	$("#btnInsert").on("click", function(){
@@ -230,7 +227,7 @@
 			$("form[name=form]").attr("action", "/concertXdmInsert").submit();
 		});
 	 	$("#btnDelNy").on("click", function(){
-			$("form[name=form]").attr("action", "/codeGroupXdmDelNy").submit();
+			$("form[name=form]").attr("action", "/ueleteConcert").submit();
 		});
 		 $("#concert").addClass("active");
 //	 		파일첨부

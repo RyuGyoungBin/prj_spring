@@ -159,7 +159,7 @@
 				</div>
 				<div class="p-3 text-center">
 					<div class="mb-1">
-						<button type="button" class="btn btn-secondary">선택완료</button>
+						<button type="button" class="btn btn-secondary" id="btn-kakaopay">선택완료</button>
 					</div>
 					<div>
 						<button type="button" class="btn btn-secondary" style="width:95px;" onclick="location.href='/concertUsrTicketDate?seq=${param.seq}&concertAddress_seq=${param.concertAddress_seq}'">이전</button>
@@ -218,6 +218,21 @@
 		})
 		
 		
+	$(function(){
+        $("#btn-kakaopay").on("click", function(){
+        	$.ajax({
+    			url:"/kakaopay",
+    			dataType:"json" ,
+    			success:function(data){
+    				alert(data);
+    			},
+    			error:function(error){
+    				alert("asd");
+    			}
+   			});
+		});
+	});
+
 	</script>
 </body>
 </html>

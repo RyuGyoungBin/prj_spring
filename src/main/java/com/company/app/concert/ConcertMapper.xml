@@ -84,27 +84,25 @@
    			WHERE 1=1
    				AND d.concertAddress_Seq = b.seq
    			) as concertDateMax,
-   			(SELECT
-				e.name
-			FROM
-				concertCasting e
-			WHERE 1=1
-				AND e.seq = d.concertCasting_seq
-			) as name,
+   			da.name,
 			b.concertAddress,
 			b.concertAddressDetail,
 			b.seq concertAddress_seq,
 			e.type,
 			e.path,
 			e.originalName,
-			e.uuidName
+			e.uuidName,
+			f.seq concertDate_seq
    		FROM
    			concert a
    			LEFT JOIN concertAddress b on b.concert_seq = a.seq 
    			LEFT JOIN concertCastingGroup d on d.concert_seq = a.seq
+   			LEFT JOIN concertCasting da on da.seq = d.concertCasting_seq
    			LEFT JOIN concertUploaded e on e.pseq = a.seq ANd e.type =1
+   			LEFT JOIN concertDate f on f.concertAddress_seq = b.seq AND f.defaultNy = 1
    		WHERE 1=1
    			<if test="concertType != null and !concertType.equals('')">AND a.concertType = #{concertType}</if>
+   			<if test="search != null and !search.equals('')">AND ${searchType}  LIKE CONCAT ('%',#{search},'%')</if>
    			AND e.type = 1
    	</select>
    	<select id="selectConcertOne" resultMap="resultMapObj">
@@ -371,9 +369,9 @@
 		WHERE
 			seq = #{seq}
     </delete>
-    <delete id="deleteconcertAdderss">
+    <delete id="deleteconcertAddress">
     	DELETE FROM 
-    		concertAdderss
+    		concertAddress
 		WHERE
 			concert_seq = #{seq}
     </delete>

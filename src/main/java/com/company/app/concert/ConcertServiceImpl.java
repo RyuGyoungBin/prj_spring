@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.company.app.common.constant.Constants;
+import com.company.app.common.constants.Constants;
 
 @Service
 public class ConcertServiceImpl implements ConcertService {
@@ -116,71 +116,12 @@ public class ConcertServiceImpl implements ConcertService {
 
 	@Override
 	public int insertSeat(Concert dto) {
-		String seatRow = "a";
-		Integer seatCol = 1;
+		String seatRow = dto.getSeatRow();
+		Integer seatCol = dto.getSeatCol();
 		Integer colNumber = 11;
-		Integer seatRank = 0;
-		Integer seatRankPrice = 18000;
-		String concertDate_seq = "6";
-		for(int i=1;i<colNumber+1;i++) {
-			dto.setSeatRow(seatRow);
-			dto.setSeatCol(seatCol);
-			dto.setSeatRank(seatRank);
-			dto.setSeatRankPrice(seatRankPrice);
-			dto.setConcertDate_seq(concertDate_seq);
-			seatCol++;
-			dao.insertSeat(dto);
-		}
-		seatRow = "b";
-		seatCol = 1;
-		for(int i=1;i<colNumber+1;i++) {
-			dto.setSeatRow(seatRow);
-			dto.setSeatCol(seatCol);
-			dto.setSeatRank(seatRank);
-			dto.setSeatRankPrice(seatRankPrice);
-			dto.setConcertDate_seq(concertDate_seq);
-			seatCol++;
-			dao.insertSeat(dto);
-		}
-		seatRow = "c";
-		seatCol = 1;
-		seatRank = 1;
-		seatRankPrice = 15000;
-		for(int i=1;i<colNumber+1;i++) {
-			dto.setSeatRow(seatRow);
-			dto.setSeatCol(seatCol);
-			dto.setSeatRank(seatRank);
-			dto.setSeatRankPrice(seatRankPrice);
-			dto.setConcertDate_seq(concertDate_seq);
-			seatCol++;
-			dao.insertSeat(dto);
-		}
-		seatRow = "d";
-		seatCol = 1;
-		for(int i=1;i<colNumber+1;i++) {
-			dto.setSeatRow(seatRow);
-			dto.setSeatCol(seatCol);
-			dto.setSeatRank(seatRank);
-			dto.setSeatRankPrice(seatRankPrice);
-			dto.setConcertDate_seq(concertDate_seq);
-			seatCol++;
-			dao.insertSeat(dto);
-		}
-		seatRow = "e";
-		seatCol = 1;
-		seatRank = 2;
-		seatRankPrice = 13000;
-		for(int i=1;i<colNumber+1;i++) {
-			dto.setSeatRow(seatRow);
-			dto.setSeatCol(seatCol);
-			dto.setSeatRank(seatRank);
-			dto.setSeatRankPrice(seatRankPrice);
-			dto.setConcertDate_seq(concertDate_seq);
-			seatCol++;
-			dao.insertSeat(dto);
-		}
-		seatRow = "f";
-		seatCol = 1;
+		Integer seatRank = dto.getSeatRank();
+		Integer seatRankPrice = dto.getSeatRankPrice();
+		String concertDate_seq = dto.getConcertDate_seq();
 		for(int i=1;i<colNumber+1;i++) {
 			dto.setSeatRow(seatRow);
 			dto.setSeatCol(seatCol);
@@ -191,44 +132,95 @@ public class ConcertServiceImpl implements ConcertService {
 			dao.insertSeat(dto);
 		}
 		
+//		seatRow = "b";
+//		seatCol = 1;
+//		for(int i=1;i<colNumber+1;i++) {
+//			dto.setSeatRow(seatRow);
+//			dto.setSeatCol(seatCol);
+//			dto.setSeatRank(seatRank);
+//			dto.setSeatRankPrice(seatRankPrice);
+//			dto.setConcertDate_seq(concertDate_seq);
+//			seatCol++;
+//			dao.insertSeat(dto);
+//		}
+//		seatRow = "c";
+//		seatCol = 1;
+//		seatRank = 1;
+//		seatRankPrice = 15000;
+//		for(int i=1;i<colNumber+1;i++) {
+//			dto.setSeatRow(seatRow);
+//			dto.setSeatCol(seatCol);
+//			dto.setSeatRank(seatRank);
+//			dto.setSeatRankPrice(seatRankPrice);
+//			dto.setConcertDate_seq(concertDate_seq);
+//			seatCol++;
+//			dao.insertSeat(dto);
+//		}
+//		seatRow = "d";
+//		seatCol = 1;
+//		for(int i=1;i<colNumber+1;i++) {
+//			dto.setSeatRow(seatRow);
+//			dto.setSeatCol(seatCol);
+//			dto.setSeatRank(seatRank);
+//			dto.setSeatRankPrice(seatRankPrice);
+//			dto.setConcertDate_seq(concertDate_seq);
+//			seatCol++;
+//			dao.insertSeat(dto);
+//		}
+//		seatRow = "e";
+//		seatCol = 1;
+//		seatRank = 2;
+//		seatRankPrice = 13000;
+//		for(int i=1;i<colNumber+1;i++) {
+//			dto.setSeatRow(seatRow);
+//			dto.setSeatCol(seatCol);
+//			dto.setSeatRank(seatRank);
+//			dto.setSeatRankPrice(seatRankPrice);
+//			dto.setConcertDate_seq(concertDate_seq);
+//			seatCol++;
+//			dao.insertSeat(dto);
+//		}
+//		seatRow = "f";
+//		seatCol = 1;
+//		for(int i=1;i<colNumber+1;i++) {
+//			dto.setSeatRow(seatRow);
+//			dto.setSeatCol(seatCol);
+//			dto.setSeatRank(seatRank);
+//			dto.setSeatRankPrice(seatRankPrice);
+//			dto.setConcertDate_seq(concertDate_seq);
+//			seatCol++;
+//			dao.insertSeat(dto);
+//		}
+		
 		return 0;
 	}
 
 	@Override
 	public int deleteConcert(Concert dto) {
-		dao.deleteconcertUploaded(dto);
 		dao.deleteconcertGroup(dto);
 		dao.deleteconcertReview(dto);
 		dao.deleteconcertTicket(dto);
 		dao.deleteconcertAddressSeat(dto);
 		dao.deleteconcertDate(dto);
-		dao.deleteconcertAdderss(dto);
+		dao.deleteconcertAddress(dto);
 		dao.deleteConcert(dto);
 		return 0;
 	}
 
 	@Override
 	public int updateConcert(Concert dto) {
-		dao.updateconcertUploaded(dto);
 		dao.updateconcertGroup(dto);
-		dao.updateconcertReview(dto);
-		dao.updateconcertTicket(dto);
-		dao.updateconcertAddressSeat(dto);
 		dao.updateconcertDate(dto);
-		dao.updateconcertAdderss(dto);
+		dao.updateconcertAddress(dto);
 		dao.updateConcert(dto);
 		return 0;
 	}
 
 	@Override
 	public int ueleteConcert(Concert dto) {
-		dao.ueleteconcertUploaded(dto);
 		dao.ueleteconcertGroup(dto);
-		dao.ueleteconcertReview(dto);
-		dao.ueleteconcertTicket(dto);
-		dao.ueleteconcertAddressSeat(dto);
 		dao.ueleteconcertDate(dto);
-		dao.ueleteconcertAdderss(dto);
+		dao.ueleteconcertAddress(dto);
 		dao.ueleteConcert(dto);
 		return 0;
 	}

@@ -130,7 +130,6 @@
 		                    <th>seq</th>
 		                    <th>concertType</th>
 		                    <th>concertTitle</th>
-		                    <th>concertDetailText</th>
 		                    <th>delNy</th>
 		                    <th>defaultNy</th>
 		                    <th>memberSeq</th>
@@ -152,7 +151,6 @@
 									<td><c:out value="${list.seq }"></c:out></td>
 				                    <td><c:out value="${list.concertType }"></c:out></td>
   				                    <td><a href="/concertXdmForm?seq=<c:out value="${list.seq }"></c:out>&concertDateSeq=<c:out value="${list.concertDateSeq}"></c:out>"><c:out value="${list.concertTitle }"></c:out></a></td>
-				                    <td><c:out value="${list.concertDetailText }"></c:out></td>
 				                   <td><c:out value="${list.defaultNy}"></c:out></td>
 				                   <td><c:out value="${list.delNy}"></c:out></td>
 				                   <td><c:out value="${list.memberSeq}"></c:out></td>
