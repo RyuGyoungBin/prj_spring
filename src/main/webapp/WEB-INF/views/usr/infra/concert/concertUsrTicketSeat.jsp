@@ -221,10 +221,14 @@
 	$(function(){
         $("#btn-kakaopay").on("click", function(){
         	$.ajax({
+        		type:"post",
     			url:"/kakaopay",
     			dataType:"json" ,
     			success:function(data){
-    				alert(data);
+//     				alert(data.next_redirect_pc_url);
+    				var pay = data.next_redirect_pc_url;
+    				console.log(data);
+    				window.open(pay);
     			},
     			error:function(error){
     				alert("asd");
