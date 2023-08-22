@@ -89,6 +89,7 @@
   </style>
 </head>
 <body>
+	<form name="form" method="post">
 	<div class="border-bottom p-5 pb-0">
 		<div class="container">
 			<ul class="d-flex" id="ticketSystem">
@@ -101,6 +102,7 @@
 	<div class="d-flex flex-column">
 		<div class="text-center">
 			<h3><c:out value="${item.concertTitle }"/></h3>
+			<input type="hidden" id="concertTitle" name="concertTitle" value="<c:out value="${item.concertTitle }"/>">
 		</div>
 		<div class="d-flex p-5 justify-content-center">
 			<div class="col-6 d-flex flex-column align-items-center">
@@ -109,6 +111,7 @@
 		            <div class="row">
 		            	<c:forEach items="${seat}" var="seat" varStatus="statusUploaded">
 		            		<div class="seat seat${seat.seatRank } <c:if test="${seat.seatNy eq 1 }">disable</c:if>" ><c:out value="${seat.seatRow }"/><c:out value="${seat.seatCol }"/></div>
+		            		<input type="hidden" name="concertAddressSeat_seq" value="<c:out value="${seat.seq }"/>">
 		            	</c:forEach>
 		            </div>
 		            <div class="position-absolute top-0 start-100" style="transform:translate(17px);">
@@ -156,6 +159,7 @@
 				<div class="mb-3 pb-3 border-bottom">
 					<p>가격</p>
 					<span id="totalPrice">0</span>
+					<input type="hidden" name="totalPrice" id="totalPricePro">
 				</div>
 				<div class="p-3 text-center">
 					<div class="mb-1">
@@ -172,6 +176,7 @@
 			</div>
 		</div>
 	</div>
+	</form>
 	<jsp:include page="../include/script.jsp"></jsp:include>
 	<script>
 		var sum = 0;
@@ -183,11 +188,17 @@
 			if($(this).hasClass("disable") == false){
 				if($(this).hasClass("select") == true){
 					$(this).removeClass("select");
+					$("#"+$(this).text()+"").next().next().next().remove();
+					$("#"+$(this).text()+"").next().next().remove();
+					$("#"+$(this).text()+"").next().remove();
 					$("#"+$(this).text()+"").remove();
 				} else {
 					if($(".seatContainer .row div.select").length < 3){
 						$(this).addClass("select");
 						$("#selectSeat").append("<span id='"+$(this).text()+"'>"+$(this).text()+"</span>");
+						$("#selectSeat").append("<input type='hidden' name='seatRowArray' value='"+$(this).text().substr(0,1)+"'>");
+						$("#selectSeat").append("<input type='hidden' name='seatColArray' value='"+$(this).text().substr(1)+"'>");
+						$("#selectSeat").append("<input type='hidden' name='concertAddressSeat_seqArray' value='"+$(this).next().val()+"'>");
 					} else {
 						alert("")
 					}
@@ -200,6 +211,7 @@
 			<c:forEach items="${seatGroup}" var="seatGroup" varStatus="statusUploaded">
 				sum += (select${seatGroup.seatRank} * price${seatGroup.seatRank});
 			</c:forEach>
+		$("#totalPricePro").val(sum);
 			sum = sum.toLocaleString('ko-KR');
 			
 		$("#totalPrice").text(sum + "원");
@@ -214,6 +226,7 @@
 			$("#selectSeat").empty();
 			sum = 0;
 			$("#totalPrice").text(sum + "원");
+			$("#totalPricePro").val(sum);
 			
 		})
 		
@@ -222,12 +235,17 @@
         $("#btn-kakaopay").on("click", function(){
         	$.ajax({
         		type:"post",
-    			url:"/kakaopay",
+    			url:"/kakao/pay",
     			dataType:"json" ,
+    			data : { "concertTitle" : $("#concertTitle").val(),
+    				"totalPrice" : $("#totalPricePro").val(),
+    				"seatColArray" : $("input[name=seatColArray]").val(),
+    				"seatRowArray" : $("input[name=seatRowArray]").val(),
+    				"concertAddressSeat_seqArray" : $("input[name=concertAddressSeat_seqArray]").val()},
     			success:function(data){
 //     				alert(data.next_redirect_pc_url);
     				var pay = data.next_redirect_pc_url;
-    				console.log(data);
+    				var token = data.pg_token;
     				window.open(pay);
     			},
     			error:function(error){

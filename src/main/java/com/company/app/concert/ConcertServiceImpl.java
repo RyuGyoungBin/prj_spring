@@ -52,6 +52,12 @@ public class ConcertServiceImpl implements ConcertService {
 	public Concert selectConcertOne(ConcertVo vo) {return dao.selectConcertOne(vo);}
 	
 	@Override
+	public List<Concert> selectTicket(ConcertVo vo) {return dao.selectTicket(vo);}
+	
+	@Override
+	public List<Concert> selectReview(ConcertVo vo) {return dao.selectReview(vo);}
+	
+	@Override
 	public int insertConcert(Concert dto) throws Exception {
 		dao.insertConcert(dto);
 		dao.insertConcertAddress(dto);
@@ -116,21 +122,21 @@ public class ConcertServiceImpl implements ConcertService {
 
 	@Override
 	public int insertSeat(Concert dto) {
-		String seatRow = dto.getSeatRow();
-		Integer seatCol = dto.getSeatCol();
-		Integer colNumber = 11;
-		Integer seatRank = dto.getSeatRank();
-		Integer seatRankPrice = dto.getSeatRankPrice();
-		String concertDate_seq = dto.getConcertDate_seq();
-		for(int i=1;i<colNumber+1;i++) {
-			dto.setSeatRow(seatRow);
-			dto.setSeatCol(seatCol);
-			dto.setSeatRank(seatRank);
-			dto.setSeatRankPrice(seatRankPrice);
-			dto.setConcertDate_seq(concertDate_seq);
-			seatCol++;
-			dao.insertSeat(dto);
-		}
+//		String seatRow = dto.getSeatRow();
+//		Integer seatCol = dto.getSeatCol();
+//		Integer colNumber = 11;
+//		Integer seatRank = dto.getSeatRank();
+//		Integer seatRankPrice = dto.getSeatRankPrice();
+//		String concertDate_seq = dto.getConcertDate_seq();
+//		for(int i=1;i<colNumber+1;i++) {
+//			dto.setSeatRow(seatRow);
+//			dto.setSeatCol(seatCol);
+//			dto.setSeatRank(seatRank);
+//			dto.setSeatRankPrice(seatRankPrice);
+//			dto.setConcertDate_seq(concertDate_seq);
+//			seatCol++;
+//			dao.insertSeat(dto);
+//		}
 		
 //		seatRow = "b";
 //		seatCol = 1;
@@ -225,10 +231,22 @@ public class ConcertServiceImpl implements ConcertService {
 		return 0;
 	}
 
+	@Override
+	public int insertTicket(Concert dto) {
+		for(int i = 0 ; i < dto.getSeatColArray().length ; i++) {
+			dto.setSeatCol(dto.getSeatColArray()[i]);
+			dto.setSeatRow(dto.getSeatRowArray()[i]);
+			dao.ticketSuccess(dto);
+			dto.setConcertAddressSeat_seq(dto.getConcertAddressSeat_seqArray()[i]);
+		}
+		for(int i = 0 ; i < dto.getConcertAddressSeat_seqArray().length ; i++) {
+			dto.setConcertAddressSeat_seq(dto.getConcertAddressSeat_seqArray()[i]);
+			dao.insertTicket(dto);
+		}
+		return 0;
+	}
 
-
-
-
+	
 
 
 }

@@ -73,10 +73,20 @@ public class ConcertVo {
 //	search
 	private String search;
 	private Object searchType;
+	private String totalPrice;
 //	-----
 
 	public String getSeq() {
 		return seq;
+	}
+	public String getTotalPrice() {
+		return totalPrice;
+	}
+	public void setTotalPrice(String totalPrice) {
+		this.totalPrice = totalPrice;
+	}
+	public void setSearchType(Object searchType) {
+		this.searchType = searchType;
 	}
 	public Object getSearchType() {
 		return searchType;

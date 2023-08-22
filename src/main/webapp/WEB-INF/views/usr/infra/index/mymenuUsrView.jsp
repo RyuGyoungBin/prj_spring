@@ -62,29 +62,30 @@
 					<section id="section-1">
 
 						<div class="strip_booking">
-							<div class="row">
-								<div class="col-lg-4 col-md-4 position-relative">
-									<div class="img_list">
-										<a href="single_tour.html"><img src="/resources/concert/img/tour_box_1.jpg" alt="Image">
-										</a>
-									</div>
+							<c:forEach items="${ticket }" var="ticket" varStatus="statusUploaded">
+							<div class="row border-bottom">
+								<div class="col-lg-3 col-md-3 position-relative p-3">
+									<img src="<c:out value="${ticket.path }"/><c:out value="${ticket.uuidName }"/>" alt="Image">
 								</div>
-								<div class="col-lg-6 col-md-6">
-									<div class="tour_list_desc d-flex justify-content-around flex-column">
-										<h3 class="p-0">타이틀 : <strong>장기동</strong></h3>
+								<div class="col-lg-6 col-md-6 d-flex">
+									<div class="tour_list_desc d-flex justify-content-around flex-column col-10">
+										<h3 class="p-0">타이틀 : <strong><c:out value="${ticket.concertTitle }"/></strong></h3>
 										<div>
 											<span>날짜 :</span>
-											<span>2023-06-12</span>
+											<span><c:out value="${ticket.concertDate }"/></span>
 										</div>
 										<div>
 											<span>시간 :</span>
-											<span>10:05</span>
+											<span><c:out value="${ticket.concertDateTime }"/></span>
 										</div>
 										<div>
 											<span>장소 :</span>
-											<span>김포시 장기동</span>
+											<span><c:out value="${ticket.concertAddress }"/> <c:out value="${ticket.concertAddressDetail }"/></span>
 											<span class="tooltip-item"><i class="icon_set_1_icon-41"></i></span>
 										</div>
+									</div>
+									<div class="col-2 d-flex justify-content-center align-items-center">
+										<span><c:out value="${ticket.seatRow }"/><c:out value="${ticket.seatCol }"/>석</span>
 									</div>
 								</div>
 								<div class="col-lg-2 col-md-2 d-flex flex-column justify-content-around align-items-center ps-0">
@@ -95,6 +96,7 @@
 									<button type="button" class="btn btn-danger" id="ticketBtn">취소/환불</button>
 								</div>
 							</div>
+							</c:forEach>
 							<!-- End row -->
 						</div>
 						<!-- End strip booking -->
@@ -102,20 +104,18 @@
 					<!-- End section 1 -->
 
 					<section id="section-2">
-
 						<div class="strip_booking">
+						<c:forEach items="${review }" var="review" varStatus="statusUploaded">
 							<div class="row">
 								<div class="col-lg-4 col-md-4 position-relative">
-									<div class="img_list">
-										<a href="single_tour.html"><img src="/resources/concert/img/tour_box_1.jpg" alt="Image">
-										</a>
-									</div>
+									<img src="<c:out value="${review.path }"/><c:out value="${review.uuidName }"/>" alt="Image">
 								</div>
 								<div class="col-lg-6 col-md-6">
 									<div class="tour_list_desc d-flex justify-content-around flex-column">
-										<h3 class="p-0">타이틀 : <strong>장기동</strong></h3>
+										<h3 class="p-0">타이틀 : <strong><c:out value="${review.concertTitle }"/></strong></h3>
+										<span><c:out value="${review.seatRow }"/><c:out value="${review.seatCol }"/>석</span>
 										<div>
-											<span>사막이다 오아이스도 없는 사막이다 보이는 끝까지 찾아다녀도 목숨이 있는 때까지 방황하여도 보이는 것은 거친 모래뿐일 것이다 이상의 꽃이 없으면 쓸쓸한 인간에 남는 것은 영락과 부패 뿐이다 낙원을 장식하는 천자만홍이 어디 있으며 인생을</span>
+											<span><c:out value="${review.content }"/></span>
 										</div>
 									</div>
 								</div>
@@ -127,6 +127,7 @@
 									<button type="button" class="btn btn-primary" id="reviewBtn">수정/등록</button>
 								</div>
 							</div>
+							</c:forEach>
 							<!-- End row -->
 						</div>
 						<!-- End strip booking -->

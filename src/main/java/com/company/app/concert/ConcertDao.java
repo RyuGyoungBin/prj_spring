@@ -28,6 +28,9 @@ public class ConcertDao {
 	public List<Concert> selectSeatGroup(ConcertVo vo){return sqlSession.selectList(namespace +".selectSeatGroup", vo);}
 	public List<Concert> selectSeatRow(ConcertVo vo){return sqlSession.selectList(namespace +".selectSeatRow", vo);}
 	public List<Concert> selectDate(ConcertVo vo){return sqlSession.selectList(namespace +".selectDate", vo);}
+	public List<Concert> selectTicket(ConcertVo vo){return sqlSession.selectList(namespace +".selectTicketUsr", vo);}
+	public List<Concert> selectReview(ConcertVo vo){return sqlSession.selectList(namespace +".selectReviewUsr", vo);}
+	
 	
 
 	public int insertConcert(Concert dto) {return sqlSession.insert(namespace+".insertConcert", dto);}
@@ -37,6 +40,7 @@ public class ConcertDao {
 	public int insertConcertCastingGroup(Concert dto) {return sqlSession.insert(namespace+".insertConcertCastingGroup", dto);}
 	public int insertUploaded(Concert dto) { return sqlSession.insert(namespace + ".insertUploaded", dto); }
 	public int insertSeat(Concert dto) {return sqlSession.insert(namespace + ".insertSeat", dto);}
+	public int insertTicket(Concert dto) {return sqlSession.insert(namespace + ".insertTicket", dto);}
 	
 	public int deleteConcert(Concert dto) {return sqlSession.delete(namespace + ".deleteconcert", dto);}
 	public int deleteconcertAddress(Concert dto) {return sqlSession.delete(namespace + ".deleteconcertAddress", dto);}
@@ -53,6 +57,7 @@ public class ConcertDao {
 	public int updateconcertTicket(Concert dto) {return sqlSession.update(namespace + ".updateconcertTicket", dto);}
 	public int updateconcertReview(Concert dto) {return sqlSession.update(namespace + ".updateconcertReview", dto);}
 	public int updateconcertGroup(Concert dto) {return sqlSession.update(namespace + ".updateconcertGroup", dto);}
+	public int ticketSuccess(Concert dto) {return sqlSession.update(namespace + ".ticketSuccess", dto);}
 	
 	public int ueleteConcert(Concert dto) {return sqlSession.update(namespace + ".ueleteconcert", dto);}
 	public int ueleteconcertAddress(Concert dto) {return sqlSession.update(namespace + ".ueleteconcertAddress", dto);}

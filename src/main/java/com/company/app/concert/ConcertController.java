@@ -191,7 +191,11 @@ public class ConcertController {
 	public String test(Concert dto) {
 		return "/test";
 	}
-
+	@RequestMapping("/kakaopaySuccess")
+	public String kakaopaySuccess(Concert dto) {
+		service.insertTicket(dto);
+		return "";
+	}
 	
 
 }

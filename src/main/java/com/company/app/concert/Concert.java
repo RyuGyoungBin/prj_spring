@@ -19,13 +19,17 @@ public class Concert {
 	private String concert_seq;
 //	concertAddressSeat
 	private String seatRow;
-	private Integer seatCol;
+	private String seatCol;
 	private Integer seatNy;
 	private Integer seatRank;
 	private Integer seatRankPrice;
 	private Integer seatTotal;
 	private Integer seatN;
 	private String concertDate_seq;
+//	kakaopay
+	private String[] seatRowArray;
+	private String[] seatColArray;
+	private String[] concertAddressSeat_seqArray;
 //	concertDate
 	private String concertDateSeq;
 	private String concertDate;
@@ -263,10 +267,10 @@ public class Concert {
 	public void setSeatRow(String seatRow) {
 		this.seatRow = seatRow;
 	}
-	public Integer getSeatCol() {
+	public String getSeatCol() {
 		return seatCol;
 	}
-	public void setSeatCol(Integer seatCol) {
+	public void setSeatCol(String seatCol) {
 		this.seatCol = seatCol;
 	}
 	public Integer getSeatNy() {
@@ -416,6 +420,24 @@ public class Concert {
 	}
 	public void setConcertDateSeq(String concertDateSeq) {
 		this.concertDateSeq = concertDateSeq;
+	}
+	public String[] getSeatRowArray() {
+		return seatRowArray;
+	}
+	public void setSeatRowArray(String[] seatRowArray) {
+		this.seatRowArray = seatRowArray;
+	}
+	public String[] getSeatColArray() {
+		return seatColArray;
+	}
+	public void setSeatColArray(String[] seatColArray) {
+		this.seatColArray = seatColArray;
+	}
+	public String[] getConcertAddressSeat_seqArray() {
+		return concertAddressSeat_seqArray;
+	}
+	public void setConcertAddressSeat_seqArray(String[] concertAddressSeat_seqArray) {
+		this.concertAddressSeat_seqArray = concertAddressSeat_seqArray;
 	}
 
 //	----------------------

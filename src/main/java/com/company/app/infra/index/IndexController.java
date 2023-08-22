@@ -7,6 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.company.app.concert.Concert;
+import com.company.app.concert.ConcertServiceImpl;
+import com.company.app.concert.ConcertVo;
 import com.company.app.infra.codegroup.CodeGroupServiceImpl;
 import com.company.app.infra.member.Member;
 import com.company.app.infra.member.MemberServiceImpl;
@@ -19,6 +22,8 @@ public class IndexController {
 	CodeGroupServiceImpl service;
 	@Autowired
 	MemberServiceImpl memberService;
+	@Autowired
+	ConcertServiceImpl concertService;
 
 	@RequestMapping("/biographyUsrView")
 	public String biographyUsrView() {
@@ -41,7 +46,11 @@ public class IndexController {
 		return "usr/infra/index/signupUsrForm";
 	}
 	@RequestMapping("/mymenuUsrView")
-	public String mymenuUsrView() {
+	public String mymenuUsrView(ConcertVo vo, Model model) {
+		List<Concert> list = concertService.selectTicket(vo);
+		List<Concert> review = concertService.selectReview(vo);
+		model.addAttribute("ticket", list);
+		model.addAttribute("review", review);
 		return "usr/infra/index/mymenuUsrView";
 	}
 	@RequestMapping("/informationUsrForm")

@@ -52,7 +52,7 @@
 			<exclude-mapping path="/publicCorona1List" />
 			<exclude-mapping path="/selectConcert**" />
 			<exclude-mapping path="/**test**" />
-			<exclude-mapping path="/**kakao**" />
+			<exclude-mapping path="/kakao/**" />
 			<beans:bean id="checkLoginSessionInterception" class="com.company.app.common.interceptor.CheckLoginSessionInterception"/>
 		</interceptor>
 		<interceptor>
@@ -72,7 +72,7 @@
 			<exclude-mapping path="/logoutProc" />
 			<exclude-mapping path="/selectConcert**" />
 			<exclude-mapping path="/**test**" />
-			<exclude-mapping path="/**kakao**" />
+			<exclude-mapping path="/kakao/**" />
 			<beans:bean id="CheckLoginXdmInterception" class="com.company.app.common.interceptor.CheckLoginXdmInterception"/>
 		</interceptor>
 	</interceptors>	

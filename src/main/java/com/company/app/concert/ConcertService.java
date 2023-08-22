@@ -15,9 +15,12 @@ public interface ConcertService {
 	public List<Concert> selectUploaded(ConcertVo vo);
 	public List<Concert> selectConcertList(ConcertVo vo);
 	public Concert selectConcertOne(ConcertVo vo);
+	public List<Concert> selectTicket(ConcertVo vo);
+	public List<Concert> selectReview(ConcertVo vo);
 
 	public int insertConcert(Concert dto) throws Exception;
 	public int insertSeat(Concert dto);
+	public int insertTicket(Concert dto);
 
 	public int deleteConcert(Concert dto);
 	

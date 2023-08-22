@@ -234,6 +234,51 @@
 	    	AND pseq = #{seq}
 	    	
     </select>
+    <select id="selectTicketUsr" resultMap="resultMapObj">
+    	SELECT
+    		f.path,
+    		f.uuidName,
+    		b.concertTitle,
+    		c.concertAddress,
+    		c.concertAddressDetail,
+    		d.concertDate,
+    		DATE_FORMAT (d.concertDateTime, '%H:%i')as concertDateTime,
+    		a.seq,
+    		e.seatRow,
+    		e.seatCol
+    	FROM
+    		concertTicket a
+    		LEFT JOIN concertAddressSeat e on e.seq = a.concertAddressSeat_seq
+    		LEFT JOIN concertDate d on d.seq = e.concertDate_seq
+            LEFT JOIN concertAddress c on c.seq = d.concertAddress_seq
+    		LEFT JOIN concert b on b.seq = c.concert_seq
+    		LEFT JOIN concertUploaded f on f.pseq = b.seq AND type = 1
+    	WHERE 1=1
+    		AND a.memberSeq = #{memberSeq}
+    </select>
+    <select id="selectReviewUsr" resultMap="resultMapObj">
+    	SELECT
+    		e.path,
+    		e.uuidName,
+    		(SELECT
+    			aa.concertTitle
+    		FROM
+    			concert aa
+    		WHERE 1=1
+    			AND  aa.seq = b.concertSeq
+    		) as concertTitle,
+    		a.content,
+    		a.concertGrade,
+    		c.seatRow,
+    		c.seatCol
+    	FROM
+    		concertReview a
+    		LEFT JOIN concertTicket b on b.seq = a.concertTicket_seq
+    		LEFT JOIN concertAddressSeat c on c.seq = b.concertAddressSeat_seq
+    		LEFT JOIN concertUploaded e on e.pseq = b.concertSeq AND type = 1
+    	WHERE 1=1
+    		AND a.memberSeq = #{memberSeq}
+    </select>
    	
    	<insert id="insertConcert">
     	insert into `concert` (
@@ -541,4 +586,29 @@
 		WHERE 1=1
 			AND	concertAddressSeat_seq = #{concertAddressSeat_seq}
     </update>
+    <update id="ticketSuccess">
+    	UPDATE
+    		concertAddressSeat
+    	SET
+    		seatNy = 1
+    	WHERE 1=1
+    		AND seatRow = #{seatRow}
+    		AND sesatCol = #{seatCol}
+    </update>
+    <insert id="insertTicket">
+    	INSERT INTO `concertTIcket`(
+    		delNy,
+    		tickDate,
+    		tickDateRe,
+    		memberSeq,
+    		concertAddressSeat_seq
+    	) values (
+    		0,
+    		now(),
+    		0,
+    		#{sessionSeq},
+    		#{concertAddressSeat_seq}
+    	)
+    </insert>
+    
 </mapper>

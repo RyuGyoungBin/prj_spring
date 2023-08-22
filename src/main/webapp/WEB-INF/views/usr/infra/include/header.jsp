@@ -61,9 +61,9 @@
 	                                <ul class="dropdown-menu" id="cart_items">
 	                                	<c:choose>
 	                                		<c:when test="${not empty sessionId }">
-	                                			<li><strong>Id:<c:out value="${sessionId }"></c:out> </strong>
+	                                			<li><strong>Id:<c:out value="${sessionId }"></c:out> </strong></li>
 			                                    <li><strong><a class="dropdown-item" id="logoutBtn">logout</a></strong></li>
-			                            		<li><strong><a href="/mymenuUsrView" class="dropdown-item">mymenu</a></strong></li>
+			                            		<li><strong><a href="/mymenuUsrView?memberSeq=${sessionSeq }" class="dropdown-item">mymenu</a></strong></li>
 	                                		</c:when>
 	                                		<c:otherwise>
 			                                    <li><strong><a class="dropdown-item loginModal">login</a></strong></li>
