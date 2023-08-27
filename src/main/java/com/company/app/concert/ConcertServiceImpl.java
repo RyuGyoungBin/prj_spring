@@ -245,7 +245,25 @@ public class ConcertServiceImpl implements ConcertService {
 		}
 		return 0;
 	}
+	
+	@Override
+	public int insertKakaoReady(Concert dto) {
+		for(int i = 0 ; i < dto.getConcertAddressSeat_seqArray().length ; i++) {
+			dto.setConcertAddressSeat_seq(dto.getConcertAddressSeat_seqArray()[i]);
+			dao.insertKakaoReady(dto);
+		}
+		return 0;
+	}
 
+	@Override
+	public int approvalTicket(Concert dto) {
+		for(int i = 0 ; i < dto.getConcertAddressSeat_seqArray().length ; i++) {
+			dto.setConcertAddressSeat_seq(dto.getConcertAddressSeat_seqArray()[i]);
+			dao.approvalTicket(dto);
+			dao.approvalSeat(dto);
+		}
+		return 0;
+	}
 	
 
 

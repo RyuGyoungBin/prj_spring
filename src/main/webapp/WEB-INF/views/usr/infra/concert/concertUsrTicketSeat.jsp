@@ -103,6 +103,7 @@
 		<div class="text-center">
 			<h3><c:out value="${item.concertTitle }"/></h3>
 			<input type="hidden" id="concertTitle" name="concertTitle" value="<c:out value="${item.concertTitle }"/>">
+			<input type="hidden" id="concertSeq" name="concertSeq" value="<c:out value="${item.seq }"/>"/>
 		</div>
 		<div class="d-flex p-5 justify-content-center">
 			<div class="col-6 d-flex flex-column align-items-center">
@@ -111,7 +112,7 @@
 		            <div class="row">
 		            	<c:forEach items="${seat}" var="seat" varStatus="statusUploaded">
 		            		<div class="seat seat${seat.seatRank } <c:if test="${seat.seatNy eq 1 }">disable</c:if>" ><c:out value="${seat.seatRow }"/><c:out value="${seat.seatCol }"/></div>
-		            		<input type="hidden" name="concertAddressSeat_seq" value="<c:out value="${seat.seq }"/>">
+		            		<input type="hidden" name="concertAddressSeaSeq" value="<c:out value="${seat.seq }"/>">
 		            	</c:forEach>
 		            </div>
 		            <div class="position-absolute top-0 start-100" style="transform:translate(17px);">
@@ -155,6 +156,7 @@
 					<p class="h5">선택좌석</p>
 					<div id="selectSeat">
 					</div>
+					<input type="hidden" name="concertAddressSeat_seqArray">
 				</div>
 				<div class="mb-3 pb-3 border-bottom">
 					<p>가격</p>
@@ -198,7 +200,7 @@
 						$("#selectSeat").append("<span id='"+$(this).text()+"'>"+$(this).text()+"</span>");
 						$("#selectSeat").append("<input type='hidden' name='seatRowArray' value='"+$(this).text().substr(0,1)+"'>");
 						$("#selectSeat").append("<input type='hidden' name='seatColArray' value='"+$(this).text().substr(1)+"'>");
-						$("#selectSeat").append("<input type='hidden' name='concertAddressSeat_seqArray' value='"+$(this).next().val()+"'>");
+						$("#selectSeat").append("<input type='hidden' name='concertAddressSeat_seq' value='"+$(this).next().val()+"'>");
 					} else {
 						alert("")
 					}
@@ -216,6 +218,15 @@
 			
 		$("#totalPrice").text(sum + "원");
 		sum=0;
+		var seatSeq = $("input[name=concertAddressSeat_seq]");
+		var seatSeqVal = "";
+		for(var k=0; k<seatSeq.length; k++){
+			seatSeqVal += seatSeq.eq(k).attr("value");
+			if(k<seatSeq.length-1){
+				seatSeqVal += ",";
+			}
+		}
+		$("input[name=concertAddressSeat_seqArray]").attr("value",seatSeqVal);
 		})
 			
 // 		$("#seatRNy").text($(".seatR").length-$(".seatR.disable").length);
@@ -241,17 +252,21 @@
     				"totalPrice" : $("#totalPricePro").val(),
     				"seatColArray" : $("input[name=seatColArray]").val(),
     				"seatRowArray" : $("input[name=seatRowArray]").val(),
-    				"concertAddressSeat_seqArray" : $("input[name=concertAddressSeat_seqArray]").val()},
+    				"concertAddressSeat_seqArray" : $("input[name=concertAddressSeat_seqArray]").val(),
+    				"seq" : $("#concertSeq").val()},
     			success:function(data){
 //     				alert(data.next_redirect_pc_url);
+					console.log(data.tid);
     				var pay = data.next_redirect_pc_url;
-    				var token = data.pg_token;
+    				console.log(pay);
+//     				var token = data.pg_token;
     				window.open(pay);
     			},
     			error:function(error){
     				alert("asd");
     			}
    			});
+    			console.log()
 		});
 	});
 

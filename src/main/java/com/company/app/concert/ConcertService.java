@@ -21,10 +21,12 @@ public interface ConcertService {
 	public int insertConcert(Concert dto) throws Exception;
 	public int insertSeat(Concert dto);
 	public int insertTicket(Concert dto);
+	public int insertKakaoReady(Concert dto);
 
 	public int deleteConcert(Concert dto);
 	
 	public int updateConcert(Concert dto);
+	public int approvalTicket(Concert dto);
 	
 	public int ueleteConcert(Concert dto);
 

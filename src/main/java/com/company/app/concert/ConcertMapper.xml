@@ -595,19 +595,41 @@
     		AND seatRow = #{seatRow}
     		AND sesatCol = #{seatCol}
     </update>
-    <insert id="insertTicket">
-    	INSERT INTO `concertTIcket`(
-    		delNy,
-    		tickDate,
-    		tickDateRe,
+    <update id="approvalTicket">
+    	UPDATE
+    		concertTicket
+    	SET
+    		ticketDate = now(),
+    		ticketDateRe = now()
+    	WHERE 1=1
+    		AND tid = #{tid}
+    		AND concertAddressSeat_seq = #{concertAddressSeat_seq} 
+    </update>
+    <update id="approvalSeat">
+    	UPDATE
+    		concertAddressSeat
+    	SET
+    		seatNy = 1
+    	WHERE 1=1
+    		AND seq = #{concertAddressSeat_seq}
+    </update>
+    <insert id="insertKakaoReady">
+    	INSERT INTO `concertTicket` (
     		memberSeq,
-    		concertAddressSeat_seq
+    		concertSeq,
+    		concertAddressSeat_seq,
+    		tid,
+    		partner_order_id,
+    		partner_user_id,
+    		delNy
     	) values (
-    		0,
-    		now(),
-    		0,
-    		#{sessionSeq},
-    		#{concertAddressSeat_seq}
+    		${memberSeq},
+    		#{seq},
+    		#{concertAddressSeat_seq},
+    		#{tid},
+    		#{partner_order_id},
+    		#{partner_user_id},
+    		0
     	)
     </insert>
     

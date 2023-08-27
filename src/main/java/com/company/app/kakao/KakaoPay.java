@@ -10,11 +10,15 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.company.app.concert.Concert;
 import com.company.app.concert.ConcertServiceImpl;
 import com.company.app.concert.ConcertVo;
 
@@ -25,13 +29,21 @@ public class KakaoPay {
 	ConcertServiceImpl consertServiceImpl;
 	
 	String pg_token = "";
+	String tid;
+	String partner_order_id = "";
+	String partner_user_id = ""; 
+	String[] concertAddressSeat_seqArray;
 	
 	@RequestMapping("/kakao/pay")
 	@ResponseBody
-	public String kakaopay(ConcertVo vo) {
+	public String kakaopay(ConcertVo vo, Concert dto, HttpSession httpSession) {
 		String item_name = vo.getConcertTitle()+" 티켓";
 		String total_amount = vo.getTotalPrice();
-		System.out.println(item_name);
+		partner_order_id = "cts_order";
+		partner_user_id = (String) httpSession.getAttribute("sessionId");
+		dto.setMemberSeq((String) httpSession.getAttribute("sessionSeq"));
+		dto.setPartner_order_id(partner_order_id);
+		dto.setPartner_user_id(partner_user_id);
 		try {
 			URL url = new URL("https://kapi.kakao.com/v1/payment/ready");
 			HttpURLConnection httpUrl = (HttpURLConnection) url.openConnection();
@@ -39,7 +51,7 @@ public class KakaoPay {
 			httpUrl.setRequestProperty("Authorization", "KakaoAK 13274d287cbe15fa7a36f98743face20");
 			httpUrl.setRequestProperty("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
 			httpUrl.setDoOutput(true);
-			String parameter = "cid=TC0ONETIME&partner_order_id=partner_order_id&partner_user_id=partner_user_id&item_name="+item_name+"&quantity=1&total_amount="+total_amount+"&tax_free_amount=0&approval_url=http://localhost//kakao/pay/approval&fail_url=http://localhost/mymenuUsrView&cancel_url=http://localhost/mymenuUsrView";
+			String parameter = "cid=TC0ONETIME&partner_order_id="+partner_order_id+"&partner_user_id="+partner_user_id+"&item_name="+item_name+"&quantity=1&total_amount="+total_amount+"&tax_free_amount=0&approval_url=http://localhost//kakao/pay/approval&fail_url=http://localhost/mymenuUsrView&cancel_url=http://localhost/mymenuUsrView";
 			OutputStream output = httpUrl.getOutputStream();
 			DataOutputStream dataOutput = new DataOutputStream(output);
 			dataOutput.writeBytes(parameter);
@@ -56,7 +68,18 @@ public class KakaoPay {
 			}
 			InputStreamReader reader = new InputStreamReader(inputStream);
 			BufferedReader buffer = new BufferedReader(reader);
-			return buffer.readLine();
+			
+			String token = buffer.readLine();
+			String[] array = token.split(",");
+			String[] tidArray = array[0].split(":");
+			String tidFin = tidArray[1].substring(1, tidArray[1].length()-1);
+			tid = tidFin;
+			concertAddressSeat_seqArray = dto.getConcertAddressSeat_seqArray();
+			dto.setTid(tid);
+			System.out.println(tid);
+			consertServiceImpl.insertKakaoReady(dto);
+			
+			return token;
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -68,8 +91,10 @@ public class KakaoPay {
 	
 	@RequestMapping("/kakao/pay/approval")
 	@ResponseBody
-	public String kakaopay_approval(){
-		
+	public String kakaopay_approval(@RequestParam("pg_token") String pgToken, Concert dto){
+		System.out.println("tid : "+tid);
+		System.out.println("partner_order_id : "+partner_order_id);
+		System.out.println("partner_user_id : "+partner_user_id);
 		try {
 			URL url = new URL("https://kapi.kakao.com/v1/payment/approve");
 			HttpURLConnection httpUrl = (HttpURLConnection) url.openConnection();
@@ -77,7 +102,7 @@ public class KakaoPay {
 			httpUrl.setRequestProperty("Authorization", "KakaoAK 13274d287cbe15fa7a36f98743face20");
 			httpUrl.setRequestProperty("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
 			httpUrl.setDoOutput(true);
-			String parameter = "cid=TC0ONETIME&tid=T1234567890123456789&partner_order_id=partner_order_id&partner_user_id=partner_user_id&pg_token=xxxxxxxxxxxxxxxxxxxx";
+			String parameter = "cid=TC0ONETIME&tid="+tid+"&partner_order_id="+partner_order_id+"&partner_user_id="+partner_user_id+"&pg_token="+pgToken;
 			OutputStream output = httpUrl.getOutputStream();
 			DataOutputStream dataOutput = new DataOutputStream(output);
 			dataOutput.writeBytes(parameter);
@@ -96,12 +121,14 @@ public class KakaoPay {
 			BufferedReader buffer = new BufferedReader(reader);
 			
 			// 결제 테이블 등록
-//			consertServiceImpl.asdf
+			dto.setTid(tid);
+			dto.setConcertAddressSeat_seqArray(concertAddressSeat_seqArray);
+			consertServiceImpl.approvalTicket(dto);
 			// 좌석 정보 업데이트
 //			consertServiceImpl.asdadsf(dto)
 			
 			
-			return buffer.readLine();
+			return "redirect:/mymenuUsrView";
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

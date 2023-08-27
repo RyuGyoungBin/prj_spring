@@ -30,6 +30,9 @@ public class Concert {
 	private String[] seatRowArray;
 	private String[] seatColArray;
 	private String[] concertAddressSeat_seqArray;
+	private String tid;
+	private String partner_order_id;
+	private String partner_user_id;
 //	concertDate
 	private String concertDateSeq;
 	private String concertDate;
@@ -78,6 +81,12 @@ public class Concert {
 	private String[] uploadImgProfileDeletePathFile;
 	
 	
+	public String getTid() {
+		return tid;
+	}
+	public void setTid(String tid) {
+		this.tid = tid;
+	}
 	public Integer getConcertDateYear() {
 		return concertDateYear;
 	}
@@ -438,6 +447,18 @@ public class Concert {
 	}
 	public void setConcertAddressSeat_seqArray(String[] concertAddressSeat_seqArray) {
 		this.concertAddressSeat_seqArray = concertAddressSeat_seqArray;
+	}
+	public String getPartner_order_id() {
+		return partner_order_id;
+	}
+	public void setPartner_order_id(String partner_order_id) {
+		this.partner_order_id = partner_order_id;
+	}
+	public String getPartner_user_id() {
+		return partner_user_id;
+	}
+	public void setPartner_user_id(String partner_user_id) {
+		this.partner_user_id = partner_user_id;
 	}
 
 //	----------------------
