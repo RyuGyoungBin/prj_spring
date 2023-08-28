@@ -33,6 +33,8 @@ public class Concert {
 	private String tid;
 	private String partner_order_id;
 	private String partner_user_id;
+	private Integer cnt;
+	private String totalPrice;
 //	concertDate
 	private String concertDateSeq;
 	private String concertDate;
@@ -81,6 +83,12 @@ public class Concert {
 	private String[] uploadImgProfileDeletePathFile;
 	
 	
+	public String getTotalPrice() {
+		return totalPrice;
+	}
+	public void setTotalPrice(String totalPrice) {
+		this.totalPrice = totalPrice;
+	}
 	public String getTid() {
 		return tid;
 	}
@@ -459,6 +467,12 @@ public class Concert {
 	}
 	public void setPartner_user_id(String partner_user_id) {
 		this.partner_user_id = partner_user_id;
+	}
+	public Integer getCnt() {
+		return cnt;
+	}
+	public void setCnt(Integer cnt) {
+		this.cnt = cnt;
 	}
 
 //	----------------------

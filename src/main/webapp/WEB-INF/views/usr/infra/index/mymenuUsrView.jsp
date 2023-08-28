@@ -85,7 +85,7 @@
 										</div>
 									</div>
 									<div class="col-2 d-flex justify-content-center align-items-center">
-										<span><c:out value="${ticket.seatRow }"/><c:out value="${ticket.seatCol }"/>석</span>
+										<span><c:out value="${ticket.seatRow }"/><c:out value="${ticket.seatCol }"/>석 외 <c:out value="${ticket.cnt-1 }"/>석</span>
 									</div>
 								</div>
 								<div class="col-lg-2 col-md-2 d-flex flex-column justify-content-around align-items-center ps-0">
@@ -93,7 +93,9 @@
 										<p class="text-danger">취소시 주의사항</p>
 										<p>수수료가 부과됩니다</p>
 									</div>
-									<button type="button" class="btn btn-danger" id="ticketBtn">취소/환불</button>
+									<button type="button" class="btn btn-danger ticketBtn" id="ticketBtn<c:out value="${ticket.seq }"/>">취소/환불</button>
+									<input type="hidden" value="<c:out value="${ticket.tid }"/>" class="tid">
+									<input type="hidden" value="<c:out value="${ticket.totalPrice }"/>" class="totalPrice">
 								</div>
 							</div>
 							</c:forEach>
@@ -201,13 +203,17 @@
 	 		  backdrop: "static"
 	 		})
 		
-	 	$("#ticketBtn").on("click", function(){
+	 	$(".ticketBtn").on("click", function(){
+	 		var target;
+	 		target = $(this).attr("id");
+	 		console.log(target)
 	 		$("#myModal").find("h1").text("티켓 취소 및 환불");
 	 		//$("#myModal").find(".modal-body").text("삭제하시겠습니까");
 	 		$("#myModal").find(".modal-body").empty();
 	 		$("#myModal").find(".modal-body").append('<p>정말 취소 및 환불 하시겠습니까.</p>');
 	 		$("#modalOk").remove();
-	 		$(".modal-footer").append('<button type="button" class="btn btn-danger" id="modalOk">취소 및 환불</button>');
+	 		$(".kakaoCancel").remove();
+	 		$(".modal-footer").append('<button type="button" class="btn btn-danger kakaoCancel" id="kakaoCancel" name="'+target+'">취소 및 환불</button>');
 	 		
 		 	myModal.show();
 	 		
@@ -220,6 +226,7 @@
 	 		$("#myModal").find(".modal-body").append("<p>남은 글자 수 : <span id='reviewWord'>200</span></p>");
 	 		$("#myModal").find(".modal-body").append("<textarea name='review' id='review' style='width: 100%; height: 200px; resize: none;' maxlength='200'></textarea>");
 	 		$("#modalOk").remove();
+	 		$(".kakaoCancel").remove();
 	 		$(".modal-footer").append('<button type="button" class="btn btn-primary" id="modalOk">등록 및 수정</button>');
 	 		
 		 	myModal.show();
@@ -233,6 +240,26 @@
 		  
 		  // 문서 객체에 입력한다.
 		  $('#reviewWord').html(remain);
+	 	})
+	 	$(document).on("click", ".kakaoCancel", function(){
+	 		target = $(this).attr("name");
+	 		console.log(target);
+	 		$.ajax({
+        		type:"post",
+    			url:"/kakao/pay/cancel",
+    			dataType:"json" ,
+    			data : { 
+    				"tid" : $('#'+target).next().val(),
+    				"totalPrice" : $('#'+target).next().next().val()
+    			},
+    			success:function(data){
+    				alert(data);
+    			},
+    			error:function(error){
+    				alert("asd");
+    			}
+   			});
+	 		
 	 	})
 
 	</script>

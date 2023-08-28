@@ -41,7 +41,7 @@ public class KakaoPay {
 		String item = vo.getConcertTitle()+"의티켓";
 		
 		
-		String total_amount = vo.getTotalPrice();
+		Integer total_amount = vo.getTotalPrice();
 		partner_order_id = "cts_order";
 		partner_user_id = (String) httpSession.getAttribute("sessionId");
 		dto.setMemberSeq((String) httpSession.getAttribute("sessionSeq"));
@@ -133,6 +133,55 @@ public class KakaoPay {
 			
 			
 			return "/close";
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return "{\"result\":\"NO\"}";
+	}
+	
+	@RequestMapping("/kakao/pay/cancel")
+	@ResponseBody
+	public String kakaopay_cancel(Concert dto, ConcertVo vo, HttpSession httpSession){
+		tid = vo.getTid();
+		Integer cancel_amount;
+		cancel_amount = vo.getTotalPrice();
+		String memberSeq = (String) httpSession.getAttribute("sessionSeq");
+		System.out.println("tid : " + tid);
+		System.out.println("cancel_amount : "+cancel_amount);
+		try {
+			URL url = new URL("https://kapi.kakao.com/v1/payment/cancel");
+			HttpURLConnection httpUrl = (HttpURLConnection) url.openConnection();
+			httpUrl.setRequestMethod("POST");
+			httpUrl.setRequestProperty("Authorization", "KakaoAK 13274d287cbe15fa7a36f98743face20");
+			httpUrl.setRequestProperty("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
+			httpUrl.setDoOutput(true);
+			String parameter = "cid=TC0ONETIME&tid="+tid+"&cancel_amount="+cancel_amount+"&cancel_tax_free_amount=0";
+			OutputStream output = httpUrl.getOutputStream();
+			DataOutputStream dataOutput = new DataOutputStream(output);
+			dataOutput.writeBytes(parameter);
+			dataOutput.flush();
+			dataOutput.close();
+			
+			int result = httpUrl.getResponseCode();
+			
+			InputStream inputStream;
+			if(result == 200) {
+				inputStream = httpUrl.getInputStream();
+			} else {
+				inputStream = httpUrl.getErrorStream();
+			}
+			InputStreamReader reader = new InputStreamReader(inputStream);
+			BufferedReader buffer = new BufferedReader(reader);
+			
+			// 결제 테이블 등록
+			// 좌석 정보 업데이트
+//			consertServiceImpl.asdadsf(dto)
+			
+			
+			return "redirect:/mymenuUsrView?memberSeq="+memberSeq;
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

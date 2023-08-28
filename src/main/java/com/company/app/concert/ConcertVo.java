@@ -73,16 +73,24 @@ public class ConcertVo {
 //	search
 	private String search;
 	private Object searchType;
-	private String totalPrice;
+	private Integer totalPrice;
+//	kakao
+	private String tid;
 //	-----
 
 	public String getSeq() {
 		return seq;
 	}
-	public String getTotalPrice() {
+	public String getTid() {
+		return tid;
+	}
+	public void setTid(String tid) {
+		this.tid = tid;
+	}
+	public Integer getTotalPrice() {
 		return totalPrice;
 	}
-	public void setTotalPrice(String totalPrice) {
+	public void setTotalPrice(Integer totalPrice) {
 		this.totalPrice = totalPrice;
 	}
 	public void setSearchType(Object searchType) {

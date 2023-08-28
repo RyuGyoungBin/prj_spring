@@ -245,7 +245,10 @@
     		DATE_FORMAT (d.concertDateTime, '%H:%i')as concertDateTime,
     		a.seq,
     		e.seatRow,
-    		e.seatCol
+    		e.seatCol,
+    		count(e.seq) cnt,
+    		a.tid,
+    		a.totalPrice
     	FROM
     		concertTicket a
     		LEFT JOIN concertAddressSeat e on e.seq = a.concertAddressSeat_seq
@@ -255,6 +258,7 @@
     		LEFT JOIN concertUploaded f on f.pseq = b.seq AND type = 1
     	WHERE 1=1
     		AND a.memberSeq = #{memberSeq}
+    	GROUP BY tid
     </select>
     <select id="selectReviewUsr" resultMap="resultMapObj">
     	SELECT
@@ -621,7 +625,8 @@
     		tid,
     		partner_order_id,
     		partner_user_id,
-    		delNy
+    		delNy,
+    		totalPrice
     	) values (
     		${memberSeq},
     		#{seq},
@@ -629,8 +634,26 @@
     		#{tid},
     		#{partner_order_id},
     		#{partner_user_id},
-    		0
+    		0,
+    		#{totalPrice}
     	)
     </insert>
+    <update id="deleteTicket">
+    	UPDATE
+    		concertTicket
+    	SET
+    		delNy = 1
+    	WHERE 1=1
+    		tid = #{tid}
+    </update>
+    
+    <update id="deleteTicketSeat">
+   		UPDATE
+    		concertAddressSeat
+    	SET
+    		seatNy = 0
+    	WHERE 1=1
+    		
+    </update>
     
 </mapper>
