@@ -9,6 +9,7 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLEncoder;
 
 import javax.servlet.http.HttpSession;
 
@@ -37,7 +38,9 @@ public class KakaoPay {
 	@RequestMapping("/kakao/pay")
 	@ResponseBody
 	public String kakaopay(ConcertVo vo, Concert dto, HttpSession httpSession) {
-		String item_name = vo.getConcertTitle()+" 티켓";
+		String item = vo.getConcertTitle()+"의티켓";
+		
+		
 		String total_amount = vo.getTotalPrice();
 		partner_order_id = "cts_order";
 		partner_user_id = (String) httpSession.getAttribute("sessionId");
@@ -45,6 +48,8 @@ public class KakaoPay {
 		dto.setPartner_order_id(partner_order_id);
 		dto.setPartner_user_id(partner_user_id);
 		try {
+			String item_name = URLEncoder.encode(item, "UTF-8");
+			System.out.println("item_name : "+item_name);
 			URL url = new URL("https://kapi.kakao.com/v1/payment/ready");
 			HttpURLConnection httpUrl = (HttpURLConnection) url.openConnection();
 			httpUrl.setRequestMethod("POST");
@@ -90,7 +95,6 @@ public class KakaoPay {
 	
 	
 	@RequestMapping("/kakao/pay/approval")
-	@ResponseBody
 	public String kakaopay_approval(@RequestParam("pg_token") String pgToken, Concert dto){
 		System.out.println("tid : "+tid);
 		System.out.println("partner_order_id : "+partner_order_id);
@@ -128,7 +132,7 @@ public class KakaoPay {
 //			consertServiceImpl.asdadsf(dto)
 			
 			
-			return "redirect:/mymenuUsrView";
+			return "/close";
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

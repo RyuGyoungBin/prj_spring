@@ -261,6 +261,7 @@
     				console.log(pay);
 //     				var token = data.pg_token;
     				window.open(pay);
+    				window.close();
     			},
     			error:function(error){
     				alert("asd");
