@@ -96,6 +96,7 @@
 									<button type="button" class="btn btn-danger ticketBtn" id="ticketBtn<c:out value="${ticket.seq }"/>">취소/환불</button>
 									<input type="hidden" value="<c:out value="${ticket.tid }"/>" class="tid">
 									<input type="hidden" value="<c:out value="${ticket.totalPrice }"/>" class="totalPrice">
+									<input type="hidden" value="<c:out value="${ticket.concertAddressSeatSeqArray }"/>" name="concertAddressSeat_seqArray">
 								</div>
 							</div>
 							</c:forEach>
@@ -244,13 +245,15 @@
 	 	$(document).on("click", ".kakaoCancel", function(){
 	 		target = $(this).attr("name");
 	 		console.log(target);
+	 		console.log($('#'+target).next().next().next().val())
 	 		$.ajax({
         		type:"post",
     			url:"/kakao/pay/cancel",
     			dataType:"json" ,
     			data : { 
     				"tid" : $('#'+target).next().val(),
-    				"totalPrice" : $('#'+target).next().next().val()
+    				"totalPrice" : $('#'+target).next().next().val(),
+    				"concertAddressSeat_seqArray" : $('#'+target).next().next().next().val()
     			},
     			success:function(data){
     				alert(data);

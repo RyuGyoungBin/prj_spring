@@ -127,6 +127,7 @@ public class KakaoPay {
 			// 결제 테이블 등록
 			dto.setTid(tid);
 			dto.setConcertAddressSeat_seqArray(concertAddressSeat_seqArray);
+			
 			consertServiceImpl.approvalTicket(dto);
 			// 좌석 정보 업데이트
 //			consertServiceImpl.asdadsf(dto)
@@ -149,6 +150,8 @@ public class KakaoPay {
 		Integer cancel_amount;
 		cancel_amount = vo.getTotalPrice();
 		String memberSeq = (String) httpSession.getAttribute("sessionSeq");
+		dto.setConcertAddressSeat_seqArray(vo.getGetConcertAddressSeat_seqArray());
+		System.out.println(dto.getConcertAddressSeat_seqArray());
 		System.out.println("tid : " + tid);
 		System.out.println("cancel_amount : "+cancel_amount);
 		try {

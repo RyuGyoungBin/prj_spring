@@ -248,7 +248,8 @@
     		e.seatCol,
     		count(e.seq) cnt,
     		a.tid,
-    		a.totalPrice
+    		a.totalPrice,
+    		group_concat(e.seq) concertAddressSeatSeqArray
     	FROM
     		concertTicket a
     		LEFT JOIN concertAddressSeat e on e.seq = a.concertAddressSeat_seq
@@ -258,6 +259,7 @@
     		LEFT JOIN concertUploaded f on f.pseq = b.seq AND type = 1
     	WHERE 1=1
     		AND a.memberSeq = #{memberSeq}
+    		AND a.delNy = 0
     	GROUP BY tid
     </select>
     <select id="selectReviewUsr" resultMap="resultMapObj">
@@ -281,6 +283,7 @@
     		LEFT JOIN concertAddressSeat c on c.seq = b.concertAddressSeat_seq
     		LEFT JOIN concertUploaded e on e.pseq = b.concertSeq AND type = 1
     	WHERE 1=1
+    		AND a.delNy = 0
     		AND a.memberSeq = #{memberSeq}
     </select>
    	

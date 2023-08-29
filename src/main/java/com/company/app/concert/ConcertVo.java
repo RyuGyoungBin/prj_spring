@@ -77,6 +77,7 @@ public class ConcertVo {
 //	kakao
 	private String tid;
 //	-----
+	private String[] getConcertAddressSeat_seqArray;
 
 	public String getSeq() {
 		return seq;
@@ -472,6 +473,12 @@ public class ConcertVo {
 		System.out.println("getEndRnumForOracle():" + getEndRnumForOracle());
 		System.out.println("getStartRnumForMysql(): " + getStartRnumForMysql());
 
+	}
+	public String[] getGetConcertAddressSeat_seqArray() {
+		return getConcertAddressSeat_seqArray;
+	}
+	public void setGetConcertAddressSeat_seqArray(String[] getConcertAddressSeat_seqArray) {
+		this.getConcertAddressSeat_seqArray = getConcertAddressSeat_seqArray;
 	}
 
 }

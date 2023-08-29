@@ -30,6 +30,7 @@ public class Concert {
 	private String[] seatRowArray;
 	private String[] seatColArray;
 	private String[] concertAddressSeat_seqArray;
+	private String concertAddressSeatSeqArray;
 	private String tid;
 	private String partner_order_id;
 	private String partner_user_id;
@@ -473,6 +474,12 @@ public class Concert {
 	}
 	public void setCnt(Integer cnt) {
 		this.cnt = cnt;
+	}
+	public String getConcertAddressSeatSeqArray() {
+		return concertAddressSeatSeqArray;
+	}
+	public void setConcertAddressSeatSeqArray(String concertAddressSeatSeqArray) {
+		this.concertAddressSeatSeqArray = concertAddressSeatSeqArray;
 	}
 
 //	----------------------
