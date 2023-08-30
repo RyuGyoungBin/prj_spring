@@ -13,7 +13,7 @@
 <body>
 
 <script type="text/javascript">
-	window.opener.location.href="http://localhost/mymenuUsrView?memberSeq="+${sessionSeq};
+// 	window.opener.location.href="http://localhost/mymenuUsrView?memberSeq="+${sessionSeq};
 	window.close();
 </script>
 </body>
