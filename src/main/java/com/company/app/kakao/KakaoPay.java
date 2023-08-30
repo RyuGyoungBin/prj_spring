@@ -144,13 +144,15 @@ public class KakaoPay {
 	}
 	
 	@RequestMapping("/kakao/pay/cancel")
-	@ResponseBody
 	public String kakaopay_cancel(Concert dto, ConcertVo vo, HttpSession httpSession){
 		tid = vo.getTid();
 		Integer cancel_amount;
 		cancel_amount = vo.getTotalPrice();
 		String memberSeq = (String) httpSession.getAttribute("sessionSeq");
-		dto.setConcertAddressSeat_seqArray(vo.getGetConcertAddressSeat_seqArray());
+		String[] concertAddressSeatSeq = dto.getConcertAddressSeat_seqArray();
+		dto.setConcertAddressSeat_seqArray(concertAddressSeatSeq);
+		String[] concertTicketSeqArray = dto.getConcertTicket_seqArray();
+		dto.setConcertTicket_seqArray(concertTicketSeqArray);
 		System.out.println(dto.getConcertAddressSeat_seqArray());
 		System.out.println("tid : " + tid);
 		System.out.println("cancel_amount : "+cancel_amount);
@@ -181,7 +183,7 @@ public class KakaoPay {
 			
 			// 결제 테이블 등록
 			// 좌석 정보 업데이트
-//			consertServiceImpl.asdadsf(dto)
+			consertServiceImpl.cancelTicket(dto);
 			
 			
 			return "redirect:/mymenuUsrView?memberSeq="+memberSeq;

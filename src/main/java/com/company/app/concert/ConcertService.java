@@ -27,6 +27,7 @@ public interface ConcertService {
 	
 	public int updateConcert(Concert dto);
 	public int approvalTicket(Concert dto);
+	public int cancelTicket(Concert dto);
 	
 	public int ueleteConcert(Concert dto);
 

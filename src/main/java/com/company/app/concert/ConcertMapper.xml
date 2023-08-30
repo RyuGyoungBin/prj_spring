@@ -244,6 +244,7 @@
     		d.concertDate,
     		DATE_FORMAT (d.concertDateTime, '%H:%i')as concertDateTime,
     		a.seq,
+    		group_concat(a.seq) concertTicketSeqArray,
     		e.seatRow,
     		e.seatCol,
     		count(e.seq) cnt,
@@ -645,9 +646,18 @@
     	UPDATE
     		concertTicket
     	SET
+    		delNy = 1,
+    		ticketDateRe = now()
+    	WHERE 1=1
+    		AND tid = #{tid}
+    </update>
+    <update id="delecteReview">
+    	UPDATE
+    		concertReview
+    	SET
     		delNy = 1
     	WHERE 1=1
-    		tid = #{tid}
+    		AND concertTicket_seq = #{concertTicket_seq}
     </update>
     
     <update id="deleteTicketSeat">
@@ -656,7 +666,7 @@
     	SET
     		seatNy = 0
     	WHERE 1=1
-    		
+    		AND seq = #{concertAddressSeat_seq}
     </update>
     
 </mapper>

@@ -265,6 +265,21 @@ public class ConcertServiceImpl implements ConcertService {
 		return 0;
 	}
 	
+	@Override
+	public int cancelTicket(Concert dto) {
+		for(int j = 0 ; j < dto.getConcertTicket_seqArray().length ; j++) {
+			dto.setConcertTicket_seq(dto.getConcertTicket_seqArray()[j]);
+			dao.deleteconcertReview(dto);
+		}
+		
+		for(int i = 0 ; i < dto.getConcertAddressSeat_seqArray().length ; i++) {
+			dao.deleteTicket(dto);
+			dto.setConcertAddressSeat_seq(dto.getConcertAddressSeat_seqArray()[i]);
+			dao.deleteTicketSeat(dto);
+		}
+		return 0;
+	}
+	
 
 
 }

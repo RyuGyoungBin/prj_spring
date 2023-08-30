@@ -69,6 +69,9 @@ public class ConcertDao {
 	public int ueleteconcertTicket(Concert dto) {return sqlSession.update(namespace + ".ueleteconcertTicket", dto);}
 	public int ueleteconcertReview(Concert dto) {return sqlSession.update(namespace + ".ueleteconcertReview", dto);}
 	public int ueleteconcertGroup(Concert dto) {return sqlSession.update(namespace + ".ueleteconcertGroup", dto);}
-
+	
+	
+	public int deleteTicket(Concert dto) {return sqlSession.update(namespace + ".deleteTicket", dto);}
+	public int deleteTicketSeat(Concert dto) {return sqlSession.update(namespace + ".deleteTicketSeat", dto);}
 	
 }

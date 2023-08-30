@@ -30,6 +30,8 @@ public class Concert {
 	private String[] seatRowArray;
 	private String[] seatColArray;
 	private String[] concertAddressSeat_seqArray;
+	private String[] concertTicket_seqArray;
+	private String concertTicketSeqArray;
 	private String concertAddressSeatSeqArray;
 	private String tid;
 	private String partner_order_id;
@@ -480,6 +482,18 @@ public class Concert {
 	}
 	public void setConcertAddressSeatSeqArray(String concertAddressSeatSeqArray) {
 		this.concertAddressSeatSeqArray = concertAddressSeatSeqArray;
+	}
+	public String[] getConcertTicket_seqArray() {
+		return concertTicket_seqArray;
+	}
+	public void setConcertTicket_seqArray(String[] concertTicket_seqArray) {
+		this.concertTicket_seqArray = concertTicket_seqArray;
+	}
+	public String getConcertTicketSeqArray() {
+		return concertTicketSeqArray;
+	}
+	public void setConcertTicketSeqArray(String concertTicketSeqArray) {
+		this.concertTicketSeqArray = concertTicketSeqArray;
 	}
 
 //	----------------------

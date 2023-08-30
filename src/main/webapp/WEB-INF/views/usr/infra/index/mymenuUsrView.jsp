@@ -97,6 +97,7 @@
 									<input type="hidden" value="<c:out value="${ticket.tid }"/>" class="tid">
 									<input type="hidden" value="<c:out value="${ticket.totalPrice }"/>" class="totalPrice">
 									<input type="hidden" value="<c:out value="${ticket.concertAddressSeatSeqArray }"/>" name="concertAddressSeat_seqArray">
+									<input type="hidden" value="<c:out value="${ticket.concertTicketSeqArray }"/>" name="concertTicketSeqArray">
 								</div>
 							</div>
 							</c:forEach>
@@ -253,7 +254,8 @@
     			data : { 
     				"tid" : $('#'+target).next().val(),
     				"totalPrice" : $('#'+target).next().next().val(),
-    				"concertAddressSeat_seqArray" : $('#'+target).next().next().next().val()
+    				"concertAddressSeat_seqArray" : $('#'+target).next().next().next().val(),
+    				"concertTicket_seqArray" : $('#'+target).next().next().next().next().val()
     			},
     			success:function(data){
     				alert(data);
