@@ -258,10 +258,9 @@
     				"concertTicket_seqArray" : $('#'+target).next().next().next().next().val()
     			},
     			success:function(data){
-    				alert(data);
+    				location.reload()
     			},
     			error:function(error){
-    				alert("asd");
     			}
    			});
 	 		

@@ -24,6 +24,9 @@ public class CodeGroupVo {
 	private Integer RNUM;
 
 	private int startRnumForMysql = 0;							// 쿼리 시작 row
+	
+//	excel
+	private String excelName;
 
 
 	public Integer getShOption() {
@@ -167,7 +170,13 @@ public class CodeGroupVo {
 		System.out.println("getStartRnumForMysql(): " + getStartRnumForMysql());
 
 	}
-
+	public String getExcelName() {
+		return excelName;
+	}
+	public void setExcelName(String excelName) {
+		this.excelName = excelName;
+	}
+	
 
 
 

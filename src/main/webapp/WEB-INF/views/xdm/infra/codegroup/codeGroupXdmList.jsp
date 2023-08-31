@@ -28,6 +28,7 @@
 			  <form autocomplete="off" action="/codeGroupXdmList" method="post" name="formList">
 			  	<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage}" default="1"/>">
 				<input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow}"/>">
+				<input type="hidden" name="excelName" id="excelName" value=""/>
 					<div class="d-flex">
 						<div class="col-2 text-end ms-3 me-3">
 							<select class="form-control form-control-sm p-2" id="use_YN">
@@ -237,8 +238,11 @@
 	 
 	 $("#codeGroup").addClass("active");
 	
-	 
-
+	 $("#excel").click(function() {
+			
+			$("form[name=formList]").attr("action", "excelCodeGroupXdmDownload").submit();
+		});
+	$("#excelName").val($(".breadcrumb-item.active").text());
 	
 	
 </script>

@@ -1,18 +1,20 @@
 package com.company.app.concert;
 
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.HorizontalAlignment;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -197,5 +199,119 @@ public class ConcertController {
 		return "";
 	}
 	
+	@RequestMapping("excelConcertXdmDownload")
+    public void excelDownload(ConcertVo vo, HttpServletResponse httpServletResponse) throws Exception {
+		vo.setParamsPaging(service.selectOneCount(vo));
+		String excelName = "";
+		String excel = vo.getExcelName();
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		Date now = new Date();
+		String now_dt = format.format(now);
+		excelName = excel+" "+now_dt;
+		if (vo.getTotalRows() > 0) {
+			List<Concert> list = service.selectList(vo);
+			
+//			Workbook workbook = new HSSFWorkbook();	// for xls
+	        Workbook workbook = new XSSFWorkbook();
+	        Sheet sheet = workbook.createSheet("첫번째 시트");
+	        CellStyle cellStyle = workbook.createCellStyle();        
+	        Row row = null;
+	        Cell cell = null;
+	        int rowNum = 0;
+			
+//	        each column width setting
+	        sheet.setColumnWidth(0, 2100);
+	        sheet.setColumnWidth(1, 3100);
+
+//	        Header
+	        String[] tableHeader = {"콘서트 코드","콘서트 종류", "콘서트 제목", "사용여부", "콘서트 기본값", "콘서트 등록자코드", "콘서트 우편번호", "콘서트 주소", "콘서트 상세주소", "콘서트 날짜", "콘서트 시간", "콘서트 출연진"};
+
+	        row = sheet.createRow(rowNum++);
+			for(int i=0; i<tableHeader.length; i++) {
+				cell = row.createCell(i);
+	        	cellStyle.setAlignment(HorizontalAlignment.CENTER);
+	        	cell.setCellStyle(cellStyle);
+				cell.setCellValue(tableHeader[i]);
+			}
+
+//	        Body
+	        for (int i=0; i<list.size(); i++) {
+	            row = sheet.createRow(rowNum++);
+	            
+//	            String type: null 전달 되어도 ok
+//	            int, date type: null 시 오류 발생 하므로 null check
+//	            String type 이지만 정수형 데이터가 전체인 seq 의 경우 캐스팅
+	            
+	            cell = row.createCell(0);
+	        	cellStyle.setAlignment(HorizontalAlignment.CENTER);
+	        	cell.setCellStyle(cellStyle);
+	            cell.setCellValue(Integer.parseInt(list.get(i).getSeq()));
+	            
+	            cell = row.createCell(1);
+	        	cellStyle.setAlignment(HorizontalAlignment.CENTER);
+	        	cell.setCellStyle(cellStyle);
+	        	cell.setCellValue(Integer.parseInt(list.get(i).getConcertType()));
+	        	
+	            cell = row.createCell(2);
+	        	cellStyle.setAlignment(HorizontalAlignment.CENTER);
+	        	cell.setCellStyle(cellStyle);
+	        	cell.setCellValue(list.get(i).getConcertTitle());
+	        	
+	        	cell = row.createCell(3);
+	        	cellStyle.setAlignment(HorizontalAlignment.CENTER);
+	        	cell.setCellStyle(cellStyle);
+	        	cell.setCellValue(list.get(i).getDelNy());
+	        	
+	        	cell = row.createCell(4);
+	        	cellStyle.setAlignment(HorizontalAlignment.CENTER);
+	        	cell.setCellStyle(cellStyle);
+	        	cell.setCellValue(list.get(i).getDefaultNy());
+	        	
+	        	cell = row.createCell(5);
+	        	cellStyle.setAlignment(HorizontalAlignment.CENTER);
+	        	cell.setCellStyle(cellStyle);
+	        	cell.setCellValue(Integer.parseInt(list.get(i).getMemberSeq()));
+	        	
+	        	cell = row.createCell(6);
+	        	cellStyle.setAlignment(HorizontalAlignment.CENTER);
+	        	cell.setCellStyle(cellStyle);
+	        	cell.setCellValue(Integer.parseInt(list.get(i).getConcertZipCode()));
+	        	
+	        	cell = row.createCell(7);
+	        	cellStyle.setAlignment(HorizontalAlignment.CENTER);
+	        	cell.setCellStyle(cellStyle);
+	        	cell.setCellValue(list.get(i).getConcertAddress());
+	        	
+	        	cell = row.createCell(8);
+	        	cellStyle.setAlignment(HorizontalAlignment.CENTER);
+	        	cell.setCellStyle(cellStyle);
+	        	cell.setCellValue(list.get(i).getConcertAddressDetail());
+	        	
+	        	cell = row.createCell(9);
+	        	cellStyle.setAlignment(HorizontalAlignment.CENTER);
+	        	cell.setCellStyle(cellStyle);
+	        	if(list.get(i).getConcertDate() != null) cell.setCellValue(list.get(i).getConcertDate());
+	        	
+	        	cell = row.createCell(10);
+	        	cellStyle.setAlignment(HorizontalAlignment.CENTER);
+	        	cell.setCellStyle(cellStyle);
+	        	if(list.get(i).getConcertDateTime() != null) cell.setCellValue(list.get(i).getConcertDateTime());
+	        	
+	        	cell = row.createCell(11);
+	        	cellStyle.setAlignment(HorizontalAlignment.CENTER);
+	        	cell.setCellStyle(cellStyle);
+	        	cell.setCellValue(list.get(i).getName());
+	        	
+	            
+	        }
+
+	        httpServletResponse.setContentType("ms-vnd/excel");
+//	        httpServletResponse.setHeader("Content-Disposition", "attachment;filename=example.xls");	// for xls
+	        httpServletResponse.setHeader("Content-Disposition", "attachment;filename="+excelName+".xlsx");
+
+	        workbook.write(httpServletResponse.getOutputStream());
+	        workbook.close();
+		}
+    }
 
 }

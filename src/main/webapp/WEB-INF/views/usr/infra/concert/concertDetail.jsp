@@ -136,10 +136,10 @@
 					<div class=text-center>
 					<c:choose>
 						<c:when test="${empty sessionId }">
-							<a class="btn btn-secondary loginModal" style="min-width:80px;" target=”_blank”>예매</a>
+							<a class="btn btn-secondary loginModal" style="min-width:80px;">예매</a>
 						</c:when>
 						<c:otherwise>
-							<a id="ticketBtn" class="btn btn-secondary" style="min-width:80px;" target=”_blank”>예매</a>
+							<a id="ticketBtn" class="btn btn-secondary" style="min-width:80px;">예매</a>
 						</c:otherwise>
 					</c:choose>
 					</div>

@@ -76,6 +76,8 @@ public class ConcertVo {
 	private Integer totalPrice;
 //	kakao
 	private String tid;
+//	excel
+	private String excelName;
 //	-----
 	private String[] getConcertAddressSeat_seqArray;
 
@@ -479,6 +481,12 @@ public class ConcertVo {
 	}
 	public void setGetConcertAddressSeat_seqArray(String[] getConcertAddressSeat_seqArray) {
 		this.getConcertAddressSeat_seqArray = getConcertAddressSeat_seqArray;
+	}
+	public String getExcelName() {
+		return excelName;
+	}
+	public void setExcelName(String excelName) {
+		this.excelName = excelName;
 	}
 
 }

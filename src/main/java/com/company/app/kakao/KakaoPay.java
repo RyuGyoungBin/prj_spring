@@ -141,6 +141,7 @@ public class KakaoPay {
 	}
 	
 	@RequestMapping("/kakao/pay/cancel")
+	@ResponseBody
 	public String kakaopay_cancel(Concert dto, ConcertVo vo, HttpSession httpSession){
 		tid = vo.getTid();
 		Integer cancel_amount;
@@ -181,9 +182,9 @@ public class KakaoPay {
 			// 결제 테이블 등록
 			// 좌석 정보 업데이트
 			consertServiceImpl.cancelTicket(dto);
-			String returnUrl = "redirect:/mymenuUsrView?memberSeq="+memberSeq;
 			
-			return returnUrl;
+			
+			return buffer.readLine();
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
