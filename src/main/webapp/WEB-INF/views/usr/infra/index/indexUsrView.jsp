@@ -41,42 +41,21 @@
 				</nav>
 				<div class="col-10 py-2 px-3 rankList" id="list1">
 					<div class="d-flex justify-content-around align-items-center overflow-hidden" style="width: 100%">
-						<div class="tour_container mb-0">
-                        	<div class="ribbon_3 popular"><span>1</span></div>
+					<c:forEach items="${concertNew }" var="list" varStatus="status">
+                        <div class="tour_container mb-0 mx-3">
                             <div class="positoin-relative">
-                                <img src="/resources/concert/img/2023 성시경의 축가 콘서트.jpg" alt="" class="img-fluid">
+                            	<c:set var="type" value="1"/>
+                            	<c:forEach items="${uploaded }" var="uploaded" varStatus="status">
+                            	<c:if test="${uploaded.pseq eq list.seq && uploaded.type eq type}">
+                                <img src="<c:out value="${uploaded.path }"/><c:out value="${uploaded.uuidName }"/>" alt="" class="img-fluid">
+                                </c:if>
+                                </c:forEach>
                                 <div class="position-absolute bottom-0 text-center p-2 d-none postTitle">
-                                    <span>2023 성시경의 축가 콘서트</span>
+                                    <span><c:out value="${list.concertTitle }"/></span>
                                 </div>
                             </div>
                         </div>
-                        <div class="tour_container mb-0">
-                        	<div class="ribbon_3 popular"><span>2</span></div>
-                            <div class="positoin-relative">
-                                <img src="/resources/concert/img/2023 성시경의 축가 콘서트.jpg" alt="" class="img-fluid">
-                                <div class="position-absolute bottom-0 text-center p-2 d-none postTitle">
-                                    <span>2023 성시경의 축가 콘서트</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tour_container mb-0">
-                        	<div class="ribbon_3 popular"><span>3</span></div>
-                            <div class="positoin-relative">
-                                <img src="/resources/concert/img/2023 성시경의 축가 콘서트.jpg" alt="" class="img-fluid">
-                                <div class="position-absolute bottom-0 text-center p-2 d-none postTitle">
-                                    <span>2023 성시경의 축가 콘서트</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tour_container mb-0">
-                        	<div class="ribbon_3 popular"><span>4</span></div>
-                            <div class="positoin-relative">
-                                <img src="/resources/concert/img/2023 성시경의 축가 콘서트.jpg" alt="" class="img-fluid">
-                                <div class="position-absolute bottom-0 text-center p-2 d-none postTitle">
-                                    <span>2023 성시경의 축가 콘서트</span>
-                                </div>
-                            </div>
-                        </div>
+					</c:forEach>
 					</div>
 				</div>
 				<div class="col-10 py-2 px-3 d-none rankList" id="list2">

@@ -38,7 +38,13 @@ public class IndexController {
 		return "xdm/infra/index/indexXdmView";
 	}
 	@RequestMapping("/indexUsrView")
-	public String indexUsrView() {
+	public String indexUsrView(ConcertVo vo, Model model) {
+		vo.setConcertOBDesc("desc");
+		vo.setRowNumToShow(4);
+		List<Concert> list = concertService.selectList(vo);
+		List<Concert> uploaded = concertService.selectUploaded(vo);
+		model.addAttribute("concertNew", list);
+		model.addAttribute("uploaded", uploaded);
 		return "usr/infra/index/indexUsrView";
 	}
 	@RequestMapping("/signupUsrForm")
@@ -49,8 +55,10 @@ public class IndexController {
 	public String mymenuUsrView(ConcertVo vo, Model model) {
 		List<Concert> list = concertService.selectTicket(vo);
 		List<Concert> review = concertService.selectReview(vo);
+		List<Concert> listConcert = concertService.selectConcertList(vo);
 		model.addAttribute("ticket", list);
 		model.addAttribute("review", review);
+		model.addAttribute("concertList", listConcert);
 		return "usr/infra/index/mymenuUsrView";
 	}
 	@RequestMapping("/informationUsrForm")

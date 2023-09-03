@@ -22,11 +22,11 @@
 		<div class="col-lg-12 d-flex">
 			<div class="col-lg-2"></div>
 			<div class="col-lg-8 d-flex align-items-center text-center justify-content-center" style="min-height:220px;">
-				<div class="col-lg-2 col-md-2">
-					<div class="img_list">
-						<img src="/resources/concert/img/tour_box_1.jpg" alt="Image">
-					</div>
-				</div>
+<!-- 				<div class="col-lg-2 col-md-2"> -->
+<!-- 					<div class="img_list"> -->
+<!-- 						<img src="/resources/concert/img/tour_box_1.jpg" alt="Image"> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
 				<div class="col-lg-8 col-md-8 ps-5 text-start border-start ms-5">
 					<h2 class="mb-5">"<strong><c:out value="${ sessionId}"></c:out></strong>"님의 페이지입니다</h2>
 					<a class="btn btn-sm btn-secondary mt-3" href="/informationUsrForm?seq=<c:out value="${sessionSeq }"></c:out>">개인 정보 수정</a>
@@ -109,6 +109,9 @@
 
 					<section id="section-2">
 						<div class="strip_booking">
+						<div class="text-end mb-3">
+								<button type="button" class="btn btn-secondary" id="insertReview">등록</button>
+							</div>
 						<c:forEach items="${review }" var="review" varStatus="statusUploaded">
 							<div class="row">
 								<div class="col-lg-4 col-md-4 position-relative">
@@ -145,37 +148,46 @@
 								<button type="button" class="btn btn-secondary" onclick="location.href='/concertUsrRegistration'">등록</button>
 							</div>
 							<div class="row">
-								<div class="col-lg-4 col-md-4 position-relative">
-									<div class="img_list">
-										<a href="single_tour.html"><img src="/resources/concert/img/tour_box_1.jpg" alt="Image">
-										</a>
-									</div>
-								</div>
-								<div class="col-lg-6 col-md-6">
-									<div class="tour_list_desc d-flex justify-content-around flex-column">
-										<h3 class="p-0">타이틀 : <strong>장기동</strong></h3>
-										<div>
-											<span>날짜 :</span>
-											<span>2023-06-12</span>
-										</div>
-										<div>
-											<span>시간 :</span>
-											<span>10:05</span>
-										</div>
-										<div>
-											<span>장소 :</span>
-											<span>김포시 장기동</span>
-											<span class="tooltip-item"><i class="icon_set_1_icon-41"></i></span>
-										</div>
-									</div>
-								</div>
-								<div class="col-lg-2 col-md-2 d-flex flex-column justify-content-around align-items-center ps-0">
-									<div class="text-center">
-										<p class="text-danger"></p>
-										<p></p>
-									</div>
-									<button type="button" class="btn btn-secondary">수정</button>
-								</div>
+								<table class="text-center">
+						<thead class="border-bottom">
+							<tr>
+								<th colspan="2">상품명</th>
+								<th>장소</th>
+								<th>기간</th>
+								<th>출연진</th>
+								<th>수정</th>
+							</tr>
+						</thead>
+						<tbody class="border-bottom">
+							<c:forEach items="${concertList}" var="list" varStatus="status">
+							<tr>
+								<th class="py-3 border-end">
+								<c:set var="type" value="1"/>		<!-- #-> -->
+					        	<c:set var="name" value="uploadImgProfile"/>		<!-- #-> -->
+									<c:if test="${list.type eq type }">
+										<img id="<c:out value="${name }"/>Preview" src="<c:out value="${list.path }"/><c:out value="${list.uuidName }"/>" class="card-img-center" style="width:194px; height:259px;">
+									</c:if>
+								</th>
+								<th>
+									<span><a href="/concertUsrDetail?seq=<c:out value="${list.seq }"/>&concertAddress_seq=<c:out value="${list.concertAddress_seq }"></c:out>&concertDate_seq=<c:out value="${list.concertDate_seq }"/>"><c:out value="${list.concertTitle }"></c:out></a></span>
+								</th>
+								<th>
+									<span><c:out value="${list.concertAddress }"></c:out>  <c:out value="${list.concertAddressDetail }"></c:out></span>
+									<input type="hidden" name="concertAddress_seq" value="<c:out value="${list.concertAddress_seq }"></c:out>">
+								</th>
+								<th>
+									<span><c:out value="${list.concertDateMin }"></c:out> - <c:out value="${list.concertDateMax }"></c:out></span>
+								</th>
+								<th>
+									<span><c:out value="${list.name }"></c:out></span>
+								</th>
+								<th>
+									<button type="button" class="btn btn-secondary updateConcert" name="<c:out value="${list.seq }"/>">수정</button>
+								</th>
+							</tr>
+							</c:forEach>
+						</tbody>
+					</table>
 							</div>
 							<!-- End row -->
 						</div>
@@ -265,7 +277,30 @@
    			});
 	 		
 	 	})
-
+	$(function(){
+		$(".updateConcert").on("click", function(){
+			var targetSeq = "";
+			targetSeq = $(this).attr("name");
+			console.log(targetSeq)
+			location.href = "http://localhost/concertUsrRegistration?seq="+targetSeq;
+		})
+	})
+	
+	$("#insertReview").on("click", function(){
+		$("#myModal").find("h1").text("리뷰 등록");
+ 		//$("#myModal").find(".modal-body").text("삭제하시겠습니까");
+ 		$("#myModal").find(".modal-body").empty();
+ 		var reviewdiv = "";
+ 			reviewdiv += '';
+ 		$("#myModal").find(".modal-body").append("<p>남은 글자 수 : <span id='reviewWord'>200</span></p>");
+ 		$("#myModal").find(".modal-body").append("<p>남은 글자 수 : <span id='reviewWord'>200</span></p>");
+ 		$("#myModal").find(".modal-body").append("<textarea name='review' id='review' style='width: 100%; height: 200px; resize: none;' maxlength='200'></textarea>");
+ 		$("#modalOk").remove();
+ 		$(".kakaoCancel").remove();
+ 		$(".modal-footer").append('<button type="button" class="btn btn-primary" id="modalOk">등록 및 수정</button>');
+ 		
+	 	myModal.show();
+	})
 	</script>
 
 	

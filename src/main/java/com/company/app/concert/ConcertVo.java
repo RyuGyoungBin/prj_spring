@@ -74,6 +74,8 @@ public class ConcertVo {
 	private String search;
 	private Object searchType;
 	private Integer totalPrice;
+	private String concertOB;
+	private String concertOBDesc;
 //	kakao
 	private String tid;
 //	excel
@@ -487,6 +489,18 @@ public class ConcertVo {
 	}
 	public void setExcelName(String excelName) {
 		this.excelName = excelName;
+	}
+	public String getConcertOB() {
+		return concertOB;
+	}
+	public void setConcertOB(String concertOB) {
+		this.concertOB = concertOB;
+	}
+	public String getConcertOBDesc() {
+		return concertOBDesc;
+	}
+	public void setConcertOBDesc(String concertOBDesc) {
+		this.concertOBDesc = concertOBDesc;
 	}
 
 }

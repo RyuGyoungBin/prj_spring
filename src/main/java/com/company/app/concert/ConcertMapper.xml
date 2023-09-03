@@ -16,6 +16,9 @@
 		WHERE 1=1
 			<if test="seq != null and !seq.equals('')">AND a.seq = #{seq}</if>
 			<if test="concertType != null and !concertType.equals('')">AND a.concertType = #{concertType}</if>
+			
+			<if test="concertOB != null and !concertOB.equals('')">ORDER BY a.seq</if>
+			<if test="concertOBDesc != null and !concertOBDesc.equals('')">ORDER BY a.seq desc</if>
     </sql>
     <sql id="selectConcert">
     	a.seq,
@@ -51,6 +54,7 @@
     		<include refid="selectConcert" />
 	    	<include refid="selectCommon" />
 		) aa
+		<if test="concertOBDesc != null and !concertOBDesc.equals('')">GROUP BY aa.seq</if>
 		LIMIT #{rowNumToShow} OFFSET #{startRnumForMysql}	   			
    	</select>
    	<select id="selectOne" resultMap="resultMapObj">
@@ -231,7 +235,7 @@
     	FROM
     		concertUploaded
 		WHERE 1=1
-	    	AND pseq = #{seq}
+	    	<if test="seq != null and !seq.equals('')">AND pseq = #{seq}</if>
 	    	
     </select>
     <select id="selectTicketUsr" resultMap="resultMapObj">
