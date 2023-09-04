@@ -59,7 +59,7 @@ public class MemberServiceImpl implements MemberService {
 		return localDateTimeString;
 	}
 	
-public void uploadFiles(MultipartFile[] multipartFiles, Member dto, String tableName, int type, int maxNumber) throws Exception {
+	public void uploadFiles(MultipartFile[] multipartFiles, Member dto, String tableName, int type, int maxNumber) throws Exception {
 		
 		for(int i=0; i<multipartFiles.length; i++) {
     	

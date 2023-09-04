@@ -47,10 +47,10 @@
                             	<c:set var="type" value="1"/>
                             	<c:forEach items="${uploaded }" var="uploaded" varStatus="status">
                             	<c:if test="${uploaded.pseq eq list.seq && uploaded.type eq type}">
-                                <img src="<c:out value="${uploaded.path }"/><c:out value="${uploaded.uuidName }"/>" alt="" class="img-fluid">
+                                <img src="<c:out value="${uploaded.path }"/><c:out value="${uploaded.uuidName }"/>" alt="" class="img-fluid indeximg">
                                 </c:if>
                                 </c:forEach>
-                                <div class="position-absolute bottom-0 text-center p-2 d-none postTitle">
+                                <div class="position-absolute bottom-0 py-3 text-center d-none postTitle" style="width: 100%; background: rgba(0,0,0,.5); color: #fff;">
                                     <span><c:out value="${list.concertTitle }"/></span>
                                 </div>
                             </div>
@@ -59,44 +59,7 @@
 					</div>
 				</div>
 				<div class="col-10 py-2 px-3 d-none rankList" id="list2">
-					<div class="d-flex justify-content-around overflow-hidden" style="width: 100%">
-                        <div class="tour_container mb-0" style="width: 20%;">
-                        	<div class="ribbon_3 popular"><span>2</span></div>
-                            <div class="positoin-relative">
-                                <img src="/resources/concert/img/구름아래소극장.jpg" alt="" class="img-fluid" style="width: 100%; object-fit: cover;">
-                                <div class="position-absolute bottom-0 text-center p-2 d-none postTitle">
-                                    <span>2023 성시경의 축가 콘서트</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tour_container mb-0" style="width: 20%;">
-                        	<div class="ribbon_3 popular"><span>2</span></div>
-                            <div class="positoin-relative">
-                                <img src="/resources/concert/img/구름아래소극장.jpg" alt="" class="img-fluid" style="width: 100%; object-fit: cover;">
-                                <div class="position-absolute bottom-0 text-center p-2 d-none postTitle">
-                                    <span>2023 성시경의 축가 콘서트</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tour_container mb-0" style="width: 20%;">
-                        	<div class="ribbon_3 popular"><span>2</span></div>
-                            <div class="positoin-relative">
-                                <img src="/resources/concert/img/구름아래소극장.jpg" alt="" class="img-fluid" style="width: 100%; object-fit: cover;">
-                                <div class="position-absolute bottom-0 text-center p-2 d-none postTitle">
-                                    <span>2023 성시경의 축가 콘서트</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tour_container mb-0" style="width: 20%;">
-                        	<div class="ribbon_3 popular"><span>2</span></div>
-                            <div class="positoin-relative">
-                                <img src="/resources/concert/img/구름아래소극장.jpg" alt="" class="img-fluid" style="width: 100%; object-fit: cover;">
-                                <div class="position-absolute bottom-0 text-center p-2 d-none postTitle">
-                                    <span>2023 성시경의 축가 콘서트</span>
-                                </div>
-                            </div>
-                        </div>
-					</div>
+					
 				</div>
 				
 				
@@ -109,46 +72,7 @@
 			<h2><span>New</span> Concert</h2>
 		</div>
 
-<!--         <div class="white_bg"> -->
-<!--         <div class="container margin_60 rank"> -->
-<!--             <div class="d-flex justify-content-around overflow-hidden" style="width: 100%"> -->
-<!--                 <div class="tour_container mb-0" style="width: 20%;"> -->
-<!--                     <div class="positoin-relative"> -->
-<!--                         <img src="/resources/concert/img/구름아래소극장.jpg" alt="" class="img-fluid" style="width: 100%; object-fit: cover;"> -->
-<!--                         <div class="position-absolute bottom-0 text-center p-2 d-none postTitle"> -->
-<!--                             <span>2023 성시경의 축가 콘서트</span> -->
-<!--                         </div> -->
-<!--                     </div> -->
-<!--                 </div> -->
-<!--                 <div class="tour_container mb-0" style="width: 20%;"> -->
-<!--                     <div class="positoin-relative"> -->
-<!--                         <img src="/resources/concert/img/구름아래소극장.jpg" alt="" class="img-fluid" style="width: 100%; object-fit: cover;"> -->
-<!--                         <div class="position-absolute bottom-0 text-center p-2 d-none postTitle"> -->
-<!--                             <span>2023 성시경의 축가 콘서트</span> -->
-<!--                         </div> -->
-<!--                     </div> -->
-<!--                 </div> -->
-<!--                 <div class="tour_container mb-0" style="width: 20%;"> -->
-<!--                     <div class="positoin-relative"> -->
-<!--                         <img src="/resources/concert/img/구름아래소극장.jpg" alt="" class="img-fluid" style="width: 100%; object-fit: cover;"> -->
-<!--                         <div class="position-absolute bottom-0 text-center p-2 d-none postTitle"> -->
-<!--                             <span>2023 성시경의 축가 콘서트</span> -->
-<!--                         </div> -->
-<!--                     </div> -->
-<!--                 </div> -->
-<!--                 <div class="tour_container mb-0" style="width: 20%;"> -->
-<!--                     <div class="positoin-relative"> -->
-<!--                         <img src="/resources/concert/img/구름아래소극장.jpg" alt="" class="img-fluid" style="width: 100%; object-fit: cover;"> -->
-<!--                         <div class="position-absolute bottom-0 text-center p-2 d-none postTitle"> -->
-<!--                             <span>2023 성시경의 축가 콘서트</span> -->
-<!--                         </div> -->
-<!--                     </div> -->
-<!--                 </div> -->
-<!-- 			</div> -->
-<!--         </div> -->
-<!--         /container -->
-<!--         </div> -->
-        <!-- /white_bg -->
+
         
         
 
@@ -254,7 +178,6 @@
 			$(this).parent().addClass("text-primary");
 			
 		})
-	 	
 	 	
 
 	</script>

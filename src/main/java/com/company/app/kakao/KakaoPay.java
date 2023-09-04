@@ -76,6 +76,8 @@ public class KakaoPay {
 			
 			String token = buffer.readLine();
 			String[] array = token.split(",");
+			
+			System.out.println("array : "+ token);
 			String[] tidArray = array[0].split(":");
 			String tidFin = tidArray[1].substring(1, tidArray[1].length()-1);
 			tid = tidFin;
@@ -118,11 +120,13 @@ public class KakaoPay {
 			InputStream inputStream;
 			if(result == 200) {
 				inputStream = httpUrl.getInputStream();
+				System.out.println("123");
 			} else {
 				inputStream = httpUrl.getErrorStream();
 			}
 			InputStreamReader reader = new InputStreamReader(inputStream);
 			BufferedReader buffer = new BufferedReader(reader);
+			System.out.println(buffer.readLine());
 			
 			// 결제 테이블 등록
 			dto.setTid(tid);
