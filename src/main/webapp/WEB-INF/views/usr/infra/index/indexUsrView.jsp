@@ -9,18 +9,7 @@
 <jsp:include page="../include/header.jsp"></jsp:include>
 	<main>
 		<div id="carousel-home">
-            <div class="owl-carousel owl-theme">
-                 <div class="owl-slide cover" style="background-image: url(/resources/concert/img/2281123.jpg);">
-                </div>
-                <!--/owl-slide-->
-                <div class="owl-slide cover" style="background-image: url(/resources/concert/img/2281123.jpg);">
-                </div>
-                <!--/owl-slide-->
-                <div class="owl-slide cover" style="background-image: url(/resources/concert/img/2281123.jpg);">
-                </div>
-                <!--/owl-slide-->
-            </div>
-            <div id="icon_drag_mobile"></div>
+        	<img alt="" src="/resources/concert/img/2281123.jpg" class="img-fluid">
         </div>
         <!-- news --------------------------------------------------------------------------------------------------  -->
         <div class="container margin_60">

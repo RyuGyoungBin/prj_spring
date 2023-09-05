@@ -5541,7 +5541,7 @@ main{
 	font-size: 32px;
 	position: absolute;
 	right: 0;
-	top: 20px;
+	top: 50px;
 	color: #c6c6c6;
 	outline: none;
 }
@@ -8033,7 +8033,7 @@ only screen and (min-device-pixel-ratio: 2) and (max-width: 991px) {
 	}
 	.search-overlay-menu form button {
 		font-size: 1.5rem;
-		top: 10px;
+		top: 47px;
 	}
 	
 	.laptop{

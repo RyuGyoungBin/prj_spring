@@ -57,8 +57,8 @@
 	                        </li>
 	                        <li>
 	                            <div class="dropdown">
-	                                <a class="cart_bt dropdown link-dark header_link"><i class="bi bi-person-square"></i></a>
-	                                <ul class="dropdown-menu" id="cart_items">
+	                                <a class="cart_bt dropdown link-dark header_link position-relative"><i class="bi bi-person-square"></i></a>
+	                                <ul class="dropdown-menu position-absolute" id="cart_items" style="left: -170px;">
 	                                	<c:choose>
 	                                		<c:when test="${not empty sessionId }">
 	                                			<li><strong>Id:<c:out value="${sessionId }"></c:out> </strong></li>
