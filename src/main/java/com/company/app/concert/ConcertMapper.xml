@@ -672,5 +672,27 @@
     	WHERE 1=1
     		AND seq = #{concertAddressSeat_seq}
     </update>
+    <insert id="insertReview">
+    	INSERT INTO `concertReview` (
+    		content,
+    		concertGrade,
+    		concertReviewDate,
+    		defaultNy,
+    		delNy,
+    		memberSeq,
+    		concertDate_seq,
+    		concertTicket_seq
+    	) values (
+    		${content},
+    		#{concertGrade},
+    		now(),
+    		0,
+    		0,
+    		#{sessionSeq},
+    		#{concertDateSeq},
+    		#{concertTicket_seq}
+    	)
+    </insert>
+    <update id=""></update>
     
 </mapper>

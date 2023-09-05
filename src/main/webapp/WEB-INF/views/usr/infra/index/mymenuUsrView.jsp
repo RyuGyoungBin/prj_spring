@@ -43,11 +43,14 @@
 							<a href="#section-1" class="icon-booking"><span>예매중인 표</span></a>
 						</li>
 						<li>
-							<a href="#section-2" class="icon-wishlist"><span>관람후기</span></a>
+							<a href="#section-2" class="icon-booking"><span>예매한 표</span></a>
+						</li>
+						<li>
+							<a href="#section-3" class="icon-wishlist"><span>관람후기</span></a>
 						</li>
 						<c:choose>
 							<c:when test="${1 eq sessionType }">
-								<li><a href="#section-3" class="icon-settings"><span>등록</span></a>
+								<li><a href="#section-4" class="icon-settings"><span>등록</span></a>
 								</li>
 							</c:when>
 						</c:choose>
@@ -65,7 +68,7 @@
 							<c:forEach items="${ticket }" var="ticket" varStatus="statusUploaded">
 							<div class="row border-bottom">
 								<div class="col-lg-3 col-md-3 position-relative p-3">
-									<img src="<c:out value="${ticket.path }"/><c:out value="${ticket.uuidName }"/>" alt="Image">
+									<img src="<c:out value="${ticket.path }"/><c:out value="${ticket.uuidName }"/>" alt="Image" style="height: 240px;">
 								</div>
 								<div class="col-lg-6 col-md-6 d-flex">
 									<div class="tour_list_desc d-flex justify-content-around flex-column col-10">
@@ -106,8 +109,54 @@
 						<!-- End strip booking -->
 					</section>
 					<!-- End section 1 -->
-
+					
 					<section id="section-2">
+
+						<div class="strip_booking">
+							<c:forEach items="${ticket }" var="ticket" varStatus="statusUploaded">
+							<div class="row border-bottom">
+								<div class="col-lg-3 col-md-3 position-relative p-3">
+									<img src="<c:out value="${ticket.path }"/><c:out value="${ticket.uuidName }"/>" alt="Image" style="height: 240px;">
+								</div>
+								<div class="col-lg-6 col-md-6 d-flex">
+									<div class="tour_list_desc d-flex justify-content-around flex-column col-10">
+										<h3 class="p-0">타이틀 : <strong><c:out value="${ticket.concertTitle }"/></strong></h3>
+										<div>
+											<span>날짜 :</span>
+											<span><c:out value="${ticket.concertDate }"/></span>
+										</div>
+										<div>
+											<span>시간 :</span>
+											<span><c:out value="${ticket.concertDateTime }"/></span>
+										</div>
+										<div>
+											<span>장소 :</span>
+											<span><c:out value="${ticket.concertAddress }"/> <c:out value="${ticket.concertAddressDetail }"/></span>
+											<span class="tooltip-item"><i class="icon_set_1_icon-41"></i></span>
+										</div>
+									</div>
+									<div class="col-2 d-flex justify-content-center align-items-center">
+										<span><c:out value="${ticket.seatRow }"/><c:out value="${ticket.seatCol }"/>석 외 <c:out value="${ticket.cnt-1 }"/>석</span>
+									</div>
+								</div>
+								<div class="col-lg-2 col-md-2 d-flex flex-column justify-content-around align-items-center ps-0">
+									<div class="text-center">
+									</div>
+									<button type="button" class="btn btn-danger ticketBtn" id="ticketBtn<c:out value="${ticket.seq }"/>">리뷰 작성</button>
+									<input type="hidden" value="<c:out value="${ticket.tid }"/>" class="tid">
+									<input type="hidden" value="<c:out value="${ticket.totalPrice }"/>" class="totalPrice">
+									<input type="hidden" value="<c:out value="${ticket.concertAddressSeatSeqArray }"/>" name="concertAddressSeat_seqArray">
+									<input type="hidden" value="<c:out value="${ticket.concertTicketSeqArray }"/>" name="concertTicketSeqArray">
+								</div>
+							</div>
+							</c:forEach>
+							<!-- End row -->
+						</div>
+						<!-- End strip booking -->
+					</section>
+					<!-- End section 1 -->
+
+					<section id="section-3">
 						<div class="strip_booking">
 						<div class="text-end mb-3">
 								<button type="button" class="btn btn-secondary" id="insertReview">등록</button>
@@ -141,7 +190,7 @@
 					</section>
 					<!-- End section 2 -->
 
-					<section id="section-3">
+					<section id="section-4">
 
 						<div class="strip_booking">
 							<div class="text-end mb-3">
