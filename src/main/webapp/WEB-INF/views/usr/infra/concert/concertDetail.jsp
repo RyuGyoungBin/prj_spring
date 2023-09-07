@@ -106,7 +106,6 @@
 					<c:if test="${not empty item.name }">
 					<p>출연진 : <span><c:out value="${item.name }"/></span></p>
 					</c:if>
-					<div id="map"></div>
 				</div>
 				<div class="col-5 light">
 					<section class="text-center mb-3">
@@ -246,15 +245,22 @@
 	
 	
 	$("#concertAddress").on("click", function(){
-		$("#myModal").find("h1").text("연세대학교 노천극장");
+		$("#myModal").find("h1").text("<c:out value="${item.concertAddress}"/> <c:out value="${item.concertAddressDetail}"/>");
 		//$("#myModal").find(".modal-body").text("삭제하시겠습니까");
 		$("#myModal").find(".modal-body").empty();
 		$("#myModal").find(".modal-body").append('<div id="map"></div>');
 		$("#modalOk").remove();
 		$("#modalClose").remove();
+		myModal.show();	
 		
-	 	myModal.show();
-		
+		setTimeout(function(){
+			var container = document.getElementById('map');
+			var options = {
+				center: new kakao.maps.LatLng(33.450701, 126.570667),
+				level: 3
+			};
+			var map = new kakao.maps.Map(container, options);
+		}, 500);
 	})
 
 	
@@ -292,19 +298,6 @@
 		});
 		
 	})
-	
-	$(document).on("ready","#map", function(){
-		var container = document.getElementById('map');
-			var options = {
-				center: new kakao.maps.LatLng(33.450701, 126.570667),
-				level: 3
-			};
-		var map = new kakao.maps.Map(container, options);
-	})
-	
-
-	
-		
 	
 	</script>
 	<script type="text/javascript">
