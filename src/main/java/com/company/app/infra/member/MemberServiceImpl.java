@@ -45,10 +45,6 @@ public class MemberServiceImpl implements MemberService {
 			System.out.println(dto.getPhoneMark());
 			dao.insertPhone(dto);
 		}
-		
-		uploadFiles(dto.getUploadImgProfile(), dto, "memberUploaded", dto.getUploadImgProfileType(), dto.getUploadImgProfileMaxNumber());
-    	uploadFiles(dto.getUploadImg(), dto, "memberUploaded", dto.getUploadImgType(), dto.getUploadImgMaxNumber());
-    	uploadFiles(dto.getUploadFile(), dto, "memberUploaded", dto.getUploadFileType(), dto.getUploadFileMaxNumber());
     	
 		return 1;
 	}

@@ -56,7 +56,7 @@ public class KakaoPay {
 			httpUrl.setRequestProperty("Authorization", "KakaoAK 13274d287cbe15fa7a36f98743face20");
 			httpUrl.setRequestProperty("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
 			httpUrl.setDoOutput(true);
-			String parameter = "cid=TC0ONETIME&partner_order_id="+partner_order_id+"&partner_user_id="+partner_user_id+"&item_name="+item_name+"&quantity=1&total_amount="+total_amount+"&tax_free_amount=0&approval_url=http://localhost/kakao/pay/approval&fail_url=http://localhost/mymenuUsrView&cancel_url=http://localhost/mymenuUsrView";
+			String parameter = "cid=TC0ONETIME&partner_order_id="+partner_order_id+"&partner_user_id="+partner_user_id+"&item_name="+item_name+"&quantity=1&total_amount="+total_amount+"&tax_free_amount=0&approval_url=http://13.209.43.132/kakao/pay/approval&fail_url=http://13.209.43.132/mymenuUsrView&cancel_url=http://13.209.43.132/mymenuUsrView";
 			OutputStream output = httpUrl.getOutputStream();
 			DataOutputStream dataOutput = new DataOutputStream(output);
 			dataOutput.writeBytes(parameter);
